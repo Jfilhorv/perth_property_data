@@ -14,7 +14,6 @@ let yearlyChart;
 let map;
 let listingsLayer;
 let suburbPriceLayer;
-let layerControl;
 
 function makeKpiCard(label, value) {
   const div = document.createElement("div");
@@ -137,9 +136,7 @@ function renderMap(filterSuburb = "") {
       fillColor: "#ef4444",
       fillOpacity: 0.35,
       weight: 1,
-    }).bindPopup(
-      `<b>${row.Suburb}</b><br/>Preco: ${currency.format(row.Price)}<br/>Tipo: ${row.Property_Type}<br/>Quartos: ${row.Bedrooms}`
-    )
+    }).bindTooltip(`<b>${row.Suburb}</b><br/>Preco: ${currency.format(row.Price)}`, { sticky: true })
   );
   listingsLayer = L.layerGroup(listingMarkers);
 
@@ -156,26 +153,21 @@ function renderMap(filterSuburb = "") {
         fillColor: colorByPrice(row.avg_price, minPrice, maxPrice),
         fillOpacity: 0.25,
         weight: 2,
-      }).bindPopup(
+      }).bindTooltip(
         `<b>${row.Suburb}</b><br/>Preco medio: ${currency.format(row.avg_price)}<br/>Preco mediano: ${currency.format(
           row.median_price
-        )}<br/>Vendas: ${numberFmt.format(row.count)}`
+        )}<br/>Vendas: ${numberFmt.format(row.count)}`,
+        { sticky: true }
       )
     )
   );
-
-  const overlayMaps = {
-    "Imoveis (Latitude/Longitude)": listingsLayer,
-    "Preco medio por suburb": suburbPriceLayer,
-  };
-
-  listingsLayer.addTo(map);
-  suburbPriceLayer.addTo(map);
-
-  if (layerControl) {
-    map.removeControl(layerControl);
+  const mapView = document.getElementById("mapViewSelect").value;
+  if (mapView === "both" || mapView === "listings") {
+    listingsLayer.addTo(map);
   }
-  layerControl = L.control.layers(null, overlayMaps, { collapsed: false }).addTo(map);
+  if (mapView === "both" || mapView === "suburb") {
+    suburbPriceLayer.addTo(map);
+  }
 
   const group = L.featureGroup([...listingMarkers, ...filteredSuburb.map((row) => L.marker([row.latitude, row.longitude]))]);
   if (group.getLayers().length > 0) {
@@ -218,6 +210,12 @@ async function init() {
 
   const chartTypeSelect = document.getElementById("chartTypeSelect");
   chartTypeSelect.addEventListener("change", (e) => renderYearlyChart(e.target.value));
+
+  const mapViewSelect = document.getElementById("mapViewSelect");
+  mapViewSelect.addEventListener("change", () => {
+    const suburb = document.getElementById("suburbSelect").value;
+    renderMap(suburb);
+  });
 }
 
 init().catch((err) => {

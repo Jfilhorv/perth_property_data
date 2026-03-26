@@ -22,30 +22,36 @@
       <section class="kpi-grid" id="kpis"></section>
 
       <section class="panel">
-        <h2>Filtro rapido</h2>
+        <h2>Menu superior</h2>
         <div class="filters">
           <label for="suburbSelect">Suburb</label>
           <select id="suburbSelect">
             <option value="">Todos</option>
           </select>
-        </div>
-      </section>
-
-      <section class="panel">
-        <h2>Evolucao anual de preco mediano</h2>
-        <div class="filters">
-          <label for="chartTypeSelect">Tipo de grafico</label>
+          <label for="chartTypeSelect">Grafico</label>
           <select id="chartTypeSelect">
             <option value="line">Line</option>
             <option value="bar">Bar</option>
           </select>
+          <label for="mapViewSelect">Mapa</label>
+          <select id="mapViewSelect">
+            <option value="both">Pontos + Preco medio</option>
+            <option value="listings">Somente pontos (lat/lon)</option>
+            <option value="suburb">Somente preco medio por suburb</option>
+          </select>
         </div>
-        <canvas id="yearlyChart" height="90"></canvas>
       </section>
 
-      <section class="panel">
-        <h2>Mapa de imoveis e preco medio por suburb</h2>
-        <div id="map"></div>
+      <section class="viz-grid">
+        <section class="panel">
+          <h2>Evolucao anual de preco mediano</h2>
+          <canvas id="yearlyChart" height="140"></canvas>
+        </section>
+
+        <section class="panel">
+          <h2>Mapa de imoveis e preco medio por suburb</h2>
+          <div id="map"></div>
+        </section>
       </section>
 
       <section class="panel">
