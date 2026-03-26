@@ -51,6 +51,11 @@ function asPricePerSqm(value) {
   return currency.format(value);
 }
 
+function asCurrencyOrNA(value) {
+  if (!Number.isFinite(value) || value <= 0) return "N/A";
+  return currency.format(value);
+}
+
 function formatSignedPercent(value) {
   const rounded = Math.round(value * 10) / 10;
   const abs = Math.abs(rounded);
@@ -73,6 +78,14 @@ function getVariationMeta(value) {
   return { text: "0%", arrow: "■", cls: "variation-neutral" };
 }
 
+function attachKpiVariation(cardEl, variationPct) {
+  const meta = getVariationMeta(variationPct);
+  const div = document.createElement("div");
+  div.className = `kpi-variation ${meta.cls}`;
+  div.textContent = `${meta.arrow} ${meta.text} vs prev year`;
+  cardEl.appendChild(div);
+}
+
 function formatDistance(meters) {
   if (!Number.isFinite(meters) || meters < 0) return "N/A";
   if (meters < 1000) return `${numberFmt.format(Math.round(meters))} m`;
@@ -90,17 +103,61 @@ function renderKpis(summary, filteredRows) {
     .map((r) => r.Price / r.Land_Size);
 
   const medianPrice = median(prices);
-  const mean = prices.length ? prices.reduce((a, b) => a + b, 0) / prices.length : 0;
-  const p75 = percentile(0.75);
-  const p95 = percentile(0.95);
+  const mean = prices.length ? prices.reduce((a, b) => a + b, 0) / prices.length : NaN;
+  const p75 = percentile(prices, 0.75);
+  const p95 = percentile(prices, 0.95);
   const medianPsm = median(pricePerSqm);
 
+  const yearly = new Map();
+  filteredRows.forEach((r) => {
+    if (!Number.isFinite(r.Year)) return;
+    const cur = yearly.get(r.Year) || { prices: [], psm: [] };
+    if (Number.isFinite(r.Price)) cur.prices.push(r.Price);
+    if (Number.isFinite(r.Price) && Number.isFinite(r.Land_Size) && r.Land_Size > 0) {
+      cur.psm.push(r.Price / r.Land_Size);
+    }
+    yearly.set(r.Year, cur);
+  });
+  const years = [...yearly.keys()].sort((a, b) => a - b);
+  let medianYoY = NaN;
+  let avgYoY = NaN;
+  let m2YoY = NaN;
+  if (years.length >= 2) {
+    const last = yearly.get(years[years.length - 1]);
+    const prev = yearly.get(years[years.length - 2]);
+    const lastMedian = median(last?.prices || []);
+    const prevMedian = median(prev?.prices || []);
+    const lastAvg = (last?.prices || []).length
+      ? (last.prices || []).reduce((a, b) => a + b, 0) / last.prices.length
+      : NaN;
+    const prevAvg = (prev?.prices || []).length
+      ? (prev.prices || []).reduce((a, b) => a + b, 0) / prev.prices.length
+      : NaN;
+    const lastM2 = median(last?.psm || []);
+    const prevM2 = median(prev?.psm || []);
+    if (Number.isFinite(prevMedian) && prevMedian > 0 && Number.isFinite(lastMedian)) {
+      medianYoY = ((lastMedian - prevMedian) / prevMedian) * 100;
+    }
+    if (Number.isFinite(prevAvg) && prevAvg > 0 && Number.isFinite(lastAvg)) {
+      avgYoY = ((lastAvg - prevAvg) / prevAvg) * 100;
+    }
+    if (Number.isFinite(prevM2) && prevM2 > 0 && Number.isFinite(lastM2)) {
+      m2YoY = ((lastM2 - prevM2) / prevM2) * 100;
+    }
+  }
+
   kpis.appendChild(makeKpiCard("Records", numberFmt.format(filteredRows.length)));
-  kpis.appendChild(makeKpiCard("Median Price", currency.format(medianPrice)));
-  kpis.appendChild(makeKpiCard("Average Price", currency.format(mean)));
-  kpis.appendChild(makeKpiCard("Median Price M2", asPricePerSqm(medianPsm)));
-  kpis.appendChild(makeKpiCard("P75", currency.format(p75)));
-  kpis.appendChild(makeKpiCard("P95", currency.format(p95)));
+  const medianCard = makeKpiCard("Median Price", asCurrencyOrNA(medianPrice));
+  attachKpiVariation(medianCard, medianYoY);
+  kpis.appendChild(medianCard);
+  const avgCard = makeKpiCard("Average Price", asCurrencyOrNA(mean));
+  attachKpiVariation(avgCard, avgYoY);
+  kpis.appendChild(avgCard);
+  const m2Card = makeKpiCard("Median Price M2", asPricePerSqm(medianPsm));
+  attachKpiVariation(m2Card, m2YoY);
+  kpis.appendChild(m2Card);
+  kpis.appendChild(makeKpiCard("P75", asCurrencyOrNA(p75)));
+  kpis.appendChild(makeKpiCard("P95", asCurrencyOrNA(p95)));
   footnote.textContent = `Date range: ${summary.date_min} to ${summary.date_max}`;
 }
 
