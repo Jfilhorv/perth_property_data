@@ -1,0 +1,97 @@
+[
+  {
+    "Year": 2006,
+    "median_price": 408750.0,
+    "sales": 2
+  },
+  {
+    "Year": 2007,
+    "median_price": 472000.0,
+    "sales": 9
+  },
+  {
+    "Year": 2008,
+    "median_price": 490500.0,
+    "sales": 35
+  },
+  {
+    "Year": 2009,
+    "median_price": 570000.0,
+    "sales": 69
+  },
+  {
+    "Year": 2010,
+    "median_price": 660000.0,
+    "sales": 71
+  },
+  {
+    "Year": 2011,
+    "median_price": 649000.0,
+    "sales": 77
+  },
+  {
+    "Year": 2012,
+    "median_price": 622500.0,
+    "sales": 113
+  },
+  {
+    "Year": 2013,
+    "median_price": 649750.0,
+    "sales": 140
+  },
+  {
+    "Year": 2014,
+    "median_price": 750000.0,
+    "sales": 205
+  },
+  {
+    "Year": 2015,
+    "median_price": 670000.0,
+    "sales": 375
+  },
+  {
+    "Year": 2016,
+    "median_price": 710000.0,
+    "sales": 455
+  },
+  {
+    "Year": 2017,
+    "median_price": 735000.0,
+    "sales": 680
+  },
+  {
+    "Year": 2018,
+    "median_price": 670000.0,
+    "sales": 917
+  },
+  {
+    "Year": 2019,
+    "median_price": 635000.0,
+    "sales": 1243
+  },
+  {
+    "Year": 2020,
+    "median_price": 605000.0,
+    "sales": 2000
+  },
+  {
+    "Year": 2021,
+    "median_price": 650000.0,
+    "sales": 4705
+  },
+  {
+    "Year": 2022,
+    "median_price": 666420.0,
+    "sales": 9085
+  },
+  {
+    "Year": 2023,
+    "median_price": 672000.0,
+    "sales": 14039
+  },
+  {
+    "Year": 2024,
+    "median_price": 760000.0,
+    "sales": 8738
+  }
+]

@@ -1,0 +1,1423 @@
+[
+  {
+    "Suburb": "Spearwood",
+    "count": 280,
+    "median_price": 607000.0,
+    "avg_price": 618849.6642857143,
+    "avg_distance_to_cbd": 17922.342857142856
+  },
+  {
+    "Suburb": "Padbury",
+    "count": 278,
+    "median_price": 762500.0,
+    "avg_price": 771248.6726618705,
+    "avg_distance_to_cbd": 18522.258992805757
+  },
+  {
+    "Suburb": "Alexander Heights",
+    "count": 278,
+    "median_price": 540000.0,
+    "avg_price": 561305.4928057553,
+    "avg_distance_to_cbd": 13991.74820143885
+  },
+  {
+    "Suburb": "Maylands",
+    "count": 278,
+    "median_price": 535000.0,
+    "avg_price": 640434.3129496403,
+    "avg_distance_to_cbd": 4568.431654676259
+  },
+  {
+    "Suburb": "Landsdale",
+    "count": 277,
+    "median_price": 755000.0,
+    "avg_price": 759718.3754512635,
+    "avg_distance_to_cbd": 16013.584837545126
+  },
+  {
+    "Suburb": "Madeley",
+    "count": 276,
+    "median_price": 670000.0,
+    "avg_price": 676265.5434782609,
+    "avg_distance_to_cbd": 16549.797101449276
+  },
+  {
+    "Suburb": "Coolbellup",
+    "count": 276,
+    "median_price": 600000.0,
+    "avg_price": 601155.8442028986,
+    "avg_distance_to_cbd": 14878.166666666666
+  },
+  {
+    "Suburb": "Forrestfield",
+    "count": 276,
+    "median_price": 590949.5,
+    "avg_price": 594891.3333333334,
+    "avg_distance_to_cbd": 14669.246376811594
+  },
+  {
+    "Suburb": "Ballajura",
+    "count": 275,
+    "median_price": 600000.0,
+    "avg_price": 614724.4727272728,
+    "avg_distance_to_cbd": 13221.58909090909
+  },
+  {
+    "Suburb": "Marangaroo",
+    "count": 275,
+    "median_price": 550000.0,
+    "avg_price": 564955.92,
+    "avg_distance_to_cbd": 14105.08
+  },
+  {
+    "Suburb": "Mount Lawley",
+    "count": 274,
+    "median_price": 1120000.0,
+    "avg_price": 1208978.8503649635,
+    "avg_distance_to_cbd": 3035.9306569343066
+  },
+  {
+    "Suburb": "Huntingdale",
+    "count": 273,
+    "median_price": 522000.0,
+    "avg_price": 532296.1465201465,
+    "avg_distance_to_cbd": 17464.46153846154
+  },
+  {
+    "Suburb": "Bassendean",
+    "count": 272,
+    "median_price": 698250.0,
+    "avg_price": 723049.7573529412,
+    "avg_distance_to_cbd": 10200.91544117647
+  },
+  {
+    "Suburb": "Hamilton Hill",
+    "count": 272,
+    "median_price": 660000.0,
+    "avg_price": 672150.2205882353,
+    "avg_distance_to_cbd": 16158.213235294117
+  },
+  {
+    "Suburb": "Melville",
+    "count": 271,
+    "median_price": 970000.0,
+    "avg_price": 1017718.4059040591,
+    "avg_distance_to_cbd": 11018.29520295203
+  },
+  {
+    "Suburb": "South Lake",
+    "count": 271,
+    "median_price": 510000.0,
+    "avg_price": 525861.6642066421,
+    "avg_distance_to_cbd": 17101.78966789668
+  },
+  {
+    "Suburb": "North Perth",
+    "count": 270,
+    "median_price": 1115000.0,
+    "avg_price": 1115069.6296296297,
+    "avg_distance_to_cbd": 3043.822222222222
+  },
+  {
+    "Suburb": "Palmyra",
+    "count": 270,
+    "median_price": 750000.0,
+    "avg_price": 796676.7407407408,
+    "avg_distance_to_cbd": 12003.02962962963
+  },
+  {
+    "Suburb": "Darch",
+    "count": 270,
+    "median_price": 701000.0,
+    "avg_price": 711701.5259259259,
+    "avg_distance_to_cbd": 15685.144444444444
+  },
+  {
+    "Suburb": "Yangebup",
+    "count": 270,
+    "median_price": 597500.0,
+    "avg_price": 632144.074074074,
+    "avg_distance_to_cbd": 19241.785185185185
+  },
+  {
+    "Suburb": "Pearsall",
+    "count": 270,
+    "median_price": 557500.0,
+    "avg_price": 565088.6777777778,
+    "avg_distance_to_cbd": 19342.203703703704
+  },
+  {
+    "Suburb": "Cloverdale",
+    "count": 270,
+    "median_price": 540000.0,
+    "avg_price": 547991.4814814815,
+    "avg_distance_to_cbd": 8400.381481481481
+  },
+  {
+    "Suburb": "Bibra Lake",
+    "count": 269,
+    "median_price": 625000.0,
+    "avg_price": 644702.4646840149,
+    "avg_distance_to_cbd": 15781.951672862453
+  },
+  {
+    "Suburb": "High Wycombe",
+    "count": 269,
+    "median_price": 585000.0,
+    "avg_price": 590429.2081784387,
+    "avg_distance_to_cbd": 14112.096654275092
+  },
+  {
+    "Suburb": "Eden Hill",
+    "count": 269,
+    "median_price": 465000.0,
+    "avg_price": 482483.6840148699,
+    "avg_distance_to_cbd": 10771.49814126394
+  },
+  {
+    "Suburb": "Thornlie",
+    "count": 268,
+    "median_price": 627500.0,
+    "avg_price": 624728.776119403,
+    "avg_distance_to_cbd": 15019.518656716418
+  },
+  {
+    "Suburb": "Brabham",
+    "count": 268,
+    "median_price": 580000.0,
+    "avg_price": 581377.5559701492,
+    "avg_distance_to_cbd": 18002.011194029852
+  },
+  {
+    "Suburb": "Rivervale",
+    "count": 268,
+    "median_price": 557750.0,
+    "avg_price": 594792.0335820896,
+    "avg_distance_to_cbd": 5380.167910447762
+  },
+  {
+    "Suburb": "Balga",
+    "count": 268,
+    "median_price": 510000.0,
+    "avg_price": 512869.302238806,
+    "avg_distance_to_cbd": 11026.955223880597
+  },
+  {
+    "Suburb": "Girrawheen",
+    "count": 268,
+    "median_price": 461500.0,
+    "avg_price": 469660.1604477612,
+    "avg_distance_to_cbd": 12569.138059701492
+  },
+  {
+    "Suburb": "Sorrento",
+    "count": 267,
+    "median_price": 1350000.0,
+    "avg_price": 1426152.6741573033,
+    "avg_distance_to_cbd": 16949.812734082396
+  },
+  {
+    "Suburb": "Nollamara",
+    "count": 267,
+    "median_price": 535000.0,
+    "avg_price": 546603.6292134832,
+    "avg_distance_to_cbd": 8335.681647940075
+  },
+  {
+    "Suburb": "Noranda",
+    "count": 266,
+    "median_price": 664500.5,
+    "avg_price": 660275.1278195488,
+    "avg_distance_to_cbd": 9564.03007518797
+  },
+  {
+    "Suburb": "Balcatta",
+    "count": 266,
+    "median_price": 610125.0,
+    "avg_price": 651055.3571428572,
+    "avg_distance_to_cbd": 8867.154135338345
+  },
+  {
+    "Suburb": "West Perth",
+    "count": 265,
+    "median_price": 490000.0,
+    "avg_price": 555991.5132075471,
+    "avg_distance_to_cbd": 1511.0415094339623
+  },
+  {
+    "Suburb": "Canning Vale",
+    "count": 264,
+    "median_price": 850000.0,
+    "avg_price": 862361.7992424242,
+    "avg_distance_to_cbd": 15760.34090909091
+  },
+  {
+    "Suburb": "Joondanna",
+    "count": 264,
+    "median_price": 690000.0,
+    "avg_price": 713813.9696969697,
+    "avg_distance_to_cbd": 5209.401515151515
+  },
+  {
+    "Suburb": "Beechboro",
+    "count": 264,
+    "median_price": 486250.0,
+    "avg_price": 505134.98484848486,
+    "avg_distance_to_cbd": 12248.992424242424
+  },
+  {
+    "Suburb": "Stirling",
+    "count": 263,
+    "median_price": 1050000.0,
+    "avg_price": 1089411.680608365,
+    "avg_distance_to_cbd": 8671.756653992396
+  },
+  {
+    "Suburb": "Fremantle",
+    "count": 263,
+    "median_price": 950000.0,
+    "avg_price": 1046955.1140684411,
+    "avg_distance_to_cbd": 14606.923954372623
+  },
+  {
+    "Suburb": "Burswood",
+    "count": 263,
+    "median_price": 815000.0,
+    "avg_price": 879355.5437262357,
+    "avg_distance_to_cbd": 3897.0114068441067
+  },
+  {
+    "Suburb": "Victoria Park",
+    "count": 263,
+    "median_price": 679000.0,
+    "avg_price": 710757.6045627376,
+    "avg_distance_to_cbd": 4281.365019011407
+  },
+  {
+    "Suburb": "Westminster",
+    "count": 263,
+    "median_price": 480000.0,
+    "avg_price": 490393.29657794675,
+    "avg_distance_to_cbd": 9685.737642585551
+  },
+  {
+    "Suburb": "Wembley",
+    "count": 262,
+    "median_price": 1270000.0,
+    "avg_price": 1222414.0267175573,
+    "avg_distance_to_cbd": 4628.6297709923665
+  },
+  {
+    "Suburb": "Willagee",
+    "count": 262,
+    "median_price": 710000.0,
+    "avg_price": 728915.5038167939,
+    "avg_distance_to_cbd": 11981.54961832061
+  },
+  {
+    "Suburb": "Gwelup",
+    "count": 261,
+    "median_price": 1065000.0,
+    "avg_price": 1094521.295019157,
+    "avg_distance_to_cbd": 10956.72796934866
+  },
+  {
+    "Suburb": "Morley",
+    "count": 261,
+    "median_price": 692000.0,
+    "avg_price": 695399.5172413794,
+    "avg_distance_to_cbd": 8830.099616858237
+  },
+  {
+    "Suburb": "Carlisle",
+    "count": 261,
+    "median_price": 616250.0,
+    "avg_price": 652015.1570881226,
+    "avg_distance_to_cbd": 6390.992337164751
+  },
+  {
+    "Suburb": "Tuart Hill",
+    "count": 261,
+    "median_price": 547000.0,
+    "avg_price": 581556.2911877395,
+    "avg_distance_to_cbd": 6540.199233716475
+  },
+  {
+    "Suburb": "Leeming",
+    "count": 260,
+    "median_price": 910000.0,
+    "avg_price": 919525.8346153846,
+    "avg_distance_to_cbd": 13516.592307692308
+  },
+  {
+    "Suburb": "Beaconsfield",
+    "count": 260,
+    "median_price": 905000.0,
+    "avg_price": 959538.75,
+    "avg_distance_to_cbd": 15317.842307692308
+  },
+  {
+    "Suburb": "Kardinya",
+    "count": 260,
+    "median_price": 804000.0,
+    "avg_price": 823400.6730769231,
+    "avg_distance_to_cbd": 13135.5
+  },
+  {
+    "Suburb": "Kewdale",
+    "count": 260,
+    "median_price": 555000.0,
+    "avg_price": 572442.6538461539,
+    "avg_distance_to_cbd": 7508.192307692308
+  },
+  {
+    "Suburb": "Carine",
+    "count": 259,
+    "median_price": 1051000.0,
+    "avg_price": 1065076.9498069498,
+    "avg_distance_to_cbd": 13346.239382239382
+  },
+  {
+    "Suburb": "Belmont",
+    "count": 259,
+    "median_price": 560000.0,
+    "avg_price": 588066.3397683398,
+    "avg_distance_to_cbd": 7407.664092664093
+  },
+  {
+    "Suburb": "Midland",
+    "count": 259,
+    "median_price": 385000.0,
+    "avg_price": 398311.1969111969,
+    "avg_distance_to_cbd": 16520.567567567567
+  },
+  {
+    "Suburb": "Inglewood",
+    "count": 258,
+    "median_price": 881000.0,
+    "avg_price": 901492.019379845,
+    "avg_distance_to_cbd": 4667.53488372093
+  },
+  {
+    "Suburb": "East Perth",
+    "count": 258,
+    "median_price": 482500.0,
+    "avg_price": 574012.7441860465,
+    "avg_distance_to_cbd": 1656.7906976744187
+  },
+  {
+    "Suburb": "Willetton",
+    "count": 257,
+    "median_price": 990000.0,
+    "avg_price": 1038217.5992217899,
+    "avg_distance_to_cbd": 11366.984435797665
+  },
+  {
+    "Suburb": "Caversham",
+    "count": 257,
+    "median_price": 580000.0,
+    "avg_price": 600093.53307393,
+    "avg_distance_to_cbd": 14035.249027237354
+  },
+  {
+    "Suburb": "Redcliffe",
+    "count": 257,
+    "median_price": 519000.0,
+    "avg_price": 531210.8910505837,
+    "avg_distance_to_cbd": 8416.91439688716
+  },
+  {
+    "Suburb": "Dayton",
+    "count": 257,
+    "median_price": 500000.0,
+    "avg_price": 511151.75097276265,
+    "avg_distance_to_cbd": 15381.758754863813
+  },
+  {
+    "Suburb": "Mount Hawthorn",
+    "count": 255,
+    "median_price": 1240000.0,
+    "avg_price": 1206961.9647058824,
+    "avg_distance_to_cbd": 4293.027450980392
+  },
+  {
+    "Suburb": "Greenwood",
+    "count": 255,
+    "median_price": 695000.0,
+    "avg_price": 721093.305882353,
+    "avg_distance_to_cbd": 14865.909803921568
+  },
+  {
+    "Suburb": "Hilton",
+    "count": 255,
+    "median_price": 660000.0,
+    "avg_price": 679331.9607843137,
+    "avg_distance_to_cbd": 14404.486274509803
+  },
+  {
+    "Suburb": "Hamersley",
+    "count": 254,
+    "median_price": 642500.0,
+    "avg_price": 662163.5669291338,
+    "avg_distance_to_cbd": 12266.05905511811
+  },
+  {
+    "Suburb": "Warwick",
+    "count": 254,
+    "median_price": 627500.0,
+    "avg_price": 655072.4448818897,
+    "avg_distance_to_cbd": 13579.13779527559
+  },
+  {
+    "Suburb": "Wattle Grove",
+    "count": 254,
+    "median_price": 600000.0,
+    "avg_price": 640754.5078740157,
+    "avg_distance_to_cbd": 13296.531496062993
+  },
+  {
+    "Suburb": "Embleton",
+    "count": 254,
+    "median_price": 550000.0,
+    "avg_price": 567998.9724409449,
+    "avg_distance_to_cbd": 7500.2322834645665
+  },
+  {
+    "Suburb": "Maddington",
+    "count": 254,
+    "median_price": 493000.0,
+    "avg_price": 506236.88976377953,
+    "avg_distance_to_cbd": 17273.334645669293
+  },
+  {
+    "Suburb": "Osborne Park",
+    "count": 254,
+    "median_price": 431472.0,
+    "avg_price": 457107.4566929134,
+    "avg_distance_to_cbd": 6711.602362204724
+  },
+  {
+    "Suburb": "Scarborough",
+    "count": 253,
+    "median_price": 946000.0,
+    "avg_price": 1022541.3873517787,
+    "avg_distance_to_cbd": 10720.94466403162
+  },
+  {
+    "Suburb": "Bayswater",
+    "count": 253,
+    "median_price": 822500.0,
+    "avg_price": 819226.7351778656,
+    "avg_distance_to_cbd": 6719.604743083004
+  },
+  {
+    "Suburb": "East Victoria Park",
+    "count": 253,
+    "median_price": 768000.0,
+    "avg_price": 777365.233201581,
+    "avg_distance_to_cbd": 5982.715415019763
+  },
+  {
+    "Suburb": "South Guildford",
+    "count": 253,
+    "median_price": 675000.0,
+    "avg_price": 681929.3083003953,
+    "avg_distance_to_cbd": 12548.434782608696
+  },
+  {
+    "Suburb": "Parkwood",
+    "count": 253,
+    "median_price": 550000.0,
+    "avg_price": 559331.9960474308,
+    "avg_distance_to_cbd": 11676.707509881422
+  },
+  {
+    "Suburb": "Attadale",
+    "count": 252,
+    "median_price": 1445000.0,
+    "avg_price": 1604265.365079365,
+    "avg_distance_to_cbd": 9704.222222222223
+  },
+  {
+    "Suburb": "St James",
+    "count": 252,
+    "median_price": 620000.0,
+    "avg_price": 630934.3849206349,
+    "avg_distance_to_cbd": 7248.400793650793
+  },
+  {
+    "Suburb": "Subiaco",
+    "count": 251,
+    "median_price": 1050000.0,
+    "avg_price": 1247400.3984063745,
+    "avg_distance_to_cbd": 3265.131474103586
+  },
+  {
+    "Suburb": "Southern River",
+    "count": 251,
+    "median_price": 735000.0,
+    "avg_price": 750493.4621513945,
+    "avg_distance_to_cbd": 18370.406374501992
+  },
+  {
+    "Suburb": "Yokine",
+    "count": 251,
+    "median_price": 696000.0,
+    "avg_price": 775665.2589641435,
+    "avg_distance_to_cbd": 5960.605577689243
+  },
+  {
+    "Suburb": "Duncraig",
+    "count": 250,
+    "median_price": 951500.0,
+    "avg_price": 1040123.432,
+    "avg_distance_to_cbd": 15422.332
+  },
+  {
+    "Suburb": "Leederville",
+    "count": 250,
+    "median_price": 878000.0,
+    "avg_price": 893450.804,
+    "avg_distance_to_cbd": 2800.536
+  },
+  {
+    "Suburb": "Treeby",
+    "count": 250,
+    "median_price": 643000.0,
+    "avg_price": 654603.604,
+    "avg_distance_to_cbd": 18637.7
+  },
+  {
+    "Suburb": "Mirrabooka",
+    "count": 250,
+    "median_price": 440000.0,
+    "avg_price": 457775.692,
+    "avg_distance_to_cbd": 10868.964
+  },
+  {
+    "Suburb": "Koondoola",
+    "count": 250,
+    "median_price": 385000.0,
+    "avg_price": 392327.752,
+    "avg_distance_to_cbd": 12355.56
+  },
+  {
+    "Suburb": "Woodlands",
+    "count": 249,
+    "median_price": 1135000.0,
+    "avg_price": 1148145.6666666667,
+    "avg_distance_to_cbd": 8021.104417670683
+  },
+  {
+    "Suburb": "North Coogee",
+    "count": 249,
+    "median_price": 1025000.0,
+    "avg_price": 1090185.7429718876,
+    "avg_distance_to_cbd": 17982.859437751005
+  },
+  {
+    "Suburb": "Wembley Downs",
+    "count": 248,
+    "median_price": 1425000.0,
+    "avg_price": 1454045.685483871,
+    "avg_distance_to_cbd": 8915.689516129032
+  },
+  {
+    "Suburb": "Booragoon",
+    "count": 248,
+    "median_price": 1077500.0,
+    "avg_price": 1055612.25,
+    "avg_distance_to_cbd": 9820.540322580646
+  },
+  {
+    "Suburb": "Kingsley",
+    "count": 248,
+    "median_price": 765750.0,
+    "avg_price": 781726.5403225806,
+    "avg_distance_to_cbd": 16907.370967741936
+  },
+  {
+    "Suburb": "Karrinyup",
+    "count": 247,
+    "median_price": 1165000.0,
+    "avg_price": 1230048.5789473683,
+    "avg_distance_to_cbd": 11528.493927125506
+  },
+  {
+    "Suburb": "White Gum Valley",
+    "count": 247,
+    "median_price": 800000.0,
+    "avg_price": 861639.016194332,
+    "avg_distance_to_cbd": 14419.890688259109
+  },
+  {
+    "Suburb": "Manning",
+    "count": 246,
+    "median_price": 850000.0,
+    "avg_price": 902477.918699187,
+    "avg_distance_to_cbd": 6730.841463414634
+  },
+  {
+    "Suburb": "Bedford",
+    "count": 246,
+    "median_price": 802138.5,
+    "avg_price": 815392.9146341464,
+    "avg_distance_to_cbd": 5900.727642276423
+  },
+  {
+    "Suburb": "Doubleview",
+    "count": 245,
+    "median_price": 920000.0,
+    "avg_price": 1009570.5591836735,
+    "avg_distance_to_cbd": 9686.387755102041
+  },
+  {
+    "Suburb": "South Perth",
+    "count": 244,
+    "median_price": 1187500.0,
+    "avg_price": 1367499.18852459,
+    "avg_distance_to_cbd": 3039.3688524590166
+  },
+  {
+    "Suburb": "Como",
+    "count": 244,
+    "median_price": 910000.0,
+    "avg_price": 1010701.9549180327,
+    "avg_distance_to_cbd": 5085.987704918033
+  },
+  {
+    "Suburb": "Jandakot",
+    "count": 244,
+    "median_price": 709000.0,
+    "avg_price": 729327.5737704918,
+    "avg_distance_to_cbd": 16625.72131147541
+  },
+  {
+    "Suburb": "Churchlands",
+    "count": 243,
+    "median_price": 1388000.0,
+    "avg_price": 1323337.9053497943,
+    "avg_distance_to_cbd": 6813.526748971193
+  },
+  {
+    "Suburb": "Queens Park",
+    "count": 243,
+    "median_price": 495000.0,
+    "avg_price": 504717.60905349796,
+    "avg_distance_to_cbd": 9999.012345679012
+  },
+  {
+    "Suburb": "Lockridge",
+    "count": 243,
+    "median_price": 342000.0,
+    "avg_price": 355511.1069958848,
+    "avg_distance_to_cbd": 11867.213991769548
+  },
+  {
+    "Suburb": "Trigg",
+    "count": 242,
+    "median_price": 1415002.5,
+    "avg_price": 1603432.458677686,
+    "avg_distance_to_cbd": 12872.94214876033
+  },
+  {
+    "Suburb": "Dianella",
+    "count": 242,
+    "median_price": 775000.0,
+    "avg_price": 841324.2644628099,
+    "avg_distance_to_cbd": 7092.123966942148
+  },
+  {
+    "Suburb": "Bennett Springs",
+    "count": 242,
+    "median_price": 520500.0,
+    "avg_price": 534770.4752066116,
+    "avg_distance_to_cbd": 12968.814049586777
+  },
+  {
+    "Suburb": "Shenton Park",
+    "count": 241,
+    "median_price": 1520000.0,
+    "avg_price": 1515685.2697095436,
+    "avg_distance_to_cbd": 4211.132780082988
+  },
+  {
+    "Suburb": "Innaloo",
+    "count": 241,
+    "median_price": 680000.0,
+    "avg_price": 678107.9543568465,
+    "avg_distance_to_cbd": 9184.311203319503
+  },
+  {
+    "Suburb": "Mount Pleasant",
+    "count": 240,
+    "median_price": 1450000.0,
+    "avg_price": 1675600.4833333334,
+    "avg_distance_to_cbd": 8194.041666666666
+  },
+  {
+    "Suburb": "West Leederville",
+    "count": 240,
+    "median_price": 1150000.0,
+    "avg_price": 1172013.2333333334,
+    "avg_distance_to_cbd": 2773.633333333333
+  },
+  {
+    "Suburb": "North Beach",
+    "count": 239,
+    "median_price": 1125000.0,
+    "avg_price": 1395284.610878661,
+    "avg_distance_to_cbd": 13879.8410041841
+  },
+  {
+    "Suburb": "Myaree",
+    "count": 239,
+    "median_price": 710000.0,
+    "avg_price": 752713.1464435146,
+    "avg_distance_to_cbd": 10364.757322175732
+  },
+  {
+    "Suburb": "Beckenham",
+    "count": 238,
+    "median_price": 511250.0,
+    "avg_price": 530176.1470588235,
+    "avg_distance_to_cbd": 12425.38655462185
+  },
+  {
+    "Suburb": "Rossmoyne",
+    "count": 236,
+    "median_price": 1200000.0,
+    "avg_price": 1283352.1779661018,
+    "avg_distance_to_cbd": 9557.216101694916
+  },
+  {
+    "Suburb": "Bentley",
+    "count": 236,
+    "median_price": 490000.0,
+    "avg_price": 519785.7330508475,
+    "avg_distance_to_cbd": 8214.122881355932
+  },
+  {
+    "Suburb": "Alfred Cove",
+    "count": 235,
+    "median_price": 870000.0,
+    "avg_price": 976912.3446808511,
+    "avg_distance_to_cbd": 9711.034042553192
+  },
+  {
+    "Suburb": "East Fremantle",
+    "count": 234,
+    "median_price": 1417500.0,
+    "avg_price": 1555728.9572649573,
+    "avg_distance_to_cbd": 12781.205128205129
+  },
+  {
+    "Suburb": "Kensington",
+    "count": 234,
+    "median_price": 987500.0,
+    "avg_price": 1036973.0982905983,
+    "avg_distance_to_cbd": 4009.042735042735
+  },
+  {
+    "Suburb": "Ascot",
+    "count": 233,
+    "median_price": 742000.0,
+    "avg_price": 744433.0472103005,
+    "avg_distance_to_cbd": 7174.622317596567
+  },
+  {
+    "Suburb": "Cannington",
+    "count": 233,
+    "median_price": 435000.0,
+    "avg_price": 466994.1888412017,
+    "avg_distance_to_cbd": 10221.30042918455
+  },
+  {
+    "Suburb": "Kenwick",
+    "count": 233,
+    "median_price": 408000.0,
+    "avg_price": 426506.991416309,
+    "avg_distance_to_cbd": 14878.682403433477
+  },
+  {
+    "Suburb": "Lathlain",
+    "count": 232,
+    "median_price": 781250.0,
+    "avg_price": 814699.1594827586,
+    "avg_distance_to_cbd": 4846.362068965517
+  },
+  {
+    "Suburb": "Gosnells",
+    "count": 226,
+    "median_price": 557000.0,
+    "avg_price": 561446.5663716814,
+    "avg_distance_to_cbd": 18722.805309734515
+  },
+  {
+    "Suburb": "Bicton",
+    "count": 225,
+    "median_price": 1200000.0,
+    "avg_price": 1402135.5555555555,
+    "avg_distance_to_cbd": 10823.262222222222
+  },
+  {
+    "Suburb": "Riverton",
+    "count": 224,
+    "median_price": 758444.5,
+    "avg_price": 805734.3928571428,
+    "avg_distance_to_cbd": 9721.924107142857
+  },
+  {
+    "Suburb": "Guildford",
+    "count": 224,
+    "median_price": 665000.0,
+    "avg_price": 739269.5625,
+    "avg_distance_to_cbd": 12725.785714285714
+  },
+  {
+    "Suburb": "Shelley",
+    "count": 223,
+    "median_price": 910000.0,
+    "avg_price": 1070581.9103139013,
+    "avg_distance_to_cbd": 8910.919282511211
+  },
+  {
+    "Suburb": "East Cannington",
+    "count": 223,
+    "median_price": 490000.0,
+    "avg_price": 524139.40807174885,
+    "avg_distance_to_cbd": 11260.59192825112
+  },
+  {
+    "Suburb": "South Fremantle",
+    "count": 221,
+    "median_price": 1109000.0,
+    "avg_price": 1187681.0995475112,
+    "avg_distance_to_cbd": 16102.484162895928
+  },
+  {
+    "Suburb": "Hillarys",
+    "count": 220,
+    "median_price": 1051500.0,
+    "avg_price": 1171187.2727272727,
+    "avg_distance_to_cbd": 19087.177272727273
+  },
+  {
+    "Suburb": "Langford",
+    "count": 220,
+    "median_price": 407500.0,
+    "avg_price": 421657.9818181818,
+    "avg_distance_to_cbd": 12583.286363636364
+  },
+  {
+    "Suburb": "Salter Point",
+    "count": 218,
+    "median_price": 1199000.0,
+    "avg_price": 1296108.4311926605,
+    "avg_distance_to_cbd": 7716.4908256880735
+  },
+  {
+    "Suburb": "Brentwood",
+    "count": 218,
+    "median_price": 679500.0,
+    "avg_price": 766678.6697247706,
+    "avg_distance_to_cbd": 10007.422018348623
+  },
+  {
+    "Suburb": "Wilson",
+    "count": 218,
+    "median_price": 627500.0,
+    "avg_price": 665813.2293577981,
+    "avg_distance_to_cbd": 8928.844036697248
+  },
+  {
+    "Suburb": "Claremont",
+    "count": 216,
+    "median_price": 1370000.0,
+    "avg_price": 1678712.9583333333,
+    "avg_distance_to_cbd": 7820.657407407408
+  },
+  {
+    "Suburb": "North Fremantle",
+    "count": 216,
+    "median_price": 1170000.0,
+    "avg_price": 1367664.351851852,
+    "avg_distance_to_cbd": 12959.041666666666
+  },
+  {
+    "Suburb": "Ardross",
+    "count": 214,
+    "median_price": 1162500.0,
+    "avg_price": 1224830.8411214952,
+    "avg_distance_to_cbd": 8324.528037383177
+  },
+  {
+    "Suburb": "Applecross",
+    "count": 213,
+    "median_price": 1600000.0,
+    "avg_price": 1714447.544600939,
+    "avg_distance_to_cbd": 7018.032863849765
+  },
+  {
+    "Suburb": "Woodvale",
+    "count": 210,
+    "median_price": 810000.0,
+    "avg_price": 830191.3714285714,
+    "avg_distance_to_cbd": 18843.790476190476
+  },
+  {
+    "Suburb": "Midvale",
+    "count": 208,
+    "median_price": 390500.0,
+    "avg_price": 402936.2548076923,
+    "avg_distance_to_cbd": 17678.76923076923
+  },
+  {
+    "Suburb": "Floreat",
+    "count": 206,
+    "median_price": 1810000.0,
+    "avg_price": 1930923.6699029126,
+    "avg_distance_to_cbd": 6226.495145631068
+  },
+  {
+    "Suburb": "Bellevue",
+    "count": 204,
+    "median_price": 377500.0,
+    "avg_price": 401030.6862745098,
+    "avg_distance_to_cbd": 17640.96568627451
+  },
+  {
+    "Suburb": "Bateman",
+    "count": 201,
+    "median_price": 820000.0,
+    "avg_price": 854094.0298507463,
+    "avg_distance_to_cbd": 11256.686567164179
+  },
+  {
+    "Suburb": "Cottesloe",
+    "count": 194,
+    "median_price": 3011000.0,
+    "avg_price": 3016210.824742268,
+    "avg_distance_to_cbd": 10243.11855670103
+  },
+  {
+    "Suburb": "Nedlands",
+    "count": 194,
+    "median_price": 2000000.0,
+    "avg_price": 2131278.350515464,
+    "avg_distance_to_cbd": 5712.072164948454
+  },
+  {
+    "Suburb": "Highgate",
+    "count": 194,
+    "median_price": 613750.0,
+    "avg_price": 705066.2422680412,
+    "avg_distance_to_cbd": 1984.4329896907216
+  },
+  {
+    "Suburb": "Maida Vale",
+    "count": 194,
+    "median_price": 552500.0,
+    "avg_price": 582830.8144329897,
+    "avg_distance_to_cbd": 15588.463917525773
+  },
+  {
+    "Suburb": "Middle Swan",
+    "count": 194,
+    "median_price": 389500.0,
+    "avg_price": 394516.3969072165,
+    "avg_distance_to_cbd": 17962.78350515464
+  },
+  {
+    "Suburb": "City Beach",
+    "count": 191,
+    "median_price": 2450000.0,
+    "avg_price": 2770699.607329843,
+    "avg_distance_to_cbd": 9439.821989528797
+  },
+  {
+    "Suburb": "Bull Creek",
+    "count": 191,
+    "median_price": 900000.0,
+    "avg_price": 989371.0209424084,
+    "avg_distance_to_cbd": 11709.612565445026
+  },
+  {
+    "Suburb": "Helena Valley",
+    "count": 190,
+    "median_price": 637500.0,
+    "avg_price": 657238.1578947369,
+    "avg_distance_to_cbd": 17006.610526315788
+  },
+  {
+    "Suburb": "Mosman Park",
+    "count": 189,
+    "median_price": 1600000.0,
+    "avg_price": 1691731.7407407407,
+    "avg_distance_to_cbd": 11113.957671957673
+  },
+  {
+    "Suburb": "Coolbinia",
+    "count": 188,
+    "median_price": 1130000.0,
+    "avg_price": 1231987.819148936,
+    "avg_distance_to_cbd": 4357.728723404255
+  },
+  {
+    "Suburb": "Marmion",
+    "count": 188,
+    "median_price": 1100000.0,
+    "avg_price": 1373700.0,
+    "avg_distance_to_cbd": 15636.36170212766
+  },
+  {
+    "Suburb": "Samson",
+    "count": 188,
+    "median_price": 610000.0,
+    "avg_price": 618989.3617021276,
+    "avg_distance_to_cbd": 14055.563829787234
+  },
+  {
+    "Suburb": "Swanbourne",
+    "count": 187,
+    "median_price": 2100000.0,
+    "avg_price": 2163331.550802139,
+    "avg_distance_to_cbd": 8801.16577540107
+  },
+  {
+    "Suburb": "Mount Claremont",
+    "count": 187,
+    "median_price": 1570000.0,
+    "avg_price": 1651864.3422459892,
+    "avg_distance_to_cbd": 7288.347593582887
+  },
+  {
+    "Suburb": "Lynwood",
+    "count": 187,
+    "median_price": 430000.0,
+    "avg_price": 456455.54545454547,
+    "avg_distance_to_cbd": 11725.711229946524
+  },
+  {
+    "Suburb": "Woodbridge",
+    "count": 181,
+    "median_price": 595000.0,
+    "avg_price": 622672.3425414364,
+    "avg_distance_to_cbd": 14692.353591160221
+  },
+  {
+    "Suburb": "Ferndale",
+    "count": 180,
+    "median_price": 490000.0,
+    "avg_price": 499712.22222222225,
+    "avg_distance_to_cbd": 10736.15
+  },
+  {
+    "Suburb": "Winthrop",
+    "count": 171,
+    "median_price": 1110000.0,
+    "avg_price": 1119795.5321637427,
+    "avg_distance_to_cbd": 11378.807017543859
+  },
+  {
+    "Suburb": "Swan View",
+    "count": 168,
+    "median_price": 465000.0,
+    "avg_price": 491122.0238095238,
+    "avg_distance_to_cbd": 19295.10119047619
+  },
+  {
+    "Suburb": "Greenmount",
+    "count": 164,
+    "median_price": 484000.0,
+    "avg_price": 513210.98170731706,
+    "avg_distance_to_cbd": 18745.676829268294
+  },
+  {
+    "Suburb": "Waterford",
+    "count": 162,
+    "median_price": 1095000.0,
+    "avg_price": 1110600.586419753,
+    "avg_distance_to_cbd": 7434.358024691358
+  },
+  {
+    "Suburb": "Coogee",
+    "count": 160,
+    "median_price": 900000.0,
+    "avg_price": 970313.4375,
+    "avg_distance_to_cbd": 19343.59375
+  },
+  {
+    "Suburb": "Kalamunda",
+    "count": 159,
+    "median_price": 667500.0,
+    "avg_price": 694191.8238993711,
+    "avg_distance_to_cbd": 18987.962264150945
+  },
+  {
+    "Suburb": "Ashfield",
+    "count": 158,
+    "median_price": 500000.0,
+    "avg_price": 559018.7025316455,
+    "avg_distance_to_cbd": 8598.316455696202
+  },
+  {
+    "Suburb": "Dalkeith",
+    "count": 154,
+    "median_price": 3100000.0,
+    "avg_price": 3233593.5064935065,
+    "avg_distance_to_cbd": 7270.727272727273
+  },
+  {
+    "Suburb": "Stratton",
+    "count": 153,
+    "median_price": 350000.0,
+    "avg_price": 365658.49673202616,
+    "avg_distance_to_cbd": 19646.91503267974
+  },
+  {
+    "Suburb": "Kiara",
+    "count": 150,
+    "median_price": 458277.5,
+    "avg_price": 474972.9533333333,
+    "avg_distance_to_cbd": 10904.253333333334
+  },
+  {
+    "Suburb": "Viveash",
+    "count": 147,
+    "median_price": 470000.0,
+    "avg_price": 502056.80272108846,
+    "avg_distance_to_cbd": 15889.829931972788
+  },
+  {
+    "Suburb": "Glendalough",
+    "count": 147,
+    "median_price": 408000.0,
+    "avg_price": 475457.65986394556,
+    "avg_distance_to_cbd": 5155.380952380952
+  },
+  {
+    "Suburb": "Cockburn Central",
+    "count": 142,
+    "median_price": 416500.0,
+    "avg_price": 438140.8450704225,
+    "avg_distance_to_cbd": 19044.38732394366
+  },
+  {
+    "Suburb": "North Lake",
+    "count": 141,
+    "median_price": 670000.0,
+    "avg_price": 694553.1914893617,
+    "avg_distance_to_cbd": 14495.964539007093
+  },
+  {
+    "Suburb": "Jolimont",
+    "count": 135,
+    "median_price": 795000.0,
+    "avg_price": 903928.4888888889,
+    "avg_distance_to_cbd": 4470.718518518518
+  },
+  {
+    "Suburb": "Menora",
+    "count": 134,
+    "median_price": 1107500.0,
+    "avg_price": 1213750.671641791,
+    "avg_distance_to_cbd": 3784.910447761194
+  },
+  {
+    "Suburb": "Harrisdale",
+    "count": 131,
+    "median_price": 775000.0,
+    "avg_price": 807302.641221374,
+    "avg_distance_to_cbd": 19344.374045801527
+  },
+  {
+    "Suburb": "Daglish",
+    "count": 130,
+    "median_price": 1100000.0,
+    "avg_price": 1178196.923076923,
+    "avg_distance_to_cbd": 4491.738461538462
+  },
+  {
+    "Suburb": "Watermans Bay",
+    "count": 121,
+    "median_price": 1250000.0,
+    "avg_price": 1501438.0165289256,
+    "avg_distance_to_cbd": 15018.00826446281
+  },
+  {
+    "Suburb": "Koongamia",
+    "count": 121,
+    "median_price": 345000.0,
+    "avg_price": 356679.9421487603,
+    "avg_distance_to_cbd": 18250.586776859505
+  },
+  {
+    "Suburb": "Northbridge",
+    "count": 115,
+    "median_price": 470000.0,
+    "avg_price": 530933.2260869566,
+    "avg_distance_to_cbd": 940.695652173913
+  },
+  {
+    "Suburb": "Murdoch",
+    "count": 112,
+    "median_price": 765000.0,
+    "avg_price": 778908.7142857143,
+    "avg_distance_to_cbd": 12220.49107142857
+  },
+  {
+    "Suburb": "Karawara",
+    "count": 106,
+    "median_price": 667500.0,
+    "avg_price": 702543.1698113207,
+    "avg_distance_to_cbd": 6490.518867924528
+  },
+  {
+    "Suburb": "Crawley",
+    "count": 90,
+    "median_price": 822500.0,
+    "avg_price": 1050705.5555555555,
+    "avg_distance_to_cbd": 4870.6
+  },
+  {
+    "Suburb": "Lesmurdie",
+    "count": 87,
+    "median_price": 670000.0,
+    "avg_price": 687386.2068965518,
+    "avg_distance_to_cbd": 19374.816091954024
+  },
+  {
+    "Suburb": "Peppermint Grove",
+    "count": 83,
+    "median_price": 2750000.0,
+    "avg_price": 2864834.3373493976,
+    "avg_distance_to_cbd": 10071.759036144578
+  },
+  {
+    "Suburb": "Munster",
+    "count": 78,
+    "median_price": 544250.0,
+    "avg_price": 582435.8974358974,
+    "avg_distance_to_cbd": 19612.346153846152
+  },
+  {
+    "Suburb": "Gooseberry Hill",
+    "count": 62,
+    "median_price": 685000.0,
+    "avg_price": 712375.3548387097,
+    "avg_distance_to_cbd": 18256.274193548386
+  },
+  {
+    "Suburb": "Craigie",
+    "count": 57,
+    "median_price": 620000.0,
+    "avg_price": 635098.245614035,
+    "avg_distance_to_cbd": 19792.57894736842
+  },
+  {
+    "Suburb": "O'Connor",
+    "count": 57,
+    "median_price": 530000.0,
+    "avg_price": 535105.4035087719,
+    "avg_distance_to_cbd": 13377.350877192983
+  },
+  {
+    "Suburb": "Success",
+    "count": 55,
+    "median_price": 632000.0,
+    "avg_price": 596105.4545454546,
+    "avg_distance_to_cbd": 19765.381818181817
+  },
+  {
+    "Suburb": "Martin",
+    "count": 51,
+    "median_price": 495000.0,
+    "avg_price": 523000.0,
+    "avg_distance_to_cbd": 19310.745098039217
+  },
+  {
+    "Suburb": "Hazelmere",
+    "count": 46,
+    "median_price": 475000.0,
+    "avg_price": 518764.1304347826,
+    "avg_distance_to_cbd": 14117.108695652174
+  },
+  {
+    "Suburb": "Atwell",
+    "count": 45,
+    "median_price": 655000.0,
+    "avg_price": 678286.6666666666,
+    "avg_distance_to_cbd": 19639.022222222222
+  },
+  {
+    "Suburb": "Piara Waters",
+    "count": 42,
+    "median_price": 770500.0,
+    "avg_price": 791056.8571428572,
+    "avg_distance_to_cbd": 19632.666666666668
+  },
+  {
+    "Suburb": "Beeliar",
+    "count": 33,
+    "median_price": 595000.0,
+    "avg_price": 663575.7575757576,
+    "avg_distance_to_cbd": 19834.151515151516
+  },
+  {
+    "Suburb": "Boya",
+    "count": 26,
+    "median_price": 521375.0,
+    "avg_price": 542710.1538461539,
+    "avg_distance_to_cbd": 18856.53846153846
+  },
+  {
+    "Suburb": "Hocking",
+    "count": 15,
+    "median_price": 580000.0,
+    "avg_price": 558733.3333333334,
+    "avg_distance_to_cbd": 19921.933333333334
+  },
+  {
+    "Suburb": "Banjup",
+    "count": 15,
+    "median_price": 575000.0,
+    "avg_price": 559788.0,
+    "avg_distance_to_cbd": 18999.666666666668
+  },
+  {
+    "Suburb": "Wanneroo",
+    "count": 9,
+    "median_price": 686000.0,
+    "avg_price": 706361.1111111111,
+    "avg_distance_to_cbd": 19882.666666666668
+  },
+  {
+    "Suburb": "Henley Brook",
+    "count": 7,
+    "median_price": 735500.0,
+    "avg_price": 698214.2857142857,
+    "avg_distance_to_cbd": 19415.14285714286
+  },
+  {
+    "Suburb": "West Swan",
+    "count": 5,
+    "median_price": 512000.0,
+    "avg_price": 453000.0,
+    "avg_distance_to_cbd": 15894.4
+  },
+  {
+    "Suburb": "Gnangara",
+    "count": 4,
+    "median_price": 722500.0,
+    "avg_price": 559275.0,
+    "avg_distance_to_cbd": 19597.25
+  },
+  {
+    "Suburb": "Forrestdale",
+    "count": 4,
+    "median_price": 499000.0,
+    "avg_price": 423000.0,
+    "avg_distance_to_cbd": 19469.5
+  }
+]

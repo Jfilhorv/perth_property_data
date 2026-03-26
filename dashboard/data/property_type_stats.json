@@ -1,0 +1,52 @@
+[
+  {
+    "Property_Type": "house",
+    "count": 35691,
+    "median_price": 745000.0
+  },
+  {
+    "Property_Type": "apartment",
+    "count": 2467,
+    "median_price": 450000.0
+  },
+  {
+    "Property_Type": "villa",
+    "count": 1942,
+    "median_price": 485000.0
+  },
+  {
+    "Property_Type": "unit",
+    "count": 1299,
+    "median_price": 399000.0
+  },
+  {
+    "Property_Type": "townhouse",
+    "count": 1038,
+    "median_price": 632751.5
+  },
+  {
+    "Property_Type": "duplex-semi-detached",
+    "count": 453,
+    "median_price": 540000.0
+  },
+  {
+    "Property_Type": "residential-other",
+    "count": 43,
+    "median_price": 860000.0
+  },
+  {
+    "Property_Type": "flat",
+    "count": 16,
+    "median_price": 261000.0
+  },
+  {
+    "Property_Type": "terrace",
+    "count": 6,
+    "median_price": 850000.0
+  },
+  {
+    "Property_Type": "acreage",
+    "count": 3,
+    "median_price": 800000.0
+  }
+]

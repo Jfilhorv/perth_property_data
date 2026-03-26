@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perth Property Dashboard</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Perth Property Dashboard</h1>
+      <p>Visao geral dos imoveis vendidos na base local</p>
+    </header>
+
+    <main>
+      <section class="kpi-grid" id="kpis"></section>
+
+      <section class="panel">
+        <h2>Filtro rapido</h2>
+        <div class="filters">
+          <label for="suburbSelect">Suburb</label>
+          <select id="suburbSelect">
+            <option value="">Todos</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Evolucao anual de preco mediano</h2>
+        <canvas id="yearlyChart" height="90"></canvas>
+      </section>
+
+      <section class="panel">
+        <h2>Top suburbs por volume</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Suburb</th>
+                <th>Vendas</th>
+                <th>Preco mediano</th>
+                <th>Dist. media CBD (m)</th>
+              </tr>
+            </thead>
+            <tbody id="suburbTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
