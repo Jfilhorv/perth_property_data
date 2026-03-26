@@ -116,12 +116,6 @@ select {
   overflow-x: auto;
 }
 
-.table-note {
-  margin: 0 0 6px;
-  font-size: 11px;
-  color: #64748b;
-}
-
 table {
   width: 100%;
   border-collapse: collapse;
