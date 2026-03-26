@@ -212,8 +212,13 @@ function renderYearlyChart(chartType = "line", rows = []) {
         {
           label: "Median Price (AUD)",
           data: series.map((r) => r.median_price),
-          borderColor: "#2563eb",
-          backgroundColor: "rgba(37, 99, 235, 0.2)",
+          borderColor: "#1d4ed8",
+          backgroundColor: chartType === "line" ? "rgba(59, 130, 246, 0.25)" : "rgba(59, 130, 246, 0.7)",
+          pointRadius: chartType === "line" ? 4 : 0,
+          pointHoverRadius: chartType === "line" ? 6 : 0,
+          pointBackgroundColor: "#60a5fa",
+          pointBorderColor: "#1d4ed8",
+          pointBorderWidth: 2,
           fill: chartType === "line",
           tension: 0.25,
         },
@@ -226,6 +231,14 @@ function renderYearlyChart(chartType = "line", rows = []) {
         legend: { display: true },
       },
       scales: {
+        x: {
+          ticks: {
+            color: "#334155",
+            maxRotation: 0,
+            autoSkip: true,
+            maxTicksLimit: 12,
+          },
+        },
         y: {
           ticks: {
             callback: (v) => currency.format(v),
@@ -263,11 +276,11 @@ function colorByPrice(avgPrice, minPrice, maxPrice) {
 
 function renderMap(rows) {
   if (!map) {
-    map = L.map("map").setView([-31.95, 115.86], 10);
+    map = L.map("map", { zoomControl: false, attributionControl: false }).setView([-31.95, 115.86], 10);
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
-      attribution: "&copy; OpenStreetMap contributors",
     }).addTo(map);
+    L.control.zoom({ position: "bottomleft" }).addTo(map);
   }
 
   if (listingsLayer) map.removeLayer(listingsLayer);
