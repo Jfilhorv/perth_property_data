@@ -133,6 +133,15 @@ th {
   background: #f9fafb;
 }
 
+th.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+th.sortable:hover {
+  background: #eef2f7;
+}
+
 #map {
   height: 500px;
   width: 100%;

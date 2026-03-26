@@ -23,6 +23,7 @@ let selectedFilters = {
   bedrooms: "",
   bathrooms: "",
 };
+let currentTableSort = { key: "count", dir: "desc" };
 
 function makeKpiCard(label, value) {
   const div = document.createElement("div");
@@ -47,7 +48,7 @@ function percentile(values, p) {
 
 function asPricePerSqm(value) {
   if (!Number.isFinite(value) || value <= 0) return "N/A";
-  return `${currency.format(value)}/m²`;
+  return currency.format(value);
 }
 
 function formatDistance(meters) {
@@ -75,7 +76,7 @@ function renderKpis(summary, filteredRows) {
   kpis.appendChild(makeKpiCard("Records", numberFmt.format(filteredRows.length)));
   kpis.appendChild(makeKpiCard("Median Price", currency.format(medianPrice)));
   kpis.appendChild(makeKpiCard("Average Price", currency.format(mean)));
-  kpis.appendChild(makeKpiCard("Median $/m²", asPricePerSqm(medianPsm)));
+  kpis.appendChild(makeKpiCard("Median Price M2", asPricePerSqm(medianPsm)));
   kpis.appendChild(makeKpiCard("P75", currency.format(p75)));
   kpis.appendChild(makeKpiCard("P95", currency.format(p95)));
   footnote.textContent = `Date range: ${summary.date_min} to ${summary.date_max}`;
@@ -155,8 +156,10 @@ function aggregateSuburbStats(rows) {
         Suburb: v.Suburb,
         count: v.count,
         median_price: sorted[mid] ?? 0,
+        highest_price: sorted.length ? sorted[sorted.length - 1] : 0,
+        lowest_price: sorted.length ? sorted[0] : 0,
         avg_price: sorted.length ? sorted.reduce((a, b) => a + b, 0) / sorted.length : 0,
-        median_price_per_sqm: psmSorted[psmMid] ?? 0,
+        median_price_m2: psmSorted[psmMid] ?? 0,
         avg_price_per_sqm: psmSorted.length ? psmSorted.reduce((a, b) => a + b, 0) / psmSorted.length : 0,
         avg_distance_to_cbd: v.distanceCount ? v.sumDistance / v.distanceCount : 0,
         latitude: v.geoCount ? v.sumLat / v.geoCount : null,
@@ -169,14 +172,27 @@ function aggregateSuburbStats(rows) {
 function renderSuburbTable(rows) {
   const body = document.getElementById("suburbTableBody");
   body.innerHTML = "";
-  const grouped = aggregateSuburbStats(rows).slice(0, selectedFilters.suburb ? 1 : 15);
+  const groupedAll = aggregateSuburbStats(rows);
+  const { key, dir } = currentTableSort;
+  const sorted = [...groupedAll].sort((a, b) => {
+    const av = a[key];
+    const bv = b[key];
+    if (typeof av === "string" || typeof bv === "string") {
+      return String(av).localeCompare(String(bv));
+    }
+    return (Number(av) || 0) - (Number(bv) || 0);
+  });
+  if (dir === "desc") sorted.reverse();
+  const grouped = sorted.slice(0, selectedFilters.suburb ? 1 : 15);
   for (const row of grouped) {
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${row.Suburb}</td>
       <td>${numberFmt.format(row.count)}</td>
       <td>${currency.format(row.median_price)}</td>
-      <td>${asPricePerSqm(row.median_price_per_sqm)}</td>
+      <td>${asPricePerSqm(row.median_price_m2)}</td>
+      <td>${currency.format(row.highest_price)}</td>
+      <td>${currency.format(row.lowest_price)}</td>
       <td>${formatDistance(row.avg_distance_to_cbd)}</td>
     `;
     body.appendChild(tr);
@@ -325,7 +341,9 @@ function renderMap(rows) {
       }).bindTooltip(
         `<b>${row.Suburb}</b><br/>Average price: ${currency.format(row.avg_price)}<br/>Median price: ${currency.format(
           row.median_price
-        )}<br/>Median $/m²: ${asPricePerSqm(row.median_price_per_sqm)}<br/>Sales: ${numberFmt.format(row.count)}`,
+        )}<br/>Median Price M2: ${asPricePerSqm(row.median_price_m2)}<br/>Highest: ${currency.format(
+          row.highest_price
+        )}<br/>Lowest: ${currency.format(row.lowest_price)}<br/>Sales: ${numberFmt.format(row.count)}`,
         { sticky: true }
       )
     )
@@ -408,6 +426,21 @@ async function init() {
   const mapViewSelect = document.getElementById("mapViewSelect");
   mapViewSelect.addEventListener("change", () => {
     applyFilters();
+  });
+
+  const headerCells = document.querySelectorAll("th.sortable");
+  headerCells.forEach((cell) => {
+    cell.addEventListener("click", () => {
+      const nextKey = cell.getAttribute("data-sort-key");
+      if (!nextKey) return;
+      if (currentTableSort.key === nextKey) {
+        currentTableSort.dir = currentTableSort.dir === "asc" ? "desc" : "asc";
+      } else {
+        currentTableSort.key = nextKey;
+        currentTableSort.dir = nextKey === "Suburb" ? "asc" : "desc";
+      }
+      applyFilters();
+    });
   });
 }
 
