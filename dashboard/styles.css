@@ -114,8 +114,8 @@ select {
 
 .table-wrap {
   overflow-x: auto;
-  overflow-y: auto;
-  max-height: 420px;
+  overflow-y: scroll;
+  height: 420px;
   scrollbar-width: thin;
   scrollbar-color: rgba(100, 116, 139, 0.45) transparent;
 }
