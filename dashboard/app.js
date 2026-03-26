@@ -5,6 +5,10 @@ const currency = new Intl.NumberFormat("en-AU", {
 });
 
 const numberFmt = new Intl.NumberFormat("en-AU");
+const distanceKmFmt = new Intl.NumberFormat("pt-BR", {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
 
 let summaryStats = null;
 let listingsCore = [];
@@ -44,6 +48,12 @@ function percentile(values, p) {
 function asPricePerSqm(value) {
   if (!Number.isFinite(value) || value <= 0) return "N/A";
   return `${currency.format(value)}/m²`;
+}
+
+function formatDistance(meters) {
+  if (!Number.isFinite(meters) || meters < 0) return "N/A";
+  if (meters < 1000) return `${numberFmt.format(Math.round(meters))} m`;
+  return `${distanceKmFmt.format(meters / 1000)} km`;
 }
 
 function renderKpis(summary, filteredRows) {
@@ -167,7 +177,7 @@ function renderSuburbTable(rows) {
       <td>${numberFmt.format(row.count)}</td>
       <td>${currency.format(row.median_price)}</td>
       <td>${asPricePerSqm(row.median_price_per_sqm)}</td>
-      <td>${numberFmt.format(Math.round(row.avg_distance_to_cbd))}</td>
+      <td>${formatDistance(row.avg_distance_to_cbd)}</td>
     `;
     body.appendChild(tr);
   }
