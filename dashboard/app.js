@@ -199,6 +199,20 @@ function renderSuburbTable(rows) {
   }
 }
 
+function updateSortIndicators() {
+  const headers = document.querySelectorAll("th.sortable");
+  headers.forEach((header) => {
+    const label = header.getAttribute("data-label") || header.textContent || "";
+    const key = header.getAttribute("data-sort-key");
+    if (key === currentTableSort.key) {
+      const arrow = currentTableSort.dir === "asc" ? "▲" : "▼";
+      header.textContent = `${label} ${arrow}`;
+    } else {
+      header.textContent = label;
+    }
+  });
+}
+
 function getFilteredRows() {
   return listingsCore.filter((row) => {
     const bySuburb = !selectedFilters.suburb || row.Suburb === selectedFilters.suburb;
@@ -439,9 +453,11 @@ async function init() {
         currentTableSort.key = nextKey;
         currentTableSort.dir = nextKey === "Suburb" ? "asc" : "desc";
       }
+      updateSortIndicators();
       applyFilters();
     });
   });
+  updateSortIndicators();
 }
 
 init().catch((err) => {
