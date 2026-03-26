@@ -51,6 +51,13 @@ function asPricePerSqm(value) {
   return currency.format(value);
 }
 
+function formatVariationPct(value) {
+  if (!Number.isFinite(value)) return "N/A";
+  const rounded = Math.round(value * 10) / 10;
+  if (rounded > 0) return `+${rounded}%`;
+  return `${rounded}%`;
+}
+
 function formatDistance(meters) {
   if (!Number.isFinite(meters) || meters < 0) return "N/A";
   if (meters < 1000) return `${numberFmt.format(Math.round(meters))} m`;
@@ -124,6 +131,7 @@ function aggregateSuburbStats(rows) {
       count: 0,
       prices: [],
       psmValues: [],
+      yearPrices: new Map(),
       sumDistance: 0,
       distanceCount: 0,
       sumLat: 0,
@@ -132,6 +140,11 @@ function aggregateSuburbStats(rows) {
     };
     current.count += 1;
     current.prices.push(row.Price);
+    if (Number.isFinite(row.Year) && Number.isFinite(row.Price)) {
+      const bucket = current.yearPrices.get(row.Year) || [];
+      bucket.push(row.Price);
+      current.yearPrices.set(row.Year, bucket);
+    }
     if (Number.isFinite(row.Price) && Number.isFinite(row.Land_Size) && row.Land_Size > 0) {
       current.psmValues.push(row.Price / row.Land_Size);
     }
@@ -152,10 +165,22 @@ function aggregateSuburbStats(rows) {
       const psmSorted = v.psmValues.sort((a, b) => a - b);
       const mid = Math.floor((sorted.length - 1) * 0.5);
       const psmMid = Math.floor((psmSorted.length - 1) * 0.5);
+      const years = [...v.yearPrices.keys()].sort((a, b) => a - b);
+      let variationPct = NaN;
+      if (years.length >= 2) {
+        const lastYear = years[years.length - 1];
+        const prevYear = years[years.length - 2];
+        const lastMedian = median(v.yearPrices.get(lastYear) || []);
+        const prevMedian = median(v.yearPrices.get(prevYear) || []);
+        if (Number.isFinite(prevMedian) && prevMedian > 0 && Number.isFinite(lastMedian)) {
+          variationPct = ((lastMedian - prevMedian) / prevMedian) * 100;
+        }
+      }
       return {
         Suburb: v.Suburb,
         count: v.count,
         median_price: sorted[mid] ?? 0,
+        variation_pct: variationPct,
         highest_price: sorted.length ? sorted[sorted.length - 1] : 0,
         lowest_price: sorted.length ? sorted[0] : 0,
         avg_price: sorted.length ? sorted.reduce((a, b) => a + b, 0) / sorted.length : 0,
@@ -190,6 +215,7 @@ function renderSuburbTable(rows) {
       <td>${row.Suburb}</td>
       <td>${numberFmt.format(row.count)}</td>
       <td>${currency.format(row.median_price)}</td>
+      <td>${formatVariationPct(row.variation_pct)}</td>
       <td>${asPricePerSqm(row.median_price_m2)}</td>
       <td>${currency.format(row.highest_price)}</td>
       <td>${currency.format(row.lowest_price)}</td>
@@ -355,7 +381,9 @@ function renderMap(rows) {
       }).bindTooltip(
         `<b>${row.Suburb}</b><br/>Average price: ${currency.format(row.avg_price)}<br/>Median price: ${currency.format(
           row.median_price
-        )}<br/>Median Price M2: ${asPricePerSqm(row.median_price_m2)}<br/>Highest: ${currency.format(
+        )}<br/>Variation: ${formatVariationPct(row.variation_pct)}<br/>Median Price M2: ${asPricePerSqm(
+          row.median_price_m2
+        )}<br/>Highest: ${currency.format(
           row.highest_price
         )}<br/>Lowest: ${currency.format(row.lowest_price)}<br/>Sales: ${numberFmt.format(row.count)}`,
         { sticky: true }
