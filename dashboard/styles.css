@@ -71,7 +71,9 @@ main {
 .filters {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 10px;
+  margin-bottom: 10px;
 }
 
 select {
@@ -99,4 +101,11 @@ td {
 
 th {
   background: #f9fafb;
+}
+
+#map {
+  height: 520px;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
 }

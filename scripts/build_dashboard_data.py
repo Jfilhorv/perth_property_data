@@ -57,6 +57,19 @@ def main() -> None:
         .sort_values(["count", "median_price"], ascending=[False, False])
     )
 
+    suburb_map = (
+        df.dropna(subset=["Latitude", "Longitude"])
+        .groupby("Suburb", as_index=False)
+        .agg(
+            count=("Listing_ID", "count"),
+            avg_price=("Price", "mean"),
+            median_price=("Price", "median"),
+            latitude=("Latitude", "mean"),
+            longitude=("Longitude", "mean"),
+        )
+        .sort_values("count", ascending=False)
+    )
+
     listings_cols = [
         "Listing_ID",
         "Price",
@@ -86,6 +99,9 @@ def main() -> None:
     )
     (OUTPUT_DIR / "suburb_stats.json").write_text(
         json.dumps(to_serializable_records(suburb), indent=2), encoding="utf-8"
+    )
+    (OUTPUT_DIR / "suburb_map_stats.json").write_text(
+        json.dumps(to_serializable_records(suburb_map), indent=2), encoding="utf-8"
     )
     (OUTPUT_DIR / "listings_sample.json").write_text(
         json.dumps(to_serializable_records(listings_sample), indent=2), encoding="utf-8"

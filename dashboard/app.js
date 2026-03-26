@@ -8,7 +8,13 @@ const numberFmt = new Intl.NumberFormat("en-AU");
 
 let suburbStats = [];
 let yearlyStats = [];
+let listingsSample = [];
+let suburbMapStats = [];
 let yearlyChart;
+let map;
+let listingsLayer;
+let suburbPriceLayer;
+let layerControl;
 
 function makeKpiCard(label, value) {
   const div = document.createElement("div");
@@ -60,12 +66,12 @@ function renderSuburbTable(filterSuburb = "") {
   }
 }
 
-function renderYearlyChart() {
+function renderYearlyChart(chartType = "line") {
   const ctx = document.getElementById("yearlyChart");
   if (yearlyChart) yearlyChart.destroy();
 
   yearlyChart = new Chart(ctx, {
-    type: "line",
+    type: chartType,
     data: {
       labels: yearlyStats.map((r) => r.Year),
       datasets: [
@@ -74,7 +80,7 @@ function renderYearlyChart() {
           data: yearlyStats.map((r) => r.median_price),
           borderColor: "#2563eb",
           backgroundColor: "rgba(37, 99, 235, 0.2)",
-          fill: true,
+          fill: chartType === "line",
           tension: 0.25,
         },
       ],
@@ -95,6 +101,88 @@ function renderYearlyChart() {
   });
 }
 
+function radiusByPrice(avgPrice, minPrice, maxPrice) {
+  if (maxPrice <= minPrice) return 10;
+  const normalized = (avgPrice - minPrice) / (maxPrice - minPrice);
+  return 6 + normalized * 22;
+}
+
+function colorByPrice(avgPrice, minPrice, maxPrice) {
+  if (maxPrice <= minPrice) return "#2563eb";
+  const normalized = (avgPrice - minPrice) / (maxPrice - minPrice);
+  if (normalized < 0.2) return "#93c5fd";
+  if (normalized < 0.4) return "#60a5fa";
+  if (normalized < 0.6) return "#3b82f6";
+  if (normalized < 0.8) return "#1d4ed8";
+  return "#1e3a8a";
+}
+
+function renderMap(filterSuburb = "") {
+  if (!map) {
+    map = L.map("map").setView([-31.95, 115.86], 10);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: "&copy; OpenStreetMap contributors",
+    }).addTo(map);
+  }
+
+  if (listingsLayer) map.removeLayer(listingsLayer);
+  if (suburbPriceLayer) map.removeLayer(suburbPriceLayer);
+
+  const filteredListings = listingsSample.filter((row) => !filterSuburb || row.Suburb === filterSuburb);
+  const listingMarkers = filteredListings.map((row) =>
+    L.circleMarker([row.Latitude, row.Longitude], {
+      radius: 3,
+      color: "#ef4444",
+      fillColor: "#ef4444",
+      fillOpacity: 0.35,
+      weight: 1,
+    }).bindPopup(
+      `<b>${row.Suburb}</b><br/>Preco: ${currency.format(row.Price)}<br/>Tipo: ${row.Property_Type}<br/>Quartos: ${row.Bedrooms}`
+    )
+  );
+  listingsLayer = L.layerGroup(listingMarkers);
+
+  const filteredSuburb = suburbMapStats.filter((row) => !filterSuburb || row.Suburb === filterSuburb);
+  const prices = filteredSuburb.map((r) => r.avg_price);
+  const minPrice = Math.min(...prices);
+  const maxPrice = Math.max(...prices);
+
+  suburbPriceLayer = L.layerGroup(
+    filteredSuburb.map((row) =>
+      L.circleMarker([row.latitude, row.longitude], {
+        radius: radiusByPrice(row.avg_price, minPrice, maxPrice),
+        color: colorByPrice(row.avg_price, minPrice, maxPrice),
+        fillColor: colorByPrice(row.avg_price, minPrice, maxPrice),
+        fillOpacity: 0.25,
+        weight: 2,
+      }).bindPopup(
+        `<b>${row.Suburb}</b><br/>Preco medio: ${currency.format(row.avg_price)}<br/>Preco mediano: ${currency.format(
+          row.median_price
+        )}<br/>Vendas: ${numberFmt.format(row.count)}`
+      )
+    )
+  );
+
+  const overlayMaps = {
+    "Imoveis (Latitude/Longitude)": listingsLayer,
+    "Preco medio por suburb": suburbPriceLayer,
+  };
+
+  listingsLayer.addTo(map);
+  suburbPriceLayer.addTo(map);
+
+  if (layerControl) {
+    map.removeControl(layerControl);
+  }
+  layerControl = L.control.layers(null, overlayMaps, { collapsed: false }).addTo(map);
+
+  const group = L.featureGroup([...listingMarkers, ...filteredSuburb.map((row) => L.marker([row.latitude, row.longitude]))]);
+  if (group.getLayers().length > 0) {
+    map.fitBounds(group.getBounds().pad(0.12));
+  }
+}
+
 async function loadJson(path) {
   const res = await fetch(path);
   if (!res.ok) throw new Error(`Erro ao carregar ${path}`);
@@ -102,22 +190,34 @@ async function loadJson(path) {
 }
 
 async function init() {
-  const [summary, yearly, suburbs] = await Promise.all([
+  const [summary, yearly, suburbs, listings, suburbMap] = await Promise.all([
     loadJson("./data/summary.json"),
     loadJson("./data/yearly.json"),
     loadJson("./data/suburb_stats.json"),
+    loadJson("./data/listings_sample.json"),
+    loadJson("./data/suburb_map_stats.json"),
   ]);
 
   yearlyStats = yearly;
   suburbStats = suburbs;
+  listingsSample = listings;
+  suburbMapStats = suburbMap;
 
   renderKpis(summary);
   renderSuburbOptions();
   renderSuburbTable();
   renderYearlyChart();
+  renderMap();
 
   const select = document.getElementById("suburbSelect");
-  select.addEventListener("change", (e) => renderSuburbTable(e.target.value));
+  select.addEventListener("change", (e) => {
+    const value = e.target.value;
+    renderSuburbTable(value);
+    renderMap(value);
+  });
+
+  const chartTypeSelect = document.getElementById("chartTypeSelect");
+  chartTypeSelect.addEventListener("change", (e) => renderYearlyChart(e.target.value));
 }
 
 init().catch((err) => {

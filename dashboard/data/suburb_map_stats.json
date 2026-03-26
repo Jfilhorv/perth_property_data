@@ -1,0 +1,1626 @@
+[
+  {
+    "Suburb": "Spearwood",
+    "count": 280,
+    "avg_price": 618849.6642857143,
+    "median_price": 607000.0,
+    "latitude": -32.103000119499995,
+    "longitude": 115.7851829475
+  },
+  {
+    "Suburb": "Alexander Heights",
+    "count": 278,
+    "avg_price": 561305.4928057553,
+    "median_price": 540000.0,
+    "latitude": -31.827656905431656,
+    "longitude": 115.8651092028777
+  },
+  {
+    "Suburb": "Maylands",
+    "count": 278,
+    "avg_price": 640434.3129496403,
+    "median_price": 535000.0,
+    "latitude": -31.933397273812947,
+    "longitude": 115.89836631294965
+  },
+  {
+    "Suburb": "Padbury",
+    "count": 278,
+    "avg_price": 771248.6726618705,
+    "median_price": 762500.0,
+    "latitude": -31.80519830658273,
+    "longitude": 115.76714649856115
+  },
+  {
+    "Suburb": "Landsdale",
+    "count": 277,
+    "avg_price": 759718.3754512635,
+    "median_price": 755000.0,
+    "latitude": -31.809319402346574,
+    "longitude": 115.86457329927798
+  },
+  {
+    "Suburb": "Coolbellup",
+    "count": 276,
+    "avg_price": 601155.8442028986,
+    "median_price": 600000.0,
+    "latitude": -32.08058370380435,
+    "longitude": 115.80682017753622
+  },
+  {
+    "Suburb": "Forrestfield",
+    "count": 276,
+    "avg_price": 594891.3333333334,
+    "median_price": 590949.5,
+    "latitude": -31.984415405217394,
+    "longitude": 116.00764728224638
+  },
+  {
+    "Suburb": "Madeley",
+    "count": 276,
+    "avg_price": 676265.5434782609,
+    "median_price": 670000.0,
+    "latitude": -31.80674631405797,
+    "longitude": 115.82560313043477
+  },
+  {
+    "Suburb": "Ballajura",
+    "count": 275,
+    "avg_price": 614724.4727272728,
+    "median_price": 600000.0,
+    "latitude": -31.839537361454546,
+    "longitude": 115.89620526254545
+  },
+  {
+    "Suburb": "Marangaroo",
+    "count": 275,
+    "avg_price": 564955.92,
+    "median_price": 550000.0,
+    "latitude": -31.827602957454545,
+    "longitude": 115.83812445418181
+  },
+  {
+    "Suburb": "Mount Lawley",
+    "count": 274,
+    "avg_price": 1208978.8503649635,
+    "median_price": 1120000.0,
+    "latitude": -31.931476057737225,
+    "longitude": 115.87497306824817
+  },
+  {
+    "Suburb": "Huntingdale",
+    "count": 273,
+    "avg_price": 532296.1465201465,
+    "median_price": 522000.0,
+    "latitude": -32.080735409304026,
+    "longitude": 115.96582416043955
+  },
+  {
+    "Suburb": "Bassendean",
+    "count": 272,
+    "avg_price": 723049.7573529412,
+    "median_price": 698250.0,
+    "latitude": -31.904091168676473,
+    "longitude": 115.94767541764705
+  },
+  {
+    "Suburb": "Hamilton Hill",
+    "count": 272,
+    "avg_price": 672150.2205882353,
+    "median_price": 660000.0,
+    "latitude": -32.08421422088235,
+    "longitude": 115.78189804448529
+  },
+  {
+    "Suburb": "Melville",
+    "count": 271,
+    "avg_price": 1017718.4059040591,
+    "median_price": 970000.0,
+    "latitude": -32.04069648180812,
+    "longitude": 115.80126007896679
+  },
+  {
+    "Suburb": "South Lake",
+    "count": 271,
+    "avg_price": 525861.6642066421,
+    "median_price": 510000.0,
+    "latitude": -32.10704094819188,
+    "longitude": 115.84076510405903
+  },
+  {
+    "Suburb": "Darch",
+    "count": 270,
+    "avg_price": 711701.5259259259,
+    "median_price": 701000.0,
+    "latitude": -31.81246433562963,
+    "longitude": 115.8455994411111
+  },
+  {
+    "Suburb": "North Perth",
+    "count": 270,
+    "avg_price": 1115069.6296296297,
+    "median_price": 1115000.0,
+    "latitude": -31.92656863337037,
+    "longitude": 115.85348280407408
+  },
+  {
+    "Suburb": "Palmyra",
+    "count": 270,
+    "avg_price": 796676.7407407408,
+    "median_price": 750000.0,
+    "latitude": -32.04295635677778,
+    "longitude": 115.78566990185185
+  },
+  {
+    "Suburb": "Pearsall",
+    "count": 270,
+    "avg_price": 565088.6777777778,
+    "median_price": 557500.0,
+    "latitude": -31.782164292925927,
+    "longitude": 115.81902572518518
+  },
+  {
+    "Suburb": "Cloverdale",
+    "count": 270,
+    "avg_price": 547991.4814814815,
+    "median_price": 540000.0,
+    "latitude": -31.961880360666665,
+    "longitude": 115.94514496925926
+  },
+  {
+    "Suburb": "Yangebup",
+    "count": 270,
+    "avg_price": 632144.074074074,
+    "median_price": 597500.0,
+    "latitude": -32.12255610481481,
+    "longitude": 115.81174064555555
+  },
+  {
+    "Suburb": "Eden Hill",
+    "count": 269,
+    "avg_price": 482483.6840148699,
+    "median_price": 465000.0,
+    "latitude": -31.89119482605948,
+    "longitude": 115.94428876171003
+  },
+  {
+    "Suburb": "Bibra Lake",
+    "count": 269,
+    "avg_price": 644702.4646840149,
+    "median_price": 625000.0,
+    "latitude": -32.0932469766171,
+    "longitude": 115.82893895501859
+  },
+  {
+    "Suburb": "High Wycombe",
+    "count": 269,
+    "avg_price": 590429.2081784387,
+    "median_price": 585000.0,
+    "latitude": -31.941286519144985,
+    "longitude": 116.00541974795539
+  },
+  {
+    "Suburb": "Thornlie",
+    "count": 268,
+    "avg_price": 624728.776119403,
+    "median_price": 627500.0,
+    "latitude": -32.06006285429104,
+    "longitude": 115.95467235746268
+  },
+  {
+    "Suburb": "Brabham",
+    "count": 268,
+    "avg_price": 581377.5559701492,
+    "median_price": 580000.0,
+    "latitude": -31.82295661261194,
+    "longitude": 115.97001272574627
+  },
+  {
+    "Suburb": "Balga",
+    "count": 268,
+    "avg_price": 512869.302238806,
+    "median_price": 510000.0,
+    "latitude": -31.855408219962683,
+    "longitude": 115.84015009514926
+  },
+  {
+    "Suburb": "Rivervale",
+    "count": 268,
+    "avg_price": 594792.0335820896,
+    "median_price": 557750.0,
+    "latitude": -31.959507540447763,
+    "longitude": 115.91329976194031
+  },
+  {
+    "Suburb": "Girrawheen",
+    "count": 268,
+    "avg_price": 469660.1604477612,
+    "median_price": 461500.0,
+    "latitude": -31.841379134365674,
+    "longitude": 115.83965861791044
+  },
+  {
+    "Suburb": "Nollamara",
+    "count": 267,
+    "avg_price": 546603.6292134832,
+    "median_price": 535000.0,
+    "latitude": -31.879248701235955,
+    "longitude": 115.84451222584269
+  },
+  {
+    "Suburb": "Sorrento",
+    "count": 267,
+    "avg_price": 1426152.6741573033,
+    "median_price": 1350000.0,
+    "latitude": -31.828368811011238,
+    "longitude": 115.75426781273408
+  },
+  {
+    "Suburb": "Balcatta",
+    "count": 266,
+    "avg_price": 651055.3571428572,
+    "median_price": 610125.0,
+    "latitude": -31.878381926578946,
+    "longitude": 115.82543528684211
+  },
+  {
+    "Suburb": "Noranda",
+    "count": 266,
+    "avg_price": 660275.1278195488,
+    "median_price": 664500.5,
+    "latitude": -31.874437220112785,
+    "longitude": 115.89584489962407
+  },
+  {
+    "Suburb": "West Perth",
+    "count": 265,
+    "avg_price": 555991.5132075471,
+    "median_price": 490000.0,
+    "latitude": -31.94575876841509,
+    "longitude": 115.84598032754717
+  },
+  {
+    "Suburb": "Joondanna",
+    "count": 264,
+    "avg_price": 713813.9696969697,
+    "median_price": 690000.0,
+    "latitude": -31.910070401666665,
+    "longitude": 115.8366187625
+  },
+  {
+    "Suburb": "Beechboro",
+    "count": 264,
+    "avg_price": 505134.98484848486,
+    "median_price": 486250.0,
+    "latitude": -31.8681913882197,
+    "longitude": 115.93872294924243
+  },
+  {
+    "Suburb": "Canning Vale",
+    "count": 264,
+    "avg_price": 862361.7992424242,
+    "median_price": 850000.0,
+    "latitude": -32.08270710409091,
+    "longitude": 115.92558382992425
+  },
+  {
+    "Suburb": "Fremantle",
+    "count": 263,
+    "avg_price": 1046955.1140684411,
+    "median_price": 950000.0,
+    "latitude": -32.05419674384031,
+    "longitude": 115.75757060456273
+  },
+  {
+    "Suburb": "Burswood",
+    "count": 263,
+    "avg_price": 879355.5437262357,
+    "median_price": 815000.0,
+    "latitude": -31.96026237958175,
+    "longitude": 115.89701606730037
+  },
+  {
+    "Suburb": "Stirling",
+    "count": 263,
+    "avg_price": 1089411.680608365,
+    "median_price": 1050000.0,
+    "latitude": -31.88512276593156,
+    "longitude": 115.8127771121673
+  },
+  {
+    "Suburb": "Westminster",
+    "count": 263,
+    "avg_price": 490393.29657794675,
+    "median_price": 480000.0,
+    "latitude": -31.86764865125475,
+    "longitude": 115.83933767680608
+  },
+  {
+    "Suburb": "Victoria Park",
+    "count": 263,
+    "avg_price": 710757.6045627376,
+    "median_price": 679000.0,
+    "latitude": -31.976266513574146,
+    "longitude": 115.89347750342206
+  },
+  {
+    "Suburb": "Wembley",
+    "count": 262,
+    "avg_price": 1222414.0267175573,
+    "median_price": 1270000.0,
+    "latitude": -31.93451945148855,
+    "longitude": 115.8139012851145
+  },
+  {
+    "Suburb": "Willagee",
+    "count": 262,
+    "avg_price": 728915.5038167939,
+    "median_price": 710000.0,
+    "latitude": -32.05190376400763,
+    "longitude": 115.80496172099235
+  },
+  {
+    "Suburb": "Carlisle",
+    "count": 261,
+    "avg_price": 652015.1570881226,
+    "median_price": 616250.0,
+    "latitude": -31.978632893333334,
+    "longitude": 115.91775772030651
+  },
+  {
+    "Suburb": "Tuart Hill",
+    "count": 261,
+    "avg_price": 581556.2911877395,
+    "median_price": 547000.0,
+    "latitude": -31.897658591609197,
+    "longitude": 115.83514929233716
+  },
+  {
+    "Suburb": "Gwelup",
+    "count": 261,
+    "avg_price": 1094521.295019157,
+    "median_price": 1065000.0,
+    "latitude": -31.869597920191573,
+    "longitude": 115.79604618045977
+  },
+  {
+    "Suburb": "Morley",
+    "count": 261,
+    "avg_price": 695399.5172413794,
+    "median_price": 692000.0,
+    "latitude": -31.8869946694636,
+    "longitude": 115.90715810574713
+  },
+  {
+    "Suburb": "Kardinya",
+    "count": 260,
+    "avg_price": 823400.6730769231,
+    "median_price": 804000.0,
+    "latitude": -32.06623812315385,
+    "longitude": 115.8147661026923
+  },
+  {
+    "Suburb": "Kewdale",
+    "count": 260,
+    "avg_price": 572442.6538461539,
+    "median_price": 555000.0,
+    "latitude": -31.974146932730772,
+    "longitude": 115.93249173307693
+  },
+  {
+    "Suburb": "Beaconsfield",
+    "count": 260,
+    "avg_price": 959538.75,
+    "median_price": 905000.0,
+    "latitude": -32.06907200338462,
+    "longitude": 115.76843391576922
+  },
+  {
+    "Suburb": "Leeming",
+    "count": 260,
+    "avg_price": 919525.8346153846,
+    "median_price": 910000.0,
+    "latitude": -32.074849857846154,
+    "longitude": 115.86550158192307
+  },
+  {
+    "Suburb": "Midland",
+    "count": 259,
+    "avg_price": 398311.1969111969,
+    "median_price": 385000.0,
+    "latitude": -31.885198148416986,
+    "longitude": 116.01222062972973
+  },
+  {
+    "Suburb": "Belmont",
+    "count": 259,
+    "avg_price": 588066.3397683398,
+    "median_price": 560000.0,
+    "latitude": -31.948320189150582,
+    "longitude": 115.93494844787645
+  },
+  {
+    "Suburb": "Carine",
+    "count": 259,
+    "avg_price": 1065076.9498069498,
+    "median_price": 1051000.0,
+    "latitude": -31.852520717335906,
+    "longitude": 115.78073307915058
+  },
+  {
+    "Suburb": "Inglewood",
+    "count": 258,
+    "avg_price": 901492.019379845,
+    "median_price": 881000.0,
+    "latitude": -31.91879980697674,
+    "longitude": 115.88449672441861
+  },
+  {
+    "Suburb": "East Perth",
+    "count": 258,
+    "avg_price": 574012.7441860465,
+    "median_price": 482500.0,
+    "latitude": -31.957313019612407,
+    "longitude": 115.87331248604652
+  },
+  {
+    "Suburb": "Dayton",
+    "count": 257,
+    "avg_price": 511151.75097276265,
+    "median_price": 500000.0,
+    "latitude": -31.855850911322957,
+    "longitude": 115.9724680459144
+  },
+  {
+    "Suburb": "Redcliffe",
+    "count": 257,
+    "avg_price": 531210.8910505837,
+    "median_price": 519000.0,
+    "latitude": -31.942213559649804,
+    "longitude": 115.94480948521401
+  },
+  {
+    "Suburb": "Caversham",
+    "count": 257,
+    "avg_price": 600093.53307393,
+    "median_price": 580000.0,
+    "latitude": -31.868270678832687,
+    "longitude": 115.96662828287937
+  },
+  {
+    "Suburb": "Willetton",
+    "count": 257,
+    "avg_price": 1038217.5992217899,
+    "median_price": 990000.0,
+    "latitude": -32.05236031902724,
+    "longitude": 115.88764797315176
+  },
+  {
+    "Suburb": "Greenwood",
+    "count": 255,
+    "avg_price": 721093.305882353,
+    "median_price": 695000.0,
+    "latitude": -31.827565461843136,
+    "longitude": 115.80404924509803
+  },
+  {
+    "Suburb": "Hilton",
+    "count": 255,
+    "avg_price": 679331.9607843137,
+    "median_price": 660000.0,
+    "latitude": -32.06830604368628,
+    "longitude": 115.78578891529412
+  },
+  {
+    "Suburb": "Mount Hawthorn",
+    "count": 255,
+    "avg_price": 1206961.9647058824,
+    "median_price": 1240000.0,
+    "latitude": -31.919675732117646,
+    "longitude": 115.83563182156864
+  },
+  {
+    "Suburb": "Maddington",
+    "count": 254,
+    "avg_price": 506236.88976377953,
+    "median_price": 493000.0,
+    "latitude": -32.05259370043307,
+    "longitude": 115.99780305275591
+  },
+  {
+    "Suburb": "Embleton",
+    "count": 254,
+    "avg_price": 567998.9724409449,
+    "median_price": 550000.0,
+    "latitude": -31.902905301417324,
+    "longitude": 115.90959899251968
+  },
+  {
+    "Suburb": "Osborne Park",
+    "count": 254,
+    "avg_price": 457107.4566929134,
+    "median_price": 431472.0,
+    "latitude": -31.899235766338585,
+    "longitude": 115.82581241889764
+  },
+  {
+    "Suburb": "Warwick",
+    "count": 254,
+    "avg_price": 655072.4448818897,
+    "median_price": 627500.0,
+    "latitude": -31.83949494527559,
+    "longitude": 115.80488870787403
+  },
+  {
+    "Suburb": "Hamersley",
+    "count": 254,
+    "avg_price": 662163.5669291338,
+    "median_price": 642500.0,
+    "latitude": -31.85025138948819,
+    "longitude": 115.81101532637796
+  },
+  {
+    "Suburb": "Wattle Grove",
+    "count": 254,
+    "avg_price": 640754.5078740157,
+    "median_price": 600000.0,
+    "latitude": -32.00026463669291,
+    "longitude": 115.98651557047243
+  },
+  {
+    "Suburb": "East Victoria Park",
+    "count": 253,
+    "avg_price": 777365.233201581,
+    "median_price": 768000.0,
+    "latitude": -31.988787198498024,
+    "longitude": 115.90441799881424
+  },
+  {
+    "Suburb": "Bayswater",
+    "count": 253,
+    "avg_price": 819226.7351778656,
+    "median_price": 822500.0,
+    "latitude": -31.918328527747036,
+    "longitude": 115.91413781462451
+  },
+  {
+    "Suburb": "Parkwood",
+    "count": 253,
+    "avg_price": 559331.9960474308,
+    "median_price": 550000.0,
+    "latitude": -32.04679459308301,
+    "longitude": 115.91413966126483
+  },
+  {
+    "Suburb": "Scarborough",
+    "count": 253,
+    "avg_price": 1022541.3873517787,
+    "median_price": 946000.0,
+    "latitude": -31.89494604466403,
+    "longitude": 115.76713731778655
+  },
+  {
+    "Suburb": "South Guildford",
+    "count": 253,
+    "avg_price": 681929.3083003953,
+    "median_price": 675000.0,
+    "latitude": -31.90946788869565,
+    "longitude": 115.97919417944664
+  },
+  {
+    "Suburb": "Attadale",
+    "count": 252,
+    "avg_price": 1604265.365079365,
+    "median_price": 1445000.0,
+    "latitude": -32.027040953888886,
+    "longitude": 115.80172310873016
+  },
+  {
+    "Suburb": "St James",
+    "count": 252,
+    "avg_price": 630934.3849206349,
+    "median_price": 620000.0,
+    "latitude": -32.000267729444445,
+    "longitude": 115.91043602579364
+  },
+  {
+    "Suburb": "Subiaco",
+    "count": 251,
+    "avg_price": 1247400.3984063745,
+    "median_price": 1050000.0,
+    "latitude": -31.94770404318725,
+    "longitude": 115.82354106454183
+  },
+  {
+    "Suburb": "Southern River",
+    "count": 251,
+    "avg_price": 750493.4621513945,
+    "median_price": 735000.0,
+    "latitude": -32.09776814418326,
+    "longitude": 115.95222447091633
+  },
+  {
+    "Suburb": "Yokine",
+    "count": 251,
+    "avg_price": 775665.2589641435,
+    "median_price": 696000.0,
+    "latitude": -31.900298390398405,
+    "longitude": 115.85040390398407
+  },
+  {
+    "Suburb": "Duncraig",
+    "count": 250,
+    "avg_price": 1040123.432,
+    "median_price": 951500.0,
+    "latitude": -31.832551394000003,
+    "longitude": 115.776875618
+  },
+  {
+    "Suburb": "Leederville",
+    "count": 250,
+    "avg_price": 893450.804,
+    "median_price": 878000.0,
+    "latitude": -31.93156654924,
+    "longitude": 115.84269243
+  },
+  {
+    "Suburb": "Mirrabooka",
+    "count": 250,
+    "avg_price": 457775.692,
+    "median_price": 440000.0,
+    "latitude": -31.85589381072,
+    "longitude": 115.8656563264
+  },
+  {
+    "Suburb": "Treeby",
+    "count": 250,
+    "avg_price": 654603.604,
+    "median_price": 643000.0,
+    "latitude": -32.120821143360004,
+    "longitude": 115.87571134320001
+  },
+  {
+    "Suburb": "Koondoola",
+    "count": 250,
+    "avg_price": 392327.752,
+    "median_price": 385000.0,
+    "latitude": -31.842230561839997,
+    "longitude": 115.8620884776
+  },
+  {
+    "Suburb": "Woodlands",
+    "count": 249,
+    "avg_price": 1148145.6666666667,
+    "median_price": 1135000.0,
+    "latitude": -31.907428332248994,
+    "longitude": 115.79182153734939
+  },
+  {
+    "Suburb": "North Coogee",
+    "count": 249,
+    "avg_price": 1090185.7429718876,
+    "median_price": 1025000.0,
+    "latitude": -32.09277173666666,
+    "longitude": 115.76000777228916
+  },
+  {
+    "Suburb": "Kingsley",
+    "count": 248,
+    "avg_price": 781726.5403225806,
+    "median_price": 765750.0,
+    "latitude": -31.809842046209678,
+    "longitude": 115.79760880887096
+  },
+  {
+    "Suburb": "Wembley Downs",
+    "count": 248,
+    "avg_price": 1454045.685483871,
+    "median_price": 1425000.0,
+    "latitude": -31.915740787580642,
+    "longitude": 115.77392055846774
+  },
+  {
+    "Suburb": "Booragoon",
+    "count": 248,
+    "avg_price": 1055612.25,
+    "median_price": 1077500.0,
+    "latitude": -32.03977119241935,
+    "longitude": 115.83422716451612
+  },
+  {
+    "Suburb": "Karrinyup",
+    "count": 247,
+    "avg_price": 1230048.5789473683,
+    "median_price": 1165000.0,
+    "latitude": -31.87426608631579,
+    "longitude": 115.77844088947369
+  },
+  {
+    "Suburb": "White Gum Valley",
+    "count": 247,
+    "avg_price": 861639.016194332,
+    "median_price": 800000.0,
+    "latitude": -32.06053172611336,
+    "longitude": 115.77046086923077
+  },
+  {
+    "Suburb": "Manning",
+    "count": 246,
+    "avg_price": 902477.918699187,
+    "median_price": 850000.0,
+    "latitude": -32.0131255100813,
+    "longitude": 115.87011468617887
+  },
+  {
+    "Suburb": "Bedford",
+    "count": 246,
+    "avg_price": 815392.9146341464,
+    "median_price": 802138.5,
+    "latitude": -31.909310805528456,
+    "longitude": 115.89142993617887
+  },
+  {
+    "Suburb": "Doubleview",
+    "count": 245,
+    "avg_price": 1009570.5591836735,
+    "median_price": 920000.0,
+    "latitude": -31.894454354367344,
+    "longitude": 115.7817981
+  },
+  {
+    "Suburb": "Como",
+    "count": 244,
+    "avg_price": 1010701.9549180327,
+    "median_price": 910000.0,
+    "latitude": -31.99845154364754,
+    "longitude": 115.8647323262295
+  },
+  {
+    "Suburb": "South Perth",
+    "count": 244,
+    "avg_price": 1367499.18852459,
+    "median_price": 1187500.0,
+    "latitude": -31.97918332262295,
+    "longitude": 115.86335049959017
+  },
+  {
+    "Suburb": "Jandakot",
+    "count": 244,
+    "avg_price": 729327.5737704918,
+    "median_price": 709000.0,
+    "latitude": -32.10341312922131,
+    "longitude": 115.85420640204917
+  },
+  {
+    "Suburb": "Churchlands",
+    "count": 243,
+    "avg_price": 1323337.9053497943,
+    "median_price": 1388000.0,
+    "latitude": -31.923410789300412,
+    "longitude": 115.7944315707819
+  },
+  {
+    "Suburb": "Lockridge",
+    "count": 243,
+    "avg_price": 355511.1069958848,
+    "median_price": 342000.0,
+    "latitude": -31.882059237777778,
+    "longitude": 115.95038483127571
+  },
+  {
+    "Suburb": "Queens Park",
+    "count": 243,
+    "avg_price": 504717.60905349796,
+    "median_price": 495000.0,
+    "latitude": -32.002572137119344,
+    "longitude": 115.94569767695474
+  },
+  {
+    "Suburb": "Dianella",
+    "count": 242,
+    "avg_price": 841324.2644628099,
+    "median_price": 775000.0,
+    "latitude": -31.892013725785127,
+    "longitude": 115.87502288305785
+  },
+  {
+    "Suburb": "Bennett Springs",
+    "count": 242,
+    "avg_price": 534770.4752066116,
+    "median_price": 520500.0,
+    "latitude": -31.85889038123967,
+    "longitude": 115.93687855991736
+  },
+  {
+    "Suburb": "Trigg",
+    "count": 242,
+    "avg_price": 1603432.458677686,
+    "median_price": 1415002.5,
+    "latitude": -31.874297090702477,
+    "longitude": 115.75772024876034
+  },
+  {
+    "Suburb": "Shenton Park",
+    "count": 241,
+    "avg_price": 1515685.2697095436,
+    "median_price": 1520000.0,
+    "latitude": -31.960049803775934,
+    "longitude": 115.81325826597511
+  },
+  {
+    "Suburb": "Innaloo",
+    "count": 241,
+    "avg_price": 678107.9543568465,
+    "median_price": 680000.0,
+    "latitude": -31.890762039377595,
+    "longitude": 115.79382528008298
+  },
+  {
+    "Suburb": "Mount Pleasant",
+    "count": 240,
+    "avg_price": 1675600.4833333334,
+    "median_price": 1450000.0,
+    "latitude": -32.02698882191667,
+    "longitude": 115.84854906000001
+  },
+  {
+    "Suburb": "West Leederville",
+    "count": 240,
+    "avg_price": 1172013.2333333334,
+    "median_price": 1150000.0,
+    "latitude": -31.938919856208333,
+    "longitude": 115.8333634525
+  },
+  {
+    "Suburb": "North Beach",
+    "count": 239,
+    "avg_price": 1395284.610878661,
+    "median_price": 1125000.0,
+    "latitude": -31.861434691589956,
+    "longitude": 115.75773686987448
+  },
+  {
+    "Suburb": "Myaree",
+    "count": 239,
+    "avg_price": 752713.1464435146,
+    "median_price": 710000.0,
+    "latitude": -32.03973598903766,
+    "longitude": 115.81484057196653
+  },
+  {
+    "Suburb": "Beckenham",
+    "count": 238,
+    "avg_price": 530176.1470588235,
+    "median_price": 511250.0,
+    "latitude": -32.02121825508404,
+    "longitude": 115.9615560512605
+  },
+  {
+    "Suburb": "Rossmoyne",
+    "count": 236,
+    "avg_price": 1283352.1779661018,
+    "median_price": 1200000.0,
+    "latitude": -32.03909870648305,
+    "longitude": 115.86853049533897
+  },
+  {
+    "Suburb": "Bentley",
+    "count": 236,
+    "avg_price": 519785.7330508475,
+    "median_price": 490000.0,
+    "latitude": -32.00756270398305,
+    "longitude": 115.91594835974576
+  },
+  {
+    "Suburb": "Alfred Cove",
+    "count": 235,
+    "avg_price": 976912.3446808511,
+    "median_price": 870000.0,
+    "latitude": -32.033905241914894,
+    "longitude": 115.81645502
+  },
+  {
+    "Suburb": "Kensington",
+    "count": 234,
+    "avg_price": 1036973.0982905983,
+    "median_price": 987500.0,
+    "latitude": -31.98268528474359,
+    "longitude": 115.88155579444444
+  },
+  {
+    "Suburb": "East Fremantle",
+    "count": 234,
+    "avg_price": 1555728.9572649573,
+    "median_price": 1417500.0,
+    "latitude": -32.039911708632474,
+    "longitude": 115.76762838974359
+  },
+  {
+    "Suburb": "Cannington",
+    "count": 233,
+    "avg_price": 466994.1888412017,
+    "median_price": 435000.0,
+    "latitude": -32.0151675423176,
+    "longitude": 115.93733786437768
+  },
+  {
+    "Suburb": "Kenwick",
+    "count": 233,
+    "avg_price": 426506.991416309,
+    "median_price": 408000.0,
+    "latitude": -32.036145593862656,
+    "longitude": 115.9809008085837
+  },
+  {
+    "Suburb": "Ascot",
+    "count": 233,
+    "avg_price": 744433.0472103005,
+    "median_price": 742000.0,
+    "latitude": -31.935192763733905,
+    "longitude": 115.92973072403433
+  },
+  {
+    "Suburb": "Lathlain",
+    "count": 232,
+    "avg_price": 814699.1594827586,
+    "median_price": 781250.0,
+    "latitude": -31.967226336810345,
+    "longitude": 115.90557412974138
+  },
+  {
+    "Suburb": "Gosnells",
+    "count": 226,
+    "avg_price": 561446.5663716814,
+    "median_price": 557000.0,
+    "latitude": -32.07837718199115,
+    "longitude": 115.99015054734514
+  },
+  {
+    "Suburb": "Bicton",
+    "count": 225,
+    "avg_price": 1402135.5555555555,
+    "median_price": 1200000.0,
+    "latitude": -32.029546792577776,
+    "longitude": 115.78533209066667
+  },
+  {
+    "Suburb": "Guildford",
+    "count": 224,
+    "avg_price": 739269.5625,
+    "median_price": 665000.0,
+    "latitude": -31.899023560535714,
+    "longitude": 115.97545543705357
+  },
+  {
+    "Suburb": "Riverton",
+    "count": 224,
+    "avg_price": 805734.3928571428,
+    "median_price": 758444.5,
+    "latitude": -32.03447093486607,
+    "longitude": 115.89573200133928
+  },
+  {
+    "Suburb": "Shelley",
+    "count": 223,
+    "avg_price": 1070581.9103139013,
+    "median_price": 910000.0,
+    "latitude": -32.02903914932735,
+    "longitude": 115.8882844426009
+  },
+  {
+    "Suburb": "East Cannington",
+    "count": 223,
+    "avg_price": 524139.40807174885,
+    "median_price": 490000.0,
+    "latitude": -32.011171397892376,
+    "longitude": 115.95486894573992
+  },
+  {
+    "Suburb": "South Fremantle",
+    "count": 221,
+    "avg_price": 1187681.0995475112,
+    "median_price": 1109000.0,
+    "latitude": -32.06937665171946,
+    "longitude": 115.75436870135746
+  },
+  {
+    "Suburb": "Langford",
+    "count": 220,
+    "avg_price": 421657.9818181818,
+    "median_price": 407500.0,
+    "latitude": -32.04135246836364,
+    "longitude": 115.94115066590908
+  },
+  {
+    "Suburb": "Hillarys",
+    "count": 220,
+    "avg_price": 1171187.2727272727,
+    "median_price": 1051500.0,
+    "latitude": -31.809129723454543,
+    "longitude": 115.74737755681818
+  },
+  {
+    "Suburb": "Salter Point",
+    "count": 218,
+    "avg_price": 1296108.4311926605,
+    "median_price": 1199000.0,
+    "latitude": -32.022384415733946,
+    "longitude": 115.86763371559633
+  },
+  {
+    "Suburb": "Wilson",
+    "count": 218,
+    "avg_price": 665813.2293577981,
+    "median_price": 627500.0,
+    "latitude": -32.018819445229354,
+    "longitude": 115.91195561697248
+  },
+  {
+    "Suburb": "Brentwood",
+    "count": 218,
+    "avg_price": 766678.6697247706,
+    "median_price": 679500.0,
+    "latitude": -32.0435702609633,
+    "longitude": 115.85147195688074
+  },
+  {
+    "Suburb": "North Fremantle",
+    "count": 216,
+    "avg_price": 1367664.351851852,
+    "median_price": 1170000.0,
+    "latitude": -32.03141023328704,
+    "longitude": 115.7549181962963
+  },
+  {
+    "Suburb": "Claremont",
+    "count": 216,
+    "avg_price": 1678712.9583333333,
+    "median_price": 1370000.0,
+    "latitude": -31.981450733009257,
+    "longitude": 115.78134999537036
+  },
+  {
+    "Suburb": "Ardross",
+    "count": 214,
+    "avg_price": 1224830.8411214952,
+    "median_price": 1162500.0,
+    "latitude": -32.02662355238318,
+    "longitude": 115.8374867
+  },
+  {
+    "Suburb": "Applecross",
+    "count": 213,
+    "avg_price": 1714447.544600939,
+    "median_price": 1600000.0,
+    "latitude": -32.01439559652582,
+    "longitude": 115.83758204319248
+  },
+  {
+    "Suburb": "Woodvale",
+    "count": 210,
+    "avg_price": 830191.3714285714,
+    "median_price": 810000.0,
+    "latitude": -31.792145579095237,
+    "longitude": 115.79507561333334
+  },
+  {
+    "Suburb": "Midvale",
+    "count": 208,
+    "avg_price": 402936.2548076923,
+    "median_price": 390500.0,
+    "latitude": -31.88699267230769,
+    "longitude": 116.02687089230768
+  },
+  {
+    "Suburb": "Floreat",
+    "count": 206,
+    "avg_price": 1930923.6699029126,
+    "median_price": 1810000.0,
+    "latitude": -31.939592684271844,
+    "longitude": 115.7935293907767
+  },
+  {
+    "Suburb": "Bellevue",
+    "count": 204,
+    "avg_price": 401030.6862745098,
+    "median_price": 377500.0,
+    "latitude": -31.902262474166665,
+    "longitude": 116.03357336421568
+  },
+  {
+    "Suburb": "Bateman",
+    "count": 201,
+    "avg_price": 854094.0298507463,
+    "median_price": 820000.0,
+    "latitude": -32.05467847766169,
+    "longitude": 115.84745575174128
+  },
+  {
+    "Suburb": "Nedlands",
+    "count": 194,
+    "avg_price": 2131278.350515464,
+    "median_price": 2000000.0,
+    "latitude": -31.979411101752575,
+    "longitude": 115.80523355927835
+  },
+  {
+    "Suburb": "Middle Swan",
+    "count": 194,
+    "avg_price": 394516.3969072165,
+    "median_price": 389500.0,
+    "latitude": -31.870583332835054,
+    "longitude": 116.02016308350515
+  },
+  {
+    "Suburb": "Cottesloe",
+    "count": 194,
+    "avg_price": 3016210.824742268,
+    "median_price": 3011000.0,
+    "latitude": -31.99273128386598,
+    "longitude": 115.75921271649484
+  },
+  {
+    "Suburb": "Highgate",
+    "count": 194,
+    "avg_price": 705066.2422680412,
+    "median_price": 613750.0,
+    "latitude": -31.94021519773196,
+    "longitude": 115.87082291237112
+  },
+  {
+    "Suburb": "Maida Vale",
+    "count": 194,
+    "avg_price": 582830.8144329897,
+    "median_price": 552500.0,
+    "latitude": -31.952812550824742,
+    "longitude": 116.02189850670104
+  },
+  {
+    "Suburb": "Bull Creek",
+    "count": 191,
+    "avg_price": 989371.0209424084,
+    "median_price": 900000.0,
+    "latitude": -32.05890161219895,
+    "longitude": 115.86209973089005
+  },
+  {
+    "Suburb": "City Beach",
+    "count": 191,
+    "avg_price": 2770699.607329843,
+    "median_price": 2450000.0,
+    "latitude": -31.926440563717275,
+    "longitude": 115.76324872827226
+  },
+  {
+    "Suburb": "Helena Valley",
+    "count": 190,
+    "avg_price": 657238.1578947369,
+    "median_price": 637500.0,
+    "latitude": -31.91673251868421,
+    "longitude": 116.03158418157894
+  },
+  {
+    "Suburb": "Mosman Park",
+    "count": 189,
+    "avg_price": 1691731.7407407407,
+    "median_price": 1600000.0,
+    "latitude": -32.01331003068783,
+    "longitude": 115.7628939973545
+  },
+  {
+    "Suburb": "Marmion",
+    "count": 188,
+    "avg_price": 1373700.0,
+    "median_price": 1100000.0,
+    "latitude": -31.841522930957446,
+    "longitude": 115.75667570319148
+  },
+  {
+    "Suburb": "Coolbinia",
+    "count": 188,
+    "avg_price": 1231987.819148936,
+    "median_price": 1130000.0,
+    "latitude": -31.914423790053192,
+    "longitude": 115.85322090744681
+  },
+  {
+    "Suburb": "Samson",
+    "count": 188,
+    "avg_price": 618989.3617021276,
+    "median_price": 610000.0,
+    "latitude": -32.06975735297872,
+    "longitude": 115.79780559202128
+  },
+  {
+    "Suburb": "Swanbourne",
+    "count": 187,
+    "avg_price": 2163331.550802139,
+    "median_price": 2100000.0,
+    "latitude": -31.977242069893048,
+    "longitude": 115.76828141283423
+  },
+  {
+    "Suburb": "Lynwood",
+    "count": 187,
+    "avg_price": 456455.54545454547,
+    "median_price": 430000.0,
+    "latitude": -32.03921944994652,
+    "longitude": 115.92953394117647
+  },
+  {
+    "Suburb": "Mount Claremont",
+    "count": 187,
+    "avg_price": 1651864.3422459892,
+    "median_price": 1570000.0,
+    "latitude": -31.965019635508018,
+    "longitude": 115.78128776256685
+  },
+  {
+    "Suburb": "Woodbridge",
+    "count": 181,
+    "avg_price": 622672.3425414364,
+    "median_price": 595000.0,
+    "latitude": -31.89176342303867,
+    "longitude": 115.9944783160221
+  },
+  {
+    "Suburb": "Ferndale",
+    "count": 180,
+    "avg_price": 499712.22222222225,
+    "median_price": 490000.0,
+    "latitude": -32.030245961055556,
+    "longitude": 115.92607240166667
+  },
+  {
+    "Suburb": "Winthrop",
+    "count": 171,
+    "avg_price": 1119795.5321637427,
+    "median_price": 1110000.0,
+    "latitude": -32.05278418116959,
+    "longitude": 115.8272944631579
+  },
+  {
+    "Suburb": "Swan View",
+    "count": 168,
+    "avg_price": 491122.0238095238,
+    "median_price": 465000.0,
+    "latitude": -31.884874495178572,
+    "longitude": 116.04439824761906
+  },
+  {
+    "Suburb": "Greenmount",
+    "count": 164,
+    "avg_price": 513210.98170731706,
+    "median_price": 484000.0,
+    "latitude": -31.89863809207317,
+    "longitude": 116.04450293231707
+  },
+  {
+    "Suburb": "Waterford",
+    "count": 162,
+    "avg_price": 1110600.586419753,
+    "median_price": 1095000.0,
+    "latitude": -32.01543298111111,
+    "longitude": 115.8865655808642
+  },
+  {
+    "Suburb": "Coogee",
+    "count": 160,
+    "avg_price": 970313.4375,
+    "median_price": 900000.0,
+    "latitude": -32.1121625518125,
+    "longitude": 115.77196012625
+  },
+  {
+    "Suburb": "Kalamunda",
+    "count": 159,
+    "avg_price": 694191.8238993711,
+    "median_price": 667500.0,
+    "latitude": -31.977000317169814,
+    "longitude": 116.05590529999999
+  },
+  {
+    "Suburb": "Ashfield",
+    "count": 158,
+    "avg_price": 559018.7025316455,
+    "median_price": 500000.0,
+    "latitude": -31.917443932721522,
+    "longitude": 115.93750214746836
+  },
+  {
+    "Suburb": "Dalkeith",
+    "count": 154,
+    "avg_price": 3233593.5064935065,
+    "median_price": 3100000.0,
+    "latitude": -31.995229368636366,
+    "longitude": 115.79788007337662
+  },
+  {
+    "Suburb": "Stratton",
+    "count": 153,
+    "avg_price": 365658.49673202616,
+    "median_price": 350000.0,
+    "latitude": -31.867489042091503,
+    "longitude": 116.03861316993464
+  },
+  {
+    "Suburb": "Kiara",
+    "count": 150,
+    "avg_price": 474972.9533333333,
+    "median_price": 458277.5,
+    "latitude": -31.882950987866668,
+    "longitude": 115.93730382933332
+  },
+  {
+    "Suburb": "Viveash",
+    "count": 147,
+    "avg_price": 502056.80272108846,
+    "median_price": 470000.0,
+    "latitude": -31.878328442244896,
+    "longitude": 116.00000148231292
+  },
+  {
+    "Suburb": "Glendalough",
+    "count": 147,
+    "avg_price": 475457.65986394556,
+    "median_price": 408000.0,
+    "latitude": -31.919372536258503,
+    "longitude": 115.82009322653062
+  },
+  {
+    "Suburb": "Cockburn Central",
+    "count": 142,
+    "avg_price": 438140.8450704225,
+    "median_price": 416500.0,
+    "latitude": -32.12516914760563,
+    "longitude": 115.8522589887324
+  },
+  {
+    "Suburb": "North Lake",
+    "count": 141,
+    "avg_price": 694553.1914893617,
+    "median_price": 670000.0,
+    "latitude": -32.08161712531915,
+    "longitude": 115.82900392553191
+  },
+  {
+    "Suburb": "Jolimont",
+    "count": 135,
+    "avg_price": 903928.4888888889,
+    "median_price": 795000.0,
+    "latitude": -31.946834465703702,
+    "longitude": 115.81046783333333
+  },
+  {
+    "Suburb": "Menora",
+    "count": 134,
+    "avg_price": 1213750.671641791,
+    "median_price": 1107500.0,
+    "latitude": -31.91962727880597,
+    "longitude": 115.86124277164178
+  },
+  {
+    "Suburb": "Harrisdale",
+    "count": 131,
+    "avg_price": 807302.641221374,
+    "median_price": 775000.0,
+    "latitude": -32.11640469503816,
+    "longitude": 115.93009842442748
+  },
+  {
+    "Suburb": "Daglish",
+    "count": 130,
+    "avg_price": 1178196.923076923,
+    "median_price": 1100000.0,
+    "latitude": -31.951165450153844,
+    "longitude": 115.80968992307693
+  },
+  {
+    "Suburb": "Koongamia",
+    "count": 121,
+    "avg_price": 356679.9421487603,
+    "median_price": 345000.0,
+    "latitude": -31.90661856942149,
+    "longitude": 116.04202878347107
+  },
+  {
+    "Suburb": "Watermans Bay",
+    "count": 121,
+    "avg_price": 1501438.0165289256,
+    "median_price": 1250000.0,
+    "latitude": -31.84924725140496,
+    "longitude": 115.75575012396695
+  },
+  {
+    "Suburb": "Northbridge",
+    "count": 115,
+    "avg_price": 530933.2260869566,
+    "median_price": 470000.0,
+    "latitude": -31.945410770695652,
+    "longitude": 115.8557456452174
+  },
+  {
+    "Suburb": "Murdoch",
+    "count": 112,
+    "avg_price": 778908.7142857143,
+    "median_price": 765000.0,
+    "latitude": -32.061936424107145,
+    "longitude": 115.83429603392857
+  },
+  {
+    "Suburb": "Karawara",
+    "count": 106,
+    "avg_price": 702543.1698113207,
+    "median_price": 667500.0,
+    "latitude": -32.00801983613208,
+    "longitude": 115.88191251226415
+  },
+  {
+    "Suburb": "Crawley",
+    "count": 90,
+    "avg_price": 1050705.5555555555,
+    "median_price": 822500.0,
+    "latitude": -31.982142669999998,
+    "longitude": 115.81813622555556
+  },
+  {
+    "Suburb": "Lesmurdie",
+    "count": 87,
+    "avg_price": 687386.2068965518,
+    "median_price": 670000.0,
+    "latitude": -31.997165254137933,
+    "longitude": 116.05542071379311
+  },
+  {
+    "Suburb": "Peppermint Grove",
+    "count": 83,
+    "avg_price": 2864834.3373493976,
+    "median_price": 2750000.0,
+    "latitude": -31.999905822168675,
+    "longitude": 115.76547914578315
+  },
+  {
+    "Suburb": "Munster",
+    "count": 78,
+    "avg_price": 582435.8974358974,
+    "median_price": 544250.0,
+    "latitude": -32.11974543461538,
+    "longitude": 115.78621826282051
+  },
+  {
+    "Suburb": "Gooseberry Hill",
+    "count": 62,
+    "avg_price": 712375.3548387097,
+    "median_price": 685000.0,
+    "latitude": -31.953013658548386,
+    "longitude": 116.05006246451613
+  },
+  {
+    "Suburb": "Craigie",
+    "count": 57,
+    "avg_price": 635098.245614035,
+    "median_price": 620000.0,
+    "latitude": -31.792809500701754,
+    "longitude": 115.7661652859649
+  },
+  {
+    "Suburb": "O'Connor",
+    "count": 57,
+    "avg_price": 535105.4035087719,
+    "median_price": 530000.0,
+    "latitude": -32.06303544789474,
+    "longitude": 115.79791137894738
+  },
+  {
+    "Suburb": "Success",
+    "count": 55,
+    "avg_price": 596105.4545454546,
+    "median_price": 632000.0,
+    "latitude": -32.131528826727276,
+    "longitude": 115.8478650890909
+  },
+  {
+    "Suburb": "Martin",
+    "count": 51,
+    "avg_price": 523000.0,
+    "median_price": 495000.0,
+    "latitude": -32.07023756882353,
+    "longitude": 116.00871473137255
+  },
+  {
+    "Suburb": "Hazelmere",
+    "count": 46,
+    "avg_price": 518764.1304347826,
+    "median_price": 475000.0,
+    "latitude": -31.903090983043477,
+    "longitude": 115.99392384130434
+  },
+  {
+    "Suburb": "Atwell",
+    "count": 45,
+    "avg_price": 678286.6666666666,
+    "median_price": 655000.0,
+    "latitude": -32.130504,
+    "longitude": 115.86428177777778
+  },
+  {
+    "Suburb": "Piara Waters",
+    "count": 42,
+    "avg_price": 791056.8571428572,
+    "median_price": 770500.0,
+    "latitude": -32.122714558333335,
+    "longitude": 115.91810813333333
+  },
+  {
+    "Suburb": "Beeliar",
+    "count": 33,
+    "avg_price": 663575.7575757576,
+    "median_price": 595000.0,
+    "latitude": -32.12919882484848,
+    "longitude": 115.81782443636364
+  },
+  {
+    "Suburb": "Boya",
+    "count": 26,
+    "avg_price": 542710.1538461539,
+    "median_price": 521375.0,
+    "latitude": -31.917181397307694,
+    "longitude": 116.05184378846154
+  },
+  {
+    "Suburb": "Banjup",
+    "count": 15,
+    "avg_price": 559788.0,
+    "median_price": 575000.0,
+    "latitude": -32.12393626666667,
+    "longitude": 115.87679716
+  },
+  {
+    "Suburb": "Hocking",
+    "count": 15,
+    "avg_price": 558733.3333333334,
+    "median_price": 580000.0,
+    "latitude": -31.776114521333334,
+    "longitude": 115.82384881333334
+  },
+  {
+    "Suburb": "Wanneroo",
+    "count": 9,
+    "avg_price": 706361.1111111111,
+    "median_price": 686000.0,
+    "latitude": -31.779844515555553,
+    "longitude": 115.80477532222221
+  },
+  {
+    "Suburb": "Henley Brook",
+    "count": 7,
+    "avg_price": 698214.2857142857,
+    "median_price": 735500.0,
+    "latitude": -31.80839086857143,
+    "longitude": 115.97182799999999
+  },
+  {
+    "Suburb": "West Swan",
+    "count": 5,
+    "avg_price": 453000.0,
+    "median_price": 512000.0,
+    "latitude": -31.859921606,
+    "longitude": 115.98416798000001
+  },
+  {
+    "Suburb": "Forrestdale",
+    "count": 4,
+    "avg_price": 423000.0,
+    "median_price": 499000.0,
+    "latitude": -32.12055588,
+    "longitude": 115.9204979
+  },
+  {
+    "Suburb": "Gnangara",
+    "count": 4,
+    "avg_price": 559275.0,
+    "median_price": 722500.0,
+    "latitude": -31.776795612500003,
+    "longitude": 115.85983275
+  }
+]
