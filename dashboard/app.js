@@ -234,5 +234,9 @@ async function init() {
 
 init().catch((err) => {
   console.error(err);
-  alert("Falha ao carregar dados do dashboard.");
+  const runningFromFile = window.location.protocol === "file:";
+  const tip = runningFromFile
+    ? "Abra via servidor local (ex: python -m http.server 8000) e acesse http://localhost:8000/dashboard/."
+    : "Verifique se os JSONs em ./data/ estao publicados e acessiveis.";
+  alert(`Falha ao carregar dados do dashboard. ${err?.message || ""} ${tip}`);
 });
