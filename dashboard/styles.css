@@ -116,17 +116,25 @@ select {
   overflow-x: auto;
 }
 
+.table-note {
+  margin: 0 0 6px;
+  font-size: 11px;
+  color: #64748b;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
+  min-width: 980px;
 }
 
 th,
 td {
   text-align: left;
   border-bottom: 1px solid #e5e7eb;
-  padding: 10px 8px;
-  font-size: 14px;
+  padding: 7px 6px;
+  font-size: 12px;
+  white-space: nowrap;
 }
 
 th {
