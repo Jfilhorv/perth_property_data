@@ -6,16 +6,19 @@ const currency = new Intl.NumberFormat("en-AU", {
 
 const numberFmt = new Intl.NumberFormat("en-AU");
 
-let suburbStats = [];
-let yearlyStats = [];
-let yearlyBySuburb = [];
-let listingsSample = [];
-let suburbMapStats = [];
+let summaryStats = null;
+let listingsCore = [];
+let schoolPoints = [];
 let yearlyChart;
 let map;
 let listingsLayer;
 let suburbPriceLayer;
-let selectedSuburb = "";
+let schoolLayer;
+let selectedFilters = {
+  suburb: "",
+  bedrooms: "",
+  bathrooms: "",
+};
 
 function makeKpiCard(label, value) {
   const div = document.createElement("div");
@@ -24,23 +27,36 @@ function makeKpiCard(label, value) {
   return div;
 }
 
-function renderKpis(summary) {
+function renderKpis(summary, filteredRows) {
   const kpis = document.getElementById("kpis");
   const footnote = document.getElementById("kpiFootnote");
   kpis.innerHTML = "";
 
-  kpis.appendChild(makeKpiCard("Records", numberFmt.format(summary.rows)));
-  kpis.appendChild(makeKpiCard("Median Price", currency.format(summary.price_median)));
-  kpis.appendChild(makeKpiCard("Average Price", currency.format(summary.price_mean)));
-  kpis.appendChild(makeKpiCard("P75", currency.format(summary.price_p75)));
-  kpis.appendChild(makeKpiCard("P95", currency.format(summary.price_p95)));
+  const prices = filteredRows.map((r) => r.Price).filter((v) => Number.isFinite(v));
+  const sorted = [...prices].sort((a, b) => a - b);
+  const percentile = (p) => {
+    if (!sorted.length) return 0;
+    const idx = Math.floor((sorted.length - 1) * p);
+    return sorted[idx];
+  };
+  const median = percentile(0.5);
+  const mean = sorted.length ? sorted.reduce((a, b) => a + b, 0) / sorted.length : 0;
+  const p75 = percentile(0.75);
+  const p95 = percentile(0.95);
+
+  kpis.appendChild(makeKpiCard("Records", numberFmt.format(filteredRows.length)));
+  kpis.appendChild(makeKpiCard("Median Price", currency.format(median)));
+  kpis.appendChild(makeKpiCard("Average Price", currency.format(mean)));
+  kpis.appendChild(makeKpiCard("P75", currency.format(p75)));
+  kpis.appendChild(makeKpiCard("P95", currency.format(p95)));
   footnote.textContent = `Date range: ${summary.date_min} to ${summary.date_max}`;
 }
 
 function renderSuburbOptions() {
   const select = document.getElementById("suburbSelect");
   select.innerHTML = '<option value="">All</option>';
-  for (const row of suburbStats) {
+  const grouped = aggregateSuburbStats(listingsCore);
+  for (const row of grouped) {
     const opt = document.createElement("option");
     opt.value = row.Suburb;
     opt.textContent = `${row.Suburb} (${row.count})`;
@@ -48,15 +64,76 @@ function renderSuburbOptions() {
   }
 }
 
-function renderSuburbTable(filterSuburb = "") {
+function renderBedroomBathroomOptions() {
+  const bedSelect = document.getElementById("bedroomSelect");
+  const bathSelect = document.getElementById("bathroomSelect");
+  const beds = [...new Set(listingsCore.map((r) => r.Bedrooms))].filter(Number.isFinite).sort((a, b) => a - b);
+  const baths = [...new Set(listingsCore.map((r) => r.Bathrooms))].filter(Number.isFinite).sort((a, b) => a - b);
+  bedSelect.innerHTML = '<option value="">Any</option>';
+  bathSelect.innerHTML = '<option value="">Any</option>';
+  beds.forEach((v) => {
+    const opt = document.createElement("option");
+    opt.value = String(v);
+    opt.textContent = String(v);
+    bedSelect.appendChild(opt);
+  });
+  baths.forEach((v) => {
+    const opt = document.createElement("option");
+    opt.value = String(v);
+    opt.textContent = String(v);
+    bathSelect.appendChild(opt);
+  });
+}
+
+function aggregateSuburbStats(rows) {
+  const mapBySuburb = new Map();
+  rows.forEach((row) => {
+    if (!row.Suburb) return;
+    const current = mapBySuburb.get(row.Suburb) || {
+      Suburb: row.Suburb,
+      count: 0,
+      prices: [],
+      sumDistance: 0,
+      distanceCount: 0,
+      sumLat: 0,
+      sumLon: 0,
+      geoCount: 0,
+    };
+    current.count += 1;
+    current.prices.push(row.Price);
+    if (Number.isFinite(row.Distance_to_CBD)) {
+      current.sumDistance += row.Distance_to_CBD;
+      current.distanceCount += 1;
+    }
+    if (Number.isFinite(row.Latitude) && Number.isFinite(row.Longitude)) {
+      current.sumLat += row.Latitude;
+      current.sumLon += row.Longitude;
+      current.geoCount += 1;
+    }
+    mapBySuburb.set(row.Suburb, current);
+  });
+  return [...mapBySuburb.values()]
+    .map((v) => {
+      const sorted = v.prices.sort((a, b) => a - b);
+      const mid = Math.floor((sorted.length - 1) * 0.5);
+      return {
+        Suburb: v.Suburb,
+        count: v.count,
+        median_price: sorted[mid] ?? 0,
+        avg_price: sorted.length ? sorted.reduce((a, b) => a + b, 0) / sorted.length : 0,
+        avg_distance_to_cbd: v.distanceCount ? v.sumDistance / v.distanceCount : 0,
+        latitude: v.geoCount ? v.sumLat / v.geoCount : null,
+        longitude: v.geoCount ? v.sumLon / v.geoCount : null,
+      };
+    })
+    .sort((a, b) => b.count - a.count || b.median_price - a.median_price);
+}
+
+function renderSuburbTable(rows) {
   const body = document.getElementById("suburbTableBody");
   body.innerHTML = "";
-
-  const rows = suburbStats
-    .filter((r) => !filterSuburb || r.Suburb === filterSuburb)
-    .slice(0, filterSuburb ? 1 : 15);
-
-  for (const row of rows) {
+  const grouped = aggregateSuburbStats(rows).slice(0, selectedFilters.suburb ? 1 : 15);
+  for (const row of grouped) {
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${row.Suburb}</td>
@@ -68,13 +145,34 @@ function renderSuburbTable(filterSuburb = "") {
   }
 }
 
-function getYearlySeries(filterSuburb = "") {
-  if (!filterSuburb) return yearlyStats;
-  return yearlyBySuburb.filter((row) => row.Suburb === filterSuburb);
+function getFilteredRows() {
+  return listingsCore.filter((row) => {
+    const bySuburb = !selectedFilters.suburb || row.Suburb === selectedFilters.suburb;
+    const byBeds = !selectedFilters.bedrooms || String(row.Bedrooms) === selectedFilters.bedrooms;
+    const byBaths = !selectedFilters.bathrooms || String(row.Bathrooms) === selectedFilters.bathrooms;
+    return bySuburb && byBeds && byBaths;
+  });
 }
 
-function renderYearlyChart(chartType = "line", filterSuburb = "") {
-  const series = getYearlySeries(filterSuburb);
+function getYearlySeries(rows) {
+  const yearMap = new Map();
+  rows.forEach((r) => {
+    if (!Number.isFinite(r.Year)) return;
+    const values = yearMap.get(r.Year) || [];
+    values.push(r.Price);
+    yearMap.set(r.Year, values);
+  });
+  return [...yearMap.entries()]
+    .map(([year, prices]) => {
+      const sorted = prices.sort((a, b) => a - b);
+      const idx = Math.floor((sorted.length - 1) * 0.5);
+      return { Year: year, median_price: sorted[idx] ?? 0 };
+    })
+    .sort((a, b) => a.Year - b.Year);
+}
+
+function renderYearlyChart(chartType = "line", rows = []) {
+  const series = getYearlySeries(rows);
   const ctx = document.getElementById("yearlyChart");
   if (yearlyChart) yearlyChart.destroy();
 
@@ -84,7 +182,7 @@ function renderYearlyChart(chartType = "line", filterSuburb = "") {
       labels: series.map((r) => r.Year),
       datasets: [
         {
-          label: filterSuburb ? `Median Price (AUD) - ${filterSuburb}` : "Median Price (AUD)",
+          label: "Median Price (AUD)",
           data: series.map((r) => r.median_price),
           borderColor: "#2563eb",
           backgroundColor: "rgba(37, 99, 235, 0.2)",
@@ -110,12 +208,13 @@ function renderYearlyChart(chartType = "line", filterSuburb = "") {
   });
 }
 
-function applySelectedSuburb(suburb) {
-  selectedSuburb = suburb;
-  renderSuburbTable(suburb);
-  renderMap(suburb);
+function applyFilters() {
+  const filteredRows = getFilteredRows();
+  renderKpis(summaryStats, filteredRows);
+  renderSuburbTable(filteredRows);
+  renderMap(filteredRows);
   const chartType = document.getElementById("chartTypeSelect").value;
-  renderYearlyChart(chartType, suburb);
+  renderYearlyChart(chartType, filteredRows);
 }
 
 function radiusByPrice(avgPrice, minPrice, maxPrice) {
@@ -134,7 +233,7 @@ function colorByPrice(avgPrice, minPrice, maxPrice) {
   return "#1e3a8a";
 }
 
-function renderMap(filterSuburb = "") {
+function renderMap(rows) {
   if (!map) {
     map = L.map("map").setView([-31.95, 115.86], 10);
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -145,9 +244,10 @@ function renderMap(filterSuburb = "") {
 
   if (listingsLayer) map.removeLayer(listingsLayer);
   if (suburbPriceLayer) map.removeLayer(suburbPriceLayer);
+  if (schoolLayer) map.removeLayer(schoolLayer);
 
-  const filteredListings = listingsSample.filter((row) => !filterSuburb || row.Suburb === filterSuburb);
-  const listingMarkers = filteredListings.map((row) =>
+  const mapRows = rows.slice(0, 7000);
+  const listingMarkers = mapRows.map((row) =>
     L.circleMarker([row.Latitude, row.Longitude], {
       radius: 3,
       color: "#ef4444",
@@ -158,7 +258,7 @@ function renderMap(filterSuburb = "") {
   );
   listingsLayer = L.layerGroup(listingMarkers);
 
-  const filteredSuburb = suburbMapStats.filter((row) => !filterSuburb || row.Suburb === filterSuburb);
+  const filteredSuburb = aggregateSuburbStats(rows).filter((r) => Number.isFinite(r.latitude) && Number.isFinite(r.longitude));
   const prices = filteredSuburb.map((r) => r.avg_price);
   const minPrice = Math.min(...prices);
   const maxPrice = Math.max(...prices);
@@ -179,12 +279,33 @@ function renderMap(filterSuburb = "") {
       )
     )
   );
+  const schoolMarkers = schoolPoints
+    .filter((s) => s.count >= 8)
+    .map((s) =>
+      L.circleMarker([s.latitude, s.longitude], {
+        radius: 6,
+        color: "#0f766e",
+        fillColor: "#14b8a6",
+        fillOpacity: 0.35,
+        weight: 2,
+      }).bindTooltip(
+        `<b>${s.school_name}</b><br/>Estimated location<br/>Nearby listings: ${numberFmt.format(
+          s.count
+        )}<br/>Avg nearby price: ${currency.format(s.avg_price)}`,
+        { sticky: true }
+      )
+    );
+  schoolLayer = L.layerGroup(schoolMarkers);
+
   const mapView = document.getElementById("mapViewSelect").value;
   if (mapView === "both" || mapView === "listings") {
     listingsLayer.addTo(map);
   }
   if (mapView === "both" || mapView === "suburb") {
     suburbPriceLayer.addTo(map);
+  }
+  if (mapView === "schools") {
+    schoolLayer.addTo(map);
   }
 
   const group = L.featureGroup([...listingMarkers, ...filteredSuburb.map((row) => L.marker([row.latitude, row.longitude]))]);
@@ -200,36 +321,42 @@ async function loadJson(path) {
 }
 
 async function init() {
-  const [summary, yearly, yearlySuburb, suburbs, listings, suburbMap] = await Promise.all([
+  const [summary, listings, schools] = await Promise.all([
     loadJson("./data/summary.json"),
-    loadJson("./data/yearly.json"),
-    loadJson("./data/yearly_by_suburb.json"),
-    loadJson("./data/suburb_stats.json"),
-    loadJson("./data/listings_sample.json"),
-    loadJson("./data/suburb_map_stats.json"),
+    loadJson("./data/listings_core.json"),
+    loadJson("./data/school_points_estimated.json"),
   ]);
 
-  yearlyStats = yearly;
-  yearlyBySuburb = yearlySuburb;
-  suburbStats = suburbs;
-  listingsSample = listings;
-  suburbMapStats = suburbMap;
+  summaryStats = summary;
+  listingsCore = listings;
+  schoolPoints = schools;
 
-  renderKpis(summary);
   renderSuburbOptions();
-  applySelectedSuburb("");
+  renderBedroomBathroomOptions();
+  applyFilters();
 
   const suburbSelect = document.getElementById("suburbSelect");
   suburbSelect.addEventListener("change", (e) => {
-    applySelectedSuburb(e.target.value || "");
+    selectedFilters.suburb = e.target.value || "";
+    applyFilters();
+  });
+  const bedroomSelect = document.getElementById("bedroomSelect");
+  bedroomSelect.addEventListener("change", (e) => {
+    selectedFilters.bedrooms = e.target.value || "";
+    applyFilters();
+  });
+  const bathroomSelect = document.getElementById("bathroomSelect");
+  bathroomSelect.addEventListener("change", (e) => {
+    selectedFilters.bathrooms = e.target.value || "";
+    applyFilters();
   });
 
   const chartTypeSelect = document.getElementById("chartTypeSelect");
-  chartTypeSelect.addEventListener("change", (e) => renderYearlyChart(e.target.value, selectedSuburb));
+  chartTypeSelect.addEventListener("change", () => applyFilters());
 
   const mapViewSelect = document.getElementById("mapViewSelect");
   mapViewSelect.addEventListener("change", () => {
-    renderMap(selectedSuburb);
+    applyFilters();
   });
 }
 

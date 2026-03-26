@@ -29,6 +29,14 @@
           <select id="suburbSelect">
             <option value="">All</option>
           </select>
+          <label for="bedroomSelect">Beds</label>
+          <select id="bedroomSelect">
+            <option value="">Any</option>
+          </select>
+          <label for="bathroomSelect">Baths</label>
+          <select id="bathroomSelect">
+            <option value="">Any</option>
+          </select>
           <label for="chartTypeSelect">Chart</label>
           <select id="chartTypeSelect">
             <option value="line">Line</option>
@@ -36,9 +44,10 @@
           </select>
           <label for="mapViewSelect">Map</label>
           <select id="mapViewSelect">
+            <option value="suburb" selected>Average price by suburb only</option>
             <option value="both">Points + Average Price</option>
             <option value="listings">Points only (lat/lon)</option>
-            <option value="suburb">Average price by suburb only</option>
+            <option value="schools">Estimated school locations</option>
           </select>
         </div>
       </section>

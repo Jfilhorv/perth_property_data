@@ -1,0 +1,2410 @@
+[
+  {
+    "school_name": "CLAYTON VIEW PRIMARY SCHOOL",
+    "count": 481,
+    "latitude": -31.907133105405407,
+    "longitude": 116.03547274802494,
+    "avg_price": 474888.5301455301
+  },
+  {
+    "school_name": "WEST LEEDERVILLE PRIMARY SCHOOL",
+    "count": 471,
+    "latitude": -31.94320405923567,
+    "longitude": 115.83679514564756,
+    "avg_price": 931151.4140127389
+  },
+  {
+    "school_name": "MELVILLE PRIMARY SCHOOL",
+    "count": 452,
+    "latitude": -32.03759021840708,
+    "longitude": 115.80940504557522,
+    "avg_price": 894190.1504424779
+  },
+  {
+    "school_name": "BEACONSFIELD PRIMARY SCHOOL",
+    "count": 383,
+    "latitude": -32.072461759425586,
+    "longitude": 115.75659022193211,
+    "avg_price": 1060051.6266318539
+  },
+  {
+    "school_name": "ATWELL PRIMARY SCHOOL",
+    "count": 367,
+    "latitude": -32.12310823986376,
+    "longitude": 115.87129325585832,
+    "avg_price": 609353.6811989101
+  },
+  {
+    "school_name": "CARALEE COMMUNITY SCHOOL",
+    "count": 358,
+    "latitude": -32.05140606662011,
+    "longitude": 115.80449299050278,
+    "avg_price": 804506.5977653632
+  },
+  {
+    "school_name": "HIGHGATE PRIMARY SCHOOL",
+    "count": 347,
+    "latitude": -31.950014532161386,
+    "longitude": 115.86680166109511,
+    "avg_price": 585457.7925072046
+  },
+  {
+    "school_name": "SOUTH LAKE PRIMARY SCHOOL",
+    "count": 343,
+    "latitude": -32.10845544483965,
+    "longitude": 115.84130538396501,
+    "avg_price": 555597.0874635569
+  },
+  {
+    "school_name": "BOORAGOON PRIMARY SCHOOL",
+    "count": 338,
+    "latitude": -32.03710147026627,
+    "longitude": 115.8234844627219,
+    "avg_price": 1042278.8106508875
+  },
+  {
+    "school_name": "BIBRA LAKE PRIMARY SCHOOL",
+    "count": 326,
+    "latitude": -32.098917221288346,
+    "longitude": 115.84919289785277,
+    "avg_price": 686197.6871165644
+  },
+  {
+    "school_name": "RIVERLANDS MONTESSORI SCHOOL",
+    "count": 323,
+    "latitude": -31.837327350433437,
+    "longitude": 115.97075397894737,
+    "avg_price": 546685.9133126935
+  },
+  {
+    "school_name": "OSBORNE PRIMARY SCHOOL",
+    "count": 320,
+    "latitude": -31.8965787289375,
+    "longitude": 115.823282448125,
+    "avg_price": 683654.375
+  },
+  {
+    "school_name": "CAVERSHAM VALLEY PRIMARY SCHOOL",
+    "count": 320,
+    "latitude": -31.865366976625,
+    "longitude": 115.96821482749999,
+    "avg_price": 588925.11875
+  },
+  {
+    "school_name": "CURTIN PRIMARY SCHOOL",
+    "count": 315,
+    "latitude": -32.01069373238095,
+    "longitude": 115.87811658349207,
+    "avg_price": 873155.5238095238
+  },
+  {
+    "school_name": "COOLBELLUP COMMUNITY SCHOOL",
+    "count": 309,
+    "latitude": -32.081723261682846,
+    "longitude": 115.81071510323625,
+    "avg_price": 610734.857605178
+  },
+  {
+    "school_name": "ARANMORE CATHOLIC PRIMARY SCHOOL",
+    "count": 308,
+    "latitude": -31.930281098441558,
+    "longitude": 115.8422805987013,
+    "avg_price": 940278.2532467532
+  },
+  {
+    "school_name": "PEARSALL PRIMARY SCHOOL",
+    "count": 306,
+    "latitude": -31.782034658137253,
+    "longitude": 115.8184854986928,
+    "avg_price": 577369.9117647059
+  },
+  {
+    "school_name": "JOLIMONT PRIMARY SCHOOL",
+    "count": 306,
+    "latitude": -31.948770316699346,
+    "longitude": 115.80936239084967,
+    "avg_price": 1161408.320261438
+  },
+  {
+    "school_name": "SAMSON PRIMARY SCHOOL",
+    "count": 306,
+    "latitude": -32.070234394477126,
+    "longitude": 115.80149630392157,
+    "avg_price": 675150.8431372549
+  },
+  {
+    "school_name": "SANTA CLARA SCHOOL",
+    "count": 297,
+    "latitude": -32.00252661535353,
+    "longitude": 115.91390025286194,
+    "avg_price": 575398.8484848485
+  },
+  {
+    "school_name": "BRENTWOOD PRIMARY SCHOOL",
+    "count": 294,
+    "latitude": -32.04222938921769,
+    "longitude": 115.84833801904762,
+    "avg_price": 866274.9591836735
+  },
+  {
+    "school_name": "MARMION PRIMARY SCHOOL",
+    "count": 291,
+    "latitude": -31.844597438865982,
+    "longitude": 115.7562718226804,
+    "avg_price": 1413756.3573883162
+  },
+  {
+    "school_name": "LAKE GWELUP PRIMARY SCHOOL",
+    "count": 285,
+    "latitude": -31.869541114456137,
+    "longitude": 115.79624436526315,
+    "avg_price": 1099924.7649122807
+  },
+  {
+    "school_name": "GIBBS STREET PRIMARY SCHOOL",
+    "count": 285,
+    "latitude": -32.00950737954386,
+    "longitude": 115.95530385824563,
+    "avg_price": 516240.6596491228
+  },
+  {
+    "school_name": "BECKENHAM PRIMARY SCHOOL",
+    "count": 285,
+    "latitude": -32.022226532000005,
+    "longitude": 115.9569376385965,
+    "avg_price": 514468.84912280703
+  },
+  {
+    "school_name": "GUILDFORD GRAMMAR SCHOOL",
+    "count": 283,
+    "latitude": -31.902561168551237,
+    "longitude": 115.98281778904594,
+    "avg_price": 713917.8021201413
+  },
+  {
+    "school_name": "ROSSMOYNE PRIMARY SCHOOL",
+    "count": 283,
+    "latitude": -32.039378084734984,
+    "longitude": 115.8678473696113,
+    "avg_price": 1282486.2614840989
+  },
+  {
+    "school_name": "WATTLE GROVE PRIMARY SCHOOL",
+    "count": 273,
+    "latitude": -31.99988218945055,
+    "longitude": 115.98640408388279,
+    "avg_price": 640894.3040293041
+  },
+  {
+    "school_name": "MIDVALE PRIMARY SCHOOL",
+    "count": 265,
+    "latitude": -31.88868341271698,
+    "longitude": 116.01978974377359,
+    "avg_price": 386001.3245283019
+  },
+  {
+    "school_name": "MADELEY PRIMARY SCHOOL",
+    "count": 264,
+    "latitude": -31.806613959090907,
+    "longitude": 115.82522345795455,
+    "avg_price": 667245.4166666666
+  },
+  {
+    "school_name": "OUR LADY OF GRACE SCHOOL",
+    "count": 255,
+    "latitude": -31.867205599568628,
+    "longitude": 115.75662119607844,
+    "avg_price": 1515029.125490196
+  },
+  {
+    "school_name": "GOOD SHEPHERD CATHOLIC SCHOOL",
+    "count": 248,
+    "latitude": -31.884237714233873,
+    "longitude": 115.93958741048387,
+    "avg_price": 460755.8185483871
+  },
+  {
+    "school_name": "SACRED HEART PRIMARY SCHOOL",
+    "count": 246,
+    "latitude": -31.96138141292683,
+    "longitude": 115.88532128170732,
+    "avg_price": 815208.349593496
+  },
+  {
+    "school_name": "INGLEWOOD PRIMARY SCHOOL",
+    "count": 245,
+    "latitude": -31.920939856979594,
+    "longitude": 115.88880262857143,
+    "avg_price": 852238.7632653061
+  },
+  {
+    "school_name": "HILTON PRIMARY SCHOOL",
+    "count": 242,
+    "latitude": -32.0652689607438,
+    "longitude": 115.78339177809919,
+    "avg_price": 722632.9545454546
+  },
+  {
+    "school_name": "KENSINGTON PRIMARY SCHOOL",
+    "count": 242,
+    "latitude": -31.981037661033056,
+    "longitude": 115.88301356404959,
+    "avg_price": 1032518.9462809918
+  },
+  {
+    "school_name": "PERTH INDIVIDUAL",
+    "count": 242,
+    "latitude": -31.9601204592562,
+    "longitude": 115.89759385413223,
+    "avg_price": 941859.561983471
+  },
+  {
+    "school_name": "WEMBLEY PRIMARY SCHOOL",
+    "count": 237,
+    "latitude": -31.935346700084388,
+    "longitude": 115.81017904767933,
+    "avg_price": 1161849.0506329115
+  },
+  {
+    "school_name": "SORRENTO PRIMARY SCHOOL",
+    "count": 232,
+    "latitude": -31.830809275517243,
+    "longitude": 115.75673248405172,
+    "avg_price": 1289283.9181034483
+  },
+  {
+    "school_name": "WHITE GUM VALLEY PRIMARY SCHOOL",
+    "count": 229,
+    "latitude": -32.0605860421834,
+    "longitude": 115.76766917248908,
+    "avg_price": 882505.8384279476
+  },
+  {
+    "school_name": "ST DENIS SCHOOL",
+    "count": 227,
+    "latitude": -31.910388218237884,
+    "longitude": 115.84468209603524,
+    "avg_price": 888769.1938325991
+  },
+  {
+    "school_name": "HELENA RIVER STEINER SCHOOL",
+    "count": 227,
+    "latitude": -31.881144655374452,
+    "longitude": 116.00170861013216,
+    "avg_price": 472798.8986784141
+  },
+  {
+    "school_name": "NORTH PERTH PRIMARY SCHOOL",
+    "count": 227,
+    "latitude": -31.934176254493394,
+    "longitude": 115.85311466960351,
+    "avg_price": 962936.7136563876
+  },
+  {
+    "school_name": "EAST VICTORIA PARK PRIMARY SCHOOL",
+    "count": 227,
+    "latitude": -31.98212228651982,
+    "longitude": 115.91031008193833,
+    "avg_price": 666791.1938325991
+  },
+  {
+    "school_name": "KARDINYA PRIMARY SCHOOL",
+    "count": 226,
+    "latitude": -32.06260275876106,
+    "longitude": 115.82082356238938,
+    "avg_price": 805158.685840708
+  },
+  {
+    "school_name": "ST JOSEPH'S SCHOOL",
+    "count": 226,
+    "latitude": -32.00841842349558,
+    "longitude": 115.93574361106195,
+    "avg_price": 483277.8097345133
+  },
+  {
+    "school_name": "PARKWOOD PRIMARY SCHOOL",
+    "count": 225,
+    "latitude": -32.04518523071111,
+    "longitude": 115.91497236222223,
+    "avg_price": 567055.1422222222
+  },
+  {
+    "school_name": "QUEEN OF APOSTLES SCHOOL",
+    "count": 223,
+    "latitude": -32.02636301439462,
+    "longitude": 115.89339814304932,
+    "avg_price": 928010.8609865471
+  },
+  {
+    "school_name": "ASHFIELD PRIMARY SCHOOL",
+    "count": 220,
+    "latitude": -31.91750868481818,
+    "longitude": 115.93851009681818,
+    "avg_price": 636492.75
+  },
+  {
+    "school_name": "MAYLANDS PENINSULA PRIMARY SCHOOL",
+    "count": 219,
+    "latitude": -31.93434240497717,
+    "longitude": 115.90104326255707,
+    "avg_price": 668565.4748858447
+  },
+  {
+    "school_name": "RAWLINSON PRIMARY SCHOOL",
+    "count": 217,
+    "latitude": -31.825545512396314,
+    "longitude": 115.84709345483871,
+    "avg_price": 571708.0092165899
+  },
+  {
+    "school_name": "SUBIACO PRIMARY SCHOOL",
+    "count": 217,
+    "latitude": -31.948107889308755,
+    "longitude": 115.82277397511521,
+    "avg_price": 1160142.857142857
+  },
+  {
+    "school_name": "ST KIERAN CATHOLIC PRIMARY SCHOOL",
+    "count": 216,
+    "latitude": -31.904364005231482,
+    "longitude": 115.83163193796297,
+    "avg_price": 607184.375
+  },
+  {
+    "school_name": "BICTON PRIMARY SCHOOL",
+    "count": 212,
+    "latitude": -32.02934341556604,
+    "longitude": 115.7867369514151,
+    "avg_price": 1337615.566037736
+  },
+  {
+    "school_name": "BELMONT PRIMARY SCHOOL",
+    "count": 212,
+    "latitude": -31.942014476745285,
+    "longitude": 115.92363152075472,
+    "avg_price": 734289.3018867924
+  },
+  {
+    "school_name": "GLENDALE PRIMARY SCHOOL",
+    "count": 212,
+    "latitude": -31.84903223231132,
+    "longitude": 115.80599111509434,
+    "avg_price": 704420.2641509434
+  },
+  {
+    "school_name": "EMBLETON PRIMARY SCHOOL",
+    "count": 211,
+    "latitude": -31.90186127109005,
+    "longitude": 115.911065007109,
+    "avg_price": 572438.0995260663
+  },
+  {
+    "school_name": "WILSON PRIMARY SCHOOL",
+    "count": 211,
+    "latitude": -32.018735319526066,
+    "longitude": 115.9115072521327,
+    "avg_price": 696046.9004739337
+  },
+  {
+    "school_name": "WOODBRIDGE PRIMARY SCHOOL",
+    "count": 209,
+    "latitude": -31.894015697464116,
+    "longitude": 115.9944163229665,
+    "avg_price": 601573.4162679426
+  },
+  {
+    "school_name": "ROSALIE PRIMARY SCHOOL",
+    "count": 208,
+    "latitude": -31.960870368509614,
+    "longitude": 115.81538969278846,
+    "avg_price": 1544782.9326923077
+  },
+  {
+    "school_name": "ST AUGUSTINE'S SCHOOL",
+    "count": 207,
+    "latitude": -31.95775185753623,
+    "longitude": 115.90538954541063,
+    "avg_price": 634103.9033816425
+  },
+  {
+    "school_name": "ST PETER'S PRIMARY SCHOOL",
+    "count": 206,
+    "latitude": -31.909604133203885,
+    "longitude": 115.88598161407768,
+    "avg_price": 838790.2961165048
+  },
+  {
+    "school_name": "MAIDA VALE PRIMARY SCHOOL",
+    "count": 206,
+    "latitude": -31.952346634271848,
+    "longitude": 116.0223165354369,
+    "avg_price": 589085.8155339806
+  },
+  {
+    "school_name": "BROOKMAN PRIMARY SCHOOL",
+    "count": 205,
+    "latitude": -32.03414329214634,
+    "longitude": 115.93917303902438,
+    "avg_price": 454900.03414634144
+  },
+  {
+    "school_name": "MILLEN PRIMARY SCHOOL",
+    "count": 204,
+    "latitude": -31.994040493872546,
+    "longitude": 115.90325478431373,
+    "avg_price": 803341.5343137255
+  },
+  {
+    "school_name": "MOUNT HAWTHORN PRIMARY SCHOOL",
+    "count": 203,
+    "latitude": -31.916411290886696,
+    "longitude": 115.83451515812807,
+    "avg_price": 1136243.384236453
+  },
+  {
+    "school_name": "MOUNT PLEASANT PRIMARY SCHOOL",
+    "count": 202,
+    "latitude": -32.029668641980194,
+    "longitude": 115.84601480940594,
+    "avg_price": 1613242.0198019801
+  },
+  {
+    "school_name": "LOCKRIDGE PRIMARY SCHOOL",
+    "count": 200,
+    "latitude": -31.8835839067,
+    "longitude": 115.952265152,
+    "avg_price": 374478.5
+  },
+  {
+    "school_name": "HUNTINGDALE PRIMARY SCHOOL",
+    "count": 198,
+    "latitude": -32.08001365353535,
+    "longitude": 115.96824643888888,
+    "avg_price": 524381.1616161616
+  },
+  {
+    "school_name": "HAWKER PARK PRIMARY SCHOOL",
+    "count": 196,
+    "latitude": -31.841976474642856,
+    "longitude": 115.79979762295918,
+    "avg_price": 743800.0051020408
+  },
+  {
+    "school_name": "MANNING PRIMARY SCHOOL",
+    "count": 196,
+    "latitude": -32.01660865765306,
+    "longitude": 115.86945130612246,
+    "avg_price": 1013318.2704081633
+  },
+  {
+    "school_name": "ST MARIA GORETTI'S CATHOLIC SCHOOL",
+    "count": 194,
+    "latitude": -31.9410186571134,
+    "longitude": 115.94038517474227,
+    "avg_price": 528182.2113402062
+  },
+  {
+    "school_name": "CARLISLE PRIMARY SCHOOL",
+    "count": 194,
+    "latitude": -31.974623916804124,
+    "longitude": 115.92144243659794,
+    "avg_price": 618845.3659793815
+  },
+  {
+    "school_name": "RICHMOND PRIMARY SCHOOL",
+    "count": 192,
+    "latitude": -32.0374513046875,
+    "longitude": 115.77055367291666,
+    "avg_price": 1665818.6875
+  },
+  {
+    "school_name": "ASHDALE PRIMARY SCHOOL",
+    "count": 190,
+    "latitude": -31.811664355947368,
+    "longitude": 115.84745497842106,
+    "avg_price": 737748.2210526316
+  },
+  {
+    "school_name": "ST GERARD'S PRIMARY SCHOOL",
+    "count": 186,
+    "latitude": -31.870629122688175,
+    "longitude": 115.84630596666668,
+    "avg_price": 504023.59139784944
+  },
+  {
+    "school_name": "KYILLA PRIMARY SCHOOL",
+    "count": 185,
+    "latitude": -31.91879223627027,
+    "longitude": 115.8521097454054,
+    "avg_price": 1064988.1081081082
+  },
+  {
+    "school_name": "NORTH FREMANTLE PRIMARY SCHOOL",
+    "count": 183,
+    "latitude": -32.0330898625683,
+    "longitude": 115.75498502896174,
+    "avg_price": 1369215.8469945355
+  },
+  {
+    "school_name": "PALMYRA PRIMARY SCHOOL",
+    "count": 182,
+    "latitude": -32.04615873247253,
+    "longitude": 115.78476624285715,
+    "avg_price": 782323.1208791209
+  },
+  {
+    "school_name": "MIDDLE SWAN PRIMARY SCHOOL",
+    "count": 179,
+    "latitude": -31.86876309932961,
+    "longitude": 116.03871323128492,
+    "avg_price": 382858.93854748603
+  },
+  {
+    "school_name": "HILLARYS PRIMARY SCHOOL",
+    "count": 176,
+    "latitude": -31.81660630153409,
+    "longitude": 115.74869036647728,
+    "avg_price": 1393678.9772727273
+  },
+  {
+    "school_name": "BANNISTER CREEK PRIMARY SCHOOL",
+    "count": 175,
+    "latitude": -32.038127531542855,
+    "longitude": 115.92837090457144,
+    "avg_price": 465860.0
+  },
+  {
+    "school_name": "NOTRE DAME CATHOLIC PRIMARY SCHOOL",
+    "count": 172,
+    "latitude": -31.957721848023255,
+    "longitude": 115.94276492151164,
+    "avg_price": 577715.6976744186
+  },
+  {
+    "school_name": "PHOENIX PRIMARY SCHOOL",
+    "count": 172,
+    "latitude": -32.09916029662791,
+    "longitude": 115.76895311744187,
+    "avg_price": 949636.6279069767
+  },
+  {
+    "school_name": "GREENWOOD PRIMARY SCHOOL",
+    "count": 171,
+    "latitude": -31.831170094970762,
+    "longitude": 115.81014492397661,
+    "avg_price": 679200.4678362573
+  },
+  {
+    "school_name": "BELMAY PRIMARY SCHOOL",
+    "count": 171,
+    "latitude": -31.9509636525731,
+    "longitude": 115.94821536081872,
+    "avg_price": 546774.5614035088
+  },
+  {
+    "school_name": "EAST BEECHBORO PRIMARY SCHOOL",
+    "count": 170,
+    "latitude": -31.870162133705882,
+    "longitude": 115.95164621176471,
+    "avg_price": 470216.7588235294
+  },
+  {
+    "school_name": "WOODLANDS PRIMARY SCHOOL",
+    "count": 167,
+    "latitude": -31.911404071077843,
+    "longitude": 115.79472873053892,
+    "avg_price": 1268607.0838323354
+  },
+  {
+    "school_name": "ALINJARRA PRIMARY SCHOOL",
+    "count": 166,
+    "latitude": -31.82678873518072,
+    "longitude": 115.86756578734939,
+    "avg_price": 587578.548192771
+  },
+  {
+    "school_name": "YULUMA PRIMARY SCHOOL",
+    "count": 166,
+    "latitude": -31.888837076626505,
+    "longitude": 115.79095581084337,
+    "avg_price": 741441.9819277108
+  },
+  {
+    "school_name": "HILLCREST PRIMARY SCHOOL",
+    "count": 162,
+    "latitude": -31.91015029308642,
+    "longitude": 115.90095668148147,
+    "avg_price": 770986.7962962963
+  },
+  {
+    "school_name": "WINTHROP PRIMARY SCHOOL",
+    "count": 162,
+    "latitude": -32.05273515648148,
+    "longitude": 115.83105536790123,
+    "avg_price": 1019074.987654321
+  },
+  {
+    "school_name": "ARDROSS PRIMARY SCHOOL",
+    "count": 161,
+    "latitude": -32.02635675720497,
+    "longitude": 115.83396307453417,
+    "avg_price": 1329247.2049689442
+  },
+  {
+    "school_name": "TUART HILL PRIMARY SCHOOL",
+    "count": 160,
+    "latitude": -31.8992763740625,
+    "longitude": 115.8410119375,
+    "avg_price": 673591.2125
+  },
+  {
+    "school_name": "EDEN HILL PRIMARY SCHOOL",
+    "count": 157,
+    "latitude": -31.89330344840764,
+    "longitude": 115.94793445923565,
+    "avg_price": 507823.0
+  },
+  {
+    "school_name": "ST DOMINIC'S SCHOOL",
+    "count": 156,
+    "latitude": -31.897235071346156,
+    "longitude": 115.79333833397436,
+    "avg_price": 688089.467948718
+  },
+  {
+    "school_name": "CARINE PRIMARY SCHOOL",
+    "count": 155,
+    "latitude": -31.853656787741937,
+    "longitude": 115.77502257741935,
+    "avg_price": 1100650.4129032257
+  },
+  {
+    "school_name": "WEST BALCATTA PRIMARY SCHOOL",
+    "count": 155,
+    "latitude": -31.877038212064512,
+    "longitude": 115.8089756083871,
+    "avg_price": 915433.1419354839
+  },
+  {
+    "school_name": "BEECHBORO CHRISTIAN SCHOOL",
+    "count": 155,
+    "latitude": -31.859038582580645,
+    "longitude": 115.93537586258063,
+    "avg_price": 526890.0322580645
+  },
+  {
+    "school_name": "FLOREAT PARK PRIMARY SCHOOL",
+    "count": 153,
+    "latitude": -31.940231291764707,
+    "longitude": 115.79176341764706,
+    "avg_price": 1988636.522875817
+  },
+  {
+    "school_name": "SHELLEY PRIMARY SCHOOL",
+    "count": 152,
+    "latitude": -32.0326358144079,
+    "longitude": 115.88390730526316,
+    "avg_price": 1114968.4210526317
+  },
+  {
+    "school_name": "MOORDITJ NOONGAR COMMUNITY COLLEGE",
+    "count": 151,
+    "latitude": -31.87362785860927,
+    "longitude": 116.02673925629139,
+    "avg_price": 415227.61589403974
+  },
+  {
+    "school_name": "ST BRIGID'S PRIMARY SCHOOL",
+    "count": 150,
+    "latitude": -31.874961477266666,
+    "longitude": 116.01504206866666,
+    "avg_price": 410238.67333333334
+  },
+  {
+    "school_name": "DALKEITH PRIMARY SCHOOL",
+    "count": 149,
+    "latitude": -31.995023374765104,
+    "longitude": 115.79729063355704,
+    "avg_price": 3197110.067114094
+  },
+  {
+    "school_name": "YIDARRA CATHOLIC PRIMARY SCHOOL",
+    "count": 148,
+    "latitude": -32.06026483141892,
+    "longitude": 115.84371965540541,
+    "avg_price": 874424.1621621621
+  },
+  {
+    "school_name": "MARANGAROO PRIMARY SCHOOL",
+    "count": 148,
+    "latitude": -31.828824203513513,
+    "longitude": 115.82403190405407,
+    "avg_price": 567955.5945945946
+  },
+  {
+    "school_name": "APPLECROSS PRIMARY SCHOOL",
+    "count": 148,
+    "latitude": -32.0113922872973,
+    "longitude": 115.84208892702702,
+    "avg_price": 1720910.9932432433
+  },
+  {
+    "school_name": "GUILDFORD PRIMARY SCHOOL",
+    "count": 148,
+    "latitude": -31.903355085945947,
+    "longitude": 115.97113853716215,
+    "avg_price": 730914.0675675676
+  },
+  {
+    "school_name": "ANZAC TERRACE PRIMARY SCHOOL",
+    "count": 147,
+    "latitude": -31.89528109176871,
+    "longitude": 115.93501635306123,
+    "avg_price": 608033.925170068
+  },
+  {
+    "school_name": "OUR LADY OF FATIMA SCHOOL",
+    "count": 146,
+    "latitude": -32.039365325342466,
+    "longitude": 115.78749061027398,
+    "avg_price": 814822.6027397261
+  },
+  {
+    "school_name": "YANGEBUP PRIMARY SCHOOL",
+    "count": 145,
+    "latitude": -32.12053958144828,
+    "longitude": 115.8158247848276,
+    "avg_price": 576737.2413793104
+  },
+  {
+    "school_name": "NORTH COTTESLOE PRIMARY SCHOOL",
+    "count": 144,
+    "latitude": -31.986129418263886,
+    "longitude": 115.76140757847222,
+    "avg_price": 2786850.0
+  },
+  {
+    "school_name": "SPEARWOOD ALTERNATIVE SCHOOL",
+    "count": 144,
+    "latitude": -32.10741690395834,
+    "longitude": 115.77441380555554,
+    "avg_price": 945821.1805555555
+  },
+  {
+    "school_name": "BAMBARA PRIMARY SCHOOL",
+    "count": 144,
+    "latitude": -31.79797185326389,
+    "longitude": 115.76591977013888,
+    "avg_price": 723326.2569444445
+  },
+  {
+    "school_name": "URSULA FRAYNE CATHOLIC COLLEGE",
+    "count": 143,
+    "latitude": -31.97529964055944,
+    "longitude": 115.89859854825174,
+    "avg_price": 724769.2237762237
+  },
+  {
+    "school_name": "LATHLAIN PRIMARY SCHOOL",
+    "count": 143,
+    "latitude": -31.969142114335668,
+    "longitude": 115.90903415314685,
+    "avg_price": 819424.1608391608
+  },
+  {
+    "school_name": "EAST MADDINGTON PRIMARY SCHOOL",
+    "count": 140,
+    "latitude": -32.05603695328572,
+    "longitude": 116.00383961142857,
+    "avg_price": 499646.5714285714
+  },
+  {
+    "school_name": "CAMBOON PRIMARY SCHOOL",
+    "count": 139,
+    "latitude": -31.875517154604317,
+    "longitude": 115.89087812086332,
+    "avg_price": 665454.834532374
+  },
+  {
+    "school_name": "NEWBOROUGH PRIMARY SCHOOL",
+    "count": 138,
+    "latitude": -31.885819441956524,
+    "longitude": 115.78271318913043,
+    "avg_price": 983857.8115942029
+  },
+  {
+    "school_name": "AUSTRALIAN ISLAMIC COLLEGE - KEWDALE",
+    "count": 138,
+    "latitude": -31.978894918550726,
+    "longitude": 115.9304129594203,
+    "avg_price": 592045.2173913043
+  },
+  {
+    "school_name": "COOLBINIA PRIMARY SCHOOL",
+    "count": 136,
+    "latitude": -31.91465856647059,
+    "longitude": 115.85846819558823,
+    "avg_price": 1289500.0
+  },
+  {
+    "school_name": "WEMBLEY DOWNS PRIMARY SCHOOL",
+    "count": 136,
+    "latitude": -31.911493118897056,
+    "longitude": 115.77167640294117,
+    "avg_price": 1369388.0147058824
+  },
+  {
+    "school_name": "EAST KENWICK PRIMARY SCHOOL",
+    "count": 136,
+    "latitude": -32.034686965588236,
+    "longitude": 115.98508715294118,
+    "avg_price": 434159.7205882353
+  },
+  {
+    "school_name": "LANDSDALE CHRISTIAN SCHOOL",
+    "count": 135,
+    "latitude": -31.809760919333335,
+    "longitude": 115.86580065407406,
+    "avg_price": 775740.7407407408
+  },
+  {
+    "school_name": "REDCLIFFE PRIMARY SCHOOL",
+    "count": 135,
+    "latitude": -31.93075525585185,
+    "longitude": 115.94233558740741,
+    "avg_price": 621161.4814814815
+  },
+  {
+    "school_name": "ST BENEDICT'S SCHOOL",
+    "count": 135,
+    "latitude": -32.01838653281481,
+    "longitude": 115.84022707925926,
+    "avg_price": 1432306.2222222222
+  },
+  {
+    "school_name": "ST ANTHONY'S SCHOOL",
+    "count": 134,
+    "latitude": -31.89359252656716,
+    "longitude": 116.04036710149254,
+    "avg_price": 502298.50746268657
+  },
+  {
+    "school_name": "OUR LADY OF MOUNT CARMEL SCHOOL",
+    "count": 134,
+    "latitude": -32.07048453574627,
+    "longitude": 115.79024994701493,
+    "avg_price": 643608.2089552239
+  },
+  {
+    "school_name": "BALGA PRIMARY SCHOOL",
+    "count": 133,
+    "latitude": -31.863497023609025,
+    "longitude": 115.8406979849624,
+    "avg_price": 509067.954887218
+  },
+  {
+    "school_name": "CLOVERDALE PRIMARY SCHOOL",
+    "count": 133,
+    "latitude": -31.962702368646614,
+    "longitude": 115.93380587819549,
+    "avg_price": 527422.9323308271
+  },
+  {
+    "school_name": "BALCATTA PRIMARY SCHOOL",
+    "count": 133,
+    "latitude": -31.884822082330825,
+    "longitude": 115.82528381654136,
+    "avg_price": 747010.7368421053
+  },
+  {
+    "school_name": "KOONDOOLA PRIMARY SCHOOL",
+    "count": 131,
+    "latitude": -31.83663594610687,
+    "longitude": 115.86005477328244,
+    "avg_price": 427607.25190839695
+  },
+  {
+    "school_name": "MEL MARIA CATHOLIC PRIMARY SCHOOL",
+    "count": 131,
+    "latitude": -32.02981347030534,
+    "longitude": 115.79969835419847,
+    "avg_price": 1285714.1603053436
+  },
+  {
+    "school_name": "NORTH BEACH PRIMARY SCHOOL",
+    "count": 131,
+    "latitude": -31.85805246114504,
+    "longitude": 115.7594570740458,
+    "avg_price": 1331446.5648854962
+  },
+  {
+    "school_name": "SWANBOURNE PRIMARY SCHOOL",
+    "count": 130,
+    "latitude": -31.972812375384617,
+    "longitude": 115.76975177153845,
+    "avg_price": 2046392.3076923077
+  },
+  {
+    "school_name": "EAST FREMANTLE PRIMARY SCHOOL",
+    "count": 130,
+    "latitude": -32.046996806923076,
+    "longitude": 115.76138514,
+    "avg_price": 1083511.1384615384
+  },
+  {
+    "school_name": "EAST HAMERSLEY PRIMARY SCHOOL",
+    "count": 129,
+    "latitude": -31.84854931837209,
+    "longitude": 115.81963677984497,
+    "avg_price": 613643.023255814
+  },
+  {
+    "school_name": "HOLY SPIRIT SCHOOL",
+    "count": 127,
+    "latitude": -31.916829967480314,
+    "longitude": 115.76664247637795,
+    "avg_price": 1919682.0393700788
+  },
+  {
+    "school_name": "KALAMUNDA PRIMARY SCHOOL",
+    "count": 126,
+    "latitude": -31.97473004357143,
+    "longitude": 116.05484106746032,
+    "avg_price": 704253.9682539683
+  },
+  {
+    "school_name": "FREMANTLE PRIMARY SCHOOL",
+    "count": 125,
+    "latitude": -32.06082651232,
+    "longitude": 115.7542077856,
+    "avg_price": 1269684.0
+  },
+  {
+    "school_name": "PERTH COLLEGE",
+    "count": 124,
+    "latitude": -31.933462442580645,
+    "longitude": 115.8812118717742,
+    "avg_price": 1107530.4838709678
+  },
+  {
+    "school_name": "NORANDA PRIMARY SCHOOL",
+    "count": 122,
+    "latitude": -31.876532854508195,
+    "longitude": 115.90740918524591,
+    "avg_price": 626898.6721311476
+  },
+  {
+    "school_name": "JANDAKOT PRIMARY SCHOOL",
+    "count": 122,
+    "latitude": -32.1284919947541,
+    "longitude": 115.8489184532787,
+    "avg_price": 527736.0655737704
+  },
+  {
+    "school_name": "ST PAUL'S PRIMARY SCHOOL",
+    "count": 121,
+    "latitude": -31.92564741553719,
+    "longitude": 115.86296475371901,
+    "avg_price": 1231995.8595041323
+  },
+  {
+    "school_name": "NORTH BALGA PRIMARY SCHOOL",
+    "count": 119,
+    "latitude": -31.85338565067227,
+    "longitude": 115.83236875294118,
+    "avg_price": 496733.512605042
+  },
+  {
+    "school_name": "BATEMAN PRIMARY SCHOOL",
+    "count": 119,
+    "latitude": -32.05011668428572,
+    "longitude": 115.84784936806723,
+    "avg_price": 889860.5042016807
+  },
+  {
+    "school_name": "CHURCHLANDS PRIMARY SCHOOL",
+    "count": 119,
+    "latitude": -31.926135943949582,
+    "longitude": 115.7946346789916,
+    "avg_price": 1484322.5882352942
+  },
+  {
+    "school_name": "KARRINYUP PRIMARY SCHOOL",
+    "count": 116,
+    "latitude": -31.868380512758623,
+    "longitude": 115.7785467913793,
+    "avg_price": 1214458.3275862068
+  },
+  {
+    "school_name": "HIGH WYCOMBE PRIMARY SCHOOL",
+    "count": 116,
+    "latitude": -31.938780542068965,
+    "longitude": 116.00542273448276,
+    "avg_price": 602296.9224137932
+  },
+  {
+    "school_name": "COMO PRIMARY SCHOOL",
+    "count": 115,
+    "latitude": -31.99793923452174,
+    "longitude": 115.86030515043478,
+    "avg_price": 912001.5391304347
+  },
+  {
+    "school_name": "KEWDALE PRIMARY SCHOOL",
+    "count": 115,
+    "latitude": -31.971658753130434,
+    "longitude": 115.94315216347826,
+    "avg_price": 569397.3913043478
+  },
+  {
+    "school_name": "COLLIER PRIMARY SCHOOL",
+    "count": 114,
+    "latitude": -31.988460277719298,
+    "longitude": 115.8743397763158,
+    "avg_price": 1178714.9122807018
+  },
+  {
+    "school_name": "CHRIST THE KING SCHOOL",
+    "count": 114,
+    "latitude": -32.069995816754385,
+    "longitude": 115.77520804298246,
+    "avg_price": 866030.701754386
+  },
+  {
+    "school_name": "SOUTHERN GROVE PRIMARY SCHOOL",
+    "count": 113,
+    "latitude": -32.09706334672566,
+    "longitude": 115.96199783008849,
+    "avg_price": 725932.8318584071
+  },
+  {
+    "school_name": "VICTORIA PARK CHRISTIAN SCHOOL",
+    "count": 112,
+    "latitude": -31.964014909375003,
+    "longitude": 115.87830744285714,
+    "avg_price": 571091.8571428572
+  },
+  {
+    "school_name": "WEST BEECHBORO PRIMARY SCHOOL",
+    "count": 112,
+    "latitude": -31.867958780714286,
+    "longitude": 115.92426570803572,
+    "avg_price": 545910.7142857143
+  },
+  {
+    "school_name": "FOUNTAIN COLLEGE",
+    "count": 110,
+    "latitude": -32.03140516409091,
+    "longitude": 115.92196798272727,
+    "avg_price": 521069.3181818182
+  },
+  {
+    "school_name": "QUEENS PARK PRIMARY SCHOOL",
+    "count": 110,
+    "latitude": -31.999577774363637,
+    "longitude": 115.94625609818182,
+    "avg_price": 497631.7363636364
+  },
+  {
+    "school_name": "ST JEROME'S PRIMARY SCHOOL",
+    "count": 109,
+    "latitude": -32.11866448568807,
+    "longitude": 115.78118393302752,
+    "avg_price": 693876.1651376147
+  },
+  {
+    "school_name": "ST LAWRENCE PRIMARY SCHOOL",
+    "count": 109,
+    "latitude": -31.87476845385321,
+    "longitude": 115.83084302568807,
+    "avg_price": 582321.1009174312
+  },
+  {
+    "school_name": "OUR LADY OF LOURDES SCHOOL",
+    "count": 108,
+    "latitude": -31.889289156296293,
+    "longitude": 115.84834401574074,
+    "avg_price": 679342.6666666666
+  },
+  {
+    "school_name": "DEANMORE PRIMARY SCHOOL",
+    "count": 107,
+    "latitude": -31.88557057803738,
+    "longitude": 115.7636255457944,
+    "avg_price": 1363184.1121495327
+  },
+  {
+    "school_name": "NEDLANDS PRIMARY SCHOOL",
+    "count": 107,
+    "latitude": -31.984984966728973,
+    "longitude": 115.8145395682243,
+    "avg_price": 1542677.570093458
+  },
+  {
+    "school_name": "SOUTHWELL PRIMARY SCHOOL",
+    "count": 107,
+    "latitude": -32.09094706775701,
+    "longitude": 115.78853686168225,
+    "avg_price": 555473.4112149533
+  },
+  {
+    "school_name": "NOLLAMARA PRIMARY SCHOOL",
+    "count": 106,
+    "latitude": -31.888395699339625,
+    "longitude": 115.83673278490566,
+    "avg_price": 541984.7641509434
+  },
+  {
+    "school_name": "LEEMING PRIMARY SCHOOL",
+    "count": 106,
+    "latitude": -32.07932763660377,
+    "longitude": 115.8612457254717,
+    "avg_price": 894027.7452830189
+  },
+  {
+    "school_name": "LAKE MONGER PRIMARY SCHOOL",
+    "count": 105,
+    "latitude": -31.923922219238094,
+    "longitude": 115.81945599809524,
+    "avg_price": 760641.6761904762
+  },
+  {
+    "school_name": "MOSMAN PARK PRIMARY SCHOOL",
+    "count": 104,
+    "latitude": -32.01304113471154,
+    "longitude": 115.76105935192308,
+    "avg_price": 1239400.0
+  },
+  {
+    "school_name": "EDNEY PRIMARY SCHOOL",
+    "count": 103,
+    "latitude": -31.94728772640777,
+    "longitude": 116.00835703203883,
+    "avg_price": 579715.708737864
+  },
+  {
+    "school_name": "SPEARWOOD PRIMARY SCHOOL",
+    "count": 102,
+    "latitude": -32.10047287892157,
+    "longitude": 115.78942705686273,
+    "avg_price": 584352.931372549
+  },
+  {
+    "school_name": "ATTADALE PRIMARY SCHOOL",
+    "count": 102,
+    "latitude": -32.02277471264706,
+    "longitude": 115.80221151862744,
+    "avg_price": 2162914.8235294116
+  },
+  {
+    "school_name": "YALE PRIMARY SCHOOL",
+    "count": 102,
+    "latitude": -32.049368024705885,
+    "longitude": 115.94933172352941,
+    "avg_price": 553886.6372549019
+  },
+  {
+    "school_name": "WADDINGTON PRIMARY SCHOOL",
+    "count": 102,
+    "latitude": -31.845435022941174,
+    "longitude": 115.8680926235294,
+    "avg_price": 424088.23529411765
+  },
+  {
+    "school_name": "MOUNT LAWLEY PRIMARY SCHOOL",
+    "count": 102,
+    "latitude": -31.925211559411764,
+    "longitude": 115.87989477647059,
+    "avg_price": 1035307.1176470588
+  },
+  {
+    "school_name": "ROSTRATA PRIMARY SCHOOL",
+    "count": 101,
+    "latitude": -32.05279821386139,
+    "longitude": 115.90045415742574,
+    "avg_price": 838048.396039604
+  },
+  {
+    "school_name": "SWAN VIEW PRIMARY SCHOOL",
+    "count": 100,
+    "latitude": -31.8846812226,
+    "longitude": 116.046145749,
+    "avg_price": 459930.0
+  },
+  {
+    "school_name": "BLUE GUM MONTESSORI SCHOOL INC",
+    "count": 100,
+    "latitude": -32.0850765193,
+    "longitude": 115.843668633,
+    "avg_price": 739144.99
+  },
+  {
+    "school_name": "SOUTH BALLAJURA PRIMARY SCHOOL",
+    "count": 98,
+    "latitude": -31.850258774285717,
+    "longitude": 115.91269199285713,
+    "avg_price": 525305.6530612245
+  },
+  {
+    "school_name": "AQUINAS COLLEGE",
+    "count": 97,
+    "latitude": -32.0243546528866,
+    "longitude": 115.86779637525773,
+    "avg_price": 1398956.1855670102
+  },
+  {
+    "school_name": "COTTESLOE PRIMARY SCHOOL",
+    "count": 96,
+    "latitude": -32.00279702354167,
+    "longitude": 115.75922811458334,
+    "avg_price": 2707088.5416666665
+  },
+  {
+    "school_name": "RIVERVALE PRIMARY SCHOOL",
+    "count": 95,
+    "latitude": -31.960163974842104,
+    "longitude": 115.91857055052633,
+    "avg_price": 683124.8105263158
+  },
+  {
+    "school_name": "BEECHBORO PRIMARY SCHOOL",
+    "count": 95,
+    "latitude": -31.867181113894734,
+    "longitude": 115.93822825473684,
+    "avg_price": 518803.0105263158
+  },
+  {
+    "school_name": "ST PIUS X CATHOLIC SCHOOL",
+    "count": 95,
+    "latitude": -32.01919862631579,
+    "longitude": 115.86341449368422,
+    "avg_price": 1132597.6421052632
+  },
+  {
+    "school_name": "HOLLYWOOD PRIMARY SCHOOL",
+    "count": 95,
+    "latitude": -31.96851307494737,
+    "longitude": 115.80869114526317,
+    "avg_price": 1674250.5263157894
+  },
+  {
+    "school_name": "CHRYSALIS MONTESSORI SCHOOL",
+    "count": 94,
+    "latitude": -31.918406637021278,
+    "longitude": 115.81983765531915,
+    "avg_price": 435756.91489361704
+  },
+  {
+    "school_name": "GOSNELLS PRIMARY SCHOOL",
+    "count": 93,
+    "latitude": -32.07561134967742,
+    "longitude": 116.00521969677419,
+    "avg_price": 542993.5483870967
+  },
+  {
+    "school_name": "PERTH WALDORF SCHOOL",
+    "count": 92,
+    "latitude": -32.087260049782614,
+    "longitude": 115.81590163913043,
+    "avg_price": 687047.0434782609
+  },
+  {
+    "school_name": "BULL CREEK PRIMARY SCHOOL",
+    "count": 92,
+    "latitude": -32.05999647902174,
+    "longitude": 115.85899280869565,
+    "avg_price": 907024.75
+  },
+  {
+    "school_name": "FOREST CRESCENT PRIMARY SCHOOL",
+    "count": 92,
+    "latitude": -32.077898894565216,
+    "longitude": 115.95342995,
+    "avg_price": 630938.9021739131
+  },
+  {
+    "school_name": "MOUNT CLAREMONT PRIMARY SCHOOL",
+    "count": 92,
+    "latitude": -31.968273891304346,
+    "longitude": 115.78151091956522,
+    "avg_price": 1458271.7282608696
+  },
+  {
+    "school_name": "MERCY COLLEGE",
+    "count": 90,
+    "latitude": -31.847148653444446,
+    "longitude": 115.85820963333333,
+    "avg_price": 417238.7555555556
+  },
+  {
+    "school_name": "BOYARE PRIMARY SCHOOL",
+    "count": 89,
+    "latitude": -31.85631394280899,
+    "longitude": 115.87189756292135,
+    "avg_price": 457740.1797752809
+  },
+  {
+    "school_name": "ROSEWORTH PRIMARY SCHOOL",
+    "count": 89,
+    "latitude": -31.83758819561798,
+    "longitude": 115.85270942921348,
+    "avg_price": 463686.2921348315
+  },
+  {
+    "school_name": "SOUTH COOGEE PRIMARY SCHOOL",
+    "count": 89,
+    "latitude": -32.1248541835955,
+    "longitude": 115.80228383820226,
+    "avg_price": 734292.1348314607
+  },
+  {
+    "school_name": "TAKARI PRIMARY SCHOOL",
+    "count": 88,
+    "latitude": -31.868276671818183,
+    "longitude": 115.82637848977274,
+    "avg_price": 634892.5113636364
+  },
+  {
+    "school_name": "RIVERTON PRIMARY SCHOOL",
+    "count": 88,
+    "latitude": -32.03471436795454,
+    "longitude": 115.90051627727271,
+    "avg_price": 840345.5909090909
+  },
+  {
+    "school_name": "BASSENDEAN PRIMARY SCHOOL",
+    "count": 88,
+    "latitude": -31.91305742056818,
+    "longitude": 115.95671845795455,
+    "avg_price": 724699.9659090909
+  },
+  {
+    "school_name": "WOODVALE PRIMARY SCHOOL",
+    "count": 87,
+    "latitude": -31.79421799770115,
+    "longitude": 115.79379320689657,
+    "avg_price": 842479.9425287356
+  },
+  {
+    "school_name": "WEST COAST STEINER SCHOOL",
+    "count": 87,
+    "latitude": -31.87958221816092,
+    "longitude": 115.84000442988507,
+    "avg_price": 534698.5287356322
+  },
+  {
+    "school_name": "DRYANDRA PRIMARY SCHOOL",
+    "count": 86,
+    "latitude": -31.854837984534882,
+    "longitude": 115.86269041511628,
+    "avg_price": 448469.76744186046
+  },
+  {
+    "school_name": "BENTLEY PRIMARY SCHOOL",
+    "count": 84,
+    "latitude": -32.01068207821429,
+    "longitude": 115.91908905952381,
+    "avg_price": 514844.5238095238
+  },
+  {
+    "school_name": "HOLY ROSARY SCHOOL",
+    "count": 83,
+    "latitude": -31.905036809879515,
+    "longitude": 115.78863501325301,
+    "avg_price": 1356042.0240963856
+  },
+  {
+    "school_name": "PIARA WATERS PRIMARY SCHOOL",
+    "count": 82,
+    "latitude": -32.1205073252439,
+    "longitude": 115.91952526829269,
+    "avg_price": 747185.4634146341
+  },
+  {
+    "school_name": "LANDSDALE PRIMARY SCHOOL",
+    "count": 82,
+    "latitude": -31.801099844146343,
+    "longitude": 115.8604573207317,
+    "avg_price": 699415.8536585366
+  },
+  {
+    "school_name": "SOUTH PADBURY PRIMARY SCHOOL",
+    "count": 82,
+    "latitude": -31.80969819231707,
+    "longitude": 115.76769311341464,
+    "avg_price": 806685.3658536585
+  },
+  {
+    "school_name": "EMMANUEL CHRISTIAN COMMUNITY SCHOOL",
+    "count": 81,
+    "latitude": -31.84580282432099,
+    "longitude": 115.84678722345679,
+    "avg_price": 464617.81481481483
+  },
+  {
+    "school_name": "WESLEY COLLEGE",
+    "count": 81,
+    "latitude": -31.978833586419753,
+    "longitude": 115.86935867037036,
+    "avg_price": 1474333.3580246915
+  },
+  {
+    "school_name": "SCARBOROUGH PRIMARY SCHOOL",
+    "count": 81,
+    "latitude": -31.89971777580247,
+    "longitude": 115.76442075802468,
+    "avg_price": 1035507.5432098765
+  },
+  {
+    "school_name": "BANKSIA PARK PRIMARY SCHOOL",
+    "count": 81,
+    "latitude": -32.070352303456794,
+    "longitude": 115.87780212962964,
+    "avg_price": 935762.6666666666
+  },
+  {
+    "school_name": "REHOBOTH CHRISTIAN COLLEGE",
+    "count": 80,
+    "latitude": -32.036202150375,
+    "longitude": 115.97475169750001,
+    "avg_price": 409402.5875
+  },
+  {
+    "school_name": "DOUBLEVIEW PRIMARY SCHOOL",
+    "count": 80,
+    "latitude": -31.895819916624998,
+    "longitude": 115.78016777,
+    "avg_price": 1010887.5
+  },
+  {
+    "school_name": "NEWMAN COLLEGE",
+    "count": 79,
+    "latitude": -31.9218208664557,
+    "longitude": 115.78692691518988,
+    "avg_price": 1501309.0
+  },
+  {
+    "school_name": "ST COLUMBA'S CATHOLIC PRIMARY SCHOOL",
+    "count": 78,
+    "latitude": -31.973537873461538,
+    "longitude": 115.85267191794871,
+    "avg_price": 1096266.6666666667
+  },
+  {
+    "school_name": "CITY BEACH PRIMARY SCHOOL",
+    "count": 78,
+    "latitude": -31.937736652948722,
+    "longitude": 115.76325551794874,
+    "avg_price": 3056416.6666666665
+  },
+  {
+    "school_name": "HELENA VALLEY PRIMARY SCHOOL",
+    "count": 78,
+    "latitude": -31.92012117294872,
+    "longitude": 116.04058274871794,
+    "avg_price": 584345.6923076923
+  },
+  {
+    "school_name": "ST MARK'S ANGLICAN COMMUNITY SCHOOL",
+    "count": 77,
+    "latitude": -31.80416198168831,
+    "longitude": 115.7441370896104,
+    "avg_price": 1096820.7792207792
+  },
+  {
+    "school_name": "SCOTCH COLLEGE",
+    "count": 76,
+    "latitude": -31.98046184276316,
+    "longitude": 115.77153903421052,
+    "avg_price": 2015822.3684210526
+  },
+  {
+    "school_name": "ELLENBROOK PRIMARY SCHOOL",
+    "count": 75,
+    "latitude": -31.815893243866668,
+    "longitude": 115.968684132,
+    "avg_price": 611261.8
+  },
+  {
+    "school_name": "ST MARY'S ANGLICAN GIRLS' SCHOOL",
+    "count": 75,
+    "latitude": -31.8741051544,
+    "longitude": 115.75948502533335,
+    "avg_price": 1689083.3333333333
+  },
+  {
+    "school_name": "YOKINE PRIMARY SCHOOL",
+    "count": 75,
+    "latitude": -31.902398764133334,
+    "longitude": 115.85531352266666,
+    "avg_price": 841461.0266666666
+  },
+  {
+    "school_name": "KINGSWAY CHRISTIAN COLLEGE",
+    "count": 74,
+    "latitude": -31.81221470148649,
+    "longitude": 115.83805192567569,
+    "avg_price": 715915.5405405406
+  },
+  {
+    "school_name": "EXCELSIOR PRIMARY SCHOOL",
+    "count": 74,
+    "latitude": -32.086994858108106,
+    "longitude": 115.94608042027028,
+    "avg_price": 689835.8108108108
+  },
+  {
+    "school_name": "FORRESTFIELD PRIMARY SCHOOL",
+    "count": 73,
+    "latitude": -31.993023508082196,
+    "longitude": 116.00993260273972,
+    "avg_price": 557552.0547945206
+  },
+  {
+    "school_name": "BALLAJURA PRIMARY SCHOOL",
+    "count": 73,
+    "latitude": -31.836772202465752,
+    "longitude": 115.89173567123287,
+    "avg_price": 681992.8493150685
+  },
+  {
+    "school_name": "EAST HAMILTON HILL PRIMARY SCHOOL",
+    "count": 73,
+    "latitude": -32.08011390671233,
+    "longitude": 115.79011931369863,
+    "avg_price": 697303.0136986302
+  },
+  {
+    "school_name": "CARNABY RISE PRIMARY SCHOOL",
+    "count": 72,
+    "latitude": -31.81869330013889,
+    "longitude": 115.87228456666668,
+    "avg_price": 734874.8611111111
+  },
+  {
+    "school_name": "HALE SCHOOL",
+    "count": 72,
+    "latitude": -31.915469150833335,
+    "longitude": 115.78081791805556,
+    "avg_price": 1564016.6666666667
+  },
+  {
+    "school_name": "CALADENIA PRIMARY SCHOOL",
+    "count": 72,
+    "latitude": -32.07137937291667,
+    "longitude": 115.93402358333333,
+    "avg_price": 750879.1666666666
+  },
+  {
+    "school_name": "WEST GREENWOOD PRIMARY SCHOOL",
+    "count": 71,
+    "latitude": -31.825144898873237,
+    "longitude": 115.79395038732395,
+    "avg_price": 730581.690140845
+  },
+  {
+    "school_name": "HUDSON PARK PRIMARY SCHOOL",
+    "count": 71,
+    "latitude": -31.841738521408452,
+    "longitude": 115.83400557183099,
+    "avg_price": 481915.4929577465
+  },
+  {
+    "school_name": "ST THOMAS' PRIMARY SCHOOL",
+    "count": 71,
+    "latitude": -31.978795719859153,
+    "longitude": 115.79073786760563,
+    "avg_price": 1642873.2253521127
+  },
+  {
+    "school_name": "ST JOHN'S SCHOOL",
+    "count": 71,
+    "latitude": -31.89137150690141,
+    "longitude": 115.76600848028168,
+    "avg_price": 927218.323943662
+  },
+  {
+    "school_name": "INFANT JESUS SCHOOL",
+    "count": 70,
+    "latitude": -31.898299852285714,
+    "longitude": 115.88960749428571,
+    "avg_price": 648261.4285714285
+  },
+  {
+    "school_name": "THE BEEHIVE MONTESSORI SCHOOL INC",
+    "count": 70,
+    "latitude": -32.02065832314286,
+    "longitude": 115.75620511428572,
+    "avg_price": 1818817.1285714286
+  },
+  {
+    "school_name": "GREENMOUNT PRIMARY SCHOOL",
+    "count": 69,
+    "latitude": -31.89812280057971,
+    "longitude": 116.04893936231883,
+    "avg_price": 513659.4347826087
+  },
+  {
+    "school_name": "THORNLIE PRIMARY SCHOOL",
+    "count": 69,
+    "latitude": -32.05179493289855,
+    "longitude": 115.97060893623188,
+    "avg_price": 492237.50724637683
+  },
+  {
+    "school_name": "WINTERFOLD PRIMARY SCHOOL",
+    "count": 69,
+    "latitude": -32.072307476521736,
+    "longitude": 115.76914771739129,
+    "avg_price": 866232.6086956522
+  },
+  {
+    "school_name": "WEST LEEMING PRIMARY SCHOOL",
+    "count": 68,
+    "latitude": -32.07198401852941,
+    "longitude": 115.85392622794117,
+    "avg_price": 938044.1176470588
+  },
+  {
+    "school_name": "AL-HIDAYAH ISLAMIC SCHOOL",
+    "count": 68,
+    "latitude": -32.01150053970588,
+    "longitude": 115.90215997794118,
+    "avg_price": 646626.0
+  },
+  {
+    "school_name": "COOGEE PRIMARY SCHOOL",
+    "count": 68,
+    "latitude": -32.114194772352946,
+    "longitude": 115.76944894558824,
+    "avg_price": 1108730.1470588236
+  },
+  {
+    "school_name": "OBERTHUR PRIMARY SCHOOL",
+    "count": 68,
+    "latitude": -32.06142015279412,
+    "longitude": 115.86902007352941,
+    "avg_price": 1009174.8235294118
+  },
+  {
+    "school_name": "BURRENDAH PRIMARY SCHOOL",
+    "count": 67,
+    "latitude": -32.061548346567164,
+    "longitude": 115.88335633283582,
+    "avg_price": 1028020.5820895522
+  },
+  {
+    "school_name": "NORTH WOODVALE PRIMARY SCHOOL",
+    "count": 67,
+    "latitude": -31.78706895522388,
+    "longitude": 115.78799895522388,
+    "avg_price": 862759.4477611941
+  },
+  {
+    "school_name": "LORETO NEDLANDS",
+    "count": 67,
+    "latitude": -31.983718567462688,
+    "longitude": 115.80437506865671,
+    "avg_price": 2380223.880597015
+  },
+  {
+    "school_name": "MARY MACKILLOP CATHOLIC COMMUNITY PRIMARY SCHOOL",
+    "count": 67,
+    "latitude": -31.843726966865674,
+    "longitude": 115.8997126761194,
+    "avg_price": 609082.8059701492
+  },
+  {
+    "school_name": "CAREY BAPTIST COLLEGE",
+    "count": 67,
+    "latitude": -32.11439907865671,
+    "longitude": 115.93302569104478,
+    "avg_price": 870873.1343283582
+  },
+  {
+    "school_name": "WOODLUPINE PRIMARY SCHOOL",
+    "count": 67,
+    "latitude": -31.98527941552239,
+    "longitude": 116.00264727014925,
+    "avg_price": 604409.9552238806
+  },
+  {
+    "school_name": "BAYSWATER PRIMARY SCHOOL",
+    "count": 66,
+    "latitude": -31.91891909318182,
+    "longitude": 115.91520145757576,
+    "avg_price": 701190.803030303
+  },
+  {
+    "school_name": "PRESBYTERIAN LADIES COLLEGE",
+    "count": 66,
+    "latitude": -31.994568893939398,
+    "longitude": 115.76358717878787,
+    "avg_price": 2724382.5757575757
+  },
+  {
+    "school_name": "MATTHEW GIBNEY CATHOLIC PRIMARY SCHOOL",
+    "count": 66,
+    "latitude": -31.93009889621212,
+    "longitude": 115.99477401060606,
+    "avg_price": 574602.9696969697
+  },
+  {
+    "school_name": "CREANEY PRIMARY SCHOOL",
+    "count": 65,
+    "latitude": -31.803190164923077,
+    "longitude": 115.78849132923077,
+    "avg_price": 767353.8461538461
+  },
+  {
+    "school_name": "WILLETTON PRIMARY SCHOOL",
+    "count": 64,
+    "latitude": -32.04916516203125,
+    "longitude": 115.882663340625,
+    "avg_price": 1061200.734375
+  },
+  {
+    "school_name": "ST BRIGID'S COLLEGE",
+    "count": 63,
+    "latitude": -31.995021411904766,
+    "longitude": 116.05748271111112,
+    "avg_price": 698460.3174603175
+  },
+  {
+    "school_name": "ILLAWARRA PRIMARY SCHOOL",
+    "count": 63,
+    "latitude": -31.82917589873016,
+    "longitude": 115.88248830793651,
+    "avg_price": 595297.619047619
+  },
+  {
+    "school_name": "ST COLUMBA'S SCHOOL",
+    "count": 62,
+    "latitude": -31.92504166854839,
+    "longitude": 115.91004899516129,
+    "avg_price": 873836.4516129033
+  },
+  {
+    "school_name": "POYNTER PRIMARY SCHOOL",
+    "count": 61,
+    "latitude": -31.842130435409835,
+    "longitude": 115.77484503934427,
+    "avg_price": 1132976.2950819673
+  },
+  {
+    "school_name": "LANGFORD ISLAMIC COLLEGE",
+    "count": 61,
+    "latitude": -32.047432680819675,
+    "longitude": 115.93872869016394,
+    "avg_price": 440633.60655737703
+  },
+  {
+    "school_name": "HAMPTON PARK PRIMARY SCHOOL",
+    "count": 60,
+    "latitude": -31.886078019000003,
+    "longitude": 115.91990676833333,
+    "avg_price": 715958.3333333334
+  },
+  {
+    "school_name": "BLETCHLEY PARK PRIMARY SCHOOL",
+    "count": 60,
+    "latitude": -32.1028141445,
+    "longitude": 115.94719945166666,
+    "avg_price": 822569.1333333333
+  },
+  {
+    "school_name": "ST LUKE'S CATHOLIC PRIMARY SCHOOL",
+    "count": 60,
+    "latitude": -31.79903292366667,
+    "longitude": 115.80522124166667,
+    "avg_price": 733425.8333333334
+  },
+  {
+    "school_name": "VICTORIA PARK PRIMARY SCHOOL",
+    "count": 60,
+    "latitude": -31.9747276865,
+    "longitude": 115.89359610166666,
+    "avg_price": 600208.3333333334
+  },
+  {
+    "school_name": "OUR LADY OF GOOD COUNSEL SCHOOL",
+    "count": 60,
+    "latitude": -31.880144144666666,
+    "longitude": 115.77913133166666,
+    "avg_price": 1198408.3166666667
+  },
+  {
+    "school_name": "FRESHWATER BAY PRIMARY SCHOOL",
+    "count": 60,
+    "latitude": -31.986353384999997,
+    "longitude": 115.78448540166667,
+    "avg_price": 2355366.6666666665
+  },
+  {
+    "school_name": "JOHN XXIII COLLEGE",
+    "count": 58,
+    "latitude": -31.960539008793106,
+    "longitude": 115.77907538275862,
+    "avg_price": 1926691.948275862
+  },
+  {
+    "school_name": "CAVERSHAM PRIMARY SCHOOL",
+    "count": 58,
+    "latitude": -31.85912616637931,
+    "longitude": 115.97707698448276,
+    "avg_price": 515362.0689655172
+  },
+  {
+    "school_name": "CASA MIA MONTESSORI COMMUNITY SCHOOL",
+    "count": 57,
+    "latitude": -31.900173879298244,
+    "longitude": 115.95334577894738,
+    "avg_price": 764607.4912280702
+  },
+  {
+    "school_name": "AUSTRALIAN ISLAMIC COLLEGE - NORTH OF THE RIVER",
+    "count": 56,
+    "latitude": -31.90296663892857,
+    "longitude": 115.87563719107142,
+    "avg_price": 806205.3571428572
+  },
+  {
+    "school_name": "PADBURY PRIMARY SCHOOL",
+    "count": 56,
+    "latitude": -31.80534430142857,
+    "longitude": 115.75740129107143,
+    "avg_price": 869638.3928571428
+  },
+  {
+    "school_name": "KERRY STREET COMMUNITY SCHOOL",
+    "count": 55,
+    "latitude": -32.08229886345455,
+    "longitude": 115.76950045818182,
+    "avg_price": 758136.3636363636
+  },
+  {
+    "school_name": "DAVALLIA PRIMARY SCHOOL",
+    "count": 55,
+    "latitude": -31.846443212727273,
+    "longitude": 115.78877902363637,
+    "avg_price": 1201290.0
+  },
+  {
+    "school_name": "MADDINGTON PRIMARY SCHOOL",
+    "count": 54,
+    "latitude": -32.05773662018518,
+    "longitude": 115.98547687962963,
+    "avg_price": 528780.8148148148
+  },
+  {
+    "school_name": "WIRRABIRRA PRIMARY SCHOOL",
+    "count": 54,
+    "latitude": -32.07009100277778,
+    "longitude": 115.98152388148148,
+    "avg_price": 568614.5925925926
+  },
+  {
+    "school_name": "RANFORD PRIMARY SCHOOL",
+    "count": 54,
+    "latitude": -32.09321520111111,
+    "longitude": 115.9158428574074,
+    "avg_price": 867675.2777777778
+  },
+  {
+    "school_name": "OUR LADY OF MERCY PRIMARY SCHOOL",
+    "count": 53,
+    "latitude": -31.835632606603774,
+    "longitude": 115.8402782226415,
+    "avg_price": 496292.4528301887
+  },
+  {
+    "school_name": "SOUTH PERTH PRIMARY SCHOOL",
+    "count": 53,
+    "latitude": -31.98491144075472,
+    "longitude": 115.85938011320755,
+    "avg_price": 1595339.6226415094
+  },
+  {
+    "school_name": "PROVIDENCE CHRISTIAN COLLEGE",
+    "count": 52,
+    "latitude": -32.0990077675,
+    "longitude": 115.93661649038462,
+    "avg_price": 850403.8653846154
+  },
+  {
+    "school_name": "KAPINARA PRIMARY SCHOOL",
+    "count": 52,
+    "latitude": -31.9246953425,
+    "longitude": 115.76463420192309,
+    "avg_price": 2643312.019230769
+  },
+  {
+    "school_name": "DAWSON PARK PRIMARY SCHOOL",
+    "count": 52,
+    "latitude": -31.974503711346152,
+    "longitude": 116.00335274038463,
+    "avg_price": 603022.4230769231
+  },
+  {
+    "school_name": "CANNING VALE PRIMARY SCHOOL",
+    "count": 52,
+    "latitude": -32.07797970980769,
+    "longitude": 115.91476861153845,
+    "avg_price": 901228.8461538461
+  },
+  {
+    "school_name": "NEWTON PRIMARY SCHOOL",
+    "count": 52,
+    "latitude": -32.113593683846155,
+    "longitude": 115.79071456153846,
+    "avg_price": 649972.1153846154
+  },
+  {
+    "school_name": "ST ANDREW'S GRAMMAR",
+    "count": 51,
+    "latitude": -31.870509406078433,
+    "longitude": 115.87433885686274,
+    "avg_price": 840903.9215686275
+  },
+  {
+    "school_name": "BRAMFIELD PARK PRIMARY SCHOOL",
+    "count": 51,
+    "latitude": -32.0468983,
+    "longitude": 115.99647369607843,
+    "avg_price": 509139.2156862745
+  },
+  {
+    "school_name": "ASHBURTON DRIVE PRIMARY SCHOOL",
+    "count": 50,
+    "latitude": -32.0889571916,
+    "longitude": 115.982453322,
+    "avg_price": 622378.0
+  },
+  {
+    "school_name": "PADBURY CATHOLIC PRIMARY SCHOOL",
+    "count": 50,
+    "latitude": -31.8175464816,
+    "longitude": 115.76743044999999,
+    "avg_price": 892684.0
+  },
+  {
+    "school_name": "WELD SQUARE PRIMARY SCHOOL",
+    "count": 49,
+    "latitude": -31.891566623265305,
+    "longitude": 115.90874978367346,
+    "avg_price": 704857.1428571428
+  },
+  {
+    "school_name": "ORANA CATHOLIC PRIMARY SCHOOL",
+    "count": 49,
+    "latitude": -32.04283653612245,
+    "longitude": 115.89191238163265,
+    "avg_price": 933541.0204081633
+  },
+  {
+    "school_name": "ST JUDE'S CATHOLIC SCHOOL",
+    "count": 48,
+    "latitude": -32.04430528145833,
+    "longitude": 115.93321828541667,
+    "avg_price": 426422.8958333333
+  },
+  {
+    "school_name": "GLENGARRY PRIMARY SCHOOL",
+    "count": 47,
+    "latitude": -31.829667872340426,
+    "longitude": 115.78184936170211,
+    "avg_price": 986095.7446808511
+  },
+  {
+    "school_name": "ST STEPHEN'S SCHOOL",
+    "count": 47,
+    "latitude": -31.81896722893617,
+    "longitude": 115.77750615744682,
+    "avg_price": 873689.3617021276
+  },
+  {
+    "school_name": "DUNCRAIG PRIMARY SCHOOL",
+    "count": 46,
+    "latitude": -31.830035741521737,
+    "longitude": 115.77124079782608,
+    "avg_price": 935167.3913043478
+  },
+  {
+    "school_name": "NORTH MORLEY PRIMARY SCHOOL",
+    "count": 46,
+    "latitude": -31.878012040869567,
+    "longitude": 115.87967303478261,
+    "avg_price": 781191.0869565217
+  },
+  {
+    "school_name": "GOOLLELAL PRIMARY SCHOOL",
+    "count": 46,
+    "latitude": -31.81728847369565,
+    "longitude": 115.80093101304348,
+    "avg_price": 769269.0217391305
+  },
+  {
+    "school_name": "INTERNATIONAL SCHOOL OF WESTERN AUSTRALIA",
+    "count": 45,
+    "latitude": -31.901405549555555,
+    "longitude": 115.77636411555555,
+    "avg_price": 1131711.111111111
+  },
+  {
+    "school_name": "MOERLINA SCHOOL",
+    "count": 45,
+    "latitude": -31.96888027488889,
+    "longitude": 115.79122929777779,
+    "avg_price": 1362888.888888889
+  },
+  {
+    "school_name": "GOOSEBERRY HILL PRIMARY SCHOOL",
+    "count": 45,
+    "latitude": -31.950819306222225,
+    "longitude": 116.05361151777777,
+    "avg_price": 727472.7111111111
+  },
+  {
+    "school_name": "HILLSIDE CHRISTIAN COLLEGE",
+    "count": 43,
+    "latitude": -31.976376226744186,
+    "longitude": 116.0144223627907,
+    "avg_price": 660920.3488372093
+  },
+  {
+    "school_name": "ST MICHAEL'S SCHOOL",
+    "count": 43,
+    "latitude": -31.905963993023253,
+    "longitude": 115.94655956511629,
+    "avg_price": 669067.1627906977
+  },
+  {
+    "school_name": "THE MONTESSORI SCHOOL",
+    "count": 43,
+    "latitude": -31.814074593255814,
+    "longitude": 115.8081558627907,
+    "avg_price": 819558.1395348837
+  },
+  {
+    "school_name": "HALIDON PRIMARY SCHOOL",
+    "count": 42,
+    "latitude": -31.806402685238098,
+    "longitude": 115.79938946666668,
+    "avg_price": 839577.380952381
+  },
+  {
+    "school_name": "DALMAIN PRIMARY SCHOOL",
+    "count": 42,
+    "latitude": -31.814832259285716,
+    "longitude": 115.79076160000001,
+    "avg_price": 761495.2380952381
+  },
+  {
+    "school_name": "JOHN SEPTIMUS ROE ANGLICAN COMMUNITY SCHOOL",
+    "count": 42,
+    "latitude": -31.85900996690476,
+    "longitude": 115.85633897142857,
+    "avg_price": 478039.21428571426
+  },
+  {
+    "school_name": "WEST MORLEY PRIMARY SCHOOL",
+    "count": 42,
+    "latitude": -31.889372443095237,
+    "longitude": 115.88533404523808,
+    "avg_price": 751968.3333333334
+  },
+  {
+    "school_name": "ST MUNCHIN'S CATHOLIC SCHOOL",
+    "count": 41,
+    "latitude": -32.07945703682927,
+    "longitude": 115.99001143902439,
+    "avg_price": 537024.9268292683
+  },
+  {
+    "school_name": "REGENT COLLEGE",
+    "count": 41,
+    "latitude": -31.976017336097563,
+    "longitude": 115.88947544146342,
+    "avg_price": 699823.1707317074
+  },
+  {
+    "school_name": "FREMANTLE CHRISTIAN COLLEGE",
+    "count": 41,
+    "latitude": -32.08629833829268,
+    "longitude": 115.77603353414634,
+    "avg_price": 817878.2926829269
+  },
+  {
+    "school_name": "BEELIAR PRIMARY SCHOOL",
+    "count": 40,
+    "latitude": -32.1287727805,
+    "longitude": 115.81635141,
+    "avg_price": 660075.0
+  },
+  {
+    "school_name": "ALL SAINTS' COLLEGE",
+    "count": 40,
+    "latitude": -32.050957010999994,
+    "longitude": 115.8662064725,
+    "avg_price": 1214937.5
+  },
+  {
+    "school_name": "BOLD PARK COMMUNITY SCHOOL",
+    "count": 40,
+    "latitude": -31.92017261825,
+    "longitude": 115.82752108499999,
+    "avg_price": 929837.5
+  },
+  {
+    "school_name": "ST PATRICK'S PRIMARY SCHOOL",
+    "count": 39,
+    "latitude": -32.04998890717949,
+    "longitude": 115.7506038974359,
+    "avg_price": 846888.0769230769
+  },
+  {
+    "school_name": "MORLEY PRIMARY SCHOOL",
+    "count": 37,
+    "latitude": -31.88906039810811,
+    "longitude": 115.8978392027027,
+    "avg_price": 716343.8378378379
+  },
+  {
+    "school_name": "LIWARA CATHOLIC PRIMARY SCHOOL",
+    "count": 36,
+    "latitude": -31.832283278888887,
+    "longitude": 115.79472031666667,
+    "avg_price": 799185.25
+  },
+  {
+    "school_name": "CAMPBELL PRIMARY SCHOOL",
+    "count": 35,
+    "latitude": -32.08862701057143,
+    "longitude": 115.92673247714286,
+    "avg_price": 920785.7142857143
+  },
+  {
+    "school_name": "MAJELLA CATHOLIC PRIMARY SCHOOL",
+    "count": 35,
+    "latitude": -31.856030098,
+    "longitude": 115.85030666857142,
+    "avg_price": 519821.0
+  },
+  {
+    "school_name": "CRAIGIE HEIGHTS PRIMARY SCHOOL",
+    "count": 34,
+    "latitude": -31.791625432058822,
+    "longitude": 115.76797332058824,
+    "avg_price": 616120.5882352941
+  },
+  {
+    "school_name": "PENRHOS COLLEGE",
+    "count": 33,
+    "latitude": -31.99757434757576,
+    "longitude": 115.87047845151515,
+    "avg_price": 964366.6666666666
+  },
+  {
+    "school_name": "SOUTH THORNLIE PRIMARY SCHOOL",
+    "count": 33,
+    "latitude": -32.06609891575758,
+    "longitude": 115.96369183333333,
+    "avg_price": 666701.9696969697
+  },
+  {
+    "school_name": "DIANELLA PRIMARY COLLEGE",
+    "count": 33,
+    "latitude": -31.87798063818182,
+    "longitude": 115.85336931818182,
+    "avg_price": 739909.0909090909
+  },
+  {
+    "school_name": "IONA PRESENTATION COLLEGE",
+    "count": 32,
+    "latitude": -32.015058335625,
+    "longitude": 115.7714415125,
+    "avg_price": 2643593.75
+  },
+  {
+    "school_name": "OUR LADY'S ASSUMPTION SCHOOL",
+    "count": 31,
+    "latitude": -31.896159196774192,
+    "longitude": 115.87376166774193,
+    "avg_price": 676306.4516129033
+  },
+  {
+    "school_name": "AUSTRALIAN ISLAMIC COLLEGE - PERTH",
+    "count": 31,
+    "latitude": -32.052811361290324,
+    "longitude": 115.95955911612903,
+    "avg_price": 574232.2580645161
+  },
+  {
+    "school_name": "ST HILDA'S ANGLICAN SCHOOL FOR GIRLS",
+    "count": 30,
+    "latitude": -32.00270662366667,
+    "longitude": 115.76726603,
+    "avg_price": 3524916.6666666665
+  },
+  {
+    "school_name": "CHRIST CHURCH GRAMMAR SCHOOL",
+    "count": 29,
+    "latitude": -31.983601593448274,
+    "longitude": 115.77817979310345,
+    "avg_price": 894086.2068965518
+  },
+  {
+    "school_name": "HARRISDALE PRIMARY SCHOOL",
+    "count": 28,
+    "latitude": -32.12029934571429,
+    "longitude": 115.93441316071429,
+    "avg_price": 734790.8928571428
+  },
+  {
+    "school_name": "HERITAGE COLLEGE PERTH",
+    "count": 28,
+    "latitude": -31.98796300607143,
+    "longitude": 116.01870781071429,
+    "avg_price": 513964.28571428574
+  },
+  {
+    "school_name": "WALLISTON PRIMARY SCHOOL",
+    "count": 27,
+    "latitude": -31.989857235185188,
+    "longitude": 116.06247287407407,
+    "avg_price": 681555.5555555555
+  },
+  {
+    "school_name": "DIANELLA HEIGHTS PRIMARY SCHOOL",
+    "count": 27,
+    "latitude": -31.88199318888889,
+    "longitude": 115.86726826296297,
+    "avg_price": 913333.3333333334
+  },
+  {
+    "school_name": "DIVINE MERCY COLLEGE",
+    "count": 26,
+    "latitude": -32.124536711153844,
+    "longitude": 115.82306997307691,
+    "avg_price": 580576.9230769231
+  },
+  {
+    "school_name": "ST EMILIE'S CATHOLIC PRIMARY SCHOOL",
+    "count": 24,
+    "latitude": -32.080901425,
+    "longitude": 115.93038745416668,
+    "avg_price": 848250.0
+  },
+  {
+    "school_name": "ORANGE GROVE PRIMARY SCHOOL",
+    "count": 23,
+    "latitude": -32.04389320260869,
+    "longitude": 116.00909889565217,
+    "avg_price": 551108.695652174
+  },
+  {
+    "school_name": "SEAFORTH PRIMARY SCHOOL",
+    "count": 19,
+    "latitude": -32.086893621578945,
+    "longitude": 115.99499600526318,
+    "avg_price": 559373.6842105263
+  },
+  {
+    "school_name": "FALLS ROAD PRIMARY SCHOOL",
+    "count": 18,
+    "latitude": -31.989505436111113,
+    "longitude": 116.05020914444445,
+    "avg_price": 641783.3333333334
+  },
+  {
+    "school_name": "LANCE HOLT SCHOOL",
+    "count": 18,
+    "latitude": -32.05656080777778,
+    "longitude": 115.74550619444443,
+    "avg_price": 1078750.0
+  },
+  {
+    "school_name": "METHODIST LADIES' COLLEGE",
+    "count": 17,
+    "latitude": -31.98775931470588,
+    "longitude": 115.77208412941177,
+    "avg_price": 1968294.1176470588
+  },
+  {
+    "school_name": "SWAN VALLEY ANGLICAN COMMUNITY SCHOOL",
+    "count": 15,
+    "latitude": -31.81652397266667,
+    "longitude": 115.97771551333334,
+    "avg_price": 650000.0
+  },
+  {
+    "school_name": "WARRIAPENDI PRIMARY SCHOOL",
+    "count": 15,
+    "latitude": -31.85351762133333,
+    "longitude": 115.84290333333334,
+    "avg_price": 496266.6666666667
+  },
+  {
+    "school_name": "CARMEL SCHOOL",
+    "count": 13,
+    "latitude": -31.901621863076926,
+    "longitude": 115.86334883076923,
+    "avg_price": 941307.6923076923
+  },
+  {
+    "school_name": "SUTHERLAND DIANELLA PRIMARY SCHOOL",
+    "count": 11,
+    "latitude": -31.891214545454545,
+    "longitude": 115.86131636363638,
+    "avg_price": 974009.0909090909
+  },
+  {
+    "school_name": "LESMURDIE PRIMARY SCHOOL",
+    "count": 10,
+    "latitude": -32.005081989999994,
+    "longitude": 116.04685173,
+    "avg_price": 616200.0
+  },
+  {
+    "school_name": "MARY'S MOUNT PRIMARY SCHOOL",
+    "count": 9,
+    "latitude": -31.96100645,
+    "longitude": 116.0467816111111,
+    "avg_price": 676666.6666666666
+  },
+  {
+    "school_name": "QUINTILIAN SCHOOL",
+    "count": 7,
+    "latitude": -31.967322371428573,
+    "longitude": 115.79338587142857,
+    "avg_price": 1365714.2857142857
+  },
+  {
+    "school_name": "SWAN CHRISTIAN COLLEGE",
+    "count": 6,
+    "latitude": -31.860641665,
+    "longitude": 116.02076364999999,
+    "avg_price": 438583.3333333333
+  },
+  {
+    "school_name": "SPRINGFIELD PRIMARY SCHOOL",
+    "count": 4,
+    "latitude": -31.79979163,
+    "longitude": 115.75169265,
+    "avg_price": 833750.0
+  },
+  {
+    "school_name": "KALAMUNDA CHRISTIAN SCHOOL",
+    "count": 2,
+    "latitude": -32.003015000000005,
+    "longitude": 116.060055,
+    "avg_price": 662000.0
+  },
+  {
+    "school_name": "MATER CHRISTI CATHOLIC PRIMARY SCHOOL",
+    "count": 1,
+    "latitude": -32.12851,
+    "longitude": 115.82425,
+    "avg_price": 620000.0
+  }
+]

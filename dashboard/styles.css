@@ -25,11 +25,12 @@ header p {
 }
 
 main {
-  max-width: 1300px;
+  width: 94vw;
+  max-width: none;
   margin: 0 auto;
-  padding: 18px;
+  padding: 16px 0 22px;
   display: grid;
-  gap: 16px;
+  gap: 12px;
 }
 
 .kpi-grid {
@@ -71,7 +72,7 @@ main {
   background: #fff;
   border: 1px solid #e5e7eb;
   border-radius: 10px;
-  padding: 14px;
+  padding: 10px 12px;
 }
 
 .viz-grid {
@@ -93,15 +94,21 @@ main {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 10px;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.filters label {
+  font-size: 12px;
+  color: #475569;
 }
 
 select {
-  padding: 8px 10px;
+  padding: 6px 8px;
   border-radius: 8px;
   border: 1px solid #d1d5db;
-  min-width: 220px;
+  min-width: 120px;
+  font-size: 12px;
 }
 
 .table-wrap {

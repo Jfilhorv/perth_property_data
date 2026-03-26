@@ -82,6 +82,7 @@ def main() -> None:
         "Listing_ID",
         "Price",
         "Suburb",
+        "Address",
         "Property_Type",
         "Bedrooms",
         "Bathrooms",
@@ -91,11 +92,27 @@ def main() -> None:
         "Latitude",
         "Distance_to_CBD",
         "Year",
+        "Primary_School_Name",
+        "Secondary_School_Name",
     ]
     listings_sample = (
         df[listings_cols]
         .dropna(subset=["Longitude", "Latitude"])
         .sample(n=min(8000, len(df)), random_state=42)
+    )
+
+    listings_core = df[listings_cols].dropna(subset=["Longitude", "Latitude"])
+
+    school_points = (
+        listings_core.groupby("Primary_School_Name", as_index=False)
+        .agg(
+            count=("Listing_ID", "count"),
+            latitude=("Latitude", "mean"),
+            longitude=("Longitude", "mean"),
+            avg_price=("Price", "mean"),
+        )
+        .rename(columns={"Primary_School_Name": "school_name"})
+        .sort_values("count", ascending=False)
     )
 
     (OUTPUT_DIR / "summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
@@ -116,6 +133,12 @@ def main() -> None:
     )
     (OUTPUT_DIR / "listings_sample.json").write_text(
         json.dumps(to_serializable_records(listings_sample), indent=2), encoding="utf-8"
+    )
+    (OUTPUT_DIR / "listings_core.json").write_text(
+        json.dumps(to_serializable_records(listings_core), indent=2), encoding="utf-8"
+    )
+    (OUTPUT_DIR / "school_points_estimated.json").write_text(
+        json.dumps(to_serializable_records(school_points), indent=2), encoding="utf-8"
     )
 
     print("Dashboard data generated in:", OUTPUT_DIR)
