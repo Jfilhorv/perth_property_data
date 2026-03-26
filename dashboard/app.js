@@ -95,6 +95,7 @@ function renderYearlyChart(chartType = "line", filterSuburb = "") {
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false,
       plugins: {
         legend: { display: true },
       },

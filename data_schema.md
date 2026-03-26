@@ -1,4 +1,4 @@
-# Perth Property Data - Schema
+![1774512290238](image/data_schema/1774512290238.png)![1774512296331](image/data_schema/1774512296331.png)![1774512298405](image/data_schema/1774512298405.png)![1774512311153](image/data_schema/1774512311153.png)![1774512392195](image/data_schema/1774512392195.png)# Perth Property Data - Schema
 
 Source: `perth_property_data.csv`  
 Total rows: `42958`
