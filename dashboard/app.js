@@ -448,7 +448,14 @@ function renderMap(rows) {
       fillColor: "#ef4444",
       fillOpacity: 0.35,
       weight: 1,
-    }).bindTooltip(`<b>${row.Suburb}</b><br/>Price: ${currency.format(row.Price)}`, { sticky: true })
+    }).bindTooltip(
+      `<b>${row.Address || "Address unavailable"}</b><br/>Suburb: ${row.Suburb}<br/>Price: ${currency.format(
+        row.Price
+      )}<br/>Distance to CBD: ${formatDistance(row.Distance_to_CBD)}<br/>Primary school: ${
+        row.Primary_School_Name || "N/A"
+      }<br/>Secondary school: ${row.Secondary_School_Name || "N/A"}`,
+      { sticky: true }
+    )
   );
   listingsLayer = L.layerGroup(listingMarkers);
 
