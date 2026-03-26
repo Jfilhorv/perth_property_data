@@ -1,0 +1,7706 @@
+[
+  {
+    "Suburb": "Alexander Heights",
+    "Year": 2020,
+    "median_price": 450000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Alexander Heights",
+    "Year": 2021,
+    "median_price": 470000.0,
+    "sales": 67
+  },
+  {
+    "Suburb": "Alexander Heights",
+    "Year": 2022,
+    "median_price": 517500.0,
+    "sales": 94
+  },
+  {
+    "Suburb": "Alexander Heights",
+    "Year": 2023,
+    "median_price": 575000.0,
+    "sales": 65
+  },
+  {
+    "Suburb": "Alexander Heights",
+    "Year": 2024,
+    "median_price": 716000.0,
+    "sales": 47
+  },
+  {
+    "Suburb": "Alfred Cove",
+    "Year": 2017,
+    "median_price": 695000.0,
+    "sales": 23
+  },
+  {
+    "Suburb": "Alfred Cove",
+    "Year": 2018,
+    "median_price": 720000.0,
+    "sales": 19
+  },
+  {
+    "Suburb": "Alfred Cove",
+    "Year": 2019,
+    "median_price": 787500.0,
+    "sales": 34
+  },
+  {
+    "Suburb": "Alfred Cove",
+    "Year": 2020,
+    "median_price": 782500.0,
+    "sales": 24
+  },
+  {
+    "Suburb": "Alfred Cove",
+    "Year": 2021,
+    "median_price": 910000.0,
+    "sales": 29
+  },
+  {
+    "Suburb": "Alfred Cove",
+    "Year": 2022,
+    "median_price": 867500.0,
+    "sales": 40
+  },
+  {
+    "Suburb": "Alfred Cove",
+    "Year": 2023,
+    "median_price": 1179000.0,
+    "sales": 46
+  },
+  {
+    "Suburb": "Alfred Cove",
+    "Year": 2024,
+    "median_price": 1300000.0,
+    "sales": 20
+  },
+  {
+    "Suburb": "Applecross",
+    "Year": 2021,
+    "median_price": 1302500.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Applecross",
+    "Year": 2022,
+    "median_price": 1620000.0,
+    "sales": 60
+  },
+  {
+    "Suburb": "Applecross",
+    "Year": 2023,
+    "median_price": 1620000.0,
+    "sales": 102
+  },
+  {
+    "Suburb": "Applecross",
+    "Year": 2024,
+    "median_price": 1350000.0,
+    "sales": 49
+  },
+  {
+    "Suburb": "Ardross",
+    "Year": 2019,
+    "median_price": 1167500.0,
+    "sales": 14
+  },
+  {
+    "Suburb": "Ardross",
+    "Year": 2020,
+    "median_price": 1140000.0,
+    "sales": 31
+  },
+  {
+    "Suburb": "Ardross",
+    "Year": 2021,
+    "median_price": 1145000.0,
+    "sales": 65
+  },
+  {
+    "Suburb": "Ardross",
+    "Year": 2022,
+    "median_price": 1200000.0,
+    "sales": 49
+  },
+  {
+    "Suburb": "Ardross",
+    "Year": 2023,
+    "median_price": 1105000.0,
+    "sales": 42
+  },
+  {
+    "Suburb": "Ardross",
+    "Year": 2024,
+    "median_price": 1425000.0,
+    "sales": 13
+  },
+  {
+    "Suburb": "Ascot",
+    "Year": 2016,
+    "median_price": 580000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "Ascot",
+    "Year": 2017,
+    "median_price": 765000.0,
+    "sales": 18
+  },
+  {
+    "Suburb": "Ascot",
+    "Year": 2018,
+    "median_price": 720000.0,
+    "sales": 13
+  },
+  {
+    "Suburb": "Ascot",
+    "Year": 2019,
+    "median_price": 665000.0,
+    "sales": 17
+  },
+  {
+    "Suburb": "Ascot",
+    "Year": 2020,
+    "median_price": 717500.0,
+    "sales": 22
+  },
+  {
+    "Suburb": "Ascot",
+    "Year": 2021,
+    "median_price": 795000.0,
+    "sales": 43
+  },
+  {
+    "Suburb": "Ascot",
+    "Year": 2022,
+    "median_price": 850000.0,
+    "sales": 47
+  },
+  {
+    "Suburb": "Ascot",
+    "Year": 2023,
+    "median_price": 765000.0,
+    "sales": 49
+  },
+  {
+    "Suburb": "Ascot",
+    "Year": 2024,
+    "median_price": 660000.0,
+    "sales": 17
+  },
+  {
+    "Suburb": "Ashfield",
+    "Year": 2006,
+    "median_price": 352500.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Ashfield",
+    "Year": 2007,
+    "median_price": 359000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Ashfield",
+    "Year": 2008,
+    "median_price": 582500.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Ashfield",
+    "Year": 2009,
+    "median_price": 395000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Ashfield",
+    "Year": 2010,
+    "median_price": 437500.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Ashfield",
+    "Year": 2011,
+    "median_price": 452500.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Ashfield",
+    "Year": 2012,
+    "median_price": 482500.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Ashfield",
+    "Year": 2014,
+    "median_price": 549000.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "Ashfield",
+    "Year": 2015,
+    "median_price": 500000.0,
+    "sales": 13
+  },
+  {
+    "Suburb": "Ashfield",
+    "Year": 2016,
+    "median_price": 500000.0,
+    "sales": 11
+  },
+  {
+    "Suburb": "Ashfield",
+    "Year": 2017,
+    "median_price": 455000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "Ashfield",
+    "Year": 2018,
+    "median_price": 450000.0,
+    "sales": 15
+  },
+  {
+    "Suburb": "Ashfield",
+    "Year": 2019,
+    "median_price": 380000.0,
+    "sales": 9
+  },
+  {
+    "Suburb": "Ashfield",
+    "Year": 2020,
+    "median_price": 412000.0,
+    "sales": 11
+  },
+  {
+    "Suburb": "Ashfield",
+    "Year": 2021,
+    "median_price": 483000.0,
+    "sales": 16
+  },
+  {
+    "Suburb": "Ashfield",
+    "Year": 2022,
+    "median_price": 582500.0,
+    "sales": 20
+  },
+  {
+    "Suburb": "Ashfield",
+    "Year": 2023,
+    "median_price": 590750.0,
+    "sales": 28
+  },
+  {
+    "Suburb": "Ashfield",
+    "Year": 2024,
+    "median_price": 790000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "Attadale",
+    "Year": 2021,
+    "median_price": 1472500.0,
+    "sales": 36
+  },
+  {
+    "Suburb": "Attadale",
+    "Year": 2022,
+    "median_price": 1530000.0,
+    "sales": 72
+  },
+  {
+    "Suburb": "Attadale",
+    "Year": 2023,
+    "median_price": 1397500.0,
+    "sales": 102
+  },
+  {
+    "Suburb": "Attadale",
+    "Year": 2024,
+    "median_price": 1605000.0,
+    "sales": 42
+  },
+  {
+    "Suburb": "Atwell",
+    "Year": 2022,
+    "median_price": 620000.0,
+    "sales": 15
+  },
+  {
+    "Suburb": "Atwell",
+    "Year": 2023,
+    "median_price": 660000.0,
+    "sales": 23
+  },
+  {
+    "Suburb": "Atwell",
+    "Year": 2024,
+    "median_price": 840000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "Balcatta",
+    "Year": 2022,
+    "median_price": 589000.0,
+    "sales": 79
+  },
+  {
+    "Suburb": "Balcatta",
+    "Year": 2023,
+    "median_price": 600000.0,
+    "sales": 119
+  },
+  {
+    "Suburb": "Balcatta",
+    "Year": 2024,
+    "median_price": 662500.0,
+    "sales": 68
+  },
+  {
+    "Suburb": "Balga",
+    "Year": 2023,
+    "median_price": 475000.0,
+    "sales": 103
+  },
+  {
+    "Suburb": "Balga",
+    "Year": 2024,
+    "median_price": 530000.0,
+    "sales": 165
+  },
+  {
+    "Suburb": "Ballajura",
+    "Year": 2023,
+    "median_price": 560060.5,
+    "sales": 188
+  },
+  {
+    "Suburb": "Ballajura",
+    "Year": 2024,
+    "median_price": 678000.0,
+    "sales": 87
+  },
+  {
+    "Suburb": "Banjup",
+    "Year": 2011,
+    "median_price": 820.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Banjup",
+    "Year": 2015,
+    "median_price": 745000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Banjup",
+    "Year": 2016,
+    "median_price": 869000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Banjup",
+    "Year": 2017,
+    "median_price": 540000.0,
+    "sales": 9
+  },
+  {
+    "Suburb": "Banjup",
+    "Year": 2018,
+    "median_price": 507500.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Banjup",
+    "Year": 2019,
+    "median_price": 600000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Bassendean",
+    "Year": 2022,
+    "median_price": 635000.0,
+    "sales": 18
+  },
+  {
+    "Suburb": "Bassendean",
+    "Year": 2023,
+    "median_price": 639000.0,
+    "sales": 146
+  },
+  {
+    "Suburb": "Bassendean",
+    "Year": 2024,
+    "median_price": 757000.0,
+    "sales": 108
+  },
+  {
+    "Suburb": "Bateman",
+    "Year": 2017,
+    "median_price": 721250.0,
+    "sales": 28
+  },
+  {
+    "Suburb": "Bateman",
+    "Year": 2018,
+    "median_price": 752500.0,
+    "sales": 24
+  },
+  {
+    "Suburb": "Bateman",
+    "Year": 2019,
+    "median_price": 750000.0,
+    "sales": 13
+  },
+  {
+    "Suburb": "Bateman",
+    "Year": 2020,
+    "median_price": 847500.0,
+    "sales": 26
+  },
+  {
+    "Suburb": "Bateman",
+    "Year": 2021,
+    "median_price": 825000.0,
+    "sales": 34
+  },
+  {
+    "Suburb": "Bateman",
+    "Year": 2022,
+    "median_price": 871000.0,
+    "sales": 34
+  },
+  {
+    "Suburb": "Bateman",
+    "Year": 2023,
+    "median_price": 922500.0,
+    "sales": 30
+  },
+  {
+    "Suburb": "Bateman",
+    "Year": 2024,
+    "median_price": 1153500.0,
+    "sales": 12
+  },
+  {
+    "Suburb": "Bayswater",
+    "Year": 2023,
+    "median_price": 777000.0,
+    "sales": 135
+  },
+  {
+    "Suburb": "Bayswater",
+    "Year": 2024,
+    "median_price": 859000.0,
+    "sales": 118
+  },
+  {
+    "Suburb": "Beaconsfield",
+    "Year": 2020,
+    "median_price": 780000.0,
+    "sales": 23
+  },
+  {
+    "Suburb": "Beaconsfield",
+    "Year": 2021,
+    "median_price": 840000.0,
+    "sales": 68
+  },
+  {
+    "Suburb": "Beaconsfield",
+    "Year": 2022,
+    "median_price": 902500.0,
+    "sales": 66
+  },
+  {
+    "Suburb": "Beaconsfield",
+    "Year": 2023,
+    "median_price": 920000.0,
+    "sales": 63
+  },
+  {
+    "Suburb": "Beaconsfield",
+    "Year": 2024,
+    "median_price": 1060000.0,
+    "sales": 40
+  },
+  {
+    "Suburb": "Beckenham",
+    "Year": 2022,
+    "median_price": 435000.0,
+    "sales": 50
+  },
+  {
+    "Suburb": "Beckenham",
+    "Year": 2023,
+    "median_price": 487500.0,
+    "sales": 118
+  },
+  {
+    "Suburb": "Beckenham",
+    "Year": 2024,
+    "median_price": 636000.0,
+    "sales": 70
+  },
+  {
+    "Suburb": "Bedford",
+    "Year": 2021,
+    "median_price": 695000.0,
+    "sales": 61
+  },
+  {
+    "Suburb": "Bedford",
+    "Year": 2022,
+    "median_price": 791000.0,
+    "sales": 75
+  },
+  {
+    "Suburb": "Bedford",
+    "Year": 2023,
+    "median_price": 865000.0,
+    "sales": 67
+  },
+  {
+    "Suburb": "Bedford",
+    "Year": 2024,
+    "median_price": 910000.0,
+    "sales": 43
+  },
+  {
+    "Suburb": "Beechboro",
+    "Year": 2021,
+    "median_price": 430000.0,
+    "sales": 44
+  },
+  {
+    "Suburb": "Beechboro",
+    "Year": 2022,
+    "median_price": 465000.0,
+    "sales": 77
+  },
+  {
+    "Suburb": "Beechboro",
+    "Year": 2023,
+    "median_price": 510500.0,
+    "sales": 102
+  },
+  {
+    "Suburb": "Beechboro",
+    "Year": 2024,
+    "median_price": 625000.0,
+    "sales": 41
+  },
+  {
+    "Suburb": "Beeliar",
+    "Year": 2022,
+    "median_price": 530000.0,
+    "sales": 11
+  },
+  {
+    "Suburb": "Beeliar",
+    "Year": 2023,
+    "median_price": 585000.0,
+    "sales": 15
+  },
+  {
+    "Suburb": "Beeliar",
+    "Year": 2024,
+    "median_price": 965000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "Bellevue",
+    "Year": 2009,
+    "median_price": 565000.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Bellevue",
+    "Year": 2010,
+    "median_price": 340000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Bellevue",
+    "Year": 2011,
+    "median_price": 285000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Bellevue",
+    "Year": 2012,
+    "median_price": 333500.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Bellevue",
+    "Year": 2013,
+    "median_price": 359500.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Bellevue",
+    "Year": 2014,
+    "median_price": 395000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "Bellevue",
+    "Year": 2015,
+    "median_price": 360000.0,
+    "sales": 21
+  },
+  {
+    "Suburb": "Bellevue",
+    "Year": 2016,
+    "median_price": 389500.0,
+    "sales": 16
+  },
+  {
+    "Suburb": "Bellevue",
+    "Year": 2017,
+    "median_price": 400000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Bellevue",
+    "Year": 2018,
+    "median_price": 295000.0,
+    "sales": 12
+  },
+  {
+    "Suburb": "Bellevue",
+    "Year": 2019,
+    "median_price": 320000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "Bellevue",
+    "Year": 2020,
+    "median_price": 320000.0,
+    "sales": 23
+  },
+  {
+    "Suburb": "Bellevue",
+    "Year": 2021,
+    "median_price": 370500.0,
+    "sales": 22
+  },
+  {
+    "Suburb": "Bellevue",
+    "Year": 2022,
+    "median_price": 372000.0,
+    "sales": 19
+  },
+  {
+    "Suburb": "Bellevue",
+    "Year": 2023,
+    "median_price": 417000.0,
+    "sales": 36
+  },
+  {
+    "Suburb": "Bellevue",
+    "Year": 2024,
+    "median_price": 582500.0,
+    "sales": 24
+  },
+  {
+    "Suburb": "Belmont",
+    "Year": 2022,
+    "median_price": 525000.0,
+    "sales": 70
+  },
+  {
+    "Suburb": "Belmont",
+    "Year": 2023,
+    "median_price": 550000.0,
+    "sales": 117
+  },
+  {
+    "Suburb": "Belmont",
+    "Year": 2024,
+    "median_price": 665000.0,
+    "sales": 72
+  },
+  {
+    "Suburb": "Bennett Springs",
+    "Year": 2018,
+    "median_price": 432500.0,
+    "sales": 26
+  },
+  {
+    "Suburb": "Bennett Springs",
+    "Year": 2019,
+    "median_price": 445000.0,
+    "sales": 19
+  },
+  {
+    "Suburb": "Bennett Springs",
+    "Year": 2020,
+    "median_price": 453277.5,
+    "sales": 32
+  },
+  {
+    "Suburb": "Bennett Springs",
+    "Year": 2021,
+    "median_price": 480500.0,
+    "sales": 34
+  },
+  {
+    "Suburb": "Bennett Springs",
+    "Year": 2022,
+    "median_price": 555000.0,
+    "sales": 55
+  },
+  {
+    "Suburb": "Bennett Springs",
+    "Year": 2023,
+    "median_price": 590000.0,
+    "sales": 47
+  },
+  {
+    "Suburb": "Bennett Springs",
+    "Year": 2024,
+    "median_price": 710000.0,
+    "sales": 29
+  },
+  {
+    "Suburb": "Bentley",
+    "Year": 2022,
+    "median_price": 460000.0,
+    "sales": 83
+  },
+  {
+    "Suburb": "Bentley",
+    "Year": 2023,
+    "median_price": 475000.0,
+    "sales": 105
+  },
+  {
+    "Suburb": "Bentley",
+    "Year": 2024,
+    "median_price": 622500.0,
+    "sales": 48
+  },
+  {
+    "Suburb": "Bibra Lake",
+    "Year": 2020,
+    "median_price": 519000.0,
+    "sales": 36
+  },
+  {
+    "Suburb": "Bibra Lake",
+    "Year": 2021,
+    "median_price": 570000.0,
+    "sales": 64
+  },
+  {
+    "Suburb": "Bibra Lake",
+    "Year": 2022,
+    "median_price": 615000.0,
+    "sales": 81
+  },
+  {
+    "Suburb": "Bibra Lake",
+    "Year": 2023,
+    "median_price": 678750.0,
+    "sales": 62
+  },
+  {
+    "Suburb": "Bibra Lake",
+    "Year": 2024,
+    "median_price": 830000.0,
+    "sales": 26
+  },
+  {
+    "Suburb": "Bicton",
+    "Year": 2021,
+    "median_price": 1215000.0,
+    "sales": 45
+  },
+  {
+    "Suburb": "Bicton",
+    "Year": 2022,
+    "median_price": 1185000.0,
+    "sales": 65
+  },
+  {
+    "Suburb": "Bicton",
+    "Year": 2023,
+    "median_price": 980000.0,
+    "sales": 74
+  },
+  {
+    "Suburb": "Bicton",
+    "Year": 2024,
+    "median_price": 1365000.0,
+    "sales": 41
+  },
+  {
+    "Suburb": "Booragoon",
+    "Year": 2020,
+    "median_price": 850000.0,
+    "sales": 14
+  },
+  {
+    "Suburb": "Booragoon",
+    "Year": 2021,
+    "median_price": 970000.0,
+    "sales": 65
+  },
+  {
+    "Suburb": "Booragoon",
+    "Year": 2022,
+    "median_price": 1130000.0,
+    "sales": 67
+  },
+  {
+    "Suburb": "Booragoon",
+    "Year": 2023,
+    "median_price": 1100000.0,
+    "sales": 65
+  },
+  {
+    "Suburb": "Booragoon",
+    "Year": 2024,
+    "median_price": 1365000.0,
+    "sales": 37
+  },
+  {
+    "Suburb": "Boya",
+    "Year": 2009,
+    "median_price": 410000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Boya",
+    "Year": 2010,
+    "median_price": 660000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Boya",
+    "Year": 2013,
+    "median_price": 520000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Boya",
+    "Year": 2014,
+    "median_price": 565000.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Boya",
+    "Year": 2015,
+    "median_price": 445000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Boya",
+    "Year": 2016,
+    "median_price": 482500.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Boya",
+    "Year": 2018,
+    "median_price": 490000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Boya",
+    "Year": 2019,
+    "median_price": 407000.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Boya",
+    "Year": 2021,
+    "median_price": 440000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Boya",
+    "Year": 2022,
+    "median_price": 529000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Boya",
+    "Year": 2023,
+    "median_price": 728750.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Boya",
+    "Year": 2024,
+    "median_price": 750000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Brabham",
+    "Year": 2022,
+    "median_price": 500000.0,
+    "sales": 52
+  },
+  {
+    "Suburb": "Brabham",
+    "Year": 2023,
+    "median_price": 555000.0,
+    "sales": 135
+  },
+  {
+    "Suburb": "Brabham",
+    "Year": 2024,
+    "median_price": 660000.0,
+    "sales": 81
+  },
+  {
+    "Suburb": "Brentwood",
+    "Year": 2010,
+    "median_price": 470000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Brentwood",
+    "Year": 2011,
+    "median_price": 639000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Brentwood",
+    "Year": 2012,
+    "median_price": 576500.0,
+    "sales": 8
+  },
+  {
+    "Suburb": "Brentwood",
+    "Year": 2013,
+    "median_price": 740000.0,
+    "sales": 13
+  },
+  {
+    "Suburb": "Brentwood",
+    "Year": 2014,
+    "median_price": 770000.0,
+    "sales": 13
+  },
+  {
+    "Suburb": "Brentwood",
+    "Year": 2015,
+    "median_price": 710000.0,
+    "sales": 12
+  },
+  {
+    "Suburb": "Brentwood",
+    "Year": 2016,
+    "median_price": 719000.0,
+    "sales": 13
+  },
+  {
+    "Suburb": "Brentwood",
+    "Year": 2017,
+    "median_price": 600000.0,
+    "sales": 27
+  },
+  {
+    "Suburb": "Brentwood",
+    "Year": 2018,
+    "median_price": 618000.0,
+    "sales": 16
+  },
+  {
+    "Suburb": "Brentwood",
+    "Year": 2019,
+    "median_price": 615000.0,
+    "sales": 17
+  },
+  {
+    "Suburb": "Brentwood",
+    "Year": 2020,
+    "median_price": 575450.0,
+    "sales": 23
+  },
+  {
+    "Suburb": "Brentwood",
+    "Year": 2021,
+    "median_price": 657500.0,
+    "sales": 12
+  },
+  {
+    "Suburb": "Brentwood",
+    "Year": 2022,
+    "median_price": 800000.0,
+    "sales": 17
+  },
+  {
+    "Suburb": "Brentwood",
+    "Year": 2023,
+    "median_price": 782500.0,
+    "sales": 22
+  },
+  {
+    "Suburb": "Brentwood",
+    "Year": 2024,
+    "median_price": 875000.0,
+    "sales": 19
+  },
+  {
+    "Suburb": "Bull Creek",
+    "Year": 2020,
+    "median_price": 760000.0,
+    "sales": 12
+  },
+  {
+    "Suburb": "Bull Creek",
+    "Year": 2021,
+    "median_price": 840750.0,
+    "sales": 44
+  },
+  {
+    "Suburb": "Bull Creek",
+    "Year": 2022,
+    "median_price": 854001.0,
+    "sales": 41
+  },
+  {
+    "Suburb": "Bull Creek",
+    "Year": 2023,
+    "median_price": 934888.0,
+    "sales": 60
+  },
+  {
+    "Suburb": "Bull Creek",
+    "Year": 2024,
+    "median_price": 1205000.0,
+    "sales": 34
+  },
+  {
+    "Suburb": "Burswood",
+    "Year": 2016,
+    "median_price": 1000000.0,
+    "sales": 13
+  },
+  {
+    "Suburb": "Burswood",
+    "Year": 2017,
+    "median_price": 797500.0,
+    "sales": 16
+  },
+  {
+    "Suburb": "Burswood",
+    "Year": 2018,
+    "median_price": 780000.0,
+    "sales": 17
+  },
+  {
+    "Suburb": "Burswood",
+    "Year": 2019,
+    "median_price": 915000.0,
+    "sales": 25
+  },
+  {
+    "Suburb": "Burswood",
+    "Year": 2020,
+    "median_price": 870000.0,
+    "sales": 17
+  },
+  {
+    "Suburb": "Burswood",
+    "Year": 2021,
+    "median_price": 797500.0,
+    "sales": 36
+  },
+  {
+    "Suburb": "Burswood",
+    "Year": 2022,
+    "median_price": 818000.0,
+    "sales": 51
+  },
+  {
+    "Suburb": "Burswood",
+    "Year": 2023,
+    "median_price": 725000.0,
+    "sales": 62
+  },
+  {
+    "Suburb": "Burswood",
+    "Year": 2024,
+    "median_price": 775000.0,
+    "sales": 26
+  },
+  {
+    "Suburb": "Canning Vale",
+    "Year": 2023,
+    "median_price": 768000.0,
+    "sales": 81
+  },
+  {
+    "Suburb": "Canning Vale",
+    "Year": 2024,
+    "median_price": 880000.0,
+    "sales": 183
+  },
+  {
+    "Suburb": "Cannington",
+    "Year": 2022,
+    "median_price": 400000.0,
+    "sales": 76
+  },
+  {
+    "Suburb": "Cannington",
+    "Year": 2023,
+    "median_price": 420000.0,
+    "sales": 101
+  },
+  {
+    "Suburb": "Cannington",
+    "Year": 2024,
+    "median_price": 523000.0,
+    "sales": 56
+  },
+  {
+    "Suburb": "Carine",
+    "Year": 2020,
+    "median_price": 817500.0,
+    "sales": 42
+  },
+  {
+    "Suburb": "Carine",
+    "Year": 2021,
+    "median_price": 915000.0,
+    "sales": 46
+  },
+  {
+    "Suburb": "Carine",
+    "Year": 2022,
+    "median_price": 1105000.0,
+    "sales": 74
+  },
+  {
+    "Suburb": "Carine",
+    "Year": 2023,
+    "median_price": 1180000.0,
+    "sales": 63
+  },
+  {
+    "Suburb": "Carine",
+    "Year": 2024,
+    "median_price": 1333750.0,
+    "sales": 34
+  },
+  {
+    "Suburb": "Carlisle",
+    "Year": 2021,
+    "median_price": 649500.0,
+    "sales": 18
+  },
+  {
+    "Suburb": "Carlisle",
+    "Year": 2022,
+    "median_price": 587500.0,
+    "sales": 96
+  },
+  {
+    "Suburb": "Carlisle",
+    "Year": 2023,
+    "median_price": 615000.0,
+    "sales": 101
+  },
+  {
+    "Suburb": "Carlisle",
+    "Year": 2024,
+    "median_price": 685000.0,
+    "sales": 46
+  },
+  {
+    "Suburb": "Caversham",
+    "Year": 2021,
+    "median_price": 520000.0,
+    "sales": 49
+  },
+  {
+    "Suburb": "Caversham",
+    "Year": 2022,
+    "median_price": 535000.0,
+    "sales": 89
+  },
+  {
+    "Suburb": "Caversham",
+    "Year": 2023,
+    "median_price": 630000.0,
+    "sales": 71
+  },
+  {
+    "Suburb": "Caversham",
+    "Year": 2024,
+    "median_price": 734500.0,
+    "sales": 48
+  },
+  {
+    "Suburb": "Churchlands",
+    "Year": 2017,
+    "median_price": 1350000.0,
+    "sales": 15
+  },
+  {
+    "Suburb": "Churchlands",
+    "Year": 2018,
+    "median_price": 1355000.0,
+    "sales": 29
+  },
+  {
+    "Suburb": "Churchlands",
+    "Year": 2019,
+    "median_price": 1250000.0,
+    "sales": 31
+  },
+  {
+    "Suburb": "Churchlands",
+    "Year": 2020,
+    "median_price": 1350000.0,
+    "sales": 25
+  },
+  {
+    "Suburb": "Churchlands",
+    "Year": 2021,
+    "median_price": 1500000.0,
+    "sales": 47
+  },
+  {
+    "Suburb": "Churchlands",
+    "Year": 2022,
+    "median_price": 1394000.0,
+    "sales": 28
+  },
+  {
+    "Suburb": "Churchlands",
+    "Year": 2023,
+    "median_price": 1500000.0,
+    "sales": 43
+  },
+  {
+    "Suburb": "Churchlands",
+    "Year": 2024,
+    "median_price": 1665000.0,
+    "sales": 25
+  },
+  {
+    "Suburb": "City Beach",
+    "Year": 2021,
+    "median_price": 2200000.0,
+    "sales": 33
+  },
+  {
+    "Suburb": "City Beach",
+    "Year": 2022,
+    "median_price": 2572500.0,
+    "sales": 50
+  },
+  {
+    "Suburb": "City Beach",
+    "Year": 2023,
+    "median_price": 2500000.0,
+    "sales": 76
+  },
+  {
+    "Suburb": "City Beach",
+    "Year": 2024,
+    "median_price": 2643500.0,
+    "sales": 32
+  },
+  {
+    "Suburb": "Claremont",
+    "Year": 2022,
+    "median_price": 1250000.0,
+    "sales": 68
+  },
+  {
+    "Suburb": "Claremont",
+    "Year": 2023,
+    "median_price": 1290000.0,
+    "sales": 87
+  },
+  {
+    "Suburb": "Claremont",
+    "Year": 2024,
+    "median_price": 1863000.0,
+    "sales": 61
+  },
+  {
+    "Suburb": "Cloverdale",
+    "Year": 2022,
+    "median_price": 483000.0,
+    "sales": 73
+  },
+  {
+    "Suburb": "Cloverdale",
+    "Year": 2023,
+    "median_price": 527500.0,
+    "sales": 128
+  },
+  {
+    "Suburb": "Cloverdale",
+    "Year": 2024,
+    "median_price": 656000.0,
+    "sales": 69
+  },
+  {
+    "Suburb": "Cockburn Central",
+    "Year": 2008,
+    "median_price": 410000.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Cockburn Central",
+    "Year": 2009,
+    "median_price": 435000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Cockburn Central",
+    "Year": 2010,
+    "median_price": 523000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Cockburn Central",
+    "Year": 2012,
+    "median_price": 475000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Cockburn Central",
+    "Year": 2013,
+    "median_price": 430000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Cockburn Central",
+    "Year": 2014,
+    "median_price": 532500.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "Cockburn Central",
+    "Year": 2015,
+    "median_price": 532500.0,
+    "sales": 8
+  },
+  {
+    "Suburb": "Cockburn Central",
+    "Year": 2016,
+    "median_price": 327500.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Cockburn Central",
+    "Year": 2017,
+    "median_price": 475000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Cockburn Central",
+    "Year": 2018,
+    "median_price": 522000.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Cockburn Central",
+    "Year": 2019,
+    "median_price": 504000.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Cockburn Central",
+    "Year": 2020,
+    "median_price": 440000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "Cockburn Central",
+    "Year": 2021,
+    "median_price": 380000.0,
+    "sales": 18
+  },
+  {
+    "Suburb": "Cockburn Central",
+    "Year": 2022,
+    "median_price": 345000.0,
+    "sales": 19
+  },
+  {
+    "Suburb": "Cockburn Central",
+    "Year": 2023,
+    "median_price": 390000.0,
+    "sales": 35
+  },
+  {
+    "Suburb": "Cockburn Central",
+    "Year": 2024,
+    "median_price": 428750.0,
+    "sales": 30
+  },
+  {
+    "Suburb": "Como",
+    "Year": 2022,
+    "median_price": 910000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Como",
+    "Year": 2023,
+    "median_price": 890000.0,
+    "sales": 151
+  },
+  {
+    "Suburb": "Como",
+    "Year": 2024,
+    "median_price": 985000.0,
+    "sales": 88
+  },
+  {
+    "Suburb": "Coogee",
+    "Year": 2020,
+    "median_price": 760000.0,
+    "sales": 17
+  },
+  {
+    "Suburb": "Coogee",
+    "Year": 2021,
+    "median_price": 850000.0,
+    "sales": 35
+  },
+  {
+    "Suburb": "Coogee",
+    "Year": 2022,
+    "median_price": 880000.0,
+    "sales": 45
+  },
+  {
+    "Suburb": "Coogee",
+    "Year": 2023,
+    "median_price": 1050000.0,
+    "sales": 43
+  },
+  {
+    "Suburb": "Coogee",
+    "Year": 2024,
+    "median_price": 1141000.0,
+    "sales": 20
+  },
+  {
+    "Suburb": "Coolbellup",
+    "Year": 2022,
+    "median_price": 560000.0,
+    "sales": 90
+  },
+  {
+    "Suburb": "Coolbellup",
+    "Year": 2023,
+    "median_price": 590000.0,
+    "sales": 111
+  },
+  {
+    "Suburb": "Coolbellup",
+    "Year": 2024,
+    "median_price": 715000.0,
+    "sales": 75
+  },
+  {
+    "Suburb": "Coolbinia",
+    "Year": 2008,
+    "median_price": 1115000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Coolbinia",
+    "Year": 2009,
+    "median_price": 900000.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Coolbinia",
+    "Year": 2010,
+    "median_price": 955000.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "Coolbinia",
+    "Year": 2011,
+    "median_price": 1040000.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "Coolbinia",
+    "Year": 2012,
+    "median_price": 840000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "Coolbinia",
+    "Year": 2013,
+    "median_price": 1075000.0,
+    "sales": 11
+  },
+  {
+    "Suburb": "Coolbinia",
+    "Year": 2014,
+    "median_price": 1147500.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Coolbinia",
+    "Year": 2015,
+    "median_price": 1090000.0,
+    "sales": 8
+  },
+  {
+    "Suburb": "Coolbinia",
+    "Year": 2016,
+    "median_price": 915000.0,
+    "sales": 10
+  },
+  {
+    "Suburb": "Coolbinia",
+    "Year": 2017,
+    "median_price": 1165000.0,
+    "sales": 17
+  },
+  {
+    "Suburb": "Coolbinia",
+    "Year": 2018,
+    "median_price": 1087500.0,
+    "sales": 12
+  },
+  {
+    "Suburb": "Coolbinia",
+    "Year": 2019,
+    "median_price": 1050000.0,
+    "sales": 11
+  },
+  {
+    "Suburb": "Coolbinia",
+    "Year": 2020,
+    "median_price": 1330000.0,
+    "sales": 21
+  },
+  {
+    "Suburb": "Coolbinia",
+    "Year": 2021,
+    "median_price": 1270000.0,
+    "sales": 20
+  },
+  {
+    "Suburb": "Coolbinia",
+    "Year": 2022,
+    "median_price": 1195000.0,
+    "sales": 19
+  },
+  {
+    "Suburb": "Coolbinia",
+    "Year": 2023,
+    "median_price": 1387500.0,
+    "sales": 20
+  },
+  {
+    "Suburb": "Coolbinia",
+    "Year": 2024,
+    "median_price": 1600000.0,
+    "sales": 9
+  },
+  {
+    "Suburb": "Cottesloe",
+    "Year": 2021,
+    "median_price": 2850000.0,
+    "sales": 21
+  },
+  {
+    "Suburb": "Cottesloe",
+    "Year": 2022,
+    "median_price": 2850000.0,
+    "sales": 58
+  },
+  {
+    "Suburb": "Cottesloe",
+    "Year": 2023,
+    "median_price": 3030000.0,
+    "sales": 78
+  },
+  {
+    "Suburb": "Cottesloe",
+    "Year": 2024,
+    "median_price": 3475000.0,
+    "sales": 37
+  },
+  {
+    "Suburb": "Craigie",
+    "Year": 2021,
+    "median_price": 605000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Craigie",
+    "Year": 2022,
+    "median_price": 560000.0,
+    "sales": 21
+  },
+  {
+    "Suburb": "Craigie",
+    "Year": 2023,
+    "median_price": 638500.0,
+    "sales": 20
+  },
+  {
+    "Suburb": "Craigie",
+    "Year": 2024,
+    "median_price": 782000.0,
+    "sales": 13
+  },
+  {
+    "Suburb": "Crawley",
+    "Year": 2008,
+    "median_price": 330000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Crawley",
+    "Year": 2010,
+    "median_price": 1180000.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Crawley",
+    "Year": 2012,
+    "median_price": 575000.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Crawley",
+    "Year": 2013,
+    "median_price": 335000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Crawley",
+    "Year": 2014,
+    "median_price": 947500.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Crawley",
+    "Year": 2015,
+    "median_price": 993500.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "Crawley",
+    "Year": 2016,
+    "median_price": 715000.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "Crawley",
+    "Year": 2017,
+    "median_price": 595000.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "Crawley",
+    "Year": 2018,
+    "median_price": 815000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Crawley",
+    "Year": 2019,
+    "median_price": 920000.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Crawley",
+    "Year": 2020,
+    "median_price": 380000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "Crawley",
+    "Year": 2021,
+    "median_price": 1225000.0,
+    "sales": 17
+  },
+  {
+    "Suburb": "Crawley",
+    "Year": 2022,
+    "median_price": 900000.0,
+    "sales": 17
+  },
+  {
+    "Suburb": "Crawley",
+    "Year": 2023,
+    "median_price": 820000.0,
+    "sales": 11
+  },
+  {
+    "Suburb": "Crawley",
+    "Year": 2024,
+    "median_price": 730000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Daglish",
+    "Year": 2007,
+    "median_price": 700000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Daglish",
+    "Year": 2008,
+    "median_price": 760000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Daglish",
+    "Year": 2009,
+    "median_price": 1090000.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Daglish",
+    "Year": 2010,
+    "median_price": 795000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Daglish",
+    "Year": 2012,
+    "median_price": 745000.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "Daglish",
+    "Year": 2013,
+    "median_price": 740000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Daglish",
+    "Year": 2014,
+    "median_price": 1050000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "Daglish",
+    "Year": 2015,
+    "median_price": 1010000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "Daglish",
+    "Year": 2016,
+    "median_price": 865000.0,
+    "sales": 9
+  },
+  {
+    "Suburb": "Daglish",
+    "Year": 2017,
+    "median_price": 1000000.0,
+    "sales": 9
+  },
+  {
+    "Suburb": "Daglish",
+    "Year": 2018,
+    "median_price": 1065000.0,
+    "sales": 10
+  },
+  {
+    "Suburb": "Daglish",
+    "Year": 2019,
+    "median_price": 870000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "Daglish",
+    "Year": 2020,
+    "median_price": 950000.0,
+    "sales": 17
+  },
+  {
+    "Suburb": "Daglish",
+    "Year": 2021,
+    "median_price": 1495000.0,
+    "sales": 14
+  },
+  {
+    "Suburb": "Daglish",
+    "Year": 2022,
+    "median_price": 1273500.0,
+    "sales": 12
+  },
+  {
+    "Suburb": "Daglish",
+    "Year": 2023,
+    "median_price": 1640000.0,
+    "sales": 13
+  },
+  {
+    "Suburb": "Daglish",
+    "Year": 2024,
+    "median_price": 1670000.0,
+    "sales": 9
+  },
+  {
+    "Suburb": "Dalkeith",
+    "Year": 2020,
+    "median_price": 2400000.0,
+    "sales": 25
+  },
+  {
+    "Suburb": "Dalkeith",
+    "Year": 2021,
+    "median_price": 2900000.0,
+    "sales": 44
+  },
+  {
+    "Suburb": "Dalkeith",
+    "Year": 2022,
+    "median_price": 3500000.0,
+    "sales": 27
+  },
+  {
+    "Suburb": "Dalkeith",
+    "Year": 2023,
+    "median_price": 3300000.0,
+    "sales": 33
+  },
+  {
+    "Suburb": "Dalkeith",
+    "Year": 2024,
+    "median_price": 3390000.0,
+    "sales": 25
+  },
+  {
+    "Suburb": "Darch",
+    "Year": 2021,
+    "median_price": 650000.0,
+    "sales": 59
+  },
+  {
+    "Suburb": "Darch",
+    "Year": 2022,
+    "median_price": 677500.0,
+    "sales": 92
+  },
+  {
+    "Suburb": "Darch",
+    "Year": 2023,
+    "median_price": 720000.0,
+    "sales": 75
+  },
+  {
+    "Suburb": "Darch",
+    "Year": 2024,
+    "median_price": 882500.0,
+    "sales": 44
+  },
+  {
+    "Suburb": "Dayton",
+    "Year": 2020,
+    "median_price": 397500.0,
+    "sales": 22
+  },
+  {
+    "Suburb": "Dayton",
+    "Year": 2021,
+    "median_price": 442500.0,
+    "sales": 53
+  },
+  {
+    "Suburb": "Dayton",
+    "Year": 2022,
+    "median_price": 472000.0,
+    "sales": 67
+  },
+  {
+    "Suburb": "Dayton",
+    "Year": 2023,
+    "median_price": 538750.0,
+    "sales": 72
+  },
+  {
+    "Suburb": "Dayton",
+    "Year": 2024,
+    "median_price": 660000.0,
+    "sales": 43
+  },
+  {
+    "Suburb": "Dianella",
+    "Year": 2023,
+    "median_price": 750000.0,
+    "sales": 90
+  },
+  {
+    "Suburb": "Dianella",
+    "Year": 2024,
+    "median_price": 800000.0,
+    "sales": 152
+  },
+  {
+    "Suburb": "Doubleview",
+    "Year": 2022,
+    "median_price": 860500.0,
+    "sales": 70
+  },
+  {
+    "Suburb": "Doubleview",
+    "Year": 2023,
+    "median_price": 945000.0,
+    "sales": 126
+  },
+  {
+    "Suburb": "Doubleview",
+    "Year": 2024,
+    "median_price": 1190000.0,
+    "sales": 49
+  },
+  {
+    "Suburb": "Duncraig",
+    "Year": 2022,
+    "median_price": 911250.0,
+    "sales": 78
+  },
+  {
+    "Suburb": "Duncraig",
+    "Year": 2023,
+    "median_price": 975000.0,
+    "sales": 126
+  },
+  {
+    "Suburb": "Duncraig",
+    "Year": 2024,
+    "median_price": 1105000.0,
+    "sales": 46
+  },
+  {
+    "Suburb": "East Cannington",
+    "Year": 2021,
+    "median_price": 446000.0,
+    "sales": 53
+  },
+  {
+    "Suburb": "East Cannington",
+    "Year": 2022,
+    "median_price": 468000.0,
+    "sales": 64
+  },
+  {
+    "Suburb": "East Cannington",
+    "Year": 2023,
+    "median_price": 495000.0,
+    "sales": 75
+  },
+  {
+    "Suburb": "East Cannington",
+    "Year": 2024,
+    "median_price": 666000.0,
+    "sales": 31
+  },
+  {
+    "Suburb": "East Fremantle",
+    "Year": 2021,
+    "median_price": 1300000.0,
+    "sales": 49
+  },
+  {
+    "Suburb": "East Fremantle",
+    "Year": 2022,
+    "median_price": 1400000.0,
+    "sales": 81
+  },
+  {
+    "Suburb": "East Fremantle",
+    "Year": 2023,
+    "median_price": 1512500.0,
+    "sales": 66
+  },
+  {
+    "Suburb": "East Fremantle",
+    "Year": 2024,
+    "median_price": 1506000.0,
+    "sales": 38
+  },
+  {
+    "Suburb": "East Perth",
+    "Year": 2023,
+    "median_price": 460000.0,
+    "sales": 143
+  },
+  {
+    "Suburb": "East Perth",
+    "Year": 2024,
+    "median_price": 530000.0,
+    "sales": 115
+  },
+  {
+    "Suburb": "East Victoria Park",
+    "Year": 2022,
+    "median_price": 870000.0,
+    "sales": 20
+  },
+  {
+    "Suburb": "East Victoria Park",
+    "Year": 2023,
+    "median_price": 735000.0,
+    "sales": 148
+  },
+  {
+    "Suburb": "East Victoria Park",
+    "Year": 2024,
+    "median_price": 845000.0,
+    "sales": 85
+  },
+  {
+    "Suburb": "Eden Hill",
+    "Year": 2017,
+    "median_price": 402500.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Eden Hill",
+    "Year": 2018,
+    "median_price": 388000.0,
+    "sales": 25
+  },
+  {
+    "Suburb": "Eden Hill",
+    "Year": 2019,
+    "median_price": 410000.0,
+    "sales": 29
+  },
+  {
+    "Suburb": "Eden Hill",
+    "Year": 2020,
+    "median_price": 412500.0,
+    "sales": 34
+  },
+  {
+    "Suburb": "Eden Hill",
+    "Year": 2021,
+    "median_price": 453000.0,
+    "sales": 49
+  },
+  {
+    "Suburb": "Eden Hill",
+    "Year": 2022,
+    "median_price": 487500.0,
+    "sales": 53
+  },
+  {
+    "Suburb": "Eden Hill",
+    "Year": 2023,
+    "median_price": 528250.0,
+    "sales": 46
+  },
+  {
+    "Suburb": "Eden Hill",
+    "Year": 2024,
+    "median_price": 639250.0,
+    "sales": 30
+  },
+  {
+    "Suburb": "Embleton",
+    "Year": 2018,
+    "median_price": 465000.0,
+    "sales": 14
+  },
+  {
+    "Suburb": "Embleton",
+    "Year": 2019,
+    "median_price": 450000.0,
+    "sales": 27
+  },
+  {
+    "Suburb": "Embleton",
+    "Year": 2020,
+    "median_price": 490000.0,
+    "sales": 31
+  },
+  {
+    "Suburb": "Embleton",
+    "Year": 2021,
+    "median_price": 550000.0,
+    "sales": 55
+  },
+  {
+    "Suburb": "Embleton",
+    "Year": 2022,
+    "median_price": 560000.0,
+    "sales": 43
+  },
+  {
+    "Suburb": "Embleton",
+    "Year": 2023,
+    "median_price": 625000.0,
+    "sales": 60
+  },
+  {
+    "Suburb": "Embleton",
+    "Year": 2024,
+    "median_price": 738000.0,
+    "sales": 24
+  },
+  {
+    "Suburb": "Ferndale",
+    "Year": 2018,
+    "median_price": 457000.0,
+    "sales": 29
+  },
+  {
+    "Suburb": "Ferndale",
+    "Year": 2019,
+    "median_price": 407000.0,
+    "sales": 19
+  },
+  {
+    "Suburb": "Ferndale",
+    "Year": 2020,
+    "median_price": 440000.0,
+    "sales": 24
+  },
+  {
+    "Suburb": "Ferndale",
+    "Year": 2021,
+    "median_price": 495000.0,
+    "sales": 23
+  },
+  {
+    "Suburb": "Ferndale",
+    "Year": 2022,
+    "median_price": 500000.0,
+    "sales": 39
+  },
+  {
+    "Suburb": "Ferndale",
+    "Year": 2023,
+    "median_price": 551500.0,
+    "sales": 28
+  },
+  {
+    "Suburb": "Ferndale",
+    "Year": 2024,
+    "median_price": 650500.0,
+    "sales": 18
+  },
+  {
+    "Suburb": "Floreat",
+    "Year": 2021,
+    "median_price": 1675000.0,
+    "sales": 24
+  },
+  {
+    "Suburb": "Floreat",
+    "Year": 2022,
+    "median_price": 1835500.0,
+    "sales": 70
+  },
+  {
+    "Suburb": "Floreat",
+    "Year": 2023,
+    "median_price": 1750000.0,
+    "sales": 73
+  },
+  {
+    "Suburb": "Floreat",
+    "Year": 2024,
+    "median_price": 2175000.0,
+    "sales": 39
+  },
+  {
+    "Suburb": "Forrestdale",
+    "Year": 2008,
+    "median_price": 480000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Forrestdale",
+    "Year": 2009,
+    "median_price": 518000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Forrestfield",
+    "Year": 2023,
+    "median_price": 545500.0,
+    "sales": 148
+  },
+  {
+    "Suburb": "Forrestfield",
+    "Year": 2024,
+    "median_price": 642750.0,
+    "sales": 128
+  },
+  {
+    "Suburb": "Fremantle",
+    "Year": 2022,
+    "median_price": 875000.0,
+    "sales": 68
+  },
+  {
+    "Suburb": "Fremantle",
+    "Year": 2023,
+    "median_price": 944000.0,
+    "sales": 112
+  },
+  {
+    "Suburb": "Fremantle",
+    "Year": 2024,
+    "median_price": 1020000.0,
+    "sales": 83
+  },
+  {
+    "Suburb": "Girrawheen",
+    "Year": 2022,
+    "median_price": 393000.0,
+    "sales": 27
+  },
+  {
+    "Suburb": "Girrawheen",
+    "Year": 2023,
+    "median_price": 440000.0,
+    "sales": 159
+  },
+  {
+    "Suburb": "Girrawheen",
+    "Year": 2024,
+    "median_price": 550000.0,
+    "sales": 82
+  },
+  {
+    "Suburb": "Glendalough",
+    "Year": 2007,
+    "median_price": 470500.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Glendalough",
+    "Year": 2011,
+    "median_price": 307700.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Glendalough",
+    "Year": 2012,
+    "median_price": 395000.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Glendalough",
+    "Year": 2013,
+    "median_price": 429000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Glendalough",
+    "Year": 2014,
+    "median_price": 350000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Glendalough",
+    "Year": 2015,
+    "median_price": 401250.0,
+    "sales": 8
+  },
+  {
+    "Suburb": "Glendalough",
+    "Year": 2016,
+    "median_price": 399950.0,
+    "sales": 9
+  },
+  {
+    "Suburb": "Glendalough",
+    "Year": 2017,
+    "median_price": 279000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Glendalough",
+    "Year": 2018,
+    "median_price": 425000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Glendalough",
+    "Year": 2019,
+    "median_price": 495000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "Glendalough",
+    "Year": 2020,
+    "median_price": 759000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Glendalough",
+    "Year": 2021,
+    "median_price": 395000.0,
+    "sales": 17
+  },
+  {
+    "Suburb": "Glendalough",
+    "Year": 2022,
+    "median_price": 495000.0,
+    "sales": 27
+  },
+  {
+    "Suburb": "Glendalough",
+    "Year": 2023,
+    "median_price": 339500.0,
+    "sales": 32
+  },
+  {
+    "Suburb": "Glendalough",
+    "Year": 2024,
+    "median_price": 507000.0,
+    "sales": 19
+  },
+  {
+    "Suburb": "Gnangara",
+    "Year": 2019,
+    "median_price": 1100.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Gnangara",
+    "Year": 2022,
+    "median_price": 770000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Gnangara",
+    "Year": 2023,
+    "median_price": 675000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Gnangara",
+    "Year": 2024,
+    "median_price": 791000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Gooseberry Hill",
+    "Year": 2019,
+    "median_price": 576000.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "Gooseberry Hill",
+    "Year": 2020,
+    "median_price": 579500.0,
+    "sales": 8
+  },
+  {
+    "Suburb": "Gooseberry Hill",
+    "Year": 2021,
+    "median_price": 630000.0,
+    "sales": 23
+  },
+  {
+    "Suburb": "Gooseberry Hill",
+    "Year": 2022,
+    "median_price": 724000.0,
+    "sales": 15
+  },
+  {
+    "Suburb": "Gooseberry Hill",
+    "Year": 2023,
+    "median_price": 710000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Gooseberry Hill",
+    "Year": 2024,
+    "median_price": 985000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Gosnells",
+    "Year": 2023,
+    "median_price": 505000.0,
+    "sales": 56
+  },
+  {
+    "Suburb": "Gosnells",
+    "Year": 2024,
+    "median_price": 580000.0,
+    "sales": 170
+  },
+  {
+    "Suburb": "Greenmount",
+    "Year": 2017,
+    "median_price": 470000.0,
+    "sales": 11
+  },
+  {
+    "Suburb": "Greenmount",
+    "Year": 2018,
+    "median_price": 425000.0,
+    "sales": 16
+  },
+  {
+    "Suburb": "Greenmount",
+    "Year": 2019,
+    "median_price": 383000.0,
+    "sales": 20
+  },
+  {
+    "Suburb": "Greenmount",
+    "Year": 2020,
+    "median_price": 457500.0,
+    "sales": 22
+  },
+  {
+    "Suburb": "Greenmount",
+    "Year": 2021,
+    "median_price": 455000.0,
+    "sales": 25
+  },
+  {
+    "Suburb": "Greenmount",
+    "Year": 2022,
+    "median_price": 530000.0,
+    "sales": 31
+  },
+  {
+    "Suburb": "Greenmount",
+    "Year": 2023,
+    "median_price": 560000.0,
+    "sales": 25
+  },
+  {
+    "Suburb": "Greenmount",
+    "Year": 2024,
+    "median_price": 795500.0,
+    "sales": 14
+  },
+  {
+    "Suburb": "Greenwood",
+    "Year": 2022,
+    "median_price": 640000.0,
+    "sales": 96
+  },
+  {
+    "Suburb": "Greenwood",
+    "Year": 2023,
+    "median_price": 692500.0,
+    "sales": 102
+  },
+  {
+    "Suburb": "Greenwood",
+    "Year": 2024,
+    "median_price": 810000.0,
+    "sales": 57
+  },
+  {
+    "Suburb": "Guildford",
+    "Year": 2014,
+    "median_price": 570000.0,
+    "sales": 8
+  },
+  {
+    "Suburb": "Guildford",
+    "Year": 2015,
+    "median_price": 592500.0,
+    "sales": 24
+  },
+  {
+    "Suburb": "Guildford",
+    "Year": 2016,
+    "median_price": 615000.0,
+    "sales": 23
+  },
+  {
+    "Suburb": "Guildford",
+    "Year": 2017,
+    "median_price": 577500.0,
+    "sales": 10
+  },
+  {
+    "Suburb": "Guildford",
+    "Year": 2018,
+    "median_price": 660000.0,
+    "sales": 15
+  },
+  {
+    "Suburb": "Guildford",
+    "Year": 2019,
+    "median_price": 550000.0,
+    "sales": 21
+  },
+  {
+    "Suburb": "Guildford",
+    "Year": 2020,
+    "median_price": 700000.0,
+    "sales": 15
+  },
+  {
+    "Suburb": "Guildford",
+    "Year": 2021,
+    "median_price": 715000.0,
+    "sales": 31
+  },
+  {
+    "Suburb": "Guildford",
+    "Year": 2022,
+    "median_price": 760000.0,
+    "sales": 37
+  },
+  {
+    "Suburb": "Guildford",
+    "Year": 2023,
+    "median_price": 721580.0,
+    "sales": 25
+  },
+  {
+    "Suburb": "Guildford",
+    "Year": 2024,
+    "median_price": 826000.0,
+    "sales": 15
+  },
+  {
+    "Suburb": "Gwelup",
+    "Year": 2018,
+    "median_price": 802500.0,
+    "sales": 25
+  },
+  {
+    "Suburb": "Gwelup",
+    "Year": 2019,
+    "median_price": 847500.0,
+    "sales": 28
+  },
+  {
+    "Suburb": "Gwelup",
+    "Year": 2020,
+    "median_price": 846500.0,
+    "sales": 34
+  },
+  {
+    "Suburb": "Gwelup",
+    "Year": 2021,
+    "median_price": 1002500.0,
+    "sales": 34
+  },
+  {
+    "Suburb": "Gwelup",
+    "Year": 2022,
+    "median_price": 1121000.0,
+    "sales": 56
+  },
+  {
+    "Suburb": "Gwelup",
+    "Year": 2023,
+    "median_price": 1242604.5,
+    "sales": 48
+  },
+  {
+    "Suburb": "Gwelup",
+    "Year": 2024,
+    "median_price": 1432444.0,
+    "sales": 36
+  },
+  {
+    "Suburb": "Hamersley",
+    "Year": 2019,
+    "median_price": 520000.0,
+    "sales": 25
+  },
+  {
+    "Suburb": "Hamersley",
+    "Year": 2020,
+    "median_price": 524500.0,
+    "sales": 36
+  },
+  {
+    "Suburb": "Hamersley",
+    "Year": 2021,
+    "median_price": 565000.0,
+    "sales": 41
+  },
+  {
+    "Suburb": "Hamersley",
+    "Year": 2022,
+    "median_price": 678000.0,
+    "sales": 53
+  },
+  {
+    "Suburb": "Hamersley",
+    "Year": 2023,
+    "median_price": 720000.0,
+    "sales": 67
+  },
+  {
+    "Suburb": "Hamersley",
+    "Year": 2024,
+    "median_price": 860000.0,
+    "sales": 32
+  },
+  {
+    "Suburb": "Hamilton Hill",
+    "Year": 2022,
+    "median_price": 630000.0,
+    "sales": 9
+  },
+  {
+    "Suburb": "Hamilton Hill",
+    "Year": 2023,
+    "median_price": 620000.0,
+    "sales": 168
+  },
+  {
+    "Suburb": "Hamilton Hill",
+    "Year": 2024,
+    "median_price": 770000.0,
+    "sales": 95
+  },
+  {
+    "Suburb": "Harrisdale",
+    "Year": 2022,
+    "median_price": 697500.0,
+    "sales": 20
+  },
+  {
+    "Suburb": "Harrisdale",
+    "Year": 2023,
+    "median_price": 750000.0,
+    "sales": 74
+  },
+  {
+    "Suburb": "Harrisdale",
+    "Year": 2024,
+    "median_price": 905000.0,
+    "sales": 37
+  },
+  {
+    "Suburb": "Hazelmere",
+    "Year": 2008,
+    "median_price": 320000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Hazelmere",
+    "Year": 2010,
+    "median_price": 575000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Hazelmere",
+    "Year": 2011,
+    "median_price": 378000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Hazelmere",
+    "Year": 2012,
+    "median_price": 660000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Hazelmere",
+    "Year": 2013,
+    "median_price": 475000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Hazelmere",
+    "Year": 2014,
+    "median_price": 710000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Hazelmere",
+    "Year": 2015,
+    "median_price": 490000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Hazelmere",
+    "Year": 2016,
+    "median_price": 509500.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Hazelmere",
+    "Year": 2017,
+    "median_price": 200000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Hazelmere",
+    "Year": 2018,
+    "median_price": 464000.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Hazelmere",
+    "Year": 2019,
+    "median_price": 467500.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Hazelmere",
+    "Year": 2020,
+    "median_price": 440000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "Hazelmere",
+    "Year": 2021,
+    "median_price": 459500.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Hazelmere",
+    "Year": 2022,
+    "median_price": 527500.0,
+    "sales": 8
+  },
+  {
+    "Suburb": "Hazelmere",
+    "Year": 2023,
+    "median_price": 610000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Hazelmere",
+    "Year": 2024,
+    "median_price": 752500.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Helena Valley",
+    "Year": 2019,
+    "median_price": 495000.0,
+    "sales": 10
+  },
+  {
+    "Suburb": "Helena Valley",
+    "Year": 2020,
+    "median_price": 545000.0,
+    "sales": 35
+  },
+  {
+    "Suburb": "Helena Valley",
+    "Year": 2021,
+    "median_price": 590000.0,
+    "sales": 46
+  },
+  {
+    "Suburb": "Helena Valley",
+    "Year": 2022,
+    "median_price": 690000.0,
+    "sales": 41
+  },
+  {
+    "Suburb": "Helena Valley",
+    "Year": 2023,
+    "median_price": 720000.0,
+    "sales": 41
+  },
+  {
+    "Suburb": "Helena Valley",
+    "Year": 2024,
+    "median_price": 820000.0,
+    "sales": 17
+  },
+  {
+    "Suburb": "Henley Brook",
+    "Year": 2013,
+    "median_price": 449000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Henley Brook",
+    "Year": 2023,
+    "median_price": 695000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Henley Brook",
+    "Year": 2024,
+    "median_price": 765000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "High Wycombe",
+    "Year": 2023,
+    "median_price": 559084.0,
+    "sales": 184
+  },
+  {
+    "Suburb": "High Wycombe",
+    "Year": 2024,
+    "median_price": 640000.0,
+    "sales": 85
+  },
+  {
+    "Suburb": "Highgate",
+    "Year": 2008,
+    "median_price": 860000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Highgate",
+    "Year": 2009,
+    "median_price": 840000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Highgate",
+    "Year": 2010,
+    "median_price": 890000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Highgate",
+    "Year": 2011,
+    "median_price": 557500.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Highgate",
+    "Year": 2012,
+    "median_price": 490000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Highgate",
+    "Year": 2013,
+    "median_price": 502501.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Highgate",
+    "Year": 2014,
+    "median_price": 618000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Highgate",
+    "Year": 2015,
+    "median_price": 665000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "Highgate",
+    "Year": 2016,
+    "median_price": 505000.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "Highgate",
+    "Year": 2017,
+    "median_price": 850277.5,
+    "sales": 8
+  },
+  {
+    "Suburb": "Highgate",
+    "Year": 2018,
+    "median_price": 618750.0,
+    "sales": 10
+  },
+  {
+    "Suburb": "Highgate",
+    "Year": 2019,
+    "median_price": 562500.0,
+    "sales": 8
+  },
+  {
+    "Suburb": "Highgate",
+    "Year": 2020,
+    "median_price": 375000.0,
+    "sales": 11
+  },
+  {
+    "Suburb": "Highgate",
+    "Year": 2021,
+    "median_price": 735000.0,
+    "sales": 31
+  },
+  {
+    "Suburb": "Highgate",
+    "Year": 2022,
+    "median_price": 570000.0,
+    "sales": 28
+  },
+  {
+    "Suburb": "Highgate",
+    "Year": 2023,
+    "median_price": 590000.0,
+    "sales": 29
+  },
+  {
+    "Suburb": "Highgate",
+    "Year": 2024,
+    "median_price": 545000.0,
+    "sales": 37
+  },
+  {
+    "Suburb": "Hillarys",
+    "Year": 2022,
+    "median_price": 950000.0,
+    "sales": 60
+  },
+  {
+    "Suburb": "Hillarys",
+    "Year": 2023,
+    "median_price": 1030000.0,
+    "sales": 104
+  },
+  {
+    "Suburb": "Hillarys",
+    "Year": 2024,
+    "median_price": 1180000.0,
+    "sales": 56
+  },
+  {
+    "Suburb": "Hilton",
+    "Year": 2019,
+    "median_price": 600000.0,
+    "sales": 11
+  },
+  {
+    "Suburb": "Hilton",
+    "Year": 2020,
+    "median_price": 550000.0,
+    "sales": 45
+  },
+  {
+    "Suburb": "Hilton",
+    "Year": 2021,
+    "median_price": 612000.0,
+    "sales": 60
+  },
+  {
+    "Suburb": "Hilton",
+    "Year": 2022,
+    "median_price": 710500.0,
+    "sales": 48
+  },
+  {
+    "Suburb": "Hilton",
+    "Year": 2023,
+    "median_price": 725000.0,
+    "sales": 60
+  },
+  {
+    "Suburb": "Hilton",
+    "Year": 2024,
+    "median_price": 872500.0,
+    "sales": 31
+  },
+  {
+    "Suburb": "Hocking",
+    "Year": 2021,
+    "median_price": 399500.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Hocking",
+    "Year": 2022,
+    "median_price": 580000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "Hocking",
+    "Year": 2023,
+    "median_price": 590000.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Hocking",
+    "Year": 2024,
+    "median_price": 686500.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Huntingdale",
+    "Year": 2022,
+    "median_price": 483000.0,
+    "sales": 106
+  },
+  {
+    "Suburb": "Huntingdale",
+    "Year": 2023,
+    "median_price": 526385.0,
+    "sales": 108
+  },
+  {
+    "Suburb": "Huntingdale",
+    "Year": 2024,
+    "median_price": 640800.0,
+    "sales": 59
+  },
+  {
+    "Suburb": "Inglewood",
+    "Year": 2020,
+    "median_price": 910000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Inglewood",
+    "Year": 2021,
+    "median_price": 815750.0,
+    "sales": 60
+  },
+  {
+    "Suburb": "Inglewood",
+    "Year": 2022,
+    "median_price": 875000.0,
+    "sales": 74
+  },
+  {
+    "Suburb": "Inglewood",
+    "Year": 2023,
+    "median_price": 907500.0,
+    "sales": 82
+  },
+  {
+    "Suburb": "Inglewood",
+    "Year": 2024,
+    "median_price": 920000.0,
+    "sales": 39
+  },
+  {
+    "Suburb": "Innaloo",
+    "Year": 2022,
+    "median_price": 585000.0,
+    "sales": 62
+  },
+  {
+    "Suburb": "Innaloo",
+    "Year": 2023,
+    "median_price": 670000.0,
+    "sales": 113
+  },
+  {
+    "Suburb": "Innaloo",
+    "Year": 2024,
+    "median_price": 771000.0,
+    "sales": 66
+  },
+  {
+    "Suburb": "Jandakot",
+    "Year": 2016,
+    "median_price": 735000.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Jandakot",
+    "Year": 2017,
+    "median_price": 678000.0,
+    "sales": 21
+  },
+  {
+    "Suburb": "Jandakot",
+    "Year": 2018,
+    "median_price": 657000.0,
+    "sales": 19
+  },
+  {
+    "Suburb": "Jandakot",
+    "Year": 2019,
+    "median_price": 614500.0,
+    "sales": 24
+  },
+  {
+    "Suburb": "Jandakot",
+    "Year": 2020,
+    "median_price": 616000.0,
+    "sales": 26
+  },
+  {
+    "Suburb": "Jandakot",
+    "Year": 2021,
+    "median_price": 717500.0,
+    "sales": 64
+  },
+  {
+    "Suburb": "Jandakot",
+    "Year": 2022,
+    "median_price": 732500.0,
+    "sales": 42
+  },
+  {
+    "Suburb": "Jandakot",
+    "Year": 2023,
+    "median_price": 830000.0,
+    "sales": 26
+  },
+  {
+    "Suburb": "Jandakot",
+    "Year": 2024,
+    "median_price": 935000.0,
+    "sales": 18
+  },
+  {
+    "Suburb": "Jolimont",
+    "Year": 2008,
+    "median_price": 505000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Jolimont",
+    "Year": 2009,
+    "median_price": 790000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Jolimont",
+    "Year": 2012,
+    "median_price": 785000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Jolimont",
+    "Year": 2013,
+    "median_price": 849000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Jolimont",
+    "Year": 2014,
+    "median_price": 855000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Jolimont",
+    "Year": 2015,
+    "median_price": 1005000.0,
+    "sales": 8
+  },
+  {
+    "Suburb": "Jolimont",
+    "Year": 2016,
+    "median_price": 880000.0,
+    "sales": 11
+  },
+  {
+    "Suburb": "Jolimont",
+    "Year": 2017,
+    "median_price": 865000.0,
+    "sales": 9
+  },
+  {
+    "Suburb": "Jolimont",
+    "Year": 2018,
+    "median_price": 560000.0,
+    "sales": 11
+  },
+  {
+    "Suburb": "Jolimont",
+    "Year": 2019,
+    "median_price": 847500.0,
+    "sales": 8
+  },
+  {
+    "Suburb": "Jolimont",
+    "Year": 2020,
+    "median_price": 580000.0,
+    "sales": 11
+  },
+  {
+    "Suburb": "Jolimont",
+    "Year": 2021,
+    "median_price": 651500.0,
+    "sales": 20
+  },
+  {
+    "Suburb": "Jolimont",
+    "Year": 2022,
+    "median_price": 750000.0,
+    "sales": 21
+  },
+  {
+    "Suburb": "Jolimont",
+    "Year": 2023,
+    "median_price": 950000.0,
+    "sales": 15
+  },
+  {
+    "Suburb": "Jolimont",
+    "Year": 2024,
+    "median_price": 821250.0,
+    "sales": 12
+  },
+  {
+    "Suburb": "Joondanna",
+    "Year": 2021,
+    "median_price": 636250.0,
+    "sales": 70
+  },
+  {
+    "Suburb": "Joondanna",
+    "Year": 2022,
+    "median_price": 650000.0,
+    "sales": 61
+  },
+  {
+    "Suburb": "Joondanna",
+    "Year": 2023,
+    "median_price": 740000.0,
+    "sales": 79
+  },
+  {
+    "Suburb": "Joondanna",
+    "Year": 2024,
+    "median_price": 730000.0,
+    "sales": 54
+  },
+  {
+    "Suburb": "Kalamunda",
+    "Year": 2021,
+    "median_price": 650000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Kalamunda",
+    "Year": 2022,
+    "median_price": 650000.0,
+    "sales": 48
+  },
+  {
+    "Suburb": "Kalamunda",
+    "Year": 2023,
+    "median_price": 668750.0,
+    "sales": 70
+  },
+  {
+    "Suburb": "Kalamunda",
+    "Year": 2024,
+    "median_price": 702500.0,
+    "sales": 36
+  },
+  {
+    "Suburb": "Karawara",
+    "Year": 2008,
+    "median_price": 457000.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Karawara",
+    "Year": 2009,
+    "median_price": 673000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "Karawara",
+    "Year": 2010,
+    "median_price": 767000.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Karawara",
+    "Year": 2011,
+    "median_price": 650000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Karawara",
+    "Year": 2012,
+    "median_price": 712500.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Karawara",
+    "Year": 2013,
+    "median_price": 610000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Karawara",
+    "Year": 2014,
+    "median_price": 700000.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Karawara",
+    "Year": 2015,
+    "median_price": 625000.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Karawara",
+    "Year": 2016,
+    "median_price": 882500.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Karawara",
+    "Year": 2017,
+    "median_price": 627500.0,
+    "sales": 8
+  },
+  {
+    "Suburb": "Karawara",
+    "Year": 2018,
+    "median_price": 499000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Karawara",
+    "Year": 2019,
+    "median_price": 715000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Karawara",
+    "Year": 2020,
+    "median_price": 528000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "Karawara",
+    "Year": 2021,
+    "median_price": 597500.0,
+    "sales": 12
+  },
+  {
+    "Suburb": "Karawara",
+    "Year": 2022,
+    "median_price": 750000.0,
+    "sales": 23
+  },
+  {
+    "Suburb": "Karawara",
+    "Year": 2023,
+    "median_price": 795400.0,
+    "sales": 10
+  },
+  {
+    "Suburb": "Karawara",
+    "Year": 2024,
+    "median_price": 1162888.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Kardinya",
+    "Year": 2022,
+    "median_price": 701444.0,
+    "sales": 88
+  },
+  {
+    "Suburb": "Kardinya",
+    "Year": 2023,
+    "median_price": 791000.0,
+    "sales": 109
+  },
+  {
+    "Suburb": "Kardinya",
+    "Year": 2024,
+    "median_price": 941000.0,
+    "sales": 63
+  },
+  {
+    "Suburb": "Karrinyup",
+    "Year": 2021,
+    "median_price": 1200000.0,
+    "sales": 9
+  },
+  {
+    "Suburb": "Karrinyup",
+    "Year": 2022,
+    "median_price": 1090000.0,
+    "sales": 91
+  },
+  {
+    "Suburb": "Karrinyup",
+    "Year": 2023,
+    "median_price": 1182500.0,
+    "sales": 98
+  },
+  {
+    "Suburb": "Karrinyup",
+    "Year": 2024,
+    "median_price": 1300000.0,
+    "sales": 49
+  },
+  {
+    "Suburb": "Kensington",
+    "Year": 2017,
+    "median_price": 686000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "Kensington",
+    "Year": 2018,
+    "median_price": 895000.0,
+    "sales": 23
+  },
+  {
+    "Suburb": "Kensington",
+    "Year": 2019,
+    "median_price": 780000.0,
+    "sales": 29
+  },
+  {
+    "Suburb": "Kensington",
+    "Year": 2020,
+    "median_price": 885000.0,
+    "sales": 25
+  },
+  {
+    "Suburb": "Kensington",
+    "Year": 2021,
+    "median_price": 997500.0,
+    "sales": 38
+  },
+  {
+    "Suburb": "Kensington",
+    "Year": 2022,
+    "median_price": 1065000.0,
+    "sales": 34
+  },
+  {
+    "Suburb": "Kensington",
+    "Year": 2023,
+    "median_price": 1165000.0,
+    "sales": 59
+  },
+  {
+    "Suburb": "Kensington",
+    "Year": 2024,
+    "median_price": 1230000.0,
+    "sales": 19
+  },
+  {
+    "Suburb": "Kenwick",
+    "Year": 2020,
+    "median_price": 360000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Kenwick",
+    "Year": 2021,
+    "median_price": 361500.0,
+    "sales": 66
+  },
+  {
+    "Suburb": "Kenwick",
+    "Year": 2022,
+    "median_price": 365000.0,
+    "sales": 61
+  },
+  {
+    "Suburb": "Kenwick",
+    "Year": 2023,
+    "median_price": 458000.0,
+    "sales": 70
+  },
+  {
+    "Suburb": "Kenwick",
+    "Year": 2024,
+    "median_price": 595000.0,
+    "sales": 33
+  },
+  {
+    "Suburb": "Kewdale",
+    "Year": 2021,
+    "median_price": 495000.0,
+    "sales": 16
+  },
+  {
+    "Suburb": "Kewdale",
+    "Year": 2022,
+    "median_price": 500000.0,
+    "sales": 92
+  },
+  {
+    "Suburb": "Kewdale",
+    "Year": 2023,
+    "median_price": 580000.0,
+    "sales": 111
+  },
+  {
+    "Suburb": "Kewdale",
+    "Year": 2024,
+    "median_price": 680000.0,
+    "sales": 41
+  },
+  {
+    "Suburb": "Kiara",
+    "Year": 2008,
+    "median_price": 389000.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Kiara",
+    "Year": 2009,
+    "median_price": 454000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Kiara",
+    "Year": 2010,
+    "median_price": 410000.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Kiara",
+    "Year": 2011,
+    "median_price": 380000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Kiara",
+    "Year": 2012,
+    "median_price": 515000.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Kiara",
+    "Year": 2013,
+    "median_price": 445000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Kiara",
+    "Year": 2014,
+    "median_price": 501500.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "Kiara",
+    "Year": 2015,
+    "median_price": 515444.0,
+    "sales": 10
+  },
+  {
+    "Suburb": "Kiara",
+    "Year": 2016,
+    "median_price": 485000.0,
+    "sales": 10
+  },
+  {
+    "Suburb": "Kiara",
+    "Year": 2017,
+    "median_price": 389000.0,
+    "sales": 11
+  },
+  {
+    "Suburb": "Kiara",
+    "Year": 2018,
+    "median_price": 420000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Kiara",
+    "Year": 2019,
+    "median_price": 387000.0,
+    "sales": 10
+  },
+  {
+    "Suburb": "Kiara",
+    "Year": 2020,
+    "median_price": 379000.0,
+    "sales": 15
+  },
+  {
+    "Suburb": "Kiara",
+    "Year": 2021,
+    "median_price": 436250.0,
+    "sales": 18
+  },
+  {
+    "Suburb": "Kiara",
+    "Year": 2022,
+    "median_price": 515000.0,
+    "sales": 24
+  },
+  {
+    "Suburb": "Kiara",
+    "Year": 2023,
+    "median_price": 542500.0,
+    "sales": 20
+  },
+  {
+    "Suburb": "Kiara",
+    "Year": 2024,
+    "median_price": 718000.0,
+    "sales": 8
+  },
+  {
+    "Suburb": "Kingsley",
+    "Year": 2022,
+    "median_price": 715000.0,
+    "sales": 83
+  },
+  {
+    "Suburb": "Kingsley",
+    "Year": 2023,
+    "median_price": 770000.0,
+    "sales": 97
+  },
+  {
+    "Suburb": "Kingsley",
+    "Year": 2024,
+    "median_price": 867500.0,
+    "sales": 68
+  },
+  {
+    "Suburb": "Koondoola",
+    "Year": 2016,
+    "median_price": 405000.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Koondoola",
+    "Year": 2017,
+    "median_price": 345000.0,
+    "sales": 19
+  },
+  {
+    "Suburb": "Koondoola",
+    "Year": 2018,
+    "median_price": 315000.0,
+    "sales": 15
+  },
+  {
+    "Suburb": "Koondoola",
+    "Year": 2019,
+    "median_price": 285000.0,
+    "sales": 15
+  },
+  {
+    "Suburb": "Koondoola",
+    "Year": 2020,
+    "median_price": 315000.0,
+    "sales": 19
+  },
+  {
+    "Suburb": "Koondoola",
+    "Year": 2021,
+    "median_price": 361250.0,
+    "sales": 34
+  },
+  {
+    "Suburb": "Koondoola",
+    "Year": 2022,
+    "median_price": 390000.0,
+    "sales": 70
+  },
+  {
+    "Suburb": "Koondoola",
+    "Year": 2023,
+    "median_price": 417000.0,
+    "sales": 42
+  },
+  {
+    "Suburb": "Koondoola",
+    "Year": 2024,
+    "median_price": 551500.0,
+    "sales": 34
+  },
+  {
+    "Suburb": "Koongamia",
+    "Year": 2008,
+    "median_price": 289000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Koongamia",
+    "Year": 2009,
+    "median_price": 277500.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Koongamia",
+    "Year": 2010,
+    "median_price": 300000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Koongamia",
+    "Year": 2011,
+    "median_price": 330000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Koongamia",
+    "Year": 2012,
+    "median_price": 330000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Koongamia",
+    "Year": 2013,
+    "median_price": 319000.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Koongamia",
+    "Year": 2014,
+    "median_price": 377500.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Koongamia",
+    "Year": 2015,
+    "median_price": 342000.0,
+    "sales": 10
+  },
+  {
+    "Suburb": "Koongamia",
+    "Year": 2016,
+    "median_price": 318000.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "Koongamia",
+    "Year": 2017,
+    "median_price": 333000.0,
+    "sales": 8
+  },
+  {
+    "Suburb": "Koongamia",
+    "Year": 2018,
+    "median_price": 306000.0,
+    "sales": 12
+  },
+  {
+    "Suburb": "Koongamia",
+    "Year": 2019,
+    "median_price": 226000.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Koongamia",
+    "Year": 2020,
+    "median_price": 247500.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Koongamia",
+    "Year": 2021,
+    "median_price": 372500.0,
+    "sales": 18
+  },
+  {
+    "Suburb": "Koongamia",
+    "Year": 2022,
+    "median_price": 369000.0,
+    "sales": 21
+  },
+  {
+    "Suburb": "Koongamia",
+    "Year": 2023,
+    "median_price": 431000.0,
+    "sales": 13
+  },
+  {
+    "Suburb": "Koongamia",
+    "Year": 2024,
+    "median_price": 476000.0,
+    "sales": 9
+  },
+  {
+    "Suburb": "Landsdale",
+    "Year": 2022,
+    "median_price": 637500.0,
+    "sales": 48
+  },
+  {
+    "Suburb": "Landsdale",
+    "Year": 2023,
+    "median_price": 725000.0,
+    "sales": 145
+  },
+  {
+    "Suburb": "Landsdale",
+    "Year": 2024,
+    "median_price": 850000.0,
+    "sales": 84
+  },
+  {
+    "Suburb": "Langford",
+    "Year": 2020,
+    "median_price": 339000.0,
+    "sales": 29
+  },
+  {
+    "Suburb": "Langford",
+    "Year": 2021,
+    "median_price": 369000.0,
+    "sales": 51
+  },
+  {
+    "Suburb": "Langford",
+    "Year": 2022,
+    "median_price": 405000.0,
+    "sales": 61
+  },
+  {
+    "Suburb": "Langford",
+    "Year": 2023,
+    "median_price": 440000.0,
+    "sales": 51
+  },
+  {
+    "Suburb": "Langford",
+    "Year": 2024,
+    "median_price": 581068.5,
+    "sales": 28
+  },
+  {
+    "Suburb": "Lathlain",
+    "Year": 2017,
+    "median_price": 664500.0,
+    "sales": 10
+  },
+  {
+    "Suburb": "Lathlain",
+    "Year": 2018,
+    "median_price": 761250.0,
+    "sales": 16
+  },
+  {
+    "Suburb": "Lathlain",
+    "Year": 2019,
+    "median_price": 600000.0,
+    "sales": 25
+  },
+  {
+    "Suburb": "Lathlain",
+    "Year": 2020,
+    "median_price": 730000.0,
+    "sales": 25
+  },
+  {
+    "Suburb": "Lathlain",
+    "Year": 2021,
+    "median_price": 792500.0,
+    "sales": 42
+  },
+  {
+    "Suburb": "Lathlain",
+    "Year": 2022,
+    "median_price": 864500.0,
+    "sales": 38
+  },
+  {
+    "Suburb": "Lathlain",
+    "Year": 2023,
+    "median_price": 926502.5,
+    "sales": 52
+  },
+  {
+    "Suburb": "Lathlain",
+    "Year": 2024,
+    "median_price": 930000.0,
+    "sales": 24
+  },
+  {
+    "Suburb": "Leederville",
+    "Year": 2017,
+    "median_price": 895500.0,
+    "sales": 20
+  },
+  {
+    "Suburb": "Leederville",
+    "Year": 2018,
+    "median_price": 880500.0,
+    "sales": 30
+  },
+  {
+    "Suburb": "Leederville",
+    "Year": 2019,
+    "median_price": 777500.0,
+    "sales": 16
+  },
+  {
+    "Suburb": "Leederville",
+    "Year": 2020,
+    "median_price": 885000.0,
+    "sales": 24
+  },
+  {
+    "Suburb": "Leederville",
+    "Year": 2021,
+    "median_price": 815000.0,
+    "sales": 40
+  },
+  {
+    "Suburb": "Leederville",
+    "Year": 2022,
+    "median_price": 923500.0,
+    "sales": 54
+  },
+  {
+    "Suburb": "Leederville",
+    "Year": 2023,
+    "median_price": 1040000.0,
+    "sales": 43
+  },
+  {
+    "Suburb": "Leederville",
+    "Year": 2024,
+    "median_price": 720000.0,
+    "sales": 23
+  },
+  {
+    "Suburb": "Leeming",
+    "Year": 2022,
+    "median_price": 866500.0,
+    "sales": 107
+  },
+  {
+    "Suburb": "Leeming",
+    "Year": 2023,
+    "median_price": 900501.5,
+    "sales": 108
+  },
+  {
+    "Suburb": "Leeming",
+    "Year": 2024,
+    "median_price": 1085000.0,
+    "sales": 45
+  },
+  {
+    "Suburb": "Lesmurdie",
+    "Year": 2021,
+    "median_price": 645000.0,
+    "sales": 17
+  },
+  {
+    "Suburb": "Lesmurdie",
+    "Year": 2022,
+    "median_price": 680000.0,
+    "sales": 23
+  },
+  {
+    "Suburb": "Lesmurdie",
+    "Year": 2023,
+    "median_price": 668500.0,
+    "sales": 30
+  },
+  {
+    "Suburb": "Lesmurdie",
+    "Year": 2024,
+    "median_price": 800000.0,
+    "sales": 17
+  },
+  {
+    "Suburb": "Lockridge",
+    "Year": 2016,
+    "median_price": 351000.0,
+    "sales": 12
+  },
+  {
+    "Suburb": "Lockridge",
+    "Year": 2017,
+    "median_price": 313500.0,
+    "sales": 12
+  },
+  {
+    "Suburb": "Lockridge",
+    "Year": 2018,
+    "median_price": 303000.0,
+    "sales": 23
+  },
+  {
+    "Suburb": "Lockridge",
+    "Year": 2019,
+    "median_price": 251000.0,
+    "sales": 16
+  },
+  {
+    "Suburb": "Lockridge",
+    "Year": 2020,
+    "median_price": 250000.0,
+    "sales": 29
+  },
+  {
+    "Suburb": "Lockridge",
+    "Year": 2021,
+    "median_price": 325000.0,
+    "sales": 34
+  },
+  {
+    "Suburb": "Lockridge",
+    "Year": 2022,
+    "median_price": 375000.0,
+    "sales": 41
+  },
+  {
+    "Suburb": "Lockridge",
+    "Year": 2023,
+    "median_price": 372500.0,
+    "sales": 50
+  },
+  {
+    "Suburb": "Lockridge",
+    "Year": 2024,
+    "median_price": 545000.0,
+    "sales": 26
+  },
+  {
+    "Suburb": "Lynwood",
+    "Year": 2018,
+    "median_price": 413750.0,
+    "sales": 26
+  },
+  {
+    "Suburb": "Lynwood",
+    "Year": 2019,
+    "median_price": 395000.0,
+    "sales": 26
+  },
+  {
+    "Suburb": "Lynwood",
+    "Year": 2020,
+    "median_price": 400000.0,
+    "sales": 17
+  },
+  {
+    "Suburb": "Lynwood",
+    "Year": 2021,
+    "median_price": 438000.0,
+    "sales": 33
+  },
+  {
+    "Suburb": "Lynwood",
+    "Year": 2022,
+    "median_price": 460000.0,
+    "sales": 39
+  },
+  {
+    "Suburb": "Lynwood",
+    "Year": 2023,
+    "median_price": 496500.0,
+    "sales": 28
+  },
+  {
+    "Suburb": "Lynwood",
+    "Year": 2024,
+    "median_price": 667900.0,
+    "sales": 18
+  },
+  {
+    "Suburb": "Maddington",
+    "Year": 2023,
+    "median_price": 447250.0,
+    "sales": 154
+  },
+  {
+    "Suburb": "Maddington",
+    "Year": 2024,
+    "median_price": 590500.0,
+    "sales": 100
+  },
+  {
+    "Suburb": "Madeley",
+    "Year": 2021,
+    "median_price": 632500.0,
+    "sales": 82
+  },
+  {
+    "Suburb": "Madeley",
+    "Year": 2022,
+    "median_price": 649000.0,
+    "sales": 75
+  },
+  {
+    "Suburb": "Madeley",
+    "Year": 2023,
+    "median_price": 680000.0,
+    "sales": 79
+  },
+  {
+    "Suburb": "Madeley",
+    "Year": 2024,
+    "median_price": 755000.0,
+    "sales": 40
+  },
+  {
+    "Suburb": "Maida Vale",
+    "Year": 2020,
+    "median_price": 475000.0,
+    "sales": 23
+  },
+  {
+    "Suburb": "Maida Vale",
+    "Year": 2021,
+    "median_price": 522500.0,
+    "sales": 56
+  },
+  {
+    "Suburb": "Maida Vale",
+    "Year": 2022,
+    "median_price": 548000.0,
+    "sales": 51
+  },
+  {
+    "Suburb": "Maida Vale",
+    "Year": 2023,
+    "median_price": 615000.0,
+    "sales": 43
+  },
+  {
+    "Suburb": "Maida Vale",
+    "Year": 2024,
+    "median_price": 765000.0,
+    "sales": 21
+  },
+  {
+    "Suburb": "Manning",
+    "Year": 2019,
+    "median_price": 850000.0,
+    "sales": 43
+  },
+  {
+    "Suburb": "Manning",
+    "Year": 2020,
+    "median_price": 727500.0,
+    "sales": 44
+  },
+  {
+    "Suburb": "Manning",
+    "Year": 2021,
+    "median_price": 805000.0,
+    "sales": 50
+  },
+  {
+    "Suburb": "Manning",
+    "Year": 2022,
+    "median_price": 900000.0,
+    "sales": 39
+  },
+  {
+    "Suburb": "Manning",
+    "Year": 2023,
+    "median_price": 986000.0,
+    "sales": 50
+  },
+  {
+    "Suburb": "Manning",
+    "Year": 2024,
+    "median_price": 1082500.0,
+    "sales": 20
+  },
+  {
+    "Suburb": "Marangaroo",
+    "Year": 2022,
+    "median_price": 498000.0,
+    "sales": 120
+  },
+  {
+    "Suburb": "Marangaroo",
+    "Year": 2023,
+    "median_price": 568750.0,
+    "sales": 94
+  },
+  {
+    "Suburb": "Marangaroo",
+    "Year": 2024,
+    "median_price": 695000.0,
+    "sales": 61
+  },
+  {
+    "Suburb": "Marmion",
+    "Year": 2007,
+    "median_price": 830000.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Marmion",
+    "Year": 2008,
+    "median_price": 2150000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Marmion",
+    "Year": 2009,
+    "median_price": 850500.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Marmion",
+    "Year": 2010,
+    "median_price": 810000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Marmion",
+    "Year": 2011,
+    "median_price": 775000.0,
+    "sales": 9
+  },
+  {
+    "Suburb": "Marmion",
+    "Year": 2012,
+    "median_price": 810000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Marmion",
+    "Year": 2013,
+    "median_price": 974000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "Marmion",
+    "Year": 2014,
+    "median_price": 1035000.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Marmion",
+    "Year": 2015,
+    "median_price": 1160000.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "Marmion",
+    "Year": 2016,
+    "median_price": 1005000.0,
+    "sales": 8
+  },
+  {
+    "Suburb": "Marmion",
+    "Year": 2017,
+    "median_price": 960000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "Marmion",
+    "Year": 2018,
+    "median_price": 885000.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "Marmion",
+    "Year": 2019,
+    "median_price": 861250.0,
+    "sales": 16
+  },
+  {
+    "Suburb": "Marmion",
+    "Year": 2020,
+    "median_price": 877000.0,
+    "sales": 17
+  },
+  {
+    "Suburb": "Marmion",
+    "Year": 2021,
+    "median_price": 1050000.0,
+    "sales": 32
+  },
+  {
+    "Suburb": "Marmion",
+    "Year": 2022,
+    "median_price": 1520500.0,
+    "sales": 22
+  },
+  {
+    "Suburb": "Marmion",
+    "Year": 2023,
+    "median_price": 1405000.0,
+    "sales": 21
+  },
+  {
+    "Suburb": "Marmion",
+    "Year": 2024,
+    "median_price": 2000000.0,
+    "sales": 16
+  },
+  {
+    "Suburb": "Martin",
+    "Year": 2008,
+    "median_price": 300000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Martin",
+    "Year": 2012,
+    "median_price": 500000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Martin",
+    "Year": 2013,
+    "median_price": 404000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Martin",
+    "Year": 2016,
+    "median_price": 485000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Martin",
+    "Year": 2017,
+    "median_price": 428500.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "Martin",
+    "Year": 2019,
+    "median_price": 420000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Martin",
+    "Year": 2020,
+    "median_price": 290000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Martin",
+    "Year": 2021,
+    "median_price": 490000.0,
+    "sales": 9
+  },
+  {
+    "Suburb": "Martin",
+    "Year": 2022,
+    "median_price": 510000.0,
+    "sales": 13
+  },
+  {
+    "Suburb": "Martin",
+    "Year": 2023,
+    "median_price": 561000.0,
+    "sales": 10
+  },
+  {
+    "Suburb": "Martin",
+    "Year": 2024,
+    "median_price": 680000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Maylands",
+    "Year": 2023,
+    "median_price": 497500.0,
+    "sales": 136
+  },
+  {
+    "Suburb": "Maylands",
+    "Year": 2024,
+    "median_price": 559750.0,
+    "sales": 142
+  },
+  {
+    "Suburb": "Melville",
+    "Year": 2021,
+    "median_price": 890000.0,
+    "sales": 53
+  },
+  {
+    "Suburb": "Melville",
+    "Year": 2022,
+    "median_price": 990000.0,
+    "sales": 90
+  },
+  {
+    "Suburb": "Melville",
+    "Year": 2023,
+    "median_price": 955000.0,
+    "sales": 92
+  },
+  {
+    "Suburb": "Melville",
+    "Year": 2024,
+    "median_price": 1155000.0,
+    "sales": 36
+  },
+  {
+    "Suburb": "Menora",
+    "Year": 2008,
+    "median_price": 856250.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Menora",
+    "Year": 2009,
+    "median_price": 963000.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Menora",
+    "Year": 2010,
+    "median_price": 1500000.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Menora",
+    "Year": 2011,
+    "median_price": 1050000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Menora",
+    "Year": 2012,
+    "median_price": 865000.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "Menora",
+    "Year": 2013,
+    "median_price": 885000.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "Menora",
+    "Year": 2014,
+    "median_price": 1050000.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Menora",
+    "Year": 2015,
+    "median_price": 923000.0,
+    "sales": 10
+  },
+  {
+    "Suburb": "Menora",
+    "Year": 2016,
+    "median_price": 1236000.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "Menora",
+    "Year": 2017,
+    "median_price": 960000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "Menora",
+    "Year": 2018,
+    "median_price": 1065000.0,
+    "sales": 15
+  },
+  {
+    "Suburb": "Menora",
+    "Year": 2019,
+    "median_price": 1332500.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Menora",
+    "Year": 2020,
+    "median_price": 1082500.0,
+    "sales": 10
+  },
+  {
+    "Suburb": "Menora",
+    "Year": 2021,
+    "median_price": 1200000.0,
+    "sales": 23
+  },
+  {
+    "Suburb": "Menora",
+    "Year": 2022,
+    "median_price": 1375000.0,
+    "sales": 15
+  },
+  {
+    "Suburb": "Menora",
+    "Year": 2023,
+    "median_price": 1430000.0,
+    "sales": 14
+  },
+  {
+    "Suburb": "Menora",
+    "Year": 2024,
+    "median_price": 1900000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "Middle Swan",
+    "Year": 2014,
+    "median_price": 405000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Middle Swan",
+    "Year": 2015,
+    "median_price": 375000.0,
+    "sales": 19
+  },
+  {
+    "Suburb": "Middle Swan",
+    "Year": 2016,
+    "median_price": 365000.0,
+    "sales": 17
+  },
+  {
+    "Suburb": "Middle Swan",
+    "Year": 2017,
+    "median_price": 330000.0,
+    "sales": 13
+  },
+  {
+    "Suburb": "Middle Swan",
+    "Year": 2018,
+    "median_price": 420000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Middle Swan",
+    "Year": 2019,
+    "median_price": 296500.0,
+    "sales": 8
+  },
+  {
+    "Suburb": "Middle Swan",
+    "Year": 2020,
+    "median_price": 292000.0,
+    "sales": 24
+  },
+  {
+    "Suburb": "Middle Swan",
+    "Year": 2021,
+    "median_price": 335000.0,
+    "sales": 19
+  },
+  {
+    "Suburb": "Middle Swan",
+    "Year": 2022,
+    "median_price": 395000.0,
+    "sales": 27
+  },
+  {
+    "Suburb": "Middle Swan",
+    "Year": 2023,
+    "median_price": 425000.0,
+    "sales": 41
+  },
+  {
+    "Suburb": "Middle Swan",
+    "Year": 2024,
+    "median_price": 533000.0,
+    "sales": 20
+  },
+  {
+    "Suburb": "Midland",
+    "Year": 2022,
+    "median_price": 350000.0,
+    "sales": 11
+  },
+  {
+    "Suburb": "Midland",
+    "Year": 2023,
+    "median_price": 352000.0,
+    "sales": 163
+  },
+  {
+    "Suburb": "Midland",
+    "Year": 2024,
+    "median_price": 440000.0,
+    "sales": 85
+  },
+  {
+    "Suburb": "Midvale",
+    "Year": 2010,
+    "median_price": 315000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Midvale",
+    "Year": 2011,
+    "median_price": 361000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Midvale",
+    "Year": 2012,
+    "median_price": 317500.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Midvale",
+    "Year": 2013,
+    "median_price": 375000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Midvale",
+    "Year": 2014,
+    "median_price": 370000.0,
+    "sales": 9
+  },
+  {
+    "Suburb": "Midvale",
+    "Year": 2015,
+    "median_price": 405000.0,
+    "sales": 15
+  },
+  {
+    "Suburb": "Midvale",
+    "Year": 2016,
+    "median_price": 382500.0,
+    "sales": 12
+  },
+  {
+    "Suburb": "Midvale",
+    "Year": 2017,
+    "median_price": 345000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Midvale",
+    "Year": 2018,
+    "median_price": 299000.0,
+    "sales": 8
+  },
+  {
+    "Suburb": "Midvale",
+    "Year": 2019,
+    "median_price": 335470.0,
+    "sales": 10
+  },
+  {
+    "Suburb": "Midvale",
+    "Year": 2020,
+    "median_price": 397000.0,
+    "sales": 16
+  },
+  {
+    "Suburb": "Midvale",
+    "Year": 2021,
+    "median_price": 405000.0,
+    "sales": 15
+  },
+  {
+    "Suburb": "Midvale",
+    "Year": 2022,
+    "median_price": 375000.0,
+    "sales": 33
+  },
+  {
+    "Suburb": "Midvale",
+    "Year": 2023,
+    "median_price": 405000.0,
+    "sales": 37
+  },
+  {
+    "Suburb": "Midvale",
+    "Year": 2024,
+    "median_price": 540000.0,
+    "sales": 35
+  },
+  {
+    "Suburb": "Mirrabooka",
+    "Year": 2019,
+    "median_price": 310000.0,
+    "sales": 14
+  },
+  {
+    "Suburb": "Mirrabooka",
+    "Year": 2020,
+    "median_price": 305000.0,
+    "sales": 29
+  },
+  {
+    "Suburb": "Mirrabooka",
+    "Year": 2021,
+    "median_price": 397500.0,
+    "sales": 38
+  },
+  {
+    "Suburb": "Mirrabooka",
+    "Year": 2022,
+    "median_price": 415000.0,
+    "sales": 66
+  },
+  {
+    "Suburb": "Mirrabooka",
+    "Year": 2023,
+    "median_price": 482500.0,
+    "sales": 57
+  },
+  {
+    "Suburb": "Mirrabooka",
+    "Year": 2024,
+    "median_price": 624500.0,
+    "sales": 46
+  },
+  {
+    "Suburb": "Morley",
+    "Year": 2023,
+    "median_price": 640000.0,
+    "sales": 103
+  },
+  {
+    "Suburb": "Morley",
+    "Year": 2024,
+    "median_price": 721500.0,
+    "sales": 158
+  },
+  {
+    "Suburb": "Mosman Park",
+    "Year": 2022,
+    "median_price": 1525000.0,
+    "sales": 64
+  },
+  {
+    "Suburb": "Mosman Park",
+    "Year": 2023,
+    "median_price": 1590000.0,
+    "sales": 76
+  },
+  {
+    "Suburb": "Mosman Park",
+    "Year": 2024,
+    "median_price": 1720000.0,
+    "sales": 49
+  },
+  {
+    "Suburb": "Mount Claremont",
+    "Year": 2019,
+    "median_price": 1300000.0,
+    "sales": 23
+  },
+  {
+    "Suburb": "Mount Claremont",
+    "Year": 2020,
+    "median_price": 1350000.0,
+    "sales": 35
+  },
+  {
+    "Suburb": "Mount Claremont",
+    "Year": 2021,
+    "median_price": 1480000.0,
+    "sales": 36
+  },
+  {
+    "Suburb": "Mount Claremont",
+    "Year": 2022,
+    "median_price": 1730000.0,
+    "sales": 45
+  },
+  {
+    "Suburb": "Mount Claremont",
+    "Year": 2023,
+    "median_price": 1825000.0,
+    "sales": 28
+  },
+  {
+    "Suburb": "Mount Claremont",
+    "Year": 2024,
+    "median_price": 1810000.0,
+    "sales": 20
+  },
+  {
+    "Suburb": "Mount Hawthorn",
+    "Year": 2021,
+    "median_price": 995000.0,
+    "sales": 52
+  },
+  {
+    "Suburb": "Mount Hawthorn",
+    "Year": 2022,
+    "median_price": 1280000.0,
+    "sales": 61
+  },
+  {
+    "Suburb": "Mount Hawthorn",
+    "Year": 2023,
+    "median_price": 1200000.0,
+    "sales": 95
+  },
+  {
+    "Suburb": "Mount Hawthorn",
+    "Year": 2024,
+    "median_price": 1325000.0,
+    "sales": 47
+  },
+  {
+    "Suburb": "Mount Lawley",
+    "Year": 2022,
+    "median_price": 1070000.0,
+    "sales": 54
+  },
+  {
+    "Suburb": "Mount Lawley",
+    "Year": 2023,
+    "median_price": 1093055.5,
+    "sales": 132
+  },
+  {
+    "Suburb": "Mount Lawley",
+    "Year": 2024,
+    "median_price": 1240000.0,
+    "sales": 88
+  },
+  {
+    "Suburb": "Mount Pleasant",
+    "Year": 2022,
+    "median_price": 1377500.0,
+    "sales": 72
+  },
+  {
+    "Suburb": "Mount Pleasant",
+    "Year": 2023,
+    "median_price": 1430000.0,
+    "sales": 114
+  },
+  {
+    "Suburb": "Mount Pleasant",
+    "Year": 2024,
+    "median_price": 1555000.0,
+    "sales": 54
+  },
+  {
+    "Suburb": "Munster",
+    "Year": 2013,
+    "median_price": 520000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Munster",
+    "Year": 2014,
+    "median_price": 575000.0,
+    "sales": 10
+  },
+  {
+    "Suburb": "Munster",
+    "Year": 2015,
+    "median_price": 652750.0,
+    "sales": 10
+  },
+  {
+    "Suburb": "Munster",
+    "Year": 2016,
+    "median_price": 553500.0,
+    "sales": 12
+  },
+  {
+    "Suburb": "Munster",
+    "Year": 2017,
+    "median_price": 475000.0,
+    "sales": 9
+  },
+  {
+    "Suburb": "Munster",
+    "Year": 2018,
+    "median_price": 585000.0,
+    "sales": 10
+  },
+  {
+    "Suburb": "Munster",
+    "Year": 2019,
+    "median_price": 530000.0,
+    "sales": 9
+  },
+  {
+    "Suburb": "Munster",
+    "Year": 2020,
+    "median_price": 510000.0,
+    "sales": 13
+  },
+  {
+    "Suburb": "Murdoch",
+    "Year": 2008,
+    "median_price": 670000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Murdoch",
+    "Year": 2009,
+    "median_price": 840000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Murdoch",
+    "Year": 2011,
+    "median_price": 585500.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Murdoch",
+    "Year": 2013,
+    "median_price": 888000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Murdoch",
+    "Year": 2014,
+    "median_price": 829000.0,
+    "sales": 9
+  },
+  {
+    "Suburb": "Murdoch",
+    "Year": 2015,
+    "median_price": 790000.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Murdoch",
+    "Year": 2016,
+    "median_price": 765000.0,
+    "sales": 14
+  },
+  {
+    "Suburb": "Murdoch",
+    "Year": 2017,
+    "median_price": 690000.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Murdoch",
+    "Year": 2018,
+    "median_price": 655000.0,
+    "sales": 9
+  },
+  {
+    "Suburb": "Murdoch",
+    "Year": 2019,
+    "median_price": 677000.0,
+    "sales": 12
+  },
+  {
+    "Suburb": "Murdoch",
+    "Year": 2020,
+    "median_price": 750000.0,
+    "sales": 9
+  },
+  {
+    "Suburb": "Murdoch",
+    "Year": 2021,
+    "median_price": 752500.0,
+    "sales": 16
+  },
+  {
+    "Suburb": "Murdoch",
+    "Year": 2022,
+    "median_price": 930000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "Murdoch",
+    "Year": 2023,
+    "median_price": 953500.0,
+    "sales": 12
+  },
+  {
+    "Suburb": "Murdoch",
+    "Year": 2024,
+    "median_price": 888000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "Myaree",
+    "Year": 2010,
+    "median_price": 660000.0,
+    "sales": 9
+  },
+  {
+    "Suburb": "Myaree",
+    "Year": 2011,
+    "median_price": 673500.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Myaree",
+    "Year": 2012,
+    "median_price": 648500.0,
+    "sales": 10
+  },
+  {
+    "Suburb": "Myaree",
+    "Year": 2013,
+    "median_price": 835000.0,
+    "sales": 9
+  },
+  {
+    "Suburb": "Myaree",
+    "Year": 2014,
+    "median_price": 797500.0,
+    "sales": 16
+  },
+  {
+    "Suburb": "Myaree",
+    "Year": 2015,
+    "median_price": 625000.0,
+    "sales": 17
+  },
+  {
+    "Suburb": "Myaree",
+    "Year": 2016,
+    "median_price": 665000.0,
+    "sales": 22
+  },
+  {
+    "Suburb": "Myaree",
+    "Year": 2017,
+    "median_price": 700000.0,
+    "sales": 15
+  },
+  {
+    "Suburb": "Myaree",
+    "Year": 2018,
+    "median_price": 682500.0,
+    "sales": 12
+  },
+  {
+    "Suburb": "Myaree",
+    "Year": 2019,
+    "median_price": 642500.0,
+    "sales": 32
+  },
+  {
+    "Suburb": "Myaree",
+    "Year": 2020,
+    "median_price": 660000.0,
+    "sales": 19
+  },
+  {
+    "Suburb": "Myaree",
+    "Year": 2021,
+    "median_price": 870000.0,
+    "sales": 23
+  },
+  {
+    "Suburb": "Myaree",
+    "Year": 2022,
+    "median_price": 820000.0,
+    "sales": 15
+  },
+  {
+    "Suburb": "Myaree",
+    "Year": 2023,
+    "median_price": 945000.0,
+    "sales": 26
+  },
+  {
+    "Suburb": "Myaree",
+    "Year": 2024,
+    "median_price": 1186250.0,
+    "sales": 10
+  },
+  {
+    "Suburb": "Nedlands",
+    "Year": 2022,
+    "median_price": 1989750.0,
+    "sales": 50
+  },
+  {
+    "Suburb": "Nedlands",
+    "Year": 2023,
+    "median_price": 1950000.0,
+    "sales": 80
+  },
+  {
+    "Suburb": "Nedlands",
+    "Year": 2024,
+    "median_price": 2304000.0,
+    "sales": 64
+  },
+  {
+    "Suburb": "Nollamara",
+    "Year": 2023,
+    "median_price": 490000.5,
+    "sales": 138
+  },
+  {
+    "Suburb": "Nollamara",
+    "Year": 2024,
+    "median_price": 600000.0,
+    "sales": 129
+  },
+  {
+    "Suburb": "Noranda",
+    "Year": 2020,
+    "median_price": 625500.0,
+    "sales": 12
+  },
+  {
+    "Suburb": "Noranda",
+    "Year": 2021,
+    "median_price": 620000.0,
+    "sales": 79
+  },
+  {
+    "Suburb": "Noranda",
+    "Year": 2022,
+    "median_price": 652500.0,
+    "sales": 70
+  },
+  {
+    "Suburb": "Noranda",
+    "Year": 2023,
+    "median_price": 710000.0,
+    "sales": 77
+  },
+  {
+    "Suburb": "Noranda",
+    "Year": 2024,
+    "median_price": 810250.0,
+    "sales": 28
+  },
+  {
+    "Suburb": "North Beach",
+    "Year": 2014,
+    "median_price": 1400000.0,
+    "sales": 11
+  },
+  {
+    "Suburb": "North Beach",
+    "Year": 2015,
+    "median_price": 940000.0,
+    "sales": 13
+  },
+  {
+    "Suburb": "North Beach",
+    "Year": 2016,
+    "median_price": 1035000.0,
+    "sales": 11
+  },
+  {
+    "Suburb": "North Beach",
+    "Year": 2017,
+    "median_price": 1000000.0,
+    "sales": 25
+  },
+  {
+    "Suburb": "North Beach",
+    "Year": 2018,
+    "median_price": 901000.0,
+    "sales": 21
+  },
+  {
+    "Suburb": "North Beach",
+    "Year": 2019,
+    "median_price": 772900.0,
+    "sales": 24
+  },
+  {
+    "Suburb": "North Beach",
+    "Year": 2020,
+    "median_price": 872500.0,
+    "sales": 30
+  },
+  {
+    "Suburb": "North Beach",
+    "Year": 2021,
+    "median_price": 1060000.0,
+    "sales": 39
+  },
+  {
+    "Suburb": "North Beach",
+    "Year": 2022,
+    "median_price": 1750000.0,
+    "sales": 29
+  },
+  {
+    "Suburb": "North Beach",
+    "Year": 2023,
+    "median_price": 1520000.0,
+    "sales": 21
+  },
+  {
+    "Suburb": "North Beach",
+    "Year": 2024,
+    "median_price": 1715000.0,
+    "sales": 15
+  },
+  {
+    "Suburb": "North Coogee",
+    "Year": 2021,
+    "median_price": 1055000.0,
+    "sales": 56
+  },
+  {
+    "Suburb": "North Coogee",
+    "Year": 2022,
+    "median_price": 1150000.0,
+    "sales": 63
+  },
+  {
+    "Suburb": "North Coogee",
+    "Year": 2023,
+    "median_price": 1030000.0,
+    "sales": 86
+  },
+  {
+    "Suburb": "North Coogee",
+    "Year": 2024,
+    "median_price": 771000.0,
+    "sales": 44
+  },
+  {
+    "Suburb": "North Fremantle",
+    "Year": 2015,
+    "median_price": 810000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "North Fremantle",
+    "Year": 2016,
+    "median_price": 1060000.0,
+    "sales": 20
+  },
+  {
+    "Suburb": "North Fremantle",
+    "Year": 2017,
+    "median_price": 1100000.0,
+    "sales": 19
+  },
+  {
+    "Suburb": "North Fremantle",
+    "Year": 2018,
+    "median_price": 772000.0,
+    "sales": 17
+  },
+  {
+    "Suburb": "North Fremantle",
+    "Year": 2019,
+    "median_price": 860000.0,
+    "sales": 17
+  },
+  {
+    "Suburb": "North Fremantle",
+    "Year": 2020,
+    "median_price": 1150000.0,
+    "sales": 23
+  },
+  {
+    "Suburb": "North Fremantle",
+    "Year": 2021,
+    "median_price": 1230000.0,
+    "sales": 43
+  },
+  {
+    "Suburb": "North Fremantle",
+    "Year": 2022,
+    "median_price": 1200000.0,
+    "sales": 27
+  },
+  {
+    "Suburb": "North Fremantle",
+    "Year": 2023,
+    "median_price": 1570000.0,
+    "sales": 31
+  },
+  {
+    "Suburb": "North Fremantle",
+    "Year": 2024,
+    "median_price": 1757500.0,
+    "sales": 16
+  },
+  {
+    "Suburb": "North Lake",
+    "Year": 2007,
+    "median_price": 415000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "North Lake",
+    "Year": 2009,
+    "median_price": 538000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "North Lake",
+    "Year": 2010,
+    "median_price": 615500.0,
+    "sales": 8
+  },
+  {
+    "Suburb": "North Lake",
+    "Year": 2011,
+    "median_price": 679500.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "North Lake",
+    "Year": 2012,
+    "median_price": 710000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "North Lake",
+    "Year": 2013,
+    "median_price": 692000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "North Lake",
+    "Year": 2014,
+    "median_price": 717500.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "North Lake",
+    "Year": 2015,
+    "median_price": 683750.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "North Lake",
+    "Year": 2016,
+    "median_price": 610000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "North Lake",
+    "Year": 2017,
+    "median_price": 595000.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "North Lake",
+    "Year": 2018,
+    "median_price": 595000.0,
+    "sales": 9
+  },
+  {
+    "Suburb": "North Lake",
+    "Year": 2019,
+    "median_price": 600000.0,
+    "sales": 11
+  },
+  {
+    "Suburb": "North Lake",
+    "Year": 2020,
+    "median_price": 630000.0,
+    "sales": 21
+  },
+  {
+    "Suburb": "North Lake",
+    "Year": 2021,
+    "median_price": 680000.0,
+    "sales": 15
+  },
+  {
+    "Suburb": "North Lake",
+    "Year": 2022,
+    "median_price": 665000.0,
+    "sales": 8
+  },
+  {
+    "Suburb": "North Lake",
+    "Year": 2023,
+    "median_price": 876000.0,
+    "sales": 19
+  },
+  {
+    "Suburb": "North Lake",
+    "Year": 2024,
+    "median_price": 870000.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "North Perth",
+    "Year": 2022,
+    "median_price": 1055000.0,
+    "sales": 98
+  },
+  {
+    "Suburb": "North Perth",
+    "Year": 2023,
+    "median_price": 1160000.0,
+    "sales": 115
+  },
+  {
+    "Suburb": "North Perth",
+    "Year": 2024,
+    "median_price": 1150000.0,
+    "sales": 57
+  },
+  {
+    "Suburb": "Northbridge",
+    "Year": 2010,
+    "median_price": 1300000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Northbridge",
+    "Year": 2011,
+    "median_price": 585000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Northbridge",
+    "Year": 2012,
+    "median_price": 425000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Northbridge",
+    "Year": 2013,
+    "median_price": 576500.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "Northbridge",
+    "Year": 2014,
+    "median_price": 1970000.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Northbridge",
+    "Year": 2015,
+    "median_price": 692000.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Northbridge",
+    "Year": 2016,
+    "median_price": 538000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Northbridge",
+    "Year": 2017,
+    "median_price": 479000.0,
+    "sales": 9
+  },
+  {
+    "Suburb": "Northbridge",
+    "Year": 2018,
+    "median_price": 487500.0,
+    "sales": 10
+  },
+  {
+    "Suburb": "Northbridge",
+    "Year": 2019,
+    "median_price": 517500.0,
+    "sales": 8
+  },
+  {
+    "Suburb": "Northbridge",
+    "Year": 2020,
+    "median_price": 372500.0,
+    "sales": 10
+  },
+  {
+    "Suburb": "Northbridge",
+    "Year": 2021,
+    "median_price": 472500.0,
+    "sales": 10
+  },
+  {
+    "Suburb": "Northbridge",
+    "Year": 2022,
+    "median_price": 437500.0,
+    "sales": 16
+  },
+  {
+    "Suburb": "Northbridge",
+    "Year": 2023,
+    "median_price": 456166.5,
+    "sales": 20
+  },
+  {
+    "Suburb": "Northbridge",
+    "Year": 2024,
+    "median_price": 455000.0,
+    "sales": 14
+  },
+  {
+    "Suburb": "O'Connor",
+    "Year": 2008,
+    "median_price": 490500.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "O'Connor",
+    "Year": 2009,
+    "median_price": 400000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "O'Connor",
+    "Year": 2010,
+    "median_price": 580000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "O'Connor",
+    "Year": 2011,
+    "median_price": 530000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "O'Connor",
+    "Year": 2012,
+    "median_price": 495000.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "O'Connor",
+    "Year": 2013,
+    "median_price": 570000.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "O'Connor",
+    "Year": 2014,
+    "median_price": 790000.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "O'Connor",
+    "Year": 2015,
+    "median_price": 488000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "O'Connor",
+    "Year": 2016,
+    "median_price": 480000.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "O'Connor",
+    "Year": 2017,
+    "median_price": 370000.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "O'Connor",
+    "Year": 2018,
+    "median_price": 495500.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "O'Connor",
+    "Year": 2019,
+    "median_price": 585000.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "O'Connor",
+    "Year": 2020,
+    "median_price": 445000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "O'Connor",
+    "Year": 2021,
+    "median_price": 595000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "O'Connor",
+    "Year": 2022,
+    "median_price": 562504.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "O'Connor",
+    "Year": 2023,
+    "median_price": 497500.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "O'Connor",
+    "Year": 2024,
+    "median_price": 624000.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "Osborne Park",
+    "Year": 2018,
+    "median_price": 465000.0,
+    "sales": 13
+  },
+  {
+    "Suburb": "Osborne Park",
+    "Year": 2019,
+    "median_price": 400000.0,
+    "sales": 18
+  },
+  {
+    "Suburb": "Osborne Park",
+    "Year": 2020,
+    "median_price": 411500.0,
+    "sales": 24
+  },
+  {
+    "Suburb": "Osborne Park",
+    "Year": 2021,
+    "median_price": 429000.0,
+    "sales": 51
+  },
+  {
+    "Suburb": "Osborne Park",
+    "Year": 2022,
+    "median_price": 418750.0,
+    "sales": 64
+  },
+  {
+    "Suburb": "Osborne Park",
+    "Year": 2023,
+    "median_price": 455000.0,
+    "sales": 50
+  },
+  {
+    "Suburb": "Osborne Park",
+    "Year": 2024,
+    "median_price": 472000.0,
+    "sales": 34
+  },
+  {
+    "Suburb": "Padbury",
+    "Year": 2021,
+    "median_price": 752500.0,
+    "sales": 8
+  },
+  {
+    "Suburb": "Padbury",
+    "Year": 2022,
+    "median_price": 682500.0,
+    "sales": 108
+  },
+  {
+    "Suburb": "Padbury",
+    "Year": 2023,
+    "median_price": 767000.0,
+    "sales": 112
+  },
+  {
+    "Suburb": "Padbury",
+    "Year": 2024,
+    "median_price": 880000.0,
+    "sales": 50
+  },
+  {
+    "Suburb": "Palmyra",
+    "Year": 2021,
+    "median_price": 708685.0,
+    "sales": 12
+  },
+  {
+    "Suburb": "Palmyra",
+    "Year": 2022,
+    "median_price": 740000.0,
+    "sales": 93
+  },
+  {
+    "Suburb": "Palmyra",
+    "Year": 2023,
+    "median_price": 725000.0,
+    "sales": 109
+  },
+  {
+    "Suburb": "Palmyra",
+    "Year": 2024,
+    "median_price": 899000.0,
+    "sales": 56
+  },
+  {
+    "Suburb": "Parkwood",
+    "Year": 2020,
+    "median_price": 420000.0,
+    "sales": 33
+  },
+  {
+    "Suburb": "Parkwood",
+    "Year": 2021,
+    "median_price": 516500.0,
+    "sales": 74
+  },
+  {
+    "Suburb": "Parkwood",
+    "Year": 2022,
+    "median_price": 560000.0,
+    "sales": 61
+  },
+  {
+    "Suburb": "Parkwood",
+    "Year": 2023,
+    "median_price": 619000.0,
+    "sales": 57
+  },
+  {
+    "Suburb": "Parkwood",
+    "Year": 2024,
+    "median_price": 790549.5,
+    "sales": 28
+  },
+  {
+    "Suburb": "Pearsall",
+    "Year": 2020,
+    "median_price": 470000.0,
+    "sales": 25
+  },
+  {
+    "Suburb": "Pearsall",
+    "Year": 2021,
+    "median_price": 473500.0,
+    "sales": 66
+  },
+  {
+    "Suburb": "Pearsall",
+    "Year": 2022,
+    "median_price": 497500.0,
+    "sales": 82
+  },
+  {
+    "Suburb": "Pearsall",
+    "Year": 2023,
+    "median_price": 590000.0,
+    "sales": 55
+  },
+  {
+    "Suburb": "Pearsall",
+    "Year": 2024,
+    "median_price": 700000.0,
+    "sales": 42
+  },
+  {
+    "Suburb": "Peppermint Grove",
+    "Year": 2008,
+    "median_price": 2850000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Peppermint Grove",
+    "Year": 2010,
+    "median_price": 3737500.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Peppermint Grove",
+    "Year": 2011,
+    "median_price": 2950000.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Peppermint Grove",
+    "Year": 2012,
+    "median_price": 3000000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Peppermint Grove",
+    "Year": 2013,
+    "median_price": 2275000.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Peppermint Grove",
+    "Year": 2014,
+    "median_price": 2500000.0,
+    "sales": 9
+  },
+  {
+    "Suburb": "Peppermint Grove",
+    "Year": 2015,
+    "median_price": 2750000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Peppermint Grove",
+    "Year": 2016,
+    "median_price": 2500000.0,
+    "sales": 8
+  },
+  {
+    "Suburb": "Peppermint Grove",
+    "Year": 2017,
+    "median_price": 3050000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "Peppermint Grove",
+    "Year": 2018,
+    "median_price": 2200000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Peppermint Grove",
+    "Year": 2019,
+    "median_price": 3650000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Peppermint Grove",
+    "Year": 2020,
+    "median_price": 2350000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Peppermint Grove",
+    "Year": 2021,
+    "median_price": 2837500.0,
+    "sales": 10
+  },
+  {
+    "Suburb": "Peppermint Grove",
+    "Year": 2022,
+    "median_price": 2850000.0,
+    "sales": 8
+  },
+  {
+    "Suburb": "Peppermint Grove",
+    "Year": 2023,
+    "median_price": 3150000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Peppermint Grove",
+    "Year": 2024,
+    "median_price": 3450000.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "Piara Waters",
+    "Year": 2023,
+    "median_price": 742500.0,
+    "sales": 24
+  },
+  {
+    "Suburb": "Piara Waters",
+    "Year": 2024,
+    "median_price": 894000.0,
+    "sales": 18
+  },
+  {
+    "Suburb": "Queens Park",
+    "Year": 2021,
+    "median_price": 450000.0,
+    "sales": 25
+  },
+  {
+    "Suburb": "Queens Park",
+    "Year": 2022,
+    "median_price": 443990.0,
+    "sales": 75
+  },
+  {
+    "Suburb": "Queens Park",
+    "Year": 2023,
+    "median_price": 480000.0,
+    "sales": 89
+  },
+  {
+    "Suburb": "Queens Park",
+    "Year": 2024,
+    "median_price": 600000.0,
+    "sales": 54
+  },
+  {
+    "Suburb": "Redcliffe",
+    "Year": 2020,
+    "median_price": 415000.0,
+    "sales": 16
+  },
+  {
+    "Suburb": "Redcliffe",
+    "Year": 2021,
+    "median_price": 465000.0,
+    "sales": 69
+  },
+  {
+    "Suburb": "Redcliffe",
+    "Year": 2022,
+    "median_price": 506500.0,
+    "sales": 68
+  },
+  {
+    "Suburb": "Redcliffe",
+    "Year": 2023,
+    "median_price": 539000.0,
+    "sales": 65
+  },
+  {
+    "Suburb": "Redcliffe",
+    "Year": 2024,
+    "median_price": 685000.0,
+    "sales": 39
+  },
+  {
+    "Suburb": "Riverton",
+    "Year": 2020,
+    "median_price": 602000.0,
+    "sales": 38
+  },
+  {
+    "Suburb": "Riverton",
+    "Year": 2021,
+    "median_price": 660000.0,
+    "sales": 53
+  },
+  {
+    "Suburb": "Riverton",
+    "Year": 2022,
+    "median_price": 772500.0,
+    "sales": 56
+  },
+  {
+    "Suburb": "Riverton",
+    "Year": 2023,
+    "median_price": 819400.0,
+    "sales": 52
+  },
+  {
+    "Suburb": "Riverton",
+    "Year": 2024,
+    "median_price": 1030000.0,
+    "sales": 25
+  },
+  {
+    "Suburb": "Rivervale",
+    "Year": 2023,
+    "median_price": 563000.0,
+    "sales": 155
+  },
+  {
+    "Suburb": "Rivervale",
+    "Year": 2024,
+    "median_price": 550000.0,
+    "sales": 113
+  },
+  {
+    "Suburb": "Rossmoyne",
+    "Year": 2014,
+    "median_price": 1230000.0,
+    "sales": 8
+  },
+  {
+    "Suburb": "Rossmoyne",
+    "Year": 2015,
+    "median_price": 905000.0,
+    "sales": 19
+  },
+  {
+    "Suburb": "Rossmoyne",
+    "Year": 2016,
+    "median_price": 1170000.0,
+    "sales": 24
+  },
+  {
+    "Suburb": "Rossmoyne",
+    "Year": 2017,
+    "median_price": 1150000.0,
+    "sales": 29
+  },
+  {
+    "Suburb": "Rossmoyne",
+    "Year": 2018,
+    "median_price": 916500.0,
+    "sales": 22
+  },
+  {
+    "Suburb": "Rossmoyne",
+    "Year": 2019,
+    "median_price": 1142500.0,
+    "sales": 26
+  },
+  {
+    "Suburb": "Rossmoyne",
+    "Year": 2020,
+    "median_price": 1150000.0,
+    "sales": 13
+  },
+  {
+    "Suburb": "Rossmoyne",
+    "Year": 2021,
+    "median_price": 1350000.0,
+    "sales": 23
+  },
+  {
+    "Suburb": "Rossmoyne",
+    "Year": 2022,
+    "median_price": 1440000.0,
+    "sales": 33
+  },
+  {
+    "Suburb": "Rossmoyne",
+    "Year": 2023,
+    "median_price": 1424000.0,
+    "sales": 26
+  },
+  {
+    "Suburb": "Rossmoyne",
+    "Year": 2024,
+    "median_price": 1580000.0,
+    "sales": 13
+  },
+  {
+    "Suburb": "Salter Point",
+    "Year": 2012,
+    "median_price": 740000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Salter Point",
+    "Year": 2013,
+    "median_price": 1495000.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "Salter Point",
+    "Year": 2014,
+    "median_price": 1200000.0,
+    "sales": 8
+  },
+  {
+    "Suburb": "Salter Point",
+    "Year": 2015,
+    "median_price": 970000.0,
+    "sales": 17
+  },
+  {
+    "Suburb": "Salter Point",
+    "Year": 2016,
+    "median_price": 1035000.0,
+    "sales": 17
+  },
+  {
+    "Suburb": "Salter Point",
+    "Year": 2017,
+    "median_price": 1070000.0,
+    "sales": 22
+  },
+  {
+    "Suburb": "Salter Point",
+    "Year": 2018,
+    "median_price": 972500.0,
+    "sales": 18
+  },
+  {
+    "Suburb": "Salter Point",
+    "Year": 2019,
+    "median_price": 945000.0,
+    "sales": 16
+  },
+  {
+    "Suburb": "Salter Point",
+    "Year": 2020,
+    "median_price": 1000000.0,
+    "sales": 21
+  },
+  {
+    "Suburb": "Salter Point",
+    "Year": 2021,
+    "median_price": 1360000.0,
+    "sales": 20
+  },
+  {
+    "Suburb": "Salter Point",
+    "Year": 2022,
+    "median_price": 1695000.0,
+    "sales": 29
+  },
+  {
+    "Suburb": "Salter Point",
+    "Year": 2023,
+    "median_price": 1400000.0,
+    "sales": 32
+  },
+  {
+    "Suburb": "Salter Point",
+    "Year": 2024,
+    "median_price": 1435000.0,
+    "sales": 11
+  },
+  {
+    "Suburb": "Samson",
+    "Year": 2008,
+    "median_price": 431000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Samson",
+    "Year": 2009,
+    "median_price": 467500.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "Samson",
+    "Year": 2010,
+    "median_price": 507500.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Samson",
+    "Year": 2011,
+    "median_price": 564000.0,
+    "sales": 10
+  },
+  {
+    "Suburb": "Samson",
+    "Year": 2012,
+    "median_price": 549000.0,
+    "sales": 11
+  },
+  {
+    "Suburb": "Samson",
+    "Year": 2013,
+    "median_price": 640000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "Samson",
+    "Year": 2014,
+    "median_price": 680000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Samson",
+    "Year": 2015,
+    "median_price": 685000.0,
+    "sales": 16
+  },
+  {
+    "Suburb": "Samson",
+    "Year": 2016,
+    "median_price": 554000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "Samson",
+    "Year": 2017,
+    "median_price": 588500.0,
+    "sales": 8
+  },
+  {
+    "Suburb": "Samson",
+    "Year": 2018,
+    "median_price": 588500.0,
+    "sales": 14
+  },
+  {
+    "Suburb": "Samson",
+    "Year": 2019,
+    "median_price": 560000.0,
+    "sales": 22
+  },
+  {
+    "Suburb": "Samson",
+    "Year": 2020,
+    "median_price": 585000.0,
+    "sales": 19
+  },
+  {
+    "Suburb": "Samson",
+    "Year": 2021,
+    "median_price": 670000.0,
+    "sales": 16
+  },
+  {
+    "Suburb": "Samson",
+    "Year": 2022,
+    "median_price": 755000.0,
+    "sales": 19
+  },
+  {
+    "Suburb": "Samson",
+    "Year": 2023,
+    "median_price": 768250.0,
+    "sales": 10
+  },
+  {
+    "Suburb": "Samson",
+    "Year": 2024,
+    "median_price": 873000.0,
+    "sales": 11
+  },
+  {
+    "Suburb": "Scarborough",
+    "Year": 2023,
+    "median_price": 900000.0,
+    "sales": 153
+  },
+  {
+    "Suburb": "Scarborough",
+    "Year": 2024,
+    "median_price": 963000.0,
+    "sales": 100
+  },
+  {
+    "Suburb": "Shelley",
+    "Year": 2019,
+    "median_price": 802500.0,
+    "sales": 12
+  },
+  {
+    "Suburb": "Shelley",
+    "Year": 2020,
+    "median_price": 862500.0,
+    "sales": 38
+  },
+  {
+    "Suburb": "Shelley",
+    "Year": 2021,
+    "median_price": 732500.0,
+    "sales": 52
+  },
+  {
+    "Suburb": "Shelley",
+    "Year": 2022,
+    "median_price": 980000.0,
+    "sales": 39
+  },
+  {
+    "Suburb": "Shelley",
+    "Year": 2023,
+    "median_price": 1180000.0,
+    "sales": 50
+  },
+  {
+    "Suburb": "Shelley",
+    "Year": 2024,
+    "median_price": 1144000.0,
+    "sales": 32
+  },
+  {
+    "Suburb": "Shenton Park",
+    "Year": 2018,
+    "median_price": 1380000.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Shenton Park",
+    "Year": 2019,
+    "median_price": 1068500.0,
+    "sales": 30
+  },
+  {
+    "Suburb": "Shenton Park",
+    "Year": 2020,
+    "median_price": 1205000.0,
+    "sales": 32
+  },
+  {
+    "Suburb": "Shenton Park",
+    "Year": 2021,
+    "median_price": 1500000.0,
+    "sales": 41
+  },
+  {
+    "Suburb": "Shenton Park",
+    "Year": 2022,
+    "median_price": 1457500.0,
+    "sales": 52
+  },
+  {
+    "Suburb": "Shenton Park",
+    "Year": 2023,
+    "median_price": 1650000.0,
+    "sales": 45
+  },
+  {
+    "Suburb": "Shenton Park",
+    "Year": 2024,
+    "median_price": 1780000.0,
+    "sales": 39
+  },
+  {
+    "Suburb": "Sorrento",
+    "Year": 2021,
+    "median_price": 1145000.0,
+    "sales": 44
+  },
+  {
+    "Suburb": "Sorrento",
+    "Year": 2022,
+    "median_price": 1301000.0,
+    "sales": 85
+  },
+  {
+    "Suburb": "Sorrento",
+    "Year": 2023,
+    "median_price": 1417500.0,
+    "sales": 92
+  },
+  {
+    "Suburb": "Sorrento",
+    "Year": 2024,
+    "median_price": 1557500.0,
+    "sales": 46
+  },
+  {
+    "Suburb": "South Fremantle",
+    "Year": 2015,
+    "median_price": 1250000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "South Fremantle",
+    "Year": 2016,
+    "median_price": 1015000.0,
+    "sales": 28
+  },
+  {
+    "Suburb": "South Fremantle",
+    "Year": 2017,
+    "median_price": 945000.0,
+    "sales": 31
+  },
+  {
+    "Suburb": "South Fremantle",
+    "Year": 2018,
+    "median_price": 1065000.0,
+    "sales": 27
+  },
+  {
+    "Suburb": "South Fremantle",
+    "Year": 2019,
+    "median_price": 850000.0,
+    "sales": 19
+  },
+  {
+    "Suburb": "South Fremantle",
+    "Year": 2020,
+    "median_price": 1100000.0,
+    "sales": 15
+  },
+  {
+    "Suburb": "South Fremantle",
+    "Year": 2021,
+    "median_price": 1045000.0,
+    "sales": 20
+  },
+  {
+    "Suburb": "South Fremantle",
+    "Year": 2022,
+    "median_price": 1410000.0,
+    "sales": 39
+  },
+  {
+    "Suburb": "South Fremantle",
+    "Year": 2023,
+    "median_price": 1305000.0,
+    "sales": 20
+  },
+  {
+    "Suburb": "South Fremantle",
+    "Year": 2024,
+    "median_price": 1805000.0,
+    "sales": 17
+  },
+  {
+    "Suburb": "South Guildford",
+    "Year": 2020,
+    "median_price": 523500.0,
+    "sales": 14
+  },
+  {
+    "Suburb": "South Guildford",
+    "Year": 2021,
+    "median_price": 590000.0,
+    "sales": 55
+  },
+  {
+    "Suburb": "South Guildford",
+    "Year": 2022,
+    "median_price": 630000.0,
+    "sales": 69
+  },
+  {
+    "Suburb": "South Guildford",
+    "Year": 2023,
+    "median_price": 680000.0,
+    "sales": 67
+  },
+  {
+    "Suburb": "South Guildford",
+    "Year": 2024,
+    "median_price": 800000.0,
+    "sales": 48
+  },
+  {
+    "Suburb": "South Lake",
+    "Year": 2021,
+    "median_price": 462500.0,
+    "sales": 76
+  },
+  {
+    "Suburb": "South Lake",
+    "Year": 2022,
+    "median_price": 485000.0,
+    "sales": 89
+  },
+  {
+    "Suburb": "South Lake",
+    "Year": 2023,
+    "median_price": 548000.0,
+    "sales": 67
+  },
+  {
+    "Suburb": "South Lake",
+    "Year": 2024,
+    "median_price": 675500.0,
+    "sales": 39
+  },
+  {
+    "Suburb": "South Perth",
+    "Year": 2022,
+    "median_price": 1250000.0,
+    "sales": 52
+  },
+  {
+    "Suburb": "South Perth",
+    "Year": 2023,
+    "median_price": 1307500.0,
+    "sales": 116
+  },
+  {
+    "Suburb": "South Perth",
+    "Year": 2024,
+    "median_price": 941500.0,
+    "sales": 76
+  },
+  {
+    "Suburb": "Southern River",
+    "Year": 2022,
+    "median_price": 630000.0,
+    "sales": 29
+  },
+  {
+    "Suburb": "Southern River",
+    "Year": 2023,
+    "median_price": 700000.0,
+    "sales": 136
+  },
+  {
+    "Suburb": "Southern River",
+    "Year": 2024,
+    "median_price": 815000.0,
+    "sales": 86
+  },
+  {
+    "Suburb": "Spearwood",
+    "Year": 2023,
+    "median_price": 580000.0,
+    "sales": 193
+  },
+  {
+    "Suburb": "Spearwood",
+    "Year": 2024,
+    "median_price": 700000.0,
+    "sales": 87
+  },
+  {
+    "Suburb": "St James",
+    "Year": 2021,
+    "median_price": 580000.0,
+    "sales": 41
+  },
+  {
+    "Suburb": "St James",
+    "Year": 2022,
+    "median_price": 566250.0,
+    "sales": 90
+  },
+  {
+    "Suburb": "St James",
+    "Year": 2023,
+    "median_price": 640000.0,
+    "sales": 68
+  },
+  {
+    "Suburb": "St James",
+    "Year": 2024,
+    "median_price": 725000.0,
+    "sales": 53
+  },
+  {
+    "Suburb": "Stirling",
+    "Year": 2021,
+    "median_price": 895000.0,
+    "sales": 26
+  },
+  {
+    "Suburb": "Stirling",
+    "Year": 2022,
+    "median_price": 1040000.0,
+    "sales": 89
+  },
+  {
+    "Suburb": "Stirling",
+    "Year": 2023,
+    "median_price": 971500.0,
+    "sales": 86
+  },
+  {
+    "Suburb": "Stirling",
+    "Year": 2024,
+    "median_price": 1150000.0,
+    "sales": 62
+  },
+  {
+    "Suburb": "Stratton",
+    "Year": 2018,
+    "median_price": 300000.0,
+    "sales": 13
+  },
+  {
+    "Suburb": "Stratton",
+    "Year": 2019,
+    "median_price": 283500.0,
+    "sales": 14
+  },
+  {
+    "Suburb": "Stratton",
+    "Year": 2020,
+    "median_price": 270750.0,
+    "sales": 14
+  },
+  {
+    "Suburb": "Stratton",
+    "Year": 2021,
+    "median_price": 345000.0,
+    "sales": 33
+  },
+  {
+    "Suburb": "Stratton",
+    "Year": 2022,
+    "median_price": 365000.0,
+    "sales": 39
+  },
+  {
+    "Suburb": "Stratton",
+    "Year": 2023,
+    "median_price": 440000.0,
+    "sales": 27
+  },
+  {
+    "Suburb": "Stratton",
+    "Year": 2024,
+    "median_price": 497000.0,
+    "sales": 13
+  },
+  {
+    "Suburb": "Subiaco",
+    "Year": 2022,
+    "median_price": 1247500.0,
+    "sales": 38
+  },
+  {
+    "Suburb": "Subiaco",
+    "Year": 2023,
+    "median_price": 890000.0,
+    "sales": 139
+  },
+  {
+    "Suburb": "Subiaco",
+    "Year": 2024,
+    "median_price": 1295000.0,
+    "sales": 74
+  },
+  {
+    "Suburb": "Success",
+    "Year": 2023,
+    "median_price": 560000.0,
+    "sales": 27
+  },
+  {
+    "Suburb": "Success",
+    "Year": 2024,
+    "median_price": 717500.0,
+    "sales": 28
+  },
+  {
+    "Suburb": "Swan View",
+    "Year": 2022,
+    "median_price": 405000.0,
+    "sales": 54
+  },
+  {
+    "Suburb": "Swan View",
+    "Year": 2023,
+    "median_price": 465000.0,
+    "sales": 81
+  },
+  {
+    "Suburb": "Swan View",
+    "Year": 2024,
+    "median_price": 590000.0,
+    "sales": 33
+  },
+  {
+    "Suburb": "Swanbourne",
+    "Year": 2018,
+    "median_price": 1825000.0,
+    "sales": 8
+  },
+  {
+    "Suburb": "Swanbourne",
+    "Year": 2019,
+    "median_price": 1400000.0,
+    "sales": 25
+  },
+  {
+    "Suburb": "Swanbourne",
+    "Year": 2020,
+    "median_price": 1462000.0,
+    "sales": 21
+  },
+  {
+    "Suburb": "Swanbourne",
+    "Year": 2021,
+    "median_price": 2176000.0,
+    "sales": 29
+  },
+  {
+    "Suburb": "Swanbourne",
+    "Year": 2022,
+    "median_price": 2212500.0,
+    "sales": 32
+  },
+  {
+    "Suburb": "Swanbourne",
+    "Year": 2023,
+    "median_price": 2160000.0,
+    "sales": 44
+  },
+  {
+    "Suburb": "Swanbourne",
+    "Year": 2024,
+    "median_price": 2400000.0,
+    "sales": 28
+  },
+  {
+    "Suburb": "Thornlie",
+    "Year": 2023,
+    "median_price": 584000.0,
+    "sales": 122
+  },
+  {
+    "Suburb": "Thornlie",
+    "Year": 2024,
+    "median_price": 660000.0,
+    "sales": 146
+  },
+  {
+    "Suburb": "Treeby",
+    "Year": 2019,
+    "median_price": 520000.0,
+    "sales": 13
+  },
+  {
+    "Suburb": "Treeby",
+    "Year": 2020,
+    "median_price": 496500.0,
+    "sales": 20
+  },
+  {
+    "Suburb": "Treeby",
+    "Year": 2021,
+    "median_price": 540000.0,
+    "sales": 38
+  },
+  {
+    "Suburb": "Treeby",
+    "Year": 2022,
+    "median_price": 610000.0,
+    "sales": 66
+  },
+  {
+    "Suburb": "Treeby",
+    "Year": 2023,
+    "median_price": 671500.0,
+    "sales": 64
+  },
+  {
+    "Suburb": "Treeby",
+    "Year": 2024,
+    "median_price": 749000.0,
+    "sales": 49
+  },
+  {
+    "Suburb": "Trigg",
+    "Year": 2014,
+    "median_price": 797500.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Trigg",
+    "Year": 2015,
+    "median_price": 1170000.0,
+    "sales": 21
+  },
+  {
+    "Suburb": "Trigg",
+    "Year": 2016,
+    "median_price": 905000.0,
+    "sales": 16
+  },
+  {
+    "Suburb": "Trigg",
+    "Year": 2017,
+    "median_price": 1100500.0,
+    "sales": 26
+  },
+  {
+    "Suburb": "Trigg",
+    "Year": 2018,
+    "median_price": 1200000.0,
+    "sales": 24
+  },
+  {
+    "Suburb": "Trigg",
+    "Year": 2019,
+    "median_price": 1310000.0,
+    "sales": 16
+  },
+  {
+    "Suburb": "Trigg",
+    "Year": 2020,
+    "median_price": 1517500.0,
+    "sales": 32
+  },
+  {
+    "Suburb": "Trigg",
+    "Year": 2021,
+    "median_price": 1520000.0,
+    "sales": 38
+  },
+  {
+    "Suburb": "Trigg",
+    "Year": 2022,
+    "median_price": 1617500.0,
+    "sales": 24
+  },
+  {
+    "Suburb": "Trigg",
+    "Year": 2023,
+    "median_price": 1788000.0,
+    "sales": 30
+  },
+  {
+    "Suburb": "Trigg",
+    "Year": 2024,
+    "median_price": 1600000.0,
+    "sales": 11
+  },
+  {
+    "Suburb": "Tuart Hill",
+    "Year": 2021,
+    "median_price": 487500.0,
+    "sales": 21
+  },
+  {
+    "Suburb": "Tuart Hill",
+    "Year": 2022,
+    "median_price": 527500.0,
+    "sales": 90
+  },
+  {
+    "Suburb": "Tuart Hill",
+    "Year": 2023,
+    "median_price": 525000.0,
+    "sales": 107
+  },
+  {
+    "Suburb": "Tuart Hill",
+    "Year": 2024,
+    "median_price": 670000.0,
+    "sales": 43
+  },
+  {
+    "Suburb": "Victoria Park",
+    "Year": 2022,
+    "median_price": 628000.0,
+    "sales": 90
+  },
+  {
+    "Suburb": "Victoria Park",
+    "Year": 2023,
+    "median_price": 631500.0,
+    "sales": 102
+  },
+  {
+    "Suburb": "Victoria Park",
+    "Year": 2024,
+    "median_price": 761500.0,
+    "sales": 71
+  },
+  {
+    "Suburb": "Viveash",
+    "Year": 2009,
+    "median_price": 865000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Viveash",
+    "Year": 2010,
+    "median_price": 600000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Viveash",
+    "Year": 2012,
+    "median_price": 431000.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "Viveash",
+    "Year": 2013,
+    "median_price": 445000.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "Viveash",
+    "Year": 2014,
+    "median_price": 610000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Viveash",
+    "Year": 2015,
+    "median_price": 543000.0,
+    "sales": 9
+  },
+  {
+    "Suburb": "Viveash",
+    "Year": 2016,
+    "median_price": 595000.0,
+    "sales": 9
+  },
+  {
+    "Suburb": "Viveash",
+    "Year": 2017,
+    "median_price": 524250.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "Viveash",
+    "Year": 2018,
+    "median_price": 340000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Viveash",
+    "Year": 2019,
+    "median_price": 340000.0,
+    "sales": 9
+  },
+  {
+    "Suburb": "Viveash",
+    "Year": 2020,
+    "median_price": 340000.0,
+    "sales": 14
+  },
+  {
+    "Suburb": "Viveash",
+    "Year": 2021,
+    "median_price": 437500.0,
+    "sales": 17
+  },
+  {
+    "Suburb": "Viveash",
+    "Year": 2022,
+    "median_price": 505000.0,
+    "sales": 21
+  },
+  {
+    "Suburb": "Viveash",
+    "Year": 2023,
+    "median_price": 420000.0,
+    "sales": 26
+  },
+  {
+    "Suburb": "Viveash",
+    "Year": 2024,
+    "median_price": 629000.0,
+    "sales": 16
+  },
+  {
+    "Suburb": "Wanneroo",
+    "Year": 2023,
+    "median_price": 686000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "Wanneroo",
+    "Year": 2024,
+    "median_price": 750000.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Warwick",
+    "Year": 2019,
+    "median_price": 503750.0,
+    "sales": 24
+  },
+  {
+    "Suburb": "Warwick",
+    "Year": 2020,
+    "median_price": 516500.0,
+    "sales": 44
+  },
+  {
+    "Suburb": "Warwick",
+    "Year": 2021,
+    "median_price": 610000.0,
+    "sales": 57
+  },
+  {
+    "Suburb": "Warwick",
+    "Year": 2022,
+    "median_price": 685000.0,
+    "sales": 55
+  },
+  {
+    "Suburb": "Warwick",
+    "Year": 2023,
+    "median_price": 721000.0,
+    "sales": 47
+  },
+  {
+    "Suburb": "Warwick",
+    "Year": 2024,
+    "median_price": 850000.0,
+    "sales": 27
+  },
+  {
+    "Suburb": "Waterford",
+    "Year": 2008,
+    "median_price": 900000.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Waterford",
+    "Year": 2009,
+    "median_price": 781500.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Waterford",
+    "Year": 2010,
+    "median_price": 423500.5,
+    "sales": 2
+  },
+  {
+    "Suburb": "Waterford",
+    "Year": 2011,
+    "median_price": 1150000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Waterford",
+    "Year": 2012,
+    "median_price": 937500.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Waterford",
+    "Year": 2013,
+    "median_price": 1155000.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "Waterford",
+    "Year": 2014,
+    "median_price": 985000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Waterford",
+    "Year": 2015,
+    "median_price": 1300000.0,
+    "sales": 11
+  },
+  {
+    "Suburb": "Waterford",
+    "Year": 2016,
+    "median_price": 1070000.0,
+    "sales": 10
+  },
+  {
+    "Suburb": "Waterford",
+    "Year": 2017,
+    "median_price": 980000.0,
+    "sales": 11
+  },
+  {
+    "Suburb": "Waterford",
+    "Year": 2018,
+    "median_price": 922750.0,
+    "sales": 14
+  },
+  {
+    "Suburb": "Waterford",
+    "Year": 2019,
+    "median_price": 967500.0,
+    "sales": 12
+  },
+  {
+    "Suburb": "Waterford",
+    "Year": 2020,
+    "median_price": 994000.0,
+    "sales": 16
+  },
+  {
+    "Suburb": "Waterford",
+    "Year": 2021,
+    "median_price": 1060000.0,
+    "sales": 15
+  },
+  {
+    "Suburb": "Waterford",
+    "Year": 2022,
+    "median_price": 1181000.0,
+    "sales": 28
+  },
+  {
+    "Suburb": "Waterford",
+    "Year": 2023,
+    "median_price": 1100000.0,
+    "sales": 14
+  },
+  {
+    "Suburb": "Waterford",
+    "Year": 2024,
+    "median_price": 1405000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "Watermans Bay",
+    "Year": 2008,
+    "median_price": 650000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Watermans Bay",
+    "Year": 2009,
+    "median_price": 2031000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Watermans Bay",
+    "Year": 2010,
+    "median_price": 1200000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Watermans Bay",
+    "Year": 2011,
+    "median_price": 830000.0,
+    "sales": 8
+  },
+  {
+    "Suburb": "Watermans Bay",
+    "Year": 2012,
+    "median_price": 860000.0,
+    "sales": 5
+  },
+  {
+    "Suburb": "Watermans Bay",
+    "Year": 2013,
+    "median_price": 1900000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Watermans Bay",
+    "Year": 2014,
+    "median_price": 1167000.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Watermans Bay",
+    "Year": 2015,
+    "median_price": 1000000.0,
+    "sales": 4
+  },
+  {
+    "Suburb": "Watermans Bay",
+    "Year": 2016,
+    "median_price": 1137500.0,
+    "sales": 10
+  },
+  {
+    "Suburb": "Watermans Bay",
+    "Year": 2017,
+    "median_price": 1200000.0,
+    "sales": 8
+  },
+  {
+    "Suburb": "Watermans Bay",
+    "Year": 2018,
+    "median_price": 995000.0,
+    "sales": 10
+  },
+  {
+    "Suburb": "Watermans Bay",
+    "Year": 2019,
+    "median_price": 950000.0,
+    "sales": 9
+  },
+  {
+    "Suburb": "Watermans Bay",
+    "Year": 2020,
+    "median_price": 1375000.0,
+    "sales": 9
+  },
+  {
+    "Suburb": "Watermans Bay",
+    "Year": 2021,
+    "median_price": 1485000.0,
+    "sales": 14
+  },
+  {
+    "Suburb": "Watermans Bay",
+    "Year": 2022,
+    "median_price": 2350000.0,
+    "sales": 9
+  },
+  {
+    "Suburb": "Watermans Bay",
+    "Year": 2023,
+    "median_price": 1250000.0,
+    "sales": 15
+  },
+  {
+    "Suburb": "Watermans Bay",
+    "Year": 2024,
+    "median_price": 2225000.0,
+    "sales": 10
+  },
+  {
+    "Suburb": "Wattle Grove",
+    "Year": 2019,
+    "median_price": 500000.0,
+    "sales": 17
+  },
+  {
+    "Suburb": "Wattle Grove",
+    "Year": 2020,
+    "median_price": 513000.0,
+    "sales": 37
+  },
+  {
+    "Suburb": "Wattle Grove",
+    "Year": 2021,
+    "median_price": 550000.0,
+    "sales": 45
+  },
+  {
+    "Suburb": "Wattle Grove",
+    "Year": 2022,
+    "median_price": 609000.0,
+    "sales": 54
+  },
+  {
+    "Suburb": "Wattle Grove",
+    "Year": 2023,
+    "median_price": 690000.0,
+    "sales": 67
+  },
+  {
+    "Suburb": "Wattle Grove",
+    "Year": 2024,
+    "median_price": 765000.0,
+    "sales": 34
+  },
+  {
+    "Suburb": "Wembley",
+    "Year": 2022,
+    "median_price": 1322500.0,
+    "sales": 82
+  },
+  {
+    "Suburb": "Wembley",
+    "Year": 2023,
+    "median_price": 1150000.0,
+    "sales": 114
+  },
+  {
+    "Suburb": "Wembley",
+    "Year": 2024,
+    "median_price": 1315000.0,
+    "sales": 66
+  },
+  {
+    "Suburb": "Wembley Downs",
+    "Year": 2021,
+    "median_price": 1267500.0,
+    "sales": 62
+  },
+  {
+    "Suburb": "Wembley Downs",
+    "Year": 2022,
+    "median_price": 1510000.0,
+    "sales": 86
+  },
+  {
+    "Suburb": "Wembley Downs",
+    "Year": 2023,
+    "median_price": 1472500.0,
+    "sales": 64
+  },
+  {
+    "Suburb": "Wembley Downs",
+    "Year": 2024,
+    "median_price": 1590000.0,
+    "sales": 36
+  },
+  {
+    "Suburb": "West Leederville",
+    "Year": 2018,
+    "median_price": 1202500.0,
+    "sales": 24
+  },
+  {
+    "Suburb": "West Leederville",
+    "Year": 2019,
+    "median_price": 1035000.0,
+    "sales": 33
+  },
+  {
+    "Suburb": "West Leederville",
+    "Year": 2020,
+    "median_price": 1095000.0,
+    "sales": 39
+  },
+  {
+    "Suburb": "West Leederville",
+    "Year": 2021,
+    "median_price": 1051000.0,
+    "sales": 40
+  },
+  {
+    "Suburb": "West Leederville",
+    "Year": 2022,
+    "median_price": 1095000.0,
+    "sales": 40
+  },
+  {
+    "Suburb": "West Leederville",
+    "Year": 2023,
+    "median_price": 1375000.0,
+    "sales": 42
+  },
+  {
+    "Suburb": "West Leederville",
+    "Year": 2024,
+    "median_price": 1365000.0,
+    "sales": 22
+  },
+  {
+    "Suburb": "West Perth",
+    "Year": 2021,
+    "median_price": 424500.0,
+    "sales": 28
+  },
+  {
+    "Suburb": "West Perth",
+    "Year": 2022,
+    "median_price": 446000.0,
+    "sales": 94
+  },
+  {
+    "Suburb": "West Perth",
+    "Year": 2023,
+    "median_price": 522500.0,
+    "sales": 98
+  },
+  {
+    "Suburb": "West Perth",
+    "Year": 2024,
+    "median_price": 575000.0,
+    "sales": 45
+  },
+  {
+    "Suburb": "West Swan",
+    "Year": 2010,
+    "median_price": 355000.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "West Swan",
+    "Year": 2013,
+    "median_price": 521500.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "West Swan",
+    "Year": 2021,
+    "median_price": 512000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Westminster",
+    "Year": 2022,
+    "median_price": 420000.0,
+    "sales": 86
+  },
+  {
+    "Suburb": "Westminster",
+    "Year": 2023,
+    "median_price": 480000.0,
+    "sales": 111
+  },
+  {
+    "Suburb": "Westminster",
+    "Year": 2024,
+    "median_price": 590000.0,
+    "sales": 66
+  },
+  {
+    "Suburb": "White Gum Valley",
+    "Year": 2017,
+    "median_price": 729000.0,
+    "sales": 27
+  },
+  {
+    "Suburb": "White Gum Valley",
+    "Year": 2018,
+    "median_price": 700000.0,
+    "sales": 24
+  },
+  {
+    "Suburb": "White Gum Valley",
+    "Year": 2019,
+    "median_price": 701000.0,
+    "sales": 32
+  },
+  {
+    "Suburb": "White Gum Valley",
+    "Year": 2020,
+    "median_price": 718000.0,
+    "sales": 22
+  },
+  {
+    "Suburb": "White Gum Valley",
+    "Year": 2021,
+    "median_price": 812000.0,
+    "sales": 33
+  },
+  {
+    "Suburb": "White Gum Valley",
+    "Year": 2022,
+    "median_price": 925000.0,
+    "sales": 39
+  },
+  {
+    "Suburb": "White Gum Valley",
+    "Year": 2023,
+    "median_price": 960000.0,
+    "sales": 43
+  },
+  {
+    "Suburb": "White Gum Valley",
+    "Year": 2024,
+    "median_price": 1250000.0,
+    "sales": 27
+  },
+  {
+    "Suburb": "Willagee",
+    "Year": 2021,
+    "median_price": 655000.0,
+    "sales": 57
+  },
+  {
+    "Suburb": "Willagee",
+    "Year": 2022,
+    "median_price": 707500.0,
+    "sales": 80
+  },
+  {
+    "Suburb": "Willagee",
+    "Year": 2023,
+    "median_price": 720000.0,
+    "sales": 79
+  },
+  {
+    "Suburb": "Willagee",
+    "Year": 2024,
+    "median_price": 880000.0,
+    "sales": 46
+  },
+  {
+    "Suburb": "Willetton",
+    "Year": 2022,
+    "median_price": 850000.0,
+    "sales": 15
+  },
+  {
+    "Suburb": "Willetton",
+    "Year": 2023,
+    "median_price": 970000.0,
+    "sales": 159
+  },
+  {
+    "Suburb": "Willetton",
+    "Year": 2024,
+    "median_price": 1150000.0,
+    "sales": 83
+  },
+  {
+    "Suburb": "Wilson",
+    "Year": 2021,
+    "median_price": 626000.0,
+    "sales": 42
+  },
+  {
+    "Suburb": "Wilson",
+    "Year": 2022,
+    "median_price": 610000.0,
+    "sales": 73
+  },
+  {
+    "Suburb": "Wilson",
+    "Year": 2023,
+    "median_price": 660000.0,
+    "sales": 63
+  },
+  {
+    "Suburb": "Wilson",
+    "Year": 2024,
+    "median_price": 730000.0,
+    "sales": 40
+  },
+  {
+    "Suburb": "Winthrop",
+    "Year": 2019,
+    "median_price": 867500.0,
+    "sales": 6
+  },
+  {
+    "Suburb": "Winthrop",
+    "Year": 2020,
+    "median_price": 795000.0,
+    "sales": 31
+  },
+  {
+    "Suburb": "Winthrop",
+    "Year": 2021,
+    "median_price": 932500.0,
+    "sales": 38
+  },
+  {
+    "Suburb": "Winthrop",
+    "Year": 2022,
+    "median_price": 1130000.0,
+    "sales": 29
+  },
+  {
+    "Suburb": "Winthrop",
+    "Year": 2023,
+    "median_price": 1286500.0,
+    "sales": 40
+  },
+  {
+    "Suburb": "Winthrop",
+    "Year": 2024,
+    "median_price": 1399000.0,
+    "sales": 27
+  },
+  {
+    "Suburb": "Woodbridge",
+    "Year": 2006,
+    "median_price": 465000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Woodbridge",
+    "Year": 2008,
+    "median_price": 305000.0,
+    "sales": 1
+  },
+  {
+    "Suburb": "Woodbridge",
+    "Year": 2010,
+    "median_price": 520000.0,
+    "sales": 2
+  },
+  {
+    "Suburb": "Woodbridge",
+    "Year": 2011,
+    "median_price": 740000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Woodbridge",
+    "Year": 2012,
+    "median_price": 472500.0,
+    "sales": 8
+  },
+  {
+    "Suburb": "Woodbridge",
+    "Year": 2013,
+    "median_price": 510000.0,
+    "sales": 3
+  },
+  {
+    "Suburb": "Woodbridge",
+    "Year": 2014,
+    "median_price": 599000.0,
+    "sales": 7
+  },
+  {
+    "Suburb": "Woodbridge",
+    "Year": 2015,
+    "median_price": 565000.0,
+    "sales": 9
+  },
+  {
+    "Suburb": "Woodbridge",
+    "Year": 2016,
+    "median_price": 532750.0,
+    "sales": 8
+  },
+  {
+    "Suburb": "Woodbridge",
+    "Year": 2017,
+    "median_price": 588000.0,
+    "sales": 10
+  },
+  {
+    "Suburb": "Woodbridge",
+    "Year": 2018,
+    "median_price": 567000.0,
+    "sales": 10
+  },
+  {
+    "Suburb": "Woodbridge",
+    "Year": 2019,
+    "median_price": 525000.0,
+    "sales": 13
+  },
+  {
+    "Suburb": "Woodbridge",
+    "Year": 2020,
+    "median_price": 475000.0,
+    "sales": 11
+  },
+  {
+    "Suburb": "Woodbridge",
+    "Year": 2021,
+    "median_price": 600000.0,
+    "sales": 27
+  },
+  {
+    "Suburb": "Woodbridge",
+    "Year": 2022,
+    "median_price": 587000.0,
+    "sales": 24
+  },
+  {
+    "Suburb": "Woodbridge",
+    "Year": 2023,
+    "median_price": 790000.0,
+    "sales": 31
+  },
+  {
+    "Suburb": "Woodbridge",
+    "Year": 2024,
+    "median_price": 820000.0,
+    "sales": 13
+  },
+  {
+    "Suburb": "Woodlands",
+    "Year": 2017,
+    "median_price": 975000.0,
+    "sales": 18
+  },
+  {
+    "Suburb": "Woodlands",
+    "Year": 2018,
+    "median_price": 960000.0,
+    "sales": 35
+  },
+  {
+    "Suburb": "Woodlands",
+    "Year": 2019,
+    "median_price": 950000.0,
+    "sales": 27
+  },
+  {
+    "Suburb": "Woodlands",
+    "Year": 2020,
+    "median_price": 913750.0,
+    "sales": 32
+  },
+  {
+    "Suburb": "Woodlands",
+    "Year": 2021,
+    "median_price": 1250000.0,
+    "sales": 31
+  },
+  {
+    "Suburb": "Woodlands",
+    "Year": 2022,
+    "median_price": 1260000.0,
+    "sales": 34
+  },
+  {
+    "Suburb": "Woodlands",
+    "Year": 2023,
+    "median_price": 1252500.0,
+    "sales": 48
+  },
+  {
+    "Suburb": "Woodlands",
+    "Year": 2024,
+    "median_price": 1432500.0,
+    "sales": 24
+  },
+  {
+    "Suburb": "Woodvale",
+    "Year": 2021,
+    "median_price": 770000.0,
+    "sales": 25
+  },
+  {
+    "Suburb": "Woodvale",
+    "Year": 2022,
+    "median_price": 787500.0,
+    "sales": 79
+  },
+  {
+    "Suburb": "Woodvale",
+    "Year": 2023,
+    "median_price": 811275.0,
+    "sales": 68
+  },
+  {
+    "Suburb": "Woodvale",
+    "Year": 2024,
+    "median_price": 951000.0,
+    "sales": 38
+  },
+  {
+    "Suburb": "Yangebup",
+    "Year": 2022,
+    "median_price": 540000.0,
+    "sales": 120
+  },
+  {
+    "Suburb": "Yangebup",
+    "Year": 2023,
+    "median_price": 600000.0,
+    "sales": 99
+  },
+  {
+    "Suburb": "Yangebup",
+    "Year": 2024,
+    "median_price": 785000.0,
+    "sales": 51
+  },
+  {
+    "Suburb": "Yokine",
+    "Year": 2022,
+    "median_price": 660000.0,
+    "sales": 27
+  },
+  {
+    "Suburb": "Yokine",
+    "Year": 2023,
+    "median_price": 666000.0,
+    "sales": 154
+  },
+  {
+    "Suburb": "Yokine",
+    "Year": 2024,
+    "median_price": 875000.0,
+    "sales": 70
+  }
+]

@@ -40,6 +40,14 @@ def main() -> None:
     )
     yearly["Year"] = yearly["Year"].astype(int)
 
+    yearly_by_suburb = (
+        df.dropna(subset=["Year"])
+        .groupby(["Suburb", "Year"], as_index=False)
+        .agg(median_price=("Price", "median"), sales=("Listing_ID", "count"))
+        .sort_values(["Suburb", "Year"])
+    )
+    yearly_by_suburb["Year"] = yearly_by_suburb["Year"].astype(int)
+
     property_type = (
         df.groupby("Property_Type", as_index=False)
         .agg(count=("Listing_ID", "count"), median_price=("Price", "median"))
@@ -93,6 +101,9 @@ def main() -> None:
     (OUTPUT_DIR / "summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
     (OUTPUT_DIR / "yearly.json").write_text(
         json.dumps(to_serializable_records(yearly), indent=2), encoding="utf-8"
+    )
+    (OUTPUT_DIR / "yearly_by_suburb.json").write_text(
+        json.dumps(to_serializable_records(yearly_by_suburb), indent=2), encoding="utf-8"
     )
     (OUTPUT_DIR / "property_type_stats.json").write_text(
         json.dumps(to_serializable_records(property_type), indent=2), encoding="utf-8"

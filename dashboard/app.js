@@ -8,12 +8,14 @@ const numberFmt = new Intl.NumberFormat("en-AU");
 
 let suburbStats = [];
 let yearlyStats = [];
+let yearlyBySuburb = [];
 let listingsSample = [];
 let suburbMapStats = [];
 let yearlyChart;
 let map;
 let listingsLayer;
 let suburbPriceLayer;
+let selectedSuburb = "";
 
 function makeKpiCard(label, value) {
   const div = document.createElement("div");
@@ -74,18 +76,24 @@ function renderSuburbTable(filterSuburb = "") {
   }
 }
 
-function renderYearlyChart(chartType = "line") {
+function getYearlySeries(filterSuburb = "") {
+  if (!filterSuburb) return yearlyStats;
+  return yearlyBySuburb.filter((row) => row.Suburb === filterSuburb);
+}
+
+function renderYearlyChart(chartType = "line", filterSuburb = "") {
+  const series = getYearlySeries(filterSuburb);
   const ctx = document.getElementById("yearlyChart");
   if (yearlyChart) yearlyChart.destroy();
 
   yearlyChart = new Chart(ctx, {
     type: chartType,
     data: {
-      labels: yearlyStats.map((r) => r.Year),
+      labels: series.map((r) => r.Year),
       datasets: [
         {
-          label: "Preco mediano (AUD)",
-          data: yearlyStats.map((r) => r.median_price),
+          label: filterSuburb ? `Preco mediano (AUD) - ${filterSuburb}` : "Preco mediano (AUD)",
+          data: series.map((r) => r.median_price),
           borderColor: "#2563eb",
           backgroundColor: "rgba(37, 99, 235, 0.2)",
           fill: chartType === "line",
@@ -107,6 +115,14 @@ function renderYearlyChart(chartType = "line") {
       },
     },
   });
+}
+
+function applySelectedSuburb(suburb) {
+  selectedSuburb = suburb;
+  renderSuburbTable(suburb);
+  renderMap(suburb);
+  const chartType = document.getElementById("chartTypeSelect").value;
+  renderYearlyChart(chartType, suburb);
 }
 
 function radiusByPrice(avgPrice, minPrice, maxPrice) {
@@ -191,45 +207,42 @@ async function loadJson(path) {
 }
 
 async function init() {
-  const [summary, yearly, suburbs, listings, suburbMap] = await Promise.all([
+  const [summary, yearly, yearlySuburb, suburbs, listings, suburbMap] = await Promise.all([
     loadJson("./data/summary.json"),
     loadJson("./data/yearly.json"),
+    loadJson("./data/yearly_by_suburb.json"),
     loadJson("./data/suburb_stats.json"),
     loadJson("./data/listings_sample.json"),
     loadJson("./data/suburb_map_stats.json"),
   ]);
 
   yearlyStats = yearly;
+  yearlyBySuburb = yearlySuburb;
   suburbStats = suburbs;
   listingsSample = listings;
   suburbMapStats = suburbMap;
 
   renderKpis(summary);
   renderSuburbOptions();
-  renderSuburbTable();
-  renderYearlyChart();
-  renderMap();
+  applySelectedSuburb("");
 
   const suburbSearch = document.getElementById("suburbSearch");
   suburbSearch.addEventListener("input", (e) => {
     const value = parseSuburbSearchValue(e.target.value);
-    renderSuburbTable(value);
-    renderMap(value);
+    applySelectedSuburb(value);
   });
   suburbSearch.addEventListener("change", (e) => {
     const value = parseSuburbSearchValue(e.target.value);
-    renderSuburbTable(value);
-    renderMap(value);
+    applySelectedSuburb(value);
     e.target.value = value || "Todos";
   });
 
   const chartTypeSelect = document.getElementById("chartTypeSelect");
-  chartTypeSelect.addEventListener("change", (e) => renderYearlyChart(e.target.value));
+  chartTypeSelect.addEventListener("change", (e) => renderYearlyChart(e.target.value, selectedSuburb));
 
   const mapViewSelect = document.getElementById("mapViewSelect");
   mapViewSelect.addEventListener("change", () => {
-    const suburb = parseSuburbSearchValue(document.getElementById("suburbSearch").value);
-    renderMap(suburb);
+    renderMap(selectedSuburb);
   });
 
   suburbSearch.value = "Todos";
