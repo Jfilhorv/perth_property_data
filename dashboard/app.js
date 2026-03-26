@@ -51,11 +51,26 @@ function asPricePerSqm(value) {
   return currency.format(value);
 }
 
-function formatVariationPct(value) {
-  if (!Number.isFinite(value)) return "N/A";
+function formatSignedPercent(value) {
   const rounded = Math.round(value * 10) / 10;
-  if (rounded > 0) return `+${rounded}%`;
-  return `${rounded}%`;
+  const abs = Math.abs(rounded);
+  const absText = Number.isInteger(abs) ? abs.toFixed(0) : abs.toFixed(1);
+  if (rounded > 0) return `+${absText}%`;
+  if (rounded < 0) return `-${absText}%`;
+  return "0%";
+}
+
+function getVariationMeta(value) {
+  if (!Number.isFinite(value)) {
+    return { text: "N/A", arrow: "•", cls: "variation-na" };
+  }
+  if (value > 0) {
+    return { text: formatSignedPercent(value), arrow: "▲", cls: "variation-positive" };
+  }
+  if (value < 0) {
+    return { text: formatSignedPercent(value), arrow: "▼", cls: "variation-negative" };
+  }
+  return { text: "0%", arrow: "■", cls: "variation-neutral" };
 }
 
 function formatDistance(meters) {
@@ -210,12 +225,13 @@ function renderSuburbTable(rows) {
   if (dir === "desc") sorted.reverse();
   const grouped = sorted.slice(0, selectedFilters.suburb ? 1 : sorted.length);
   for (const row of grouped) {
+    const varMeta = getVariationMeta(row.variation_pct);
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${row.Suburb}</td>
       <td>${numberFmt.format(row.count)}</td>
       <td>${currency.format(row.median_price)}</td>
-      <td>${formatVariationPct(row.variation_pct)}</td>
+      <td><span class="variation-badge ${varMeta.cls}">${varMeta.arrow} ${varMeta.text}</span></td>
       <td>${asPricePerSqm(row.median_price_m2)}</td>
       <td>${currency.format(row.highest_price)}</td>
       <td>${currency.format(row.lowest_price)}</td>
@@ -381,7 +397,7 @@ function renderMap(rows) {
       }).bindTooltip(
         `<b>${row.Suburb}</b><br/>Average price: ${currency.format(row.avg_price)}<br/>Median price: ${currency.format(
           row.median_price
-        )}<br/>Variation: ${formatVariationPct(row.variation_pct)}<br/>Median Price M2: ${asPricePerSqm(
+        )}<br/>Variation: ${getVariationMeta(row.variation_pct).arrow} ${getVariationMeta(row.variation_pct).text}<br/>Median Price M2: ${asPricePerSqm(
           row.median_price_m2
         )}<br/>Highest: ${currency.format(
           row.highest_price
