@@ -27,26 +27,45 @@ function makeKpiCard(label, value) {
   return div;
 }
 
+function median(values) {
+  if (!values.length) return 0;
+  const sorted = [...values].sort((a, b) => a - b);
+  const idx = Math.floor((sorted.length - 1) * 0.5);
+  return sorted[idx];
+}
+
+function percentile(values, p) {
+  if (!values.length) return 0;
+  const sorted = [...values].sort((a, b) => a - b);
+  const idx = Math.floor((sorted.length - 1) * p);
+  return sorted[idx];
+}
+
+function asPricePerSqm(value) {
+  if (!Number.isFinite(value) || value <= 0) return "N/A";
+  return `${currency.format(value)}/m²`;
+}
+
 function renderKpis(summary, filteredRows) {
   const kpis = document.getElementById("kpis");
   const footnote = document.getElementById("kpiFootnote");
   kpis.innerHTML = "";
 
   const prices = filteredRows.map((r) => r.Price).filter((v) => Number.isFinite(v));
-  const sorted = [...prices].sort((a, b) => a - b);
-  const percentile = (p) => {
-    if (!sorted.length) return 0;
-    const idx = Math.floor((sorted.length - 1) * p);
-    return sorted[idx];
-  };
-  const median = percentile(0.5);
-  const mean = sorted.length ? sorted.reduce((a, b) => a + b, 0) / sorted.length : 0;
+  const pricePerSqm = filteredRows
+    .filter((r) => Number.isFinite(r.Price) && Number.isFinite(r.Land_Size) && r.Land_Size > 0)
+    .map((r) => r.Price / r.Land_Size);
+
+  const medianPrice = median(prices);
+  const mean = prices.length ? prices.reduce((a, b) => a + b, 0) / prices.length : 0;
   const p75 = percentile(0.75);
   const p95 = percentile(0.95);
+  const medianPsm = median(pricePerSqm);
 
   kpis.appendChild(makeKpiCard("Records", numberFmt.format(filteredRows.length)));
-  kpis.appendChild(makeKpiCard("Median Price", currency.format(median)));
+  kpis.appendChild(makeKpiCard("Median Price", currency.format(medianPrice)));
   kpis.appendChild(makeKpiCard("Average Price", currency.format(mean)));
+  kpis.appendChild(makeKpiCard("Median $/m²", asPricePerSqm(medianPsm)));
   kpis.appendChild(makeKpiCard("P75", currency.format(p75)));
   kpis.appendChild(makeKpiCard("P95", currency.format(p95)));
   footnote.textContent = `Date range: ${summary.date_min} to ${summary.date_max}`;
@@ -93,6 +112,7 @@ function aggregateSuburbStats(rows) {
       Suburb: row.Suburb,
       count: 0,
       prices: [],
+      psmValues: [],
       sumDistance: 0,
       distanceCount: 0,
       sumLat: 0,
@@ -101,6 +121,9 @@ function aggregateSuburbStats(rows) {
     };
     current.count += 1;
     current.prices.push(row.Price);
+    if (Number.isFinite(row.Price) && Number.isFinite(row.Land_Size) && row.Land_Size > 0) {
+      current.psmValues.push(row.Price / row.Land_Size);
+    }
     if (Number.isFinite(row.Distance_to_CBD)) {
       current.sumDistance += row.Distance_to_CBD;
       current.distanceCount += 1;
@@ -115,12 +138,16 @@ function aggregateSuburbStats(rows) {
   return [...mapBySuburb.values()]
     .map((v) => {
       const sorted = v.prices.sort((a, b) => a - b);
+      const psmSorted = v.psmValues.sort((a, b) => a - b);
       const mid = Math.floor((sorted.length - 1) * 0.5);
+      const psmMid = Math.floor((psmSorted.length - 1) * 0.5);
       return {
         Suburb: v.Suburb,
         count: v.count,
         median_price: sorted[mid] ?? 0,
         avg_price: sorted.length ? sorted.reduce((a, b) => a + b, 0) / sorted.length : 0,
+        median_price_per_sqm: psmSorted[psmMid] ?? 0,
+        avg_price_per_sqm: psmSorted.length ? psmSorted.reduce((a, b) => a + b, 0) / psmSorted.length : 0,
         avg_distance_to_cbd: v.distanceCount ? v.sumDistance / v.distanceCount : 0,
         latitude: v.geoCount ? v.sumLat / v.geoCount : null,
         longitude: v.geoCount ? v.sumLon / v.geoCount : null,
@@ -139,6 +166,7 @@ function renderSuburbTable(rows) {
       <td>${row.Suburb}</td>
       <td>${numberFmt.format(row.count)}</td>
       <td>${currency.format(row.median_price)}</td>
+      <td>${asPricePerSqm(row.median_price_per_sqm)}</td>
       <td>${numberFmt.format(Math.round(row.avg_distance_to_cbd))}</td>
     `;
     body.appendChild(tr);
@@ -274,7 +302,7 @@ function renderMap(rows) {
       }).bindTooltip(
         `<b>${row.Suburb}</b><br/>Average price: ${currency.format(row.avg_price)}<br/>Median price: ${currency.format(
           row.median_price
-        )}<br/>Sales: ${numberFmt.format(row.count)}`,
+        )}<br/>Median $/m²: ${asPricePerSqm(row.median_price_per_sqm)}<br/>Sales: ${numberFmt.format(row.count)}`,
         { sticky: true }
       )
     )
