@@ -1,9 +1,9 @@
 # Perth Property Data - Schema
 
-Fonte: `perth_property_data.csv`  
-Total de linhas: `42958`
+Source: `perth_property_data.csv`  
+Total rows: `42958`
 
-## Colunas, tipos e nulos
+## Columns, Types, and Nulls
 
 | column | dtype | null_count | null_pct | non_null_count | unique_count |
 |---|---:|---:|---:|---:|---:|
@@ -29,7 +29,7 @@ Total de linhas: `42958`
 | Secondary_School_ICSEA | int64 | 0 | 0.0000 | 42958 | 96 |
 | Distance_to_CBD | int64 | 0 | 0.0000 | 42958 | 15606 |
 
-## Observacoes
+## Notes
 
-- Nao ha valores nulos em nenhuma coluna.
-- `Date_Sold` esta como texto no CSV (`str`); para analise temporal, converter para datetime com `dayfirst=True`.
+- There are no null values in any column.
+- `Date_Sold` is stored as text in the CSV (`str`); for time-series analysis, convert it to datetime with `dayfirst=True`.

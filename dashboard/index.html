@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,7 +15,7 @@
   <body>
     <header>
       <h1>Perth Property Dashboard</h1>
-      <p>Visao geral dos imoveis vendidos na base local</p>
+      <p>Overview of sold properties from the local dataset</p>
     </header>
 
     <main>
@@ -23,48 +23,48 @@
       <p class="kpi-footnote" id="kpiFootnote"></p>
 
       <section class="panel">
-        <h2>Menu superior</h2>
+        <h2>Top Menu</h2>
         <div class="filters">
           <label for="suburbSelect">Suburb</label>
           <select id="suburbSelect">
-            <option value="">Todos</option>
+            <option value="">All</option>
           </select>
-          <label for="chartTypeSelect">Grafico</label>
+          <label for="chartTypeSelect">Chart</label>
           <select id="chartTypeSelect">
             <option value="line">Line</option>
             <option value="bar">Bar</option>
           </select>
-          <label for="mapViewSelect">Mapa</label>
+          <label for="mapViewSelect">Map</label>
           <select id="mapViewSelect">
-            <option value="both">Pontos + Preco medio</option>
-            <option value="listings">Somente pontos (lat/lon)</option>
-            <option value="suburb">Somente preco medio por suburb</option>
+            <option value="both">Points + Average Price</option>
+            <option value="listings">Points only (lat/lon)</option>
+            <option value="suburb">Average price by suburb only</option>
           </select>
         </div>
       </section>
 
       <section class="viz-grid">
         <section class="panel">
-          <h2>Evolucao anual de preco mediano</h2>
+          <h2>Yearly Median Price Trend</h2>
           <canvas id="yearlyChart" height="140"></canvas>
         </section>
 
         <section class="panel">
-          <h2>Mapa de imoveis e preco medio por suburb</h2>
+          <h2>Property Map and Average Price by Suburb</h2>
           <div id="map"></div>
         </section>
       </section>
 
       <section class="panel">
-        <h2>Top suburbs por volume</h2>
+        <h2>Top Suburbs by Sales Volume</h2>
         <div class="table-wrap">
           <table>
             <thead>
               <tr>
                 <th>Suburb</th>
-                <th>Vendas</th>
-                <th>Preco mediano</th>
-                <th>Dist. media CBD (m)</th>
+                <th>Sales</th>
+                <th>Median Price</th>
+                <th>Avg. Distance to CBD (m)</th>
               </tr>
             </thead>
             <tbody id="suburbTableBody"></tbody>

@@ -1,40 +1,40 @@
 # Perth Property Data Dashboard
 
-Projeto para analise de dados imobiliarios de Perth com pipeline simples em Python e dashboard estatico.
+Project for Perth property data analysis with a simple Python pipeline and a static dashboard.
 
-## Estrutura
+## Structure
 
-- `perth_property_data.csv`: base principal de imoveis vendidos
-- `scripts/build_dashboard_data.py`: transforma CSV em JSON para o dashboard
-- `scripts/run_update.py`: entrypoint para atualizar os dados do dashboard
-- `dashboard/`: front-end estatico (HTML/CSS/JS)
-- `dashboard/data/`: arquivos JSON gerados para visualizacao
-- `data_schema.md`: documentacao de colunas, tipos e nulos
+- `perth_property_data.csv`: main sold-property dataset
+- `scripts/build_dashboard_data.py`: transforms CSV into dashboard JSON files
+- `scripts/run_update.py`: entrypoint to refresh dashboard data
+- `dashboard/`: static front-end (HTML/CSS/JS)
+- `dashboard/data/`: generated JSON files used by the dashboard
+- `data_schema.md`: column, type, and null-count documentation
 
-## Como atualizar os dados
+## How To Update Data
 
 ```bash
 python scripts/run_update.py
 ```
 
-## Como abrir o dashboard localmente
+## How To Run Locally
 
 ```bash
 python -m http.server 8000
 ```
 
-Depois abra:
+Then open:
 
 `http://localhost:8000/dashboard/`
 
-## Features atuais
+## Current Features
 
-- KPIs principais (registros, datas, mediana/media/P75/P95)
-- Evolucao anual do preco mediano
-- Tabela de suburbs com filtro rapido
+- Main KPIs (records, median/average/P75/P95)
+- Yearly median price trend
+- Suburb table with quick filtering
 
-## Proximos passos sugeridos
+## Suggested Next Steps
 
-- Filtros por ano, tipo de imovel e faixa de preco
-- Mapa com pontos por latitude/longitude
-- Exportacao CSV/PNG no dashboard
+- Filters by year, property type, and price range
+- Map with latitude/longitude points
+- CSV/PNG export in the dashboard

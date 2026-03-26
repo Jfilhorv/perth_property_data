@@ -29,17 +29,17 @@ function renderKpis(summary) {
   const footnote = document.getElementById("kpiFootnote");
   kpis.innerHTML = "";
 
-  kpis.appendChild(makeKpiCard("Registros", numberFmt.format(summary.rows)));
-  kpis.appendChild(makeKpiCard("Preco mediano", currency.format(summary.price_median)));
-  kpis.appendChild(makeKpiCard("Preco medio", currency.format(summary.price_mean)));
+  kpis.appendChild(makeKpiCard("Records", numberFmt.format(summary.rows)));
+  kpis.appendChild(makeKpiCard("Median Price", currency.format(summary.price_median)));
+  kpis.appendChild(makeKpiCard("Average Price", currency.format(summary.price_mean)));
   kpis.appendChild(makeKpiCard("P75", currency.format(summary.price_p75)));
   kpis.appendChild(makeKpiCard("P95", currency.format(summary.price_p95)));
-  footnote.textContent = `Cobertura de datas: ${summary.date_min} ate ${summary.date_max}`;
+  footnote.textContent = `Date range: ${summary.date_min} to ${summary.date_max}`;
 }
 
 function renderSuburbOptions() {
   const select = document.getElementById("suburbSelect");
-  select.innerHTML = '<option value="">Todos</option>';
+  select.innerHTML = '<option value="">All</option>';
   for (const row of suburbStats) {
     const opt = document.createElement("option");
     opt.value = row.Suburb;
@@ -84,7 +84,7 @@ function renderYearlyChart(chartType = "line", filterSuburb = "") {
       labels: series.map((r) => r.Year),
       datasets: [
         {
-          label: filterSuburb ? `Preco mediano (AUD) - ${filterSuburb}` : "Preco mediano (AUD)",
+          label: filterSuburb ? `Median Price (AUD) - ${filterSuburb}` : "Median Price (AUD)",
           data: series.map((r) => r.median_price),
           borderColor: "#2563eb",
           backgroundColor: "rgba(37, 99, 235, 0.2)",
@@ -153,7 +153,7 @@ function renderMap(filterSuburb = "") {
       fillColor: "#ef4444",
       fillOpacity: 0.35,
       weight: 1,
-    }).bindTooltip(`<b>${row.Suburb}</b><br/>Preco: ${currency.format(row.Price)}`, { sticky: true })
+    }).bindTooltip(`<b>${row.Suburb}</b><br/>Price: ${currency.format(row.Price)}`, { sticky: true })
   );
   listingsLayer = L.layerGroup(listingMarkers);
 
@@ -171,9 +171,9 @@ function renderMap(filterSuburb = "") {
         fillOpacity: 0.25,
         weight: 2,
       }).bindTooltip(
-        `<b>${row.Suburb}</b><br/>Preco medio: ${currency.format(row.avg_price)}<br/>Preco mediano: ${currency.format(
+        `<b>${row.Suburb}</b><br/>Average price: ${currency.format(row.avg_price)}<br/>Median price: ${currency.format(
           row.median_price
-        )}<br/>Vendas: ${numberFmt.format(row.count)}`,
+        )}<br/>Sales: ${numberFmt.format(row.count)}`,
         { sticky: true }
       )
     )
@@ -194,7 +194,7 @@ function renderMap(filterSuburb = "") {
 
 async function loadJson(path) {
   const res = await fetch(path);
-  if (!res.ok) throw new Error(`Erro ao carregar ${path}`);
+  if (!res.ok) throw new Error(`Failed to load ${path}`);
   return res.json();
 }
 
@@ -236,7 +236,7 @@ init().catch((err) => {
   console.error(err);
   const runningFromFile = window.location.protocol === "file:";
   const tip = runningFromFile
-    ? "Abra via servidor local (ex: python -m http.server 8000) e acesse http://localhost:8000/dashboard/."
-    : "Verifique se os JSONs em ./data/ estao publicados e acessiveis.";
-  alert(`Falha ao carregar dados do dashboard. ${err?.message || ""} ${tip}`);
+    ? "Open via a local server (e.g., python -m http.server 8000) and access http://localhost:8000/dashboard/."
+    : "Check whether JSON files in ./data/ are published and accessible.";
+  alert(`Failed to load dashboard data. ${err?.message || ""} ${tip}`);
 });
