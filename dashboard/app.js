@@ -182,13 +182,17 @@ function aggregateSuburbStats(rows) {
       const psmMid = Math.floor((psmSorted.length - 1) * 0.5);
       const years = [...v.yearPrices.keys()].sort((a, b) => a - b);
       let variationPct = NaN;
+      let latestYear = null;
+      let previousYear = null;
+      let latestMedianPrice = NaN;
+      let previousMedianPrice = NaN;
       if (years.length >= 2) {
-        const lastYear = years[years.length - 1];
-        const prevYear = years[years.length - 2];
-        const lastMedian = median(v.yearPrices.get(lastYear) || []);
-        const prevMedian = median(v.yearPrices.get(prevYear) || []);
-        if (Number.isFinite(prevMedian) && prevMedian > 0 && Number.isFinite(lastMedian)) {
-          variationPct = ((lastMedian - prevMedian) / prevMedian) * 100;
+        latestYear = years[years.length - 1];
+        previousYear = years[years.length - 2];
+        latestMedianPrice = median(v.yearPrices.get(latestYear) || []);
+        previousMedianPrice = median(v.yearPrices.get(previousYear) || []);
+        if (Number.isFinite(previousMedianPrice) && previousMedianPrice > 0 && Number.isFinite(latestMedianPrice)) {
+          variationPct = ((latestMedianPrice - previousMedianPrice) / previousMedianPrice) * 100;
         }
       }
       return {
@@ -204,6 +208,10 @@ function aggregateSuburbStats(rows) {
         avg_distance_to_cbd: v.distanceCount ? v.sumDistance / v.distanceCount : 0,
         latitude: v.geoCount ? v.sumLat / v.geoCount : null,
         longitude: v.geoCount ? v.sumLon / v.geoCount : null,
+        latest_year: latestYear,
+        previous_year: previousYear,
+        latest_median_price: latestMedianPrice,
+        previous_median_price: previousMedianPrice,
       };
     })
     .sort((a, b) => b.count - a.count || b.median_price - a.median_price);
@@ -226,12 +234,18 @@ function renderSuburbTable(rows) {
   const grouped = sorted.slice(0, selectedFilters.suburb ? 1 : sorted.length);
   for (const row of grouped) {
     const varMeta = getVariationMeta(row.variation_pct);
+    const tooltipText =
+      Number.isFinite(row.latest_median_price) && Number.isFinite(row.previous_median_price)
+        ? `${row.previous_year}: ${currency.format(row.previous_median_price)} -> ${row.latest_year}: ${currency.format(
+            row.latest_median_price
+          )}`
+        : "Not enough yearly history";
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${row.Suburb}</td>
       <td>${numberFmt.format(row.count)}</td>
       <td>${currency.format(row.median_price)}</td>
-      <td><span class="variation-badge ${varMeta.cls}">${varMeta.arrow} ${varMeta.text}</span></td>
+      <td><span class="variation-badge ${varMeta.cls}" data-tooltip="${tooltipText}">${varMeta.arrow} ${varMeta.text}</span></td>
       <td>${asPricePerSqm(row.median_price_m2)}</td>
       <td>${currency.format(row.highest_price)}</td>
       <td>${currency.format(row.lowest_price)}</td>

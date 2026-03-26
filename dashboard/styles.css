@@ -181,6 +181,7 @@ td:nth-child(4) {
 }
 
 .variation-badge {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -188,6 +189,23 @@ td:nth-child(4) {
   font-size: 11px;
   padding: 2px 6px;
   border-radius: 999px;
+}
+
+.variation-badge:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  white-space: nowrap;
+  z-index: 20;
+  background: #f8fafc;
+  color: #0f172a;
+  border: 1px solid #dbe4f0;
+  border-radius: 8px;
+  padding: 5px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.1);
 }
 
 .variation-positive {
@@ -208,6 +226,10 @@ td:nth-child(4) {
 .variation-na {
   color: #64748b;
   background: #e2e8f0;
+}
+
+tbody tr:hover td {
+  background: #f8fbff;
 }
 
 #map {
