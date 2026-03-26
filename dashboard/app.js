@@ -38,22 +38,14 @@ function renderKpis(summary) {
 }
 
 function renderSuburbOptions() {
-  const list = document.getElementById("suburbOptions");
-  list.innerHTML = '<option value="Todos"></option>';
+  const select = document.getElementById("suburbSelect");
+  select.innerHTML = '<option value="">Todos</option>';
   for (const row of suburbStats) {
     const opt = document.createElement("option");
     opt.value = row.Suburb;
-    list.appendChild(opt);
+    opt.textContent = `${row.Suburb} (${row.count})`;
+    select.appendChild(opt);
   }
-}
-
-function parseSuburbSearchValue(rawValue) {
-  const value = (rawValue || "").trim();
-  if (!value || value.toLowerCase() === "todos") return "";
-  const exists = suburbStats.some((row) => row.Suburb.toLowerCase() === value.toLowerCase());
-  if (!exists) return "";
-  const exact = suburbStats.find((row) => row.Suburb.toLowerCase() === value.toLowerCase());
-  return exact ? exact.Suburb : "";
 }
 
 function renderSuburbTable(filterSuburb = "") {
@@ -226,15 +218,9 @@ async function init() {
   renderSuburbOptions();
   applySelectedSuburb("");
 
-  const suburbSearch = document.getElementById("suburbSearch");
-  suburbSearch.addEventListener("input", (e) => {
-    const value = parseSuburbSearchValue(e.target.value);
-    applySelectedSuburb(value);
-  });
-  suburbSearch.addEventListener("change", (e) => {
-    const value = parseSuburbSearchValue(e.target.value);
-    applySelectedSuburb(value);
-    e.target.value = value || "Todos";
+  const suburbSelect = document.getElementById("suburbSelect");
+  suburbSelect.addEventListener("change", (e) => {
+    applySelectedSuburb(e.target.value || "");
   });
 
   const chartTypeSelect = document.getElementById("chartTypeSelect");
@@ -244,8 +230,6 @@ async function init() {
   mapViewSelect.addEventListener("change", () => {
     renderMap(selectedSuburb);
   });
-
-  suburbSearch.value = "Todos";
 }
 
 init().catch((err) => {

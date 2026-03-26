@@ -92,8 +92,7 @@ main {
   margin-bottom: 10px;
 }
 
-select,
-input {
+select {
   padding: 8px 10px;
   border-radius: 8px;
   border: 1px solid #d1d5db;
