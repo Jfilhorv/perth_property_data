@@ -183,7 +183,7 @@ function renderSuburbTable(rows) {
     return (Number(av) || 0) - (Number(bv) || 0);
   });
   if (dir === "desc") sorted.reverse();
-  const grouped = sorted.slice(0, selectedFilters.suburb ? 1 : 15);
+  const grouped = sorted.slice(0, selectedFilters.suburb ? 1 : sorted.length);
   for (const row of grouped) {
     const tr = document.createElement("tr");
     tr.innerHTML = `
