@@ -302,7 +302,7 @@ function renderSuburbTable(rows) {
       <td>${row.Suburb}</td>
       <td>${numberFmt.format(row.count)}</td>
       <td>${currency.format(row.median_price)}</td>
-      <td><span class="variation-badge ${varMeta.cls}" data-tooltip="${tooltipText}">${varMeta.arrow} ${varMeta.text}</span></td>
+      <td><span class="variation-badge ${varMeta.cls}" data-tooltip="${tooltipText}" title="${tooltipText}">${varMeta.arrow} ${varMeta.text}</span></td>
       <td>${asPricePerSqm(row.median_price_m2)}</td>
       <td>${currency.format(row.highest_price)}</td>
       <td>${currency.format(row.lowest_price)}</td>
