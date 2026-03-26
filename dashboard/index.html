@@ -20,14 +20,16 @@
 
     <main>
       <section class="kpi-grid" id="kpis"></section>
+      <p class="kpi-footnote" id="kpiFootnote"></p>
 
       <section class="panel">
         <h2>Menu superior</h2>
         <div class="filters">
-          <label for="suburbSelect">Suburb</label>
-          <select id="suburbSelect">
-            <option value="">Todos</option>
-          </select>
+          <label for="suburbSearch">Suburb</label>
+          <input id="suburbSearch" list="suburbOptions" placeholder="Buscar suburb (ex: Maylands)" />
+          <datalist id="suburbOptions">
+            <option value="Todos"></option>
+          </datalist>
           <label for="chartTypeSelect">Grafico</label>
           <select id="chartTypeSelect">
             <option value="line">Line</option>

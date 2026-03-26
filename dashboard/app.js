@@ -24,25 +24,34 @@ function makeKpiCard(label, value) {
 
 function renderKpis(summary) {
   const kpis = document.getElementById("kpis");
+  const footnote = document.getElementById("kpiFootnote");
   kpis.innerHTML = "";
 
   kpis.appendChild(makeKpiCard("Registros", numberFmt.format(summary.rows)));
-  kpis.appendChild(makeKpiCard("Faixa de datas", `${summary.date_min} ate ${summary.date_max}`));
   kpis.appendChild(makeKpiCard("Preco mediano", currency.format(summary.price_median)));
   kpis.appendChild(makeKpiCard("Preco medio", currency.format(summary.price_mean)));
   kpis.appendChild(makeKpiCard("P75", currency.format(summary.price_p75)));
   kpis.appendChild(makeKpiCard("P95", currency.format(summary.price_p95)));
+  footnote.textContent = `Cobertura de datas: ${summary.date_min} ate ${summary.date_max}`;
 }
 
 function renderSuburbOptions() {
-  const select = document.getElementById("suburbSelect");
-  const topSuburbs = suburbStats.slice(0, 60);
-  for (const row of topSuburbs) {
+  const list = document.getElementById("suburbOptions");
+  list.innerHTML = '<option value="Todos"></option>';
+  for (const row of suburbStats) {
     const opt = document.createElement("option");
     opt.value = row.Suburb;
-    opt.textContent = `${row.Suburb} (${row.count})`;
-    select.appendChild(opt);
+    list.appendChild(opt);
   }
+}
+
+function parseSuburbSearchValue(rawValue) {
+  const value = (rawValue || "").trim();
+  if (!value || value.toLowerCase() === "todos") return "";
+  const exists = suburbStats.some((row) => row.Suburb.toLowerCase() === value.toLowerCase());
+  if (!exists) return "";
+  const exact = suburbStats.find((row) => row.Suburb.toLowerCase() === value.toLowerCase());
+  return exact ? exact.Suburb : "";
 }
 
 function renderSuburbTable(filterSuburb = "") {
@@ -201,11 +210,17 @@ async function init() {
   renderYearlyChart();
   renderMap();
 
-  const select = document.getElementById("suburbSelect");
-  select.addEventListener("change", (e) => {
-    const value = e.target.value;
+  const suburbSearch = document.getElementById("suburbSearch");
+  suburbSearch.addEventListener("input", (e) => {
+    const value = parseSuburbSearchValue(e.target.value);
     renderSuburbTable(value);
     renderMap(value);
+  });
+  suburbSearch.addEventListener("change", (e) => {
+    const value = parseSuburbSearchValue(e.target.value);
+    renderSuburbTable(value);
+    renderMap(value);
+    e.target.value = value || "Todos";
   });
 
   const chartTypeSelect = document.getElementById("chartTypeSelect");
@@ -213,9 +228,11 @@ async function init() {
 
   const mapViewSelect = document.getElementById("mapViewSelect");
   mapViewSelect.addEventListener("change", () => {
-    const suburb = document.getElementById("suburbSelect").value;
+    const suburb = parseSuburbSearchValue(document.getElementById("suburbSearch").value);
     renderMap(suburb);
   });
+
+  suburbSearch.value = "Todos";
 }
 
 init().catch((err) => {
