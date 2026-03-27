@@ -551,23 +551,22 @@ function renderSuburbDistribution(rows) {
   const canvas = document.getElementById("suburbDistributionChart");
   const inner = document.getElementById("suburbDistributionInner");
   if (!canvas) return;
-  const grouped = new Map();
+  const suburbLabelByKey = new Map();
   rows.forEach((r) => {
     const suburbKey = canonicalSuburbKey(r.Suburb);
     if (!suburbKey) return;
-    const label = normalizeSuburbName(r.Suburb);
-    const current = grouped.get(suburbKey) || { label, geos: new Set() };
-    if (Number.isFinite(r.Latitude) && Number.isFinite(r.Longitude)) {
-      current.geos.add(`${r.Latitude.toFixed(7)}|${r.Longitude.toFixed(7)}`);
-    } else if (Number.isFinite(r.Listing_ID)) {
-      current.geos.add(`listing:${r.Listing_ID}`);
-    }
-    grouped.set(suburbKey, current);
+    if (!suburbLabelByKey.has(suburbKey)) suburbLabelByKey.set(suburbKey, normalizeSuburbName(r.Suburb));
   });
-
-  const sorted = [...grouped.values()].sort((a, b) => b.geos.size - a.geos.size || a.label.localeCompare(b.label));
-  const labels = sorted.map((r) => r.label);
-  const values = sorted.map((r) => r.geos.size);
+  const sortedSuburbs = [...suburbLabelByKey.entries()].sort((a, b) => a[1].localeCompare(b[1]));
+  const labels = sortedSuburbs.map(([, label]) => label);
+  const suburbKeyToIndex = new Map(sortedSuburbs.map(([key], idx) => [key, idx]));
+  const houseRows = distinctBy(rows, (r) => houseKey(r));
+  const points = houseRows
+    .filter((r) => Number.isFinite(r.Price) && suburbKeyToIndex.has(canonicalSuburbKey(r.Suburb)))
+    .map((r) => ({
+      x: r.Price,
+      y: suburbKeyToIndex.get(canonicalSuburbKey(r.Suburb)),
+    }));
 
   const rowsVisibleBeforeScroll = 12;
   const rowHeightPx = 24;
@@ -579,48 +578,47 @@ function renderSuburbDistribution(rows) {
   if (distributionAxisTooltipEl) distributionAxisTooltipEl.style.display = "none";
 
   suburbDistributionChart = new Chart(canvas, {
-    type: "bar",
+    type: "scatter",
     data: {
-      labels,
       datasets: [
         {
-          label: "Count distinct (lat+lng)",
-          data: values,
-          borderRadius: 4,
-          maxBarThickness: 10,
-          backgroundColor: "rgba(59, 130, 246, 0.45)",
-          borderColor: "rgba(37, 99, 235, 0.70)",
-          borderWidth: 1,
+          label: "House value",
+          data: points,
+          pointRadius: 1,
+          pointHoverRadius: 1.8,
+          backgroundColor: "rgba(59, 130, 246, 0.35)",
+          borderColor: "rgba(59, 130, 246, 0)",
+          borderWidth: 0,
         },
       ],
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      indexAxis: "y",
       plugins: {
         legend: { display: false },
-        tooltip: {
-          callbacks: {
-            label: (ctx) => `Count(distinct lat+lng): ${numberFmt.format(ctx.raw || 0)}`,
-          },
-        },
+        tooltip: { enabled: false },
       },
       scales: {
         x: {
-          ticks: { precision: 0, color: "#334155" },
+          ticks: { callback: (v) => currency.format(v), color: "#334155" },
           grid: {
-            display: true,
-            color: "rgba(148, 163, 184, 0.25)",
+            display: false,
+            drawOnChartArea: false,
+            drawTicks: false,
+            drawBorder: true,
           },
-          title: { display: true, text: "Count distinct (lat+lng)" },
+          title: { display: true, text: "Value (AUD)" },
         },
         y: {
           ticks: {
+            callback: (value) => labels[Math.round(value)] || "",
             autoSkip: false,
             color: "#334155",
             font: { size: 9 },
           },
+          min: -0.5,
+          max: Math.max(labels.length - 0.5, 0.5),
           grid: { display: false },
           title: { display: true, text: "Suburb" },
         },
