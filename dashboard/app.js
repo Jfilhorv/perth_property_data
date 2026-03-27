@@ -551,127 +551,82 @@ function renderSuburbDistribution(rows) {
   const canvas = document.getElementById("suburbDistributionChart");
   const inner = document.getElementById("suburbDistributionInner");
   if (!canvas) return;
-  const suburbLabelByKey = new Map();
-  rows.forEach((r) => {
-    const key = canonicalSuburbKey(r.Suburb);
-    if (!key) return;
-    if (!suburbLabelByKey.has(key)) {
-      suburbLabelByKey.set(key, normalizeSuburbName(r.Suburb));
-    }
-  });
-  const labels = [...suburbLabelByKey.entries()]
-    .sort((a, b) => a[1].localeCompare(b[1]))
-    .map(([, label]) => label);
-  const suburbKeyToIndex = new Map(
-    [...suburbLabelByKey.entries()]
-      .sort((a, b) => a[1].localeCompare(b[1]))
-      .map(([key], idx) => [key, idx])
-  );
-  const distinctGeoBySuburb = new Map();
+  const grouped = new Map();
   rows.forEach((r) => {
     const suburbKey = canonicalSuburbKey(r.Suburb);
-    if (!suburbKey || !suburbKeyToIndex.has(suburbKey)) return;
-    if (!Number.isFinite(r.Latitude) || !Number.isFinite(r.Longitude)) return;
-    const geoKey = `${r.Latitude.toFixed(7)}|${r.Longitude.toFixed(7)}`;
-    const cur = distinctGeoBySuburb.get(suburbKey) || new Set();
-    cur.add(geoKey);
-    distinctGeoBySuburb.set(suburbKey, cur);
+    if (!suburbKey) return;
+    const label = normalizeSuburbName(r.Suburb);
+    const current = grouped.get(suburbKey) || { label, geos: new Set() };
+    if (Number.isFinite(r.Latitude) && Number.isFinite(r.Longitude)) {
+      current.geos.add(`${r.Latitude.toFixed(7)}|${r.Longitude.toFixed(7)}`);
+    } else if (Number.isFinite(r.Listing_ID)) {
+      current.geos.add(`listing:${r.Listing_ID}`);
+    }
+    grouped.set(suburbKey, current);
   });
-  const points = [...suburbKeyToIndex.entries()].map(([suburbKey, idx]) => ({
-    x: distinctGeoBySuburb.get(suburbKey)?.size || 0,
-    y: idx,
-  }));
+
+  const sorted = [...grouped.values()].sort((a, b) => b.geos.size - a.geos.size || a.label.localeCompare(b.label));
+  const labels = sorted.map((r) => r.label);
+  const values = sorted.map((r) => r.geos.size);
+
   const rowsVisibleBeforeScroll = 12;
-  const rowHeightPx = 30;
+  const rowHeightPx = 24;
   const viewportHeight = rowsVisibleBeforeScroll * rowHeightPx;
   const dynamicHeight = Math.max(viewportHeight, labels.length * rowHeightPx);
   if (inner) inner.style.height = `${dynamicHeight}px`;
   if (suburbDistributionChart) suburbDistributionChart.destroy();
+
+  if (distributionAxisTooltipEl) distributionAxisTooltipEl.style.display = "none";
+
   suburbDistributionChart = new Chart(canvas, {
-    plugins: [suburbBandPlugin],
-    type: "scatter",
+    type: "bar",
     data: {
+      labels,
       datasets: [
         {
-          label: "Properties",
-          data: points,
-          pointRadius: 0.85,
-          pointHoverRadius: 1.5,
-          backgroundColor: "rgba(59, 130, 246, 0.32)",
-          borderColor: "rgba(59, 130, 246, 0)",
-          borderWidth: 0,
+          label: "Count distinct (lat+lng)",
+          data: values,
+          borderRadius: 4,
+          maxBarThickness: 10,
+          backgroundColor: "rgba(59, 130, 246, 0.45)",
+          borderColor: "rgba(37, 99, 235, 0.70)",
+          borderWidth: 1,
         },
       ],
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      onHover: (event, _activeElements, chartInstance) => {
-        const tooltipEl = ensureDistributionAxisTooltip();
-        if (!tooltipEl) return;
-        const { chartArea, scales } = chartInstance;
-        const xScale = scales?.x;
-        if (!xScale || !chartArea) {
-          tooltipEl.style.display = "none";
-          return;
-        }
-        const x = event?.x;
-        const y = event?.y;
-        const withinArea =
-          Number.isFinite(x) &&
-          Number.isFinite(y) &&
-          x >= chartArea.left &&
-          x <= chartArea.right &&
-          y >= chartArea.top &&
-          y <= chartArea.bottom;
-        if (!withinArea) {
-          tooltipEl.style.display = "none";
-          return;
-        }
-        const priceValue = xScale.getValueForPixel(x);
-        if (!Number.isFinite(priceValue)) {
-          tooltipEl.style.display = "none";
-          return;
-        }
-        tooltipEl.textContent = currency.format(priceValue);
-        tooltipEl.style.left = `${x}px`;
-        tooltipEl.style.display = "inline-block";
-      },
+      indexAxis: "y",
       plugins: {
         legend: { display: false },
-        tooltip: { enabled: false },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => `Count(distinct lat+lng): ${numberFmt.format(ctx.raw || 0)}`,
+          },
+        },
       },
       scales: {
         x: {
-          ticks: { callback: (v) => currency.format(v), color: "#334155" },
+          ticks: { precision: 0, color: "#334155" },
           grid: {
-            display: false,
-            drawOnChartArea: false,
-            drawTicks: false,
-            drawBorder: true,
+            display: true,
+            color: "rgba(148, 163, 184, 0.25)",
           },
           title: { display: true, text: "Count distinct (lat+lng)" },
         },
         y: {
-          min: -0.5,
-          max: Math.max(labels.length - 0.5, 0.5),
           ticks: {
-            callback: (value) => labels[Math.round(value)] || "",
             autoSkip: false,
             color: "#334155",
             font: { size: 9 },
           },
-          grid: {
-            display: false,
-            drawBorder: true,
-          },
+          grid: { display: false },
           title: { display: true, text: "Suburb" },
         },
       },
     },
   });
-  const tooltipEl = ensureDistributionAxisTooltip();
-  if (tooltipEl) tooltipEl.style.display = "none";
 }
 
 function applyFilters() {
