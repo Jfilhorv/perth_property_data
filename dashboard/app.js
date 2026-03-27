@@ -426,22 +426,28 @@ function renderSuburbDistribution(rows) {
   if (!canvas) return;
   const grouped = aggregateSuburbStats(rows).sort((a, b) => b.count - a.count || b.median_price - a.median_price);
   const labels = grouped.map((r) => r.Suburb);
-  const values = grouped.map((r) => r.count);
+  const suburbIndex = new Map(labels.map((name, idx) => [name, idx]));
+  const points = rows
+    .filter((r) => Number.isFinite(r.Price) && r.Suburb && suburbIndex.has(r.Suburb))
+    .slice(0, 12000)
+    .map((r) => ({
+      x: r.Price,
+      y: suburbIndex.get(r.Suburb) + (Math.random() - 0.5) * 0.26,
+    }));
   const dynamicHeight = Math.max(420, labels.length * 24);
   if (inner) inner.style.height = `${dynamicHeight}px`;
   if (suburbDistributionChart) suburbDistributionChart.destroy();
   suburbDistributionChart = new Chart(canvas, {
-    type: "bar",
+    type: "scatter",
     data: {
-      labels,
       datasets: [
         {
-          label: "Sales",
-          data: values,
-          borderRadius: 5,
-          maxBarThickness: 16,
-          backgroundColor: "rgba(29, 78, 216, 0.55)",
-          borderColor: "rgba(29, 78, 216, 0.75)",
+          label: "Properties",
+          data: points,
+          pointRadius: 2.8,
+          pointHoverRadius: 4,
+          backgroundColor: "rgba(96, 165, 250, 0.42)",
+          borderColor: "rgba(29, 78, 216, 0.7)",
           borderWidth: 1,
         },
       ],
@@ -449,27 +455,36 @@ function renderSuburbDistribution(rows) {
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      indexAxis: "y",
       plugins: {
         legend: { display: false },
         tooltip: {
           callbacks: {
-            title: (items) => items?.[0]?.label || "",
+            title: (items) => {
+              const rawY = items?.[0]?.parsed?.y;
+              const idx = Math.max(0, Math.min(labels.length - 1, Math.round(rawY)));
+              return labels[idx] || "";
+            },
             label: (item) => {
-              const idx = item.dataIndex;
+              const idx = Math.max(0, Math.min(labels.length - 1, Math.round(item.parsed.y)));
               const suburb = grouped[idx];
-              return `Sales: ${numberFmt.format(item.parsed.x)} | Median: ${currency.format(suburb?.median_price || 0)}`;
+              return `Price: ${currency.format(item.parsed.x)} | Sales: ${numberFmt.format(suburb?.count || 0)}`;
             },
           },
         },
       },
       scales: {
         x: {
-          ticks: { precision: 0, color: "#334155" },
-          title: { display: true, text: "Sales (DESC)" },
+          ticks: { callback: (v) => currency.format(v), color: "#334155" },
+          title: { display: true, text: "Price (AUD)" },
         },
         y: {
-          ticks: { autoSkip: false, color: "#334155" },
+          min: -0.5,
+          max: Math.max(labels.length - 0.5, 0.5),
+          ticks: {
+            callback: (value) => labels[Math.round(value)] || "",
+            autoSkip: false,
+            color: "#334155",
+          },
           title: { display: true, text: "Suburb" },
         },
       },
