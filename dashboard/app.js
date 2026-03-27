@@ -83,6 +83,17 @@ function distinctBy(items, keyFn) {
   return out;
 }
 
+function houseKey(row) {
+  const latKey = Number.isFinite(row.Latitude) ? row.Latitude.toFixed(5) : "";
+  const lonKey = Number.isFinite(row.Longitude) ? row.Longitude.toFixed(5) : "";
+  const typeKey = String(row.Property_Type || "").trim().toLowerCase();
+  const bedKey = Number.isFinite(row.Bedrooms) ? String(row.Bedrooms) : "";
+  const bathKey = Number.isFinite(row.Bathrooms) ? String(row.Bathrooms) : "";
+  const landKey = Number.isFinite(row.Land_Size) ? String(Math.round(row.Land_Size)) : "";
+  const geoHouseKey = latKey && lonKey ? `${latKey}|${lonKey}|${typeKey}|${bedKey}|${bathKey}|${landKey}` : "";
+  return geoHouseKey || `listing:${row.Listing_ID}`;
+}
+
 function makeKpiCard(label, value) {
   const div = document.createElement("div");
   div.className = "kpi-card";
@@ -408,14 +419,7 @@ function getDistributionRows() {
 function buildLatestListings(rows) {
   const byProperty = new Map();
   rows.forEach((row) => {
-    const latKey = Number.isFinite(row.Latitude) ? row.Latitude.toFixed(5) : "";
-    const lonKey = Number.isFinite(row.Longitude) ? row.Longitude.toFixed(5) : "";
-    const typeKey = String(row.Property_Type || "").trim().toLowerCase();
-    const bedKey = Number.isFinite(row.Bedrooms) ? String(row.Bedrooms) : "";
-    const bathKey = Number.isFinite(row.Bathrooms) ? String(row.Bathrooms) : "";
-    const landKey = Number.isFinite(row.Land_Size) ? String(Math.round(row.Land_Size)) : "";
-    const geoHouseKey = latKey && lonKey ? `${latKey}|${lonKey}|${typeKey}|${bedKey}|${bathKey}|${landKey}` : "";
-    const key = geoHouseKey || `listing:${row.Listing_ID}`;
+    const key = houseKey(row);
     const current = byProperty.get(key);
     if (!current) {
       byProperty.set(key, row);
@@ -523,18 +527,17 @@ function renderSuburbDistribution(rows) {
   const grouped = aggregateSuburbStats(rows).sort((a, b) => b.count - a.count || b.median_price - a.median_price);
   const labels = grouped.map((r) => r.Suburb);
   const suburbIndex = new Map(labels.map((name, idx) => [name, idx]));
-  const baseRows = distinctBy(
-    rows,
-    (r) =>
-      `${r.Suburb}|${r.Price}|${Number.isFinite(r.Latitude) ? r.Latitude.toFixed(5) : ""}|${
-        Number.isFinite(r.Longitude) ? r.Longitude.toFixed(5) : ""
-      }`
-  );
-  const points = baseRows
+  const houseRows = distinctBy(rows, (r) => houseKey(r));
+  const plotRows = houseRows
     .filter((r) => Number.isFinite(r.Price) && r.Suburb && suburbIndex.has(r.Suburb))
     .map((r) => ({
-      x: r.Price,
-      y: suburbIndex.get(r.Suburb),
+      suburbs: r.Suburb,
+      last_price: r.Price,
+      house: houseKey(r),
+    }));
+  const points = plotRows.map((r) => ({
+      x: r.last_price,
+      y: suburbIndex.get(r.suburbs),
     }));
   const rowsVisibleBeforeScroll = 12;
   const rowHeightPx = 30;
