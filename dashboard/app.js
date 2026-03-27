@@ -20,6 +20,7 @@ let map;
 let listingsLayer;
 let suburbPriceLayer;
 let schoolLayer;
+let suburbSelectControl = null;
 let selectedFilters = {
   suburb: "",
   bedrooms: "",
@@ -467,6 +468,12 @@ function getDistributionRows() {
   });
 }
 
+function setSuburbFilter(nextSuburb, applyNow = true) {
+  selectedFilters.suburb = normalizeSuburbName(nextSuburb || "");
+  if (suburbSelectControl) suburbSelectControl.value = selectedFilters.suburb;
+  if (applyNow) applyFilters();
+}
+
 function buildLatestListings(rows) {
   const byProperty = new Map();
   const soldDateMs = (row) => {
@@ -763,8 +770,8 @@ function renderMap(rows) {
   if (schoolLayer) map.removeLayer(schoolLayer);
 
   const mapRows = rows.slice(0, 7000);
-  const listingMarkers = mapRows.map((row) =>
-    L.circleMarker([row.Latitude, row.Longitude], {
+  const listingMarkers = mapRows.map((row) => {
+    const marker = L.circleMarker([row.Latitude, row.Longitude], {
       radius: 3,
       color: "#ef4444",
       fillColor: "#ef4444",
@@ -777,8 +784,10 @@ function renderMap(rows) {
         row.Primary_School_Distance
       )}<br/>Secondary school distance: ${formatDistance(row.Secondary_School_Distance)}`,
       { sticky: true }
-    )
-  );
+    );
+    marker.on("click", () => setSuburbFilter(row.Suburb));
+    return marker;
+  });
   listingsLayer = L.layerGroup(listingMarkers);
 
   const filteredSuburb = aggregateSuburbStats(rows).filter((r) => Number.isFinite(r.latitude) && Number.isFinite(r.longitude));
@@ -787,8 +796,8 @@ function renderMap(rows) {
   const maxPrice = Math.max(...prices);
 
   suburbPriceLayer = L.layerGroup(
-    filteredSuburb.map((row) =>
-      L.circleMarker([row.latitude, row.longitude], {
+    filteredSuburb.map((row) => {
+      const marker = L.circleMarker([row.latitude, row.longitude], {
         radius: radiusByPrice(row.avg_price, minPrice, maxPrice),
         color: colorByPrice(row.avg_price, minPrice, maxPrice),
         fillColor: colorByPrice(row.avg_price, minPrice, maxPrice),
@@ -803,8 +812,10 @@ function renderMap(rows) {
           row.highest_price
         )}<br/>Lowest: ${currency.format(row.lowest_price)}<br/>Sales: ${numberFmt.format(row.count)}`,
         { sticky: true }
-      )
-    )
+      );
+      marker.on("click", () => setSuburbFilter(row.Suburb));
+      return marker;
+    })
   );
   const schoolMarkers = schoolPoints
     .filter((s) => s.count >= 8)
@@ -911,10 +922,10 @@ async function init() {
   applyFilters();
 
   const suburbSelect = document.getElementById("suburbSelect");
+  suburbSelectControl = suburbSelect;
   const clearFiltersBtn = document.getElementById("clearFiltersBtn");
   suburbSelect.addEventListener("change", (e) => {
-    selectedFilters.suburb = e.target.value || "";
-    applyFilters();
+    setSuburbFilter(e.target.value || "");
   });
   const bedroomSelect = document.getElementById("bedroomSelect");
   bedroomSelect.addEventListener("change", (e) => {
