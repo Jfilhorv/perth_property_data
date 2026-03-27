@@ -188,7 +188,7 @@ main {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 4px 8px;
+  padding: 6px 10px;
   border: 1px solid #dbe4f0;
   border-radius: 999px;
   background: #f8fbff;
@@ -200,11 +200,27 @@ main {
 }
 
 #maxPriceRange {
-  width: 120px;
+  width: 110px;
   accent-color: #1d4ed8;
 }
 
-#maxPriceRangeValue {
+#minPriceRange {
+  width: 110px;
+  accent-color: #1d4ed8;
+}
+
+#minPriceRange::-webkit-slider-thumb,
+#maxPriceRange::-webkit-slider-thumb {
+  background: #60a5fa;
+}
+
+#minPriceRange::-moz-range-thumb,
+#maxPriceRange::-moz-range-thumb {
+  background: #60a5fa;
+  border: none;
+}
+
+#priceRangeValue {
   min-width: 72px;
   text-align: right;
   font-size: 11px;

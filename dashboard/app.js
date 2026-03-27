@@ -23,6 +23,7 @@ let selectedFilters = {
   suburb: "",
   bedrooms: "",
   bathrooms: "",
+  minPrice: null,
   maxPrice: null,
 };
 let currentTableSort = { key: "count", dir: "desc" };
@@ -334,8 +335,9 @@ function getFilteredRows() {
     const bySuburb = !selectedFilters.suburb || row.Suburb === selectedFilters.suburb;
     const byBeds = !selectedFilters.bedrooms || String(row.Bedrooms) === selectedFilters.bedrooms;
     const byBaths = !selectedFilters.bathrooms || String(row.Bathrooms) === selectedFilters.bathrooms;
+    const byMinPrice = !Number.isFinite(selectedFilters.minPrice) || row.Price >= selectedFilters.minPrice;
     const byMaxPrice = !Number.isFinite(selectedFilters.maxPrice) || row.Price <= selectedFilters.maxPrice;
-    return bySuburb && byBeds && byBaths && byMaxPrice;
+    return bySuburb && byBeds && byBaths && byMinPrice && byMaxPrice;
   });
 }
 
@@ -613,19 +615,25 @@ async function init() {
 
   renderSuburbOptions();
   renderBedroomBathroomOptions();
+  const minPriceRange = document.getElementById("minPriceRange");
   const maxPriceRange = document.getElementById("maxPriceRange");
-  const maxPriceRangeValue = document.getElementById("maxPriceRangeValue");
+  const priceRangeValue = document.getElementById("priceRangeValue");
   const maxAvailablePrice = listingsCore.reduce(
     (max, row) => (Number.isFinite(row.Price) && row.Price > max ? row.Price : max),
     0
   );
   const safeMaxPrice = Math.ceil(maxAvailablePrice / 10000) * 10000;
+  minPriceRange.max = String(safeMaxPrice);
+  minPriceRange.min = "0";
+  minPriceRange.step = "10000";
+  minPriceRange.value = "0";
   maxPriceRange.max = String(safeMaxPrice);
   maxPriceRange.min = "0";
   maxPriceRange.step = "10000";
   maxPriceRange.value = String(safeMaxPrice);
+  selectedFilters.minPrice = 0;
   selectedFilters.maxPrice = safeMaxPrice;
-  maxPriceRangeValue.textContent = "Any";
+  priceRangeValue.textContent = "Any";
   applyFilters();
 
   const suburbSelect = document.getElementById("suburbSelect");
@@ -643,13 +651,38 @@ async function init() {
     selectedFilters.bathrooms = e.target.value || "";
     applyFilters();
   });
+  const updatePriceRangeLabel = () => {
+    const minValue = Number(minPriceRange.value);
+    const maxValue = Number(maxPriceRange.value);
+    const minText = minValue <= 0 ? "Any" : currency.format(minValue);
+    const maxText = maxValue >= safeMaxPrice ? "Any" : currency.format(maxValue);
+    priceRangeValue.textContent = `${minText} - ${maxText}`;
+  };
+  minPriceRange.addEventListener("input", (e) => {
+    const value = Number(e.target.value);
+    if (!Number.isFinite(value)) return;
+    const currentMax = Number(maxPriceRange.value);
+    if (value > currentMax) {
+      maxPriceRange.value = String(value);
+    }
+    selectedFilters.minPrice = value;
+    selectedFilters.maxPrice = Number(maxPriceRange.value);
+    updatePriceRangeLabel();
+    applyFilters();
+  });
   maxPriceRange.addEventListener("input", (e) => {
     const value = Number(e.target.value);
     if (!Number.isFinite(value)) return;
+    const currentMin = Number(minPriceRange.value);
+    if (value < currentMin) {
+      minPriceRange.value = String(value);
+    }
+    selectedFilters.minPrice = Number(minPriceRange.value);
     selectedFilters.maxPrice = value;
-    maxPriceRangeValue.textContent = value >= safeMaxPrice ? "Any" : `<= ${currency.format(value)}`;
+    updatePriceRangeLabel();
     applyFilters();
   });
+  updatePriceRangeLabel();
 
   const chartTypeSelect = document.getElementById("chartTypeSelect");
   chartTypeSelect.addEventListener("change", () => applyFilters());
