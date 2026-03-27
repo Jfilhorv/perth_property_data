@@ -293,6 +293,7 @@ select {
   height: 420px;
   overflow-y: auto;
   overflow-x: hidden;
+  position: relative;
   scrollbar-width: thin;
   scrollbar-color: rgba(100, 116, 139, 0.45) transparent;
 }
@@ -318,6 +319,22 @@ select {
 .distribution-wrap::-webkit-scrollbar-thumb {
   background: rgba(100, 116, 139, 0.45);
   border-radius: 10px;
+}
+
+.distribution-axis-tooltip {
+  position: absolute;
+  top: 8px;
+  transform: translateX(-50%);
+  background: rgba(15, 23, 42, 0.88);
+  color: #f8fafc;
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  pointer-events: none;
+  z-index: 15;
+  white-space: nowrap;
+  display: none;
 }
 
 .hidden {

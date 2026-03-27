@@ -29,6 +29,7 @@ let selectedFilters = {
 };
 let currentTableSort = { key: "count", dir: "desc" };
 let currentSuburbView = "table";
+let distributionAxisTooltipEl = null;
 const suburbBandPlugin = {
   id: "suburbBandPlugin",
   beforeDatasetsDraw(chart) {
@@ -49,6 +50,17 @@ const suburbBandPlugin = {
     ctx.restore();
   },
 };
+
+function ensureDistributionAxisTooltip() {
+  if (distributionAxisTooltipEl) return distributionAxisTooltipEl;
+  const wrap = document.getElementById("suburbDistributionWrap");
+  if (!wrap) return null;
+  const el = document.createElement("div");
+  el.className = "distribution-axis-tooltip";
+  wrap.appendChild(el);
+  distributionAxisTooltipEl = el;
+  return distributionAxisTooltipEl;
+}
 
 function makeKpiCard(label, value) {
   const div = document.createElement("div");
@@ -531,6 +543,37 @@ function renderSuburbDistribution(rows) {
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      onHover: (event, _activeElements, chartInstance) => {
+        const tooltipEl = ensureDistributionAxisTooltip();
+        if (!tooltipEl) return;
+        const { chartArea, scales } = chartInstance;
+        const xScale = scales?.x;
+        if (!xScale || !chartArea) {
+          tooltipEl.style.display = "none";
+          return;
+        }
+        const x = event?.x;
+        const y = event?.y;
+        const withinArea =
+          Number.isFinite(x) &&
+          Number.isFinite(y) &&
+          x >= chartArea.left &&
+          x <= chartArea.right &&
+          y >= chartArea.top &&
+          y <= chartArea.bottom;
+        if (!withinArea) {
+          tooltipEl.style.display = "none";
+          return;
+        }
+        const priceValue = xScale.getValueForPixel(x);
+        if (!Number.isFinite(priceValue)) {
+          tooltipEl.style.display = "none";
+          return;
+        }
+        tooltipEl.textContent = currency.format(priceValue);
+        tooltipEl.style.left = `${x}px`;
+        tooltipEl.style.display = "inline-block";
+      },
       plugins: {
         legend: { display: false },
         tooltip: { enabled: false },
@@ -564,6 +607,8 @@ function renderSuburbDistribution(rows) {
       },
     },
   });
+  const tooltipEl = ensureDistributionAxisTooltip();
+  if (tooltipEl) tooltipEl.style.display = "none";
 }
 
 function applyFilters() {
