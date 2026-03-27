@@ -62,6 +62,15 @@ function ensureDistributionAxisTooltip() {
   return distributionAxisTooltipEl;
 }
 
+function normalizeSuburbName(value) {
+  const raw = String(value || "").trim().replace(/\s+/g, " ");
+  if (!raw) return "";
+  return raw
+    .split(" ")
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
+    .join(" ");
+}
+
 function makeKpiCard(label, value) {
   const div = document.createElement("div");
   div.className = "kpi-card";
@@ -737,6 +746,10 @@ async function init() {
   summaryStats = summary;
   listingsCore = listings;
   listingsLatest = buildLatestListings(listingsCore);
+  listingsLatest = listingsLatest.map((row) => ({
+    ...row,
+    Suburb: normalizeSuburbName(row.Suburb),
+  }));
   schoolPoints = schools;
 
   renderSuburbOptions();
