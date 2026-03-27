@@ -504,6 +504,10 @@ function renderSuburbDistribution(rows) {
       scales: {
         x: {
           ticks: { callback: (v) => currency.format(v), color: "#334155" },
+          grid: {
+            drawOnChartArea: false,
+            drawTicks: true,
+          },
           title: { display: true, text: "Price (AUD)" },
         },
         y: {
@@ -514,6 +518,10 @@ function renderSuburbDistribution(rows) {
             autoSkip: false,
             color: "#334155",
             font: { size: 10 },
+          },
+          grid: {
+            display: false,
+            drawBorder: true,
           },
           title: { display: true, text: "Suburb" },
         },
