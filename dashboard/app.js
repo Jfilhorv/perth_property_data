@@ -91,8 +91,8 @@ function distinctBy(items, keyFn) {
 }
 
 function houseKey(row) {
-  const latKey = Number.isFinite(row.Latitude) ? row.Latitude.toFixed(5) : "";
-  const lonKey = Number.isFinite(row.Longitude) ? row.Longitude.toFixed(5) : "";
+  const latKey = Number.isFinite(row.Latitude) ? row.Latitude.toFixed(7) : "";
+  const lonKey = Number.isFinite(row.Longitude) ? row.Longitude.toFixed(7) : "";
   if (latKey && lonKey) return `geo:${latKey}|${lonKey}`;
   if (Number.isFinite(row.Listing_ID)) return `listing:${row.Listing_ID}`;
   return `listing-fallback:${String(row.Address || "").trim().toLowerCase()}|${String(row.Suburb || "")
@@ -801,6 +801,7 @@ async function init() {
   summaryStats = summary;
   listingsCore = listings;
   listingsLatest = buildLatestListings(listingsCore);
+  listingsLatest = distinctBy(listingsLatest, (row) => houseKey(row));
   listingsLatest = listingsLatest.map((row) => ({
     ...row,
     Suburb: normalizeSuburbName(row.Suburb),
