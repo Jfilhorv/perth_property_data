@@ -281,6 +281,24 @@ select {
   font-size: 12px;
 }
 
+.clear-filters-btn {
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #0f172a;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.clear-filters-btn:hover,
+.clear-filters-btn:focus-visible {
+  background: #e2e8f0;
+  border-color: #94a3b8;
+  outline: none;
+}
+
 .table-wrap {
   overflow-x: auto;
   overflow-y: scroll;
@@ -307,7 +325,8 @@ select {
   max-width: 100%;
 }
 
-.distribution-wrap canvas {
+.distribution-wrap canvas,
+.distribution-wrap #suburbDistributionChart {
   width: 100% !important;
   height: 100% !important;
 }

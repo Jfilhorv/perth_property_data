@@ -55,6 +55,7 @@
             </div>
             <span id="priceRangeValue">Any</span>
           </div>
+          <button type="button" id="clearFiltersBtn" class="clear-filters-btn">Clear filters</button>
         </div>
       </section>
 
@@ -73,9 +74,8 @@
       </section>
 
       <section class="panel">
-        <div class="section-toolbar suburb-view-toggle" id="suburbViewToggle">
-          <h2 class="suburb-menu-item active" data-view="table" tabindex="0">Suburbs by Sales Volume</h2>
-          <h2 class="suburb-menu-item" data-view="distribution" tabindex="0">Distribution by suburbs</h2>
+        <div class="section-toolbar">
+          <h2>Suburbs by Sales Volume</h2>
         </div>
         <div class="table-wrap" id="suburbTableWrap">
           <table>
@@ -94,11 +94,6 @@
             <tbody id="suburbTableBody"></tbody>
           </table>
         </div>
-        <div class="distribution-wrap hidden" id="suburbDistributionWrap">
-          <div class="distribution-inner" id="suburbDistributionInner">
-            <canvas id="suburbDistributionChart"></canvas>
-          </div>
-        </div>
       </section>
     </main>
     <footer class="site-footer">
@@ -107,11 +102,12 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-box-and-violin-plot@4.0.0/build/index.umd.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
     <script
       src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
       integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
       crossorigin=""
     ></script>
-    <script src="./app.js?v=20260326-vertical"></script>
+    <script src="./app.js?v=20260327-plotly-distribution"></script>
   </body>
 </html>

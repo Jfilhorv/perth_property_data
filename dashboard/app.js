@@ -575,17 +575,17 @@ function updateSuburbViewUi() {
   const distributionWrap = document.getElementById("suburbDistributionWrap");
   const toggleButtons = document.querySelectorAll("#suburbViewToggle .suburb-menu-item");
   const showTable = currentSuburbView === "table";
-  tableWrap.classList.toggle("hidden", !showTable);
-  distributionWrap.classList.toggle("hidden", showTable);
+  if (tableWrap) tableWrap.classList.toggle("hidden", !showTable);
+  if (distributionWrap) distributionWrap.classList.toggle("hidden", showTable);
   toggleButtons.forEach((btn) => {
     btn.classList.toggle("active", btn.getAttribute("data-view") === currentSuburbView);
   });
 }
 
 function renderSuburbDistribution(rows) {
-  const canvas = document.getElementById("suburbDistributionChart");
+  const plotEl = document.getElementById("suburbDistributionChart");
   const inner = document.getElementById("suburbDistributionInner");
-  if (!canvas) return;
+  if (!plotEl) return;
   const houseRows = distinctBy(rows, (r) => houseKey(r));
 
   // Correct structure for boxplot: one numeric array per suburb.
@@ -609,33 +609,81 @@ function renderSuburbDistribution(rows) {
   const medianValues = values.map((prices) => median(prices));
   const minValues = values.map((prices) => Math.min(...prices));
   const maxValues = values.map((prices) => Math.max(...prices));
-  const rangeValues = minValues.map((minV, idx) => [minV, maxValues[idx]]);
-  const allPrices = values.flat();
-  const globalMin = allPrices.length ? Math.min(...allPrices) : 0;
-  const globalMax = allPrices.length ? Math.max(...allPrices) : 1;
-  const useBoxPlot = isBoxPlotRegistered();
-
   if (inner) {
     inner.style.height = "420px";
     inner.style.width = "100%";
   }
-  if (suburbDistributionChart) suburbDistributionChart.destroy();
+  if (suburbDistributionChart?.__kind === "chartjs" && typeof suburbDistributionChart.destroy === "function") {
+    suburbDistributionChart.destroy();
+  }
+  if (suburbDistributionChart?.__kind === "plotly" && window.Plotly?.purge) {
+    window.Plotly.purge(plotEl);
+  }
   if (distributionAxisTooltipEl) distributionAxisTooltipEl.style.display = "none";
 
-  suburbDistributionChart = new Chart(canvas, {
-    type: useBoxPlot ? "boxplot" : "bar",
+  if (window.Plotly?.newPlot) {
+    const boxTraces = labels.map((suburb, idx) => ({
+      type: "box",
+      name: suburb,
+      y: values[idx],
+      boxpoints: false,
+      marker: { color: "rgba(59, 130, 246, 0.55)" },
+      line: { color: "rgba(37, 99, 235, 0.95)", width: 1 },
+      hovertemplate: `${suburb}<br>Price: %{y:$,.0f}<extra></extra>`,
+    }));
+    const medianTrace = {
+      type: "scatter",
+      mode: "lines+markers",
+      name: "Median",
+      x: labels,
+      y: medianValues,
+      line: { color: "rgba(30, 64, 175, 0.95)", width: 2 },
+      marker: { size: 5, color: "rgba(30, 64, 175, 0.95)" },
+      hovertemplate: "%{x}<br>Median: %{y:$,.0f}<extra></extra>",
+    };
+
+    window.Plotly.newPlot(plotEl, [...boxTraces, medianTrace], {
+      margin: { l: 70, r: 16, t: 18, b: 130 },
+      xaxis: {
+        title: "Suburb",
+        tickangle: -65,
+        automargin: true,
+        type: "category",
+      },
+      yaxis: {
+        title: "Price (AUD)",
+        tickformat: "$,.0f",
+        automargin: true,
+      },
+      legend: { orientation: "h", y: 1.15 },
+      showlegend: true,
+      paper_bgcolor: "rgba(0,0,0,0)",
+      plot_bgcolor: "rgba(0,0,0,0)",
+    }, {
+      responsive: true,
+      displaylogo: false,
+    });
+    suburbDistributionChart = { __kind: "plotly" };
+    return;
+  }
+
+  const rangeValues = minValues.map((minV, idx) => [minV, maxValues[idx]]);
+  const allPrices = values.flat();
+  const globalMin = allPrices.length ? Math.min(...allPrices) : 0;
+  const globalMax = allPrices.length ? Math.max(...allPrices) : 1;
+
+  suburbDistributionChart = new Chart(plotEl, {
+    type: "bar",
     data: {
       labels,
       datasets: [
         {
-          label: useBoxPlot ? "House Prices" : "Median Price (fallback)",
-          data: useBoxPlot ? values : rangeValues,
-          indexAxis: "x",
-          axis: "x",
+          label: "Price Range (fallback)",
+          data: rangeValues,
           backgroundColor: "rgba(59, 130, 246, 0.2)",
           borderColor: "rgba(37, 99, 235, 0.85)",
           borderWidth: 1,
-          ...(useBoxPlot ? { outlierRadius: 1.5, itemRadius: 0 } : { borderRadius: 2 }),
+          borderRadius: 2,
         },
         {
           type: "line",
@@ -654,32 +702,15 @@ function renderSuburbDistribution(rows) {
       responsive: true,
       maintainAspectRatio: false,
       indexAxis: "x",
-      plugins: {
-        legend: { display: !useBoxPlot },
-      },
+      plugins: { legend: { display: true } },
       scales: {
         x: {
-          type: "category",
-          position: "bottom",
-          reverse: false,
-          ticks: {
-            autoSkip: false,
-            color: "#334155",
-            font: { size: 9 },
-            maxRotation: 65,
-            minRotation: 65,
-          },
+          ticks: { autoSkip: false, color: "#334155", font: { size: 9 }, maxRotation: 65, minRotation: 65 },
           grid: { display: false },
           title: { display: true, text: "Suburb" },
         },
         y: {
-          type: "linear",
-          position: "left",
-          reverse: false,
-          ticks: {
-            callback: (v) => currency.format(v),
-            color: "#334155",
-          },
+          ticks: { callback: (v) => currency.format(v), color: "#334155" },
           beginAtZero: false,
           min: globalMin * 0.98,
           max: globalMax * 1.02,
@@ -689,14 +720,13 @@ function renderSuburbDistribution(rows) {
       },
     },
   });
+  suburbDistributionChart.__kind = "chartjs";
 }
 
 function applyFilters() {
   const filteredRows = getFilteredRows();
-  const distributionRows = getDistributionRows();
   renderKpis(summaryStats, filteredRows);
   renderSuburbTable(filteredRows);
-  renderSuburbDistribution(distributionRows);
   updateSuburbViewUi();
   renderMap(filteredRows);
   const chartType = document.getElementById("chartTypeSelect").value;
@@ -881,6 +911,7 @@ async function init() {
   applyFilters();
 
   const suburbSelect = document.getElementById("suburbSelect");
+  const clearFiltersBtn = document.getElementById("clearFiltersBtn");
   suburbSelect.addEventListener("change", (e) => {
     selectedFilters.suburb = e.target.value || "";
     applyFilters();
@@ -910,6 +941,21 @@ async function init() {
     const maxPct = (maxValue / safeMaxPrice) * 100;
     priceDualRange.style.setProperty("--min-pct", `${minPct}%`);
     priceDualRange.style.setProperty("--max-pct", `${maxPct}%`);
+  };
+  const resetFilters = () => {
+    selectedFilters.suburb = "";
+    selectedFilters.bedrooms = "";
+    selectedFilters.bathrooms = "";
+    selectedFilters.minPrice = 0;
+    selectedFilters.maxPrice = safeMaxPrice;
+    suburbSelect.value = "";
+    bedroomSelect.value = "";
+    bathroomSelect.value = "";
+    minPriceRange.value = "0";
+    maxPriceRange.value = String(safeMaxPrice);
+    updatePriceRangeLabel();
+    updatePriceRangeTrack();
+    flushScheduledApply();
   };
   minPriceRange.addEventListener("input", (e) => {
     const value = Number(e.target.value);
@@ -949,6 +995,7 @@ async function init() {
   mapViewSelect.addEventListener("change", () => {
     applyFilters();
   });
+  clearFiltersBtn?.addEventListener("click", resetFilters);
 
   const headerCells = document.querySelectorAll("th.sortable");
   headerCells.forEach((cell) => {
