@@ -607,6 +607,12 @@ function renderSuburbDistribution(rows) {
   const labels = sorted.map(([suburb]) => suburb);
   const values = sorted.map(([, prices]) => prices);
   const medianValues = values.map((prices) => median(prices));
+  const minValues = values.map((prices) => Math.min(...prices));
+  const maxValues = values.map((prices) => Math.max(...prices));
+  const rangeValues = minValues.map((minV, idx) => [minV, maxValues[idx]]);
+  const allPrices = values.flat();
+  const globalMin = allPrices.length ? Math.min(...allPrices) : 0;
+  const globalMax = allPrices.length ? Math.max(...allPrices) : 1;
   const useBoxPlot = isBoxPlotRegistered();
 
   if (inner) {
@@ -623,11 +629,22 @@ function renderSuburbDistribution(rows) {
       datasets: [
         {
           label: useBoxPlot ? "House Prices" : "Median Price (fallback)",
-          data: useBoxPlot ? values : medianValues,
+          data: useBoxPlot ? values : rangeValues,
           backgroundColor: "rgba(59, 130, 246, 0.2)",
           borderColor: "rgba(37, 99, 235, 0.85)",
           borderWidth: 1,
-          ...(useBoxPlot ? { outlierRadius: 1.5, itemRadius: 0 } : {}),
+          ...(useBoxPlot ? { outlierRadius: 1.5, itemRadius: 0 } : { borderRadius: 2 }),
+        },
+        {
+          type: "line",
+          label: "Median",
+          data: medianValues,
+          borderColor: "rgba(30, 64, 175, 0.95)",
+          backgroundColor: "rgba(30, 64, 175, 0.95)",
+          borderWidth: 1,
+          pointRadius: 1.8,
+          pointHoverRadius: 2.2,
+          tension: 0,
         },
       ],
     },
@@ -636,7 +653,7 @@ function renderSuburbDistribution(rows) {
       maintainAspectRatio: false,
       indexAxis: "x",
       plugins: {
-        legend: { display: false },
+        legend: { display: !useBoxPlot },
       },
       scales: {
         x: {
@@ -655,6 +672,9 @@ function renderSuburbDistribution(rows) {
             callback: (v) => currency.format(v),
             color: "#334155",
           },
+          beginAtZero: false,
+          min: globalMin * 0.98,
+          max: globalMax * 1.02,
           grid: { display: true, color: "rgba(148, 163, 184, 0.2)" },
           title: { display: true, text: "Price (AUD)" },
         },
