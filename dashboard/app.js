@@ -448,7 +448,14 @@ function buildLatestListings(rows) {
       byProperty.set(key, row);
     }
   });
-  return [...byProperty.values()];
+  const latest = [...byProperty.values()];
+  return distinctBy(latest, (row) => {
+    const latKey = Number.isFinite(row.Latitude) ? row.Latitude.toFixed(7) : "";
+    const lonKey = Number.isFinite(row.Longitude) ? row.Longitude.toFixed(7) : "";
+    const priceKey = Number.isFinite(row.Price) ? String(row.Price) : "";
+    const soldKey = String(row.Date_Sold || "");
+    return `${latKey}|${lonKey}|${priceKey}|${soldKey}`;
+  });
 }
 
 function getYearlySeries(rows) {
