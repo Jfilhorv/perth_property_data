@@ -524,10 +524,20 @@ function renderSuburbDistribution(rows) {
   const canvas = document.getElementById("suburbDistributionChart");
   const inner = document.getElementById("suburbDistributionInner");
   if (!canvas) return;
-  const grouped = aggregateSuburbStats(rows).sort((a, b) => b.count - a.count || b.median_price - a.median_price);
-  const labels = grouped.map((r) => r.Suburb);
+  const labels = [...new Set(rows.map((r) => r.Suburb).filter((v) => String(v || "").trim()))].sort((a, b) =>
+    String(a).localeCompare(String(b))
+  );
   const suburbIndex = new Map(labels.map((name, idx) => [name, idx]));
   const houseRows = distinctBy(rows, (r) => houseKey(r));
+  const jitterByHouse = (house) => {
+    let hash = 0;
+    const seed = String(house || "");
+    for (let i = 0; i < seed.length; i += 1) {
+      hash = (hash * 31 + seed.charCodeAt(i)) | 0;
+    }
+    const normalized = ((hash >>> 0) % 1000) / 1000;
+    return (normalized - 0.5) * 0.22;
+  };
   const plotRows = houseRows
     .filter((r) => Number.isFinite(r.Price) && r.Suburb && suburbIndex.has(r.Suburb))
     .map((r) => ({
@@ -537,7 +547,7 @@ function renderSuburbDistribution(rows) {
     }));
   const points = plotRows.map((r) => ({
       x: r.last_price,
-      y: suburbIndex.get(r.suburbs),
+      y: suburbIndex.get(r.suburbs) + jitterByHouse(r.house),
     }));
   const rowsVisibleBeforeScroll = 12;
   const rowHeightPx = 30;
