@@ -51,6 +51,27 @@ const suburbBandPlugin = {
   },
 };
 
+function registerBoxPlotPlugin() {
+  if (typeof Chart === "undefined" || typeof Chart.register !== "function") return;
+  const lib =
+    window.ChartBoxPlot ||
+    window.ChartBoxAndViolinPlot ||
+    window["chartjs-chart-box-and-violin-plot"] ||
+    null;
+  if (!lib) return;
+  const parts = [
+    lib.BoxPlotController,
+    lib.BoxAndWiskers,
+    lib.BoxAndWhiskers,
+    lib.ViolinController,
+    lib.Violin,
+    lib.ArrayLinearScale,
+    lib.ArrayLogarithmicScale,
+    lib.PointAndWiskers,
+  ].filter(Boolean);
+  if (parts.length) Chart.register(...parts);
+}
+
 function ensureDistributionAxisTooltip() {
   if (distributionAxisTooltipEl) return distributionAxisTooltipEl;
   const wrap = document.getElementById("suburbDistributionWrap");
@@ -753,6 +774,7 @@ async function loadJson(path) {
 }
 
 async function init() {
+  registerBoxPlotPlugin();
   const [summary, listings, schools] = await Promise.all([
     loadJson("./data/summary.json"),
     loadJson("./data/listings_core.json"),
