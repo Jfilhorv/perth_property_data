@@ -14,6 +14,7 @@ let summaryStats = null;
 let listingsCore = [];
 let schoolPoints = [];
 let yearlyChart;
+let suburbDistributionChart;
 let map;
 let listingsLayer;
 let suburbPriceLayer;
@@ -24,6 +25,7 @@ let selectedFilters = {
   bathrooms: "",
 };
 let currentTableSort = { key: "count", dir: "desc" };
+let currentSuburbView = "table";
 
 function makeKpiCard(label, value) {
   const div = document.createElement("div");
@@ -402,10 +404,88 @@ function renderYearlyChart(chartType = "line", rows = []) {
   });
 }
 
+function updateSuburbViewUi() {
+  const tableWrap = document.getElementById("suburbTableWrap");
+  const distributionWrap = document.getElementById("suburbDistributionWrap");
+  const toggleButtons = document.querySelectorAll("#suburbViewToggle .toggle-btn");
+  const showTable = currentSuburbView === "table";
+  tableWrap.classList.toggle("hidden", !showTable);
+  distributionWrap.classList.toggle("hidden", showTable);
+  toggleButtons.forEach((btn) => {
+    btn.classList.toggle("active", btn.getAttribute("data-view") === currentSuburbView);
+  });
+}
+
+function renderSuburbDistribution(rows) {
+  const canvas = document.getElementById("suburbDistributionChart");
+  if (!canvas) return;
+  const grouped = aggregateSuburbStats(rows);
+  const labels = grouped.map((r) => r.Suburb);
+  const indexBySuburb = new Map(labels.map((s, idx) => [s, idx]));
+  const points = rows
+    .filter((r) => Number.isFinite(r.Price) && r.Suburb && indexBySuburb.has(r.Suburb))
+    .slice(0, 4500)
+    .map((r) => ({
+      x: r.Price,
+      y: indexBySuburb.get(r.Suburb) + (Math.random() - 0.5) * 0.22,
+    }));
+  if (suburbDistributionChart) suburbDistributionChart.destroy();
+  suburbDistributionChart = new Chart(canvas, {
+    type: "scatter",
+    data: {
+      datasets: [
+        {
+          label: "Property Price Distribution",
+          data: points,
+          pointRadius: 2.8,
+          pointHoverRadius: 4.2,
+          backgroundColor: "rgba(29, 78, 216, 0.42)",
+          borderColor: "rgba(29, 78, 216, 0.65)",
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            title: (items) => {
+              const rawY = items?.[0]?.parsed?.y;
+              const idx = Math.max(0, Math.min(labels.length - 1, Math.round(rawY)));
+              return labels[idx] || "";
+            },
+            label: (item) => `Price: ${currency.format(item.parsed.x)}`,
+          },
+        },
+      },
+      scales: {
+        x: {
+          ticks: { callback: (v) => currency.format(v) },
+          title: { display: true, text: "Price (AUD)" },
+        },
+        y: {
+          min: -0.5,
+          max: Math.max(labels.length - 0.5, 0.5),
+          ticks: {
+            callback: (value) => labels[Math.round(value)] || "",
+            autoSkip: true,
+            maxTicksLimit: 18,
+          },
+          title: { display: true, text: "Suburb" },
+        },
+      },
+    },
+  });
+}
+
 function applyFilters() {
   const filteredRows = getFilteredRows();
   renderKpis(summaryStats, filteredRows);
   renderSuburbTable(filteredRows);
+  renderSuburbDistribution(filteredRows);
+  updateSuburbViewUi();
   renderMap(filteredRows);
   const chartType = document.getElementById("chartTypeSelect").value;
   renderYearlyChart(chartType, filteredRows);
@@ -580,6 +660,14 @@ async function init() {
     });
   });
   updateSortIndicators();
+
+  const suburbViewToggle = document.getElementById("suburbViewToggle");
+  suburbViewToggle?.addEventListener("click", (e) => {
+    const btn = e.target.closest("button[data-view]");
+    if (!btn) return;
+    currentSuburbView = btn.getAttribute("data-view") || "table";
+    updateSuburbViewUi();
+  });
 }
 
 init().catch((err) => {

@@ -65,8 +65,14 @@
       </section>
 
       <section class="panel">
-        <h2>Suburbs by Sales Volume</h2>
-        <div class="table-wrap">
+        <div class="section-toolbar">
+          <h2>Suburbs by Sales Volume</h2>
+          <div class="suburb-view-toggle" id="suburbViewToggle">
+            <button class="toggle-btn active" data-view="table" type="button">Table</button>
+            <button class="toggle-btn" data-view="distribution" type="button">Distribution by suburbs</button>
+          </div>
+        </div>
+        <div class="table-wrap" id="suburbTableWrap">
           <table>
             <thead>
               <tr>
@@ -82,6 +88,9 @@
             </thead>
             <tbody id="suburbTableBody"></tbody>
           </table>
+        </div>
+        <div class="distribution-wrap hidden" id="suburbDistributionWrap">
+          <canvas id="suburbDistributionChart"></canvas>
         </div>
       </section>
     </main>

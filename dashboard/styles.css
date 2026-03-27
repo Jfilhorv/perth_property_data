@@ -117,6 +117,48 @@ main {
   margin-top: 0;
 }
 
+.section-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.section-toolbar h2 {
+  margin: 0;
+}
+
+.suburb-view-toggle {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #dbe4f0;
+  border-radius: 999px;
+  background: #f8fbff;
+  padding: 3px;
+  gap: 4px;
+}
+
+.toggle-btn {
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: #475569;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.toggle-btn:hover {
+  background: #eaf2ff;
+}
+
+.toggle-btn.active {
+  background: #1d4ed8;
+  color: #fff;
+}
+
 .viz-grid .panel {
   min-height: 560px;
 }
@@ -148,6 +190,19 @@ select {
   height: 420px;
   scrollbar-width: thin;
   scrollbar-color: rgba(100, 116, 139, 0.45) transparent;
+}
+
+.distribution-wrap {
+  height: 420px;
+}
+
+.distribution-wrap canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.hidden {
+  display: none;
 }
 
 .table-wrap::-webkit-scrollbar {
