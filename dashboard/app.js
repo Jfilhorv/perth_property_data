@@ -447,14 +447,22 @@ function renderSuburbDistribution(rows) {
   const grouped = aggregateSuburbStats(rows).sort((a, b) => b.count - a.count || b.median_price - a.median_price);
   const labels = grouped.map((r) => r.Suburb);
   const suburbIndex = new Map(labels.map((name, idx) => [name, idx]));
+  const stableOffset = (row, index) => {
+    const seed = `${row.Suburb || ""}|${row.Address || ""}|${row.Price || 0}|${index}`;
+    let hash = 0;
+    for (let i = 0; i < seed.length; i += 1) {
+      hash = (hash * 31 + seed.charCodeAt(i)) | 0;
+    }
+    const normalized = ((hash >>> 0) % 1000) / 1000;
+    return (normalized - 0.5) * 0.12;
+  };
   const points = rows
     .filter((r) => Number.isFinite(r.Price) && r.Suburb && suburbIndex.has(r.Suburb))
-    .slice(0, 12000)
-    .map((r) => ({
+    .map((r, idx) => ({
       x: r.Price,
-      y: suburbIndex.get(r.Suburb) + (Math.random() - 0.5) * 0.08,
+      y: suburbIndex.get(r.Suburb) + stableOffset(r, idx),
     }));
-  const dynamicHeight = Math.min(700, Math.max(380, labels.length * 4));
+  const dynamicHeight = Math.max(420, labels.length * 8);
   if (inner) inner.style.height = `${dynamicHeight}px`;
   if (suburbDistributionChart) suburbDistributionChart.destroy();
   suburbDistributionChart = new Chart(canvas, {
@@ -465,8 +473,8 @@ function renderSuburbDistribution(rows) {
         {
           label: "Properties",
           data: points,
-          pointRadius: 1.3,
-          pointHoverRadius: 2.4,
+          pointRadius: 1.5,
+          pointHoverRadius: 2.6,
           backgroundColor: "rgba(96, 165, 250, 0.42)",
           borderColor: "rgba(29, 78, 216, 0.7)",
           borderWidth: 1,
