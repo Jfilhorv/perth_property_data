@@ -519,9 +519,9 @@ function renderSuburbDistribution(rows) {
           data: points,
           pointRadius: 0.85,
           pointHoverRadius: 1.5,
-          backgroundColor: "rgba(59, 130, 246, 0.35)",
-          borderColor: "rgba(37, 99, 235, 0.55)",
-          borderWidth: 0.25,
+          backgroundColor: "rgba(59, 130, 246, 0.32)",
+          borderColor: "rgba(59, 130, 246, 0)",
+          borderWidth: 0,
         },
       ],
     },
@@ -530,25 +530,16 @@ function renderSuburbDistribution(rows) {
       maintainAspectRatio: false,
       plugins: {
         legend: { display: false },
-        tooltip: {
-          callbacks: {
-            title: (items) => {
-              const rawY = items?.[0]?.parsed?.y;
-              const idx = Math.max(0, Math.min(labels.length - 1, Math.round(rawY)));
-              return labels[idx] || "";
-            },
-            label: (item) => {
-              return `Price: ${currency.format(item.parsed.x)}`;
-            },
-          },
-        },
+        tooltip: { enabled: false },
       },
       scales: {
         x: {
           ticks: { callback: (v) => currency.format(v), color: "#334155" },
           grid: {
+            display: false,
             drawOnChartArea: false,
             drawTicks: false,
+            drawBorder: true,
           },
           title: { display: true, text: "Price (AUD)" },
         },
