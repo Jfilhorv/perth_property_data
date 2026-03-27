@@ -39,8 +39,8 @@ const suburbBandPlugin = {
     ctx.save();
     ctx.fillStyle = "#f1f5f9";
     for (let i = 0; i < totalRows; i += 1) {
-      const top = y.getPixelForValue(i + 0.42);
-      const bottom = y.getPixelForValue(i - 0.42);
+      const top = y.getPixelForValue(i + 0.34);
+      const bottom = y.getPixelForValue(i - 0.34);
       const yStart = Math.min(top, bottom);
       const height = Math.abs(bottom - top);
       ctx.fillRect(chartArea.left, yStart, chartArea.right - chartArea.left, height);
@@ -452,9 +452,9 @@ function renderSuburbDistribution(rows) {
     .slice(0, 12000)
     .map((r) => ({
       x: r.Price,
-      y: suburbIndex.get(r.Suburb) + (Math.random() - 0.5) * 0.16,
+      y: suburbIndex.get(r.Suburb) + (Math.random() - 0.5) * 0.08,
     }));
-  const dynamicHeight = Math.min(900, Math.max(420, labels.length * 6));
+  const dynamicHeight = Math.min(700, Math.max(380, labels.length * 4));
   if (inner) inner.style.height = `${dynamicHeight}px`;
   if (suburbDistributionChart) suburbDistributionChart.destroy();
   suburbDistributionChart = new Chart(canvas, {
@@ -465,8 +465,8 @@ function renderSuburbDistribution(rows) {
         {
           label: "Properties",
           data: points,
-          pointRadius: 1.8,
-          pointHoverRadius: 3,
+          pointRadius: 1.3,
+          pointHoverRadius: 2.4,
           backgroundColor: "rgba(96, 165, 250, 0.42)",
           borderColor: "rgba(29, 78, 216, 0.7)",
           borderWidth: 1,
