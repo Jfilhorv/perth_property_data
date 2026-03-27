@@ -362,6 +362,16 @@ function getFilteredRows() {
   });
 }
 
+function getDistributionRows() {
+  return listingsLatest.filter((row) => {
+    const byBeds = !selectedFilters.bedrooms || String(row.Bedrooms) === selectedFilters.bedrooms;
+    const byBaths = !selectedFilters.bathrooms || String(row.Bathrooms) === selectedFilters.bathrooms;
+    const byMinPrice = !Number.isFinite(selectedFilters.minPrice) || row.Price >= selectedFilters.minPrice;
+    const byMaxPrice = !Number.isFinite(selectedFilters.maxPrice) || row.Price <= selectedFilters.maxPrice;
+    return byBeds && byBaths && byMinPrice && byMaxPrice;
+  });
+}
+
 function buildLatestListings(rows) {
   const byProperty = new Map();
   rows.forEach((row) => {
@@ -561,9 +571,10 @@ function renderSuburbDistribution(rows) {
 
 function applyFilters() {
   const filteredRows = getFilteredRows();
+  const distributionRows = getDistributionRows();
   renderKpis(summaryStats, filteredRows);
   renderSuburbTable(filteredRows);
-  renderSuburbDistribution(filteredRows);
+  renderSuburbDistribution(distributionRows);
   updateSuburbViewUi();
   renderMap(filteredRows);
   const chartType = document.getElementById("chartTypeSelect").value;
