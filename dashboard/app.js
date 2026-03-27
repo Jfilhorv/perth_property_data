@@ -607,8 +607,6 @@ function renderSuburbDistribution(rows) {
   const labels = sorted.map(([suburb]) => suburb);
   const values = sorted.map(([, prices]) => prices);
   const medianValues = values.map((prices) => median(prices));
-  const minValues = values.map((prices) => Math.min(...prices));
-  const maxValues = values.map((prices) => Math.max(...prices));
   const useBoxPlot = isBoxPlotRegistered();
 
   if (inner) {
@@ -631,28 +629,6 @@ function renderSuburbDistribution(rows) {
           borderWidth: 1,
           ...(useBoxPlot ? { outlierRadius: 1.5, itemRadius: 0 } : {}),
         },
-        {
-          type: "line",
-          label: "Min",
-          data: minValues,
-          borderColor: "rgba(16, 185, 129, 0.65)",
-          backgroundColor: "rgba(16, 185, 129, 0.75)",
-          borderWidth: 1,
-          pointRadius: 1.8,
-          pointHoverRadius: 2.5,
-          tension: 0,
-        },
-        {
-          type: "line",
-          label: "Max",
-          data: maxValues,
-          borderColor: "rgba(239, 68, 68, 0.65)",
-          backgroundColor: "rgba(239, 68, 68, 0.75)",
-          borderWidth: 1,
-          pointRadius: 1.8,
-          pointHoverRadius: 2.5,
-          tension: 0,
-        },
       ],
     },
     options: {
@@ -660,7 +636,7 @@ function renderSuburbDistribution(rows) {
       maintainAspectRatio: false,
       indexAxis: "x",
       plugins: {
-        legend: { display: true, labels: { boxWidth: 10, usePointStyle: true } },
+        legend: { display: false },
       },
       scales: {
         x: {
