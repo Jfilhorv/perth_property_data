@@ -91,14 +91,10 @@ function distinctBy(items, keyFn) {
 }
 
 function houseKey(row) {
-  const latKey = Number.isFinite(row.Latitude) ? row.Latitude.toFixed(5) : "";
-  const lonKey = Number.isFinite(row.Longitude) ? row.Longitude.toFixed(5) : "";
-  const typeKey = String(row.Property_Type || "").trim().toLowerCase();
-  const bedKey = Number.isFinite(row.Bedrooms) ? String(row.Bedrooms) : "";
-  const bathKey = Number.isFinite(row.Bathrooms) ? String(row.Bathrooms) : "";
-  const landKey = Number.isFinite(row.Land_Size) ? String(Math.round(row.Land_Size)) : "";
-  const geoHouseKey = latKey && lonKey ? `${latKey}|${lonKey}|${typeKey}|${bedKey}|${bathKey}|${landKey}` : "";
-  return geoHouseKey || `listing:${row.Listing_ID}`;
+  if (Number.isFinite(row.Listing_ID)) return `listing:${row.Listing_ID}`;
+  return `listing-fallback:${String(row.Address || "").trim().toLowerCase()}|${String(row.Suburb || "")
+    .trim()
+    .toLowerCase()}`;
 }
 
 function makeKpiCard(label, value) {
