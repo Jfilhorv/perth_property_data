@@ -564,19 +564,20 @@ function renderSuburbDistribution(rows) {
       .sort((a, b) => a[1].localeCompare(b[1]))
       .map(([key], idx) => [key, idx])
   );
-  const houseRows = distinctBy(rows, (r) => houseKey(r));
-  const plotRows = houseRows
-    .filter((r) => Number.isFinite(r.Price) && suburbKeyToIndex.has(canonicalSuburbKey(r.Suburb)))
-    .map((r) => ({
-      suburbs: normalizeSuburbName(r.Suburb),
-      suburb_key: canonicalSuburbKey(r.Suburb),
-      last_price: r.Price,
-      house: houseKey(r),
-    }));
-  const points = plotRows.map((r) => ({
-      x: r.last_price,
-      y: suburbKeyToIndex.get(r.suburb_key),
-    }));
+  const distinctGeoBySuburb = new Map();
+  rows.forEach((r) => {
+    const suburbKey = canonicalSuburbKey(r.Suburb);
+    if (!suburbKey || !suburbKeyToIndex.has(suburbKey)) return;
+    if (!Number.isFinite(r.Latitude) || !Number.isFinite(r.Longitude)) return;
+    const geoKey = `${r.Latitude.toFixed(7)}|${r.Longitude.toFixed(7)}`;
+    const cur = distinctGeoBySuburb.get(suburbKey) || new Set();
+    cur.add(geoKey);
+    distinctGeoBySuburb.set(suburbKey, cur);
+  });
+  const points = [...suburbKeyToIndex.entries()].map(([suburbKey, idx]) => ({
+    x: distinctGeoBySuburb.get(suburbKey)?.size || 0,
+    y: idx,
+  }));
   const rowsVisibleBeforeScroll = 12;
   const rowHeightPx = 30;
   const viewportHeight = rowsVisibleBeforeScroll * rowHeightPx;
@@ -646,7 +647,7 @@ function renderSuburbDistribution(rows) {
             drawTicks: false,
             drawBorder: true,
           },
-          title: { display: true, text: "Price (AUD)" },
+          title: { display: true, text: "Count distinct (lat+lng)" },
         },
         y: {
           min: -0.5,
