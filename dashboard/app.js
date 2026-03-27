@@ -12,6 +12,7 @@ const distanceKmFmt = new Intl.NumberFormat("pt-BR", {
 
 let summaryStats = null;
 let listingsCore = [];
+let listingsLatest = [];
 let schoolPoints = [];
 let yearlyChart;
 let suburbDistributionChart;
@@ -188,7 +189,7 @@ function renderKpis(summary, filteredRows) {
 function renderSuburbOptions() {
   const select = document.getElementById("suburbSelect");
   select.innerHTML = '<option value="">All</option>';
-  const grouped = aggregateSuburbStats(listingsCore);
+  const grouped = aggregateSuburbStats(listingsLatest);
   for (const row of grouped) {
     const opt = document.createElement("option");
     opt.value = row.Suburb;
@@ -200,8 +201,8 @@ function renderSuburbOptions() {
 function renderBedroomBathroomOptions() {
   const bedSelect = document.getElementById("bedroomSelect");
   const bathSelect = document.getElementById("bathroomSelect");
-  const beds = [...new Set(listingsCore.map((r) => r.Bedrooms))].filter(Number.isFinite).sort((a, b) => a - b);
-  const baths = [...new Set(listingsCore.map((r) => r.Bathrooms))].filter(Number.isFinite).sort((a, b) => a - b);
+  const beds = [...new Set(listingsLatest.map((r) => r.Bedrooms))].filter(Number.isFinite).sort((a, b) => a - b);
+  const baths = [...new Set(listingsLatest.map((r) => r.Bathrooms))].filter(Number.isFinite).sort((a, b) => a - b);
   bedSelect.innerHTML = '<option value="">Any</option>';
   bathSelect.innerHTML = '<option value="">Any</option>';
   beds.forEach((v) => {
@@ -351,7 +352,7 @@ function updateSortIndicators() {
 }
 
 function getFilteredRows() {
-  return listingsCore.filter((row) => {
+  return listingsLatest.filter((row) => {
     const bySuburb = !selectedFilters.suburb || row.Suburb === selectedFilters.suburb;
     const byBeds = !selectedFilters.bedrooms || String(row.Bedrooms) === selectedFilters.bedrooms;
     const byBaths = !selectedFilters.bathrooms || String(row.Bathrooms) === selectedFilters.bathrooms;
@@ -359,6 +360,34 @@ function getFilteredRows() {
     const byMaxPrice = !Number.isFinite(selectedFilters.maxPrice) || row.Price <= selectedFilters.maxPrice;
     return bySuburb && byBeds && byBaths && byMinPrice && byMaxPrice;
   });
+}
+
+function buildLatestListings(rows) {
+  const byProperty = new Map();
+  rows.forEach((row) => {
+    const address = String(row.Address || "").trim().toLowerCase();
+    const suburb = String(row.Suburb || "").trim().toLowerCase();
+    const propertyType = String(row.Property_Type || "").trim().toLowerCase();
+    const key = address ? `${address}|${suburb}|${propertyType}` : `listing:${row.Listing_ID}`;
+    const current = byProperty.get(key);
+    if (!current) {
+      byProperty.set(key, row);
+      return;
+    }
+    const curYear = Number.isFinite(current.Year) ? current.Year : -Infinity;
+    const nextYear = Number.isFinite(row.Year) ? row.Year : -Infinity;
+    if (nextYear > curYear) {
+      byProperty.set(key, row);
+      return;
+    }
+    if (nextYear < curYear) return;
+    const curId = Number.isFinite(current.Listing_ID) ? current.Listing_ID : -Infinity;
+    const nextId = Number.isFinite(row.Listing_ID) ? row.Listing_ID : -Infinity;
+    if (nextId > curId) {
+      byProperty.set(key, row);
+    }
+  });
+  return [...byProperty.values()];
 }
 
 function getYearlySeries(rows) {
@@ -664,6 +693,7 @@ async function init() {
 
   summaryStats = summary;
   listingsCore = listings;
+  listingsLatest = buildLatestListings(listingsCore);
   schoolPoints = schools;
 
   renderSuburbOptions();
@@ -672,7 +702,7 @@ async function init() {
   const maxPriceRange = document.getElementById("maxPriceRange");
   const priceRangeValue = document.getElementById("priceRangeValue");
   const priceDualRange = document.getElementById("priceDualRange");
-  const maxAvailablePrice = listingsCore.reduce(
+  const maxAvailablePrice = listingsLatest.reduce(
     (max, row) => (Number.isFinite(row.Price) && row.Price > max ? row.Price : max),
     0
   );
