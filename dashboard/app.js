@@ -71,6 +71,13 @@ function normalizeSuburbName(value) {
     .join(" ");
 }
 
+function canonicalSuburbKey(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, " ");
+}
+
 function distinctBy(items, keyFn) {
   const seen = new Set();
   const out = [];
@@ -524,10 +531,22 @@ function renderSuburbDistribution(rows) {
   const canvas = document.getElementById("suburbDistributionChart");
   const inner = document.getElementById("suburbDistributionInner");
   if (!canvas) return;
-  const labels = [...new Set(rows.map((r) => r.Suburb).filter((v) => String(v || "").trim()))].sort((a, b) =>
-    String(a).localeCompare(String(b))
+  const suburbLabelByKey = new Map();
+  rows.forEach((r) => {
+    const key = canonicalSuburbKey(r.Suburb);
+    if (!key) return;
+    if (!suburbLabelByKey.has(key)) {
+      suburbLabelByKey.set(key, normalizeSuburbName(r.Suburb));
+    }
+  });
+  const labels = [...suburbLabelByKey.entries()]
+    .sort((a, b) => a[1].localeCompare(b[1]))
+    .map(([, label]) => label);
+  const suburbKeyToIndex = new Map(
+    [...suburbLabelByKey.entries()]
+      .sort((a, b) => a[1].localeCompare(b[1]))
+      .map(([key], idx) => [key, idx])
   );
-  const suburbIndex = new Map(labels.map((name, idx) => [name, idx]));
   const houseRows = distinctBy(rows, (r) => houseKey(r));
   const jitterByHouse = (house) => {
     let hash = 0;
@@ -536,18 +555,19 @@ function renderSuburbDistribution(rows) {
       hash = (hash * 31 + seed.charCodeAt(i)) | 0;
     }
     const normalized = ((hash >>> 0) % 1000) / 1000;
-    return (normalized - 0.5) * 0.22;
+    return (normalized - 0.5) * 0.16;
   };
   const plotRows = houseRows
-    .filter((r) => Number.isFinite(r.Price) && r.Suburb && suburbIndex.has(r.Suburb))
+    .filter((r) => Number.isFinite(r.Price) && suburbKeyToIndex.has(canonicalSuburbKey(r.Suburb)))
     .map((r) => ({
-      suburbs: r.Suburb,
+      suburbs: normalizeSuburbName(r.Suburb),
+      suburb_key: canonicalSuburbKey(r.Suburb),
       last_price: r.Price,
       house: houseKey(r),
     }));
   const points = plotRows.map((r) => ({
       x: r.last_price,
-      y: suburbIndex.get(r.suburbs) + jitterByHouse(r.house),
+      y: suburbKeyToIndex.get(r.suburb_key) + jitterByHouse(r.house),
     }));
   const rowsVisibleBeforeScroll = 12;
   const rowHeightPx = 30;
