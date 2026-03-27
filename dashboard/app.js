@@ -38,10 +38,10 @@ const suburbBandPlugin = {
     const totalRows = Math.max(0, Math.floor(y.max - y.min + 1));
     if (!totalRows) return;
     ctx.save();
-    ctx.fillStyle = "#f1f5f9";
+    ctx.fillStyle = "#f3f4f6";
     for (let i = 0; i < totalRows; i += 1) {
-      const top = y.getPixelForValue(i + 0.34);
-      const bottom = y.getPixelForValue(i - 0.34);
+      const top = y.getPixelForValue(i + 0.16);
+      const bottom = y.getPixelForValue(i - 0.16);
       const yStart = Math.min(top, bottom);
       const height = Math.abs(bottom - top);
       ctx.fillRect(chartArea.left, yStart, chartArea.right - chartArea.left, height);
@@ -374,11 +374,16 @@ function getDistributionRows() {
 
 function buildLatestListings(rows) {
   const byProperty = new Map();
+  const normalizeText = (v) =>
+    String(v || "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, "");
   rows.forEach((row) => {
-    const address = String(row.Address || "").trim().toLowerCase();
-    const suburb = String(row.Suburb || "").trim().toLowerCase();
-    const propertyType = String(row.Property_Type || "").trim().toLowerCase();
-    const key = address ? `${address}|${suburb}|${propertyType}` : `listing:${row.Listing_ID}`;
+    const address = normalizeText(row.Address);
+    const latKey = Number.isFinite(row.Latitude) ? row.Latitude.toFixed(5) : "";
+    const lonKey = Number.isFinite(row.Longitude) ? row.Longitude.toFixed(5) : "";
+    const fallbackGeo = latKey && lonKey ? `${latKey}|${lonKey}` : "";
+    const key = address || fallbackGeo || `listing:${row.Listing_ID}`;
     const current = byProperty.get(key);
     if (!current) {
       byProperty.set(key, row);
@@ -499,9 +504,9 @@ function renderSuburbDistribution(rows) {
     .filter((r) => Number.isFinite(r.Price) && r.Suburb && suburbIndex.has(r.Suburb))
     .map((r, idx) => ({
       x: r.Price,
-      y: suburbIndex.get(r.Suburb) + stableOffset(r, idx),
+      y: suburbIndex.get(r.Suburb) + stableOffset(r, idx) * 0.35,
     }));
-  const dynamicHeight = Math.max(420, labels.length * 8);
+  const dynamicHeight = Math.max(320, labels.length * 1.4);
   if (inner) inner.style.height = `${dynamicHeight}px`;
   if (suburbDistributionChart) suburbDistributionChart.destroy();
   suburbDistributionChart = new Chart(canvas, {
@@ -512,11 +517,11 @@ function renderSuburbDistribution(rows) {
         {
           label: "Properties",
           data: points,
-          pointRadius: 1.5,
-          pointHoverRadius: 2.6,
-          backgroundColor: "rgba(96, 165, 250, 0.42)",
-          borderColor: "rgba(29, 78, 216, 0.7)",
-          borderWidth: 1,
+          pointRadius: 1.1,
+          pointHoverRadius: 1.8,
+          backgroundColor: "rgba(59, 130, 246, 0.35)",
+          borderColor: "rgba(37, 99, 235, 0.55)",
+          borderWidth: 0.4,
         },
       ],
     },
@@ -533,9 +538,7 @@ function renderSuburbDistribution(rows) {
               return labels[idx] || "";
             },
             label: (item) => {
-              const idx = Math.max(0, Math.min(labels.length - 1, Math.round(item.parsed.y)));
-              const suburb = grouped[idx];
-              return `Price: ${currency.format(item.parsed.x)} | Sales: ${numberFmt.format(suburb?.count || 0)}`;
+              return `Price: ${currency.format(item.parsed.x)}`;
             },
           },
         },
@@ -556,7 +559,7 @@ function renderSuburbDistribution(rows) {
             callback: (value) => labels[Math.round(value)] || "",
             autoSkip: false,
             color: "#334155",
-            font: { size: 10 },
+            font: { size: 9 },
           },
           grid: {
             display: false,
