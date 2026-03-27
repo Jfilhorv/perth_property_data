@@ -432,9 +432,9 @@ function renderSuburbDistribution(rows) {
     .slice(0, 12000)
     .map((r) => ({
       x: r.Price,
-      y: suburbIndex.get(r.Suburb) + (Math.random() - 0.5) * 0.26,
+      y: suburbIndex.get(r.Suburb) + (Math.random() - 0.5) * 0.16,
     }));
-  const dynamicHeight = Math.max(420, labels.length * 11);
+  const dynamicHeight = Math.min(900, Math.max(420, labels.length * 6));
   if (inner) inner.style.height = `${dynamicHeight}px`;
   if (suburbDistributionChart) suburbDistributionChart.destroy();
   suburbDistributionChart = new Chart(canvas, {
@@ -444,8 +444,8 @@ function renderSuburbDistribution(rows) {
         {
           label: "Properties",
           data: points,
-          pointRadius: 2.8,
-          pointHoverRadius: 4,
+          pointRadius: 1.8,
+          pointHoverRadius: 3,
           backgroundColor: "rgba(96, 165, 250, 0.42)",
           borderColor: "rgba(29, 78, 216, 0.7)",
           borderWidth: 1,
@@ -484,6 +484,7 @@ function renderSuburbDistribution(rows) {
             callback: (value) => labels[Math.round(value)] || "",
             autoSkip: false,
             color: "#334155",
+            font: { size: 10 },
           },
           title: { display: true, text: "Suburb" },
         },
