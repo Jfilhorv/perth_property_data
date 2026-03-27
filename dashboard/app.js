@@ -434,7 +434,7 @@ function renderSuburbDistribution(rows) {
       x: r.Price,
       y: suburbIndex.get(r.Suburb) + (Math.random() - 0.5) * 0.26,
     }));
-  const dynamicHeight = Math.max(420, labels.length * 24);
+  const dynamicHeight = Math.max(420, labels.length * 11);
   if (inner) inner.style.height = `${dynamicHeight}px`;
   if (suburbDistributionChart) suburbDistributionChart.destroy();
   suburbDistributionChart = new Chart(canvas, {
