@@ -81,6 +81,7 @@ def main() -> None:
     listings_cols = [
         "Listing_ID",
         "Price",
+        "Date_Sold",
         "Suburb",
         "Address",
         "Property_Type",
@@ -97,13 +98,10 @@ def main() -> None:
         "Secondary_School_Name",
         "Secondary_School_Distance",
     ]
-    listings_sample = (
-        df[listings_cols]
-        .dropna(subset=["Longitude", "Latitude"])
-        .sample(n=min(8000, len(df)), random_state=42)
-    )
-
+    listings_sample = df[listings_cols].dropna(subset=["Longitude", "Latitude"]).sample(n=min(8000, len(df)), random_state=42)
     listings_core = df[listings_cols].dropna(subset=["Longitude", "Latitude"])
+    listings_sample["Date_Sold"] = listings_sample["Date_Sold"].dt.strftime("%Y-%m-%d")
+    listings_core["Date_Sold"] = listings_core["Date_Sold"].dt.strftime("%Y-%m-%d")
 
     school_points = (
         listings_core.groupby("Primary_School_Name", as_index=False)

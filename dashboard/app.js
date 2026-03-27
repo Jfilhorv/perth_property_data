@@ -424,6 +424,10 @@ function getDistributionRows() {
 
 function buildLatestListings(rows) {
   const byProperty = new Map();
+  const soldDateMs = (row) => {
+    const t = Date.parse(String(row.Date_Sold || ""));
+    return Number.isFinite(t) ? t : -Infinity;
+  };
   rows.forEach((row) => {
     const key = houseKey(row);
     const current = byProperty.get(key);
@@ -431,13 +435,13 @@ function buildLatestListings(rows) {
       byProperty.set(key, row);
       return;
     }
-    const curYear = Number.isFinite(current.Year) ? current.Year : -Infinity;
-    const nextYear = Number.isFinite(row.Year) ? row.Year : -Infinity;
-    if (nextYear > curYear) {
+    const curSold = soldDateMs(current);
+    const nextSold = soldDateMs(row);
+    if (nextSold > curSold) {
       byProperty.set(key, row);
       return;
     }
-    if (nextYear < curYear) return;
+    if (nextSold < curSold) return;
     const curId = Number.isFinite(current.Listing_ID) ? current.Listing_ID : -Infinity;
     const nextId = Number.isFinite(row.Listing_ID) ? row.Listing_ID : -Infinity;
     if (nextId > curId) {
