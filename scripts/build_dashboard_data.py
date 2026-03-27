@@ -93,7 +93,9 @@ def main() -> None:
         "Distance_to_CBD",
         "Year",
         "Primary_School_Name",
+        "Primary_School_Distance",
         "Secondary_School_Name",
+        "Secondary_School_Distance",
     ]
     listings_sample = (
         df[listings_cols]

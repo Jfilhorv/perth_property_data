@@ -451,9 +451,9 @@ function renderMap(rows) {
     }).bindTooltip(
       `<b>${row.Address || "Address unavailable"}</b><br/>Suburb: ${row.Suburb}<br/>Price: ${currency.format(
         row.Price
-      )}<br/>Distance to CBD: ${formatDistance(row.Distance_to_CBD)}<br/>Primary school: ${
-        row.Primary_School_Name || "N/A"
-      }<br/>Secondary school: ${row.Secondary_School_Name || "N/A"}`,
+      )}<br/>Distance to CBD: ${formatDistance(row.Distance_to_CBD)}<br/>Primary school distance: ${formatDistance(
+        row.Primary_School_Distance
+      )}<br/>Secondary school distance: ${formatDistance(row.Secondary_School_Distance)}`,
       { sticky: true }
     )
   );
