@@ -23,6 +23,7 @@ let selectedFilters = {
   suburb: "",
   bedrooms: "",
   bathrooms: "",
+  maxPrice: null,
 };
 let currentTableSort = { key: "count", dir: "desc" };
 let currentSuburbView = "table";
@@ -333,7 +334,8 @@ function getFilteredRows() {
     const bySuburb = !selectedFilters.suburb || row.Suburb === selectedFilters.suburb;
     const byBeds = !selectedFilters.bedrooms || String(row.Bedrooms) === selectedFilters.bedrooms;
     const byBaths = !selectedFilters.bathrooms || String(row.Bathrooms) === selectedFilters.bathrooms;
-    return bySuburb && byBeds && byBaths;
+    const byMaxPrice = !Number.isFinite(selectedFilters.maxPrice) || row.Price <= selectedFilters.maxPrice;
+    return bySuburb && byBeds && byBaths && byMaxPrice;
   });
 }
 
@@ -419,60 +421,52 @@ function updateSuburbViewUi() {
 function renderSuburbDistribution(rows) {
   const canvas = document.getElementById("suburbDistributionChart");
   if (!canvas) return;
-  const grouped = aggregateSuburbStats(rows);
+  const grouped = aggregateSuburbStats(rows).sort((a, b) => b.count - a.count || b.median_price - a.median_price);
   const labels = grouped.map((r) => r.Suburb);
-  const indexBySuburb = new Map(labels.map((s, idx) => [s, idx]));
-  const points = rows
-    .filter((r) => Number.isFinite(r.Price) && r.Suburb && indexBySuburb.has(r.Suburb))
-    .slice(0, 4500)
-    .map((r) => ({
-      x: r.Price,
-      y: indexBySuburb.get(r.Suburb) + (Math.random() - 0.5) * 0.22,
-    }));
+  const values = grouped.map((r) => r.count);
+  const dynamicHeight = Math.max(420, labels.length * 24);
+  canvas.height = dynamicHeight;
   if (suburbDistributionChart) suburbDistributionChart.destroy();
   suburbDistributionChart = new Chart(canvas, {
-    type: "scatter",
+    type: "bar",
     data: {
+      labels,
       datasets: [
         {
-          label: "Property Price Distribution",
-          data: points,
-          pointRadius: 2.8,
-          pointHoverRadius: 4.2,
-          backgroundColor: "rgba(29, 78, 216, 0.42)",
-          borderColor: "rgba(29, 78, 216, 0.65)",
+          label: "Sales",
+          data: values,
+          borderRadius: 5,
+          maxBarThickness: 16,
+          backgroundColor: "rgba(29, 78, 216, 0.55)",
+          borderColor: "rgba(29, 78, 216, 0.75)",
+          borderWidth: 1,
         },
       ],
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      indexAxis: "y",
       plugins: {
         legend: { display: false },
         tooltip: {
           callbacks: {
-            title: (items) => {
-              const rawY = items?.[0]?.parsed?.y;
-              const idx = Math.max(0, Math.min(labels.length - 1, Math.round(rawY)));
-              return labels[idx] || "";
+            title: (items) => items?.[0]?.label || "",
+            label: (item) => {
+              const idx = item.dataIndex;
+              const suburb = grouped[idx];
+              return `Sales: ${numberFmt.format(item.parsed.x)} | Median: ${currency.format(suburb?.median_price || 0)}`;
             },
-            label: (item) => `Price: ${currency.format(item.parsed.x)}`,
           },
         },
       },
       scales: {
         x: {
-          ticks: { callback: (v) => currency.format(v) },
-          title: { display: true, text: "Price (AUD)" },
+          ticks: { precision: 0, color: "#334155" },
+          title: { display: true, text: "Sales (DESC)" },
         },
         y: {
-          min: -0.5,
-          max: Math.max(labels.length - 0.5, 0.5),
-          ticks: {
-            callback: (value) => labels[Math.round(value)] || "",
-            autoSkip: true,
-            maxTicksLimit: 18,
-          },
+          ticks: { autoSkip: false, color: "#334155" },
           title: { display: true, text: "Suburb" },
         },
       },
@@ -618,6 +612,19 @@ async function init() {
 
   renderSuburbOptions();
   renderBedroomBathroomOptions();
+  const maxPriceRange = document.getElementById("maxPriceRange");
+  const maxPriceRangeValue = document.getElementById("maxPriceRangeValue");
+  const maxAvailablePrice = listingsCore.reduce(
+    (max, row) => (Number.isFinite(row.Price) && row.Price > max ? row.Price : max),
+    0
+  );
+  const safeMaxPrice = Math.ceil(maxAvailablePrice / 10000) * 10000;
+  maxPriceRange.max = String(safeMaxPrice);
+  maxPriceRange.min = "0";
+  maxPriceRange.step = "10000";
+  maxPriceRange.value = String(safeMaxPrice);
+  selectedFilters.maxPrice = safeMaxPrice;
+  maxPriceRangeValue.textContent = "Any";
   applyFilters();
 
   const suburbSelect = document.getElementById("suburbSelect");
@@ -633,6 +640,13 @@ async function init() {
   const bathroomSelect = document.getElementById("bathroomSelect");
   bathroomSelect.addEventListener("change", (e) => {
     selectedFilters.bathrooms = e.target.value || "";
+    applyFilters();
+  });
+  maxPriceRange.addEventListener("input", (e) => {
+    const value = Number(e.target.value);
+    if (!Number.isFinite(value)) return;
+    selectedFilters.maxPrice = value;
+    maxPriceRangeValue.textContent = value >= safeMaxPrice ? "Any" : `<= ${currency.format(value)}`;
     applyFilters();
   });
 
