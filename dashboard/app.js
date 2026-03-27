@@ -558,15 +558,6 @@ function renderSuburbDistribution(rows) {
       .map(([key], idx) => [key, idx])
   );
   const houseRows = distinctBy(rows, (r) => houseKey(r));
-  const jitterByHouse = (house) => {
-    let hash = 0;
-    const seed = String(house || "");
-    for (let i = 0; i < seed.length; i += 1) {
-      hash = (hash * 31 + seed.charCodeAt(i)) | 0;
-    }
-    const normalized = ((hash >>> 0) % 1000) / 1000;
-    return (normalized - 0.5) * 0.16;
-  };
   const plotRows = houseRows
     .filter((r) => Number.isFinite(r.Price) && suburbKeyToIndex.has(canonicalSuburbKey(r.Suburb)))
     .map((r) => ({
@@ -577,7 +568,7 @@ function renderSuburbDistribution(rows) {
     }));
   const points = plotRows.map((r) => ({
       x: r.last_price,
-      y: suburbKeyToIndex.get(r.suburb_key) + jitterByHouse(r.house),
+      y: suburbKeyToIndex.get(r.suburb_key),
     }));
   const rowsVisibleBeforeScroll = 12;
   const rowHeightPx = 30;
