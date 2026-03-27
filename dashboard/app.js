@@ -40,8 +40,8 @@ const suburbBandPlugin = {
     ctx.save();
     ctx.fillStyle = "#f3f4f6";
     for (let i = 0; i < totalRows; i += 1) {
-      const top = y.getPixelForValue(i + 0.16);
-      const bottom = y.getPixelForValue(i - 0.16);
+      const top = y.getPixelForValue(i + 0.46);
+      const bottom = y.getPixelForValue(i - 0.46);
       const yStart = Math.min(top, bottom);
       const height = Math.abs(bottom - top);
       ctx.fillRect(chartArea.left, yStart, chartArea.right - chartArea.left, height);
@@ -504,9 +504,9 @@ function renderSuburbDistribution(rows) {
     .filter((r) => Number.isFinite(r.Price) && r.Suburb && suburbIndex.has(r.Suburb))
     .map((r, idx) => ({
       x: r.Price,
-      y: suburbIndex.get(r.Suburb) + stableOffset(r, idx) * 0.35,
+      y: suburbIndex.get(r.Suburb) + stableOffset(r, idx) * 0.18,
     }));
-  const dynamicHeight = Math.max(320, labels.length * 1.4);
+  const dynamicHeight = Math.max(300, labels.length * 1.0);
   if (inner) inner.style.height = `${dynamicHeight}px`;
   if (suburbDistributionChart) suburbDistributionChart.destroy();
   suburbDistributionChart = new Chart(canvas, {
@@ -517,11 +517,11 @@ function renderSuburbDistribution(rows) {
         {
           label: "Properties",
           data: points,
-          pointRadius: 1.1,
-          pointHoverRadius: 1.8,
+          pointRadius: 0.85,
+          pointHoverRadius: 1.5,
           backgroundColor: "rgba(59, 130, 246, 0.35)",
           borderColor: "rgba(37, 99, 235, 0.55)",
-          borderWidth: 0.4,
+          borderWidth: 0.25,
         },
       ],
     },
@@ -548,7 +548,7 @@ function renderSuburbDistribution(rows) {
           ticks: { callback: (v) => currency.format(v), color: "#334155" },
           grid: {
             drawOnChartArea: false,
-            drawTicks: true,
+            drawTicks: false,
           },
           title: { display: true, text: "Price (AUD)" },
         },
