@@ -502,20 +502,11 @@ function renderSuburbDistribution(rows) {
   const grouped = aggregateSuburbStats(rows).sort((a, b) => b.count - a.count || b.median_price - a.median_price);
   const labels = grouped.map((r) => r.Suburb);
   const suburbIndex = new Map(labels.map((name, idx) => [name, idx]));
-  const stableOffset = (row, index) => {
-    const seed = `${row.Suburb || ""}|${row.Address || ""}|${row.Price || 0}|${index}`;
-    let hash = 0;
-    for (let i = 0; i < seed.length; i += 1) {
-      hash = (hash * 31 + seed.charCodeAt(i)) | 0;
-    }
-    const normalized = ((hash >>> 0) % 1000) / 1000;
-    return (normalized - 0.5) * 0.12;
-  };
   const points = rows
     .filter((r) => Number.isFinite(r.Price) && r.Suburb && suburbIndex.has(r.Suburb))
-    .map((r, idx) => ({
+    .map((r) => ({
       x: r.Price,
-      y: suburbIndex.get(r.Suburb) + stableOffset(r, idx) * 0.18,
+      y: suburbIndex.get(r.Suburb),
     }));
   const rowsVisibleBeforeScroll = 12;
   const rowHeightPx = 30;
