@@ -506,7 +506,10 @@ function renderSuburbDistribution(rows) {
       x: r.Price,
       y: suburbIndex.get(r.Suburb) + stableOffset(r, idx) * 0.18,
     }));
-  const dynamicHeight = Math.max(300, labels.length * 1.0);
+  const rowsVisibleBeforeScroll = 12;
+  const rowHeightPx = 30;
+  const viewportHeight = rowsVisibleBeforeScroll * rowHeightPx;
+  const dynamicHeight = Math.max(viewportHeight, labels.length * rowHeightPx);
   if (inner) inner.style.height = `${dynamicHeight}px`;
   if (suburbDistributionChart) suburbDistributionChart.destroy();
   suburbDistributionChart = new Chart(canvas, {
