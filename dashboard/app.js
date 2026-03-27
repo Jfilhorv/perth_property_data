@@ -53,12 +53,9 @@ const suburbBandPlugin = {
 
 function registerBoxPlotPlugin() {
   if (typeof Chart === "undefined" || typeof Chart.register !== "function") return;
-  const lib =
-    window.ChartBoxPlot ||
-    window.ChartBoxAndViolinPlot ||
-    window["chartjs-chart-box-and-violin-plot"] ||
-    null;
+  const lib = window.ChartBoxPlot || window.ChartBoxAndViolinPlot || window["chartjs-chart-box-and-violin-plot"] || null;
   if (!lib) return;
+  const maybeDefault = lib.default || null;
   const parts = [
     lib.BoxPlotController,
     lib.BoxAndWiskers,
@@ -68,8 +65,25 @@ function registerBoxPlotPlugin() {
     lib.ArrayLinearScale,
     lib.ArrayLogarithmicScale,
     lib.PointAndWiskers,
+    ...(Array.isArray(lib.registerables) ? lib.registerables : []),
+    ...(Array.isArray(maybeDefault?.registerables) ? maybeDefault.registerables : []),
+    maybeDefault?.BoxPlotController,
+    maybeDefault?.BoxAndWhiskers,
+    maybeDefault?.ViolinController,
+    maybeDefault?.Violin,
+    maybeDefault?.ArrayLinearScale,
+    maybeDefault?.ArrayLogarithmicScale,
   ].filter(Boolean);
   if (parts.length) Chart.register(...parts);
+}
+
+function isBoxPlotRegistered() {
+  try {
+    if (!Chart?.registry?.controllers) return false;
+    return Boolean(Chart.registry.controllers.get("boxplot"));
+  } catch (_err) {
+    return false;
+  }
 }
 
 function ensureDistributionAxisTooltip() {
@@ -592,6 +606,8 @@ function renderSuburbDistribution(rows) {
     .sort((a, b) => a[0].localeCompare(b[0]));
   const labels = sorted.map(([suburb]) => suburb);
   const values = sorted.map(([, prices]) => prices);
+  const medianValues = values.map((prices) => median(prices));
+  const useBoxPlot = isBoxPlotRegistered();
 
   if (inner) {
     inner.style.height = "420px";
@@ -601,18 +617,17 @@ function renderSuburbDistribution(rows) {
   if (distributionAxisTooltipEl) distributionAxisTooltipEl.style.display = "none";
 
   suburbDistributionChart = new Chart(canvas, {
-    type: "boxplot",
+    type: useBoxPlot ? "boxplot" : "bar",
     data: {
       labels,
       datasets: [
         {
-          label: "House Prices",
-          data: values,
+          label: useBoxPlot ? "House Prices" : "Median Price (fallback)",
+          data: useBoxPlot ? values : medianValues,
           backgroundColor: "rgba(59, 130, 246, 0.2)",
           borderColor: "rgba(37, 99, 235, 0.85)",
           borderWidth: 1,
-          outlierRadius: 1.5,
-          itemRadius: 0,
+          ...(useBoxPlot ? { outlierRadius: 1.5, itemRadius: 0 } : {}),
         },
       ],
     },
