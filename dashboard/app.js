@@ -71,6 +71,18 @@ function normalizeSuburbName(value) {
     .join(" ");
 }
 
+function distinctBy(items, keyFn) {
+  const seen = new Set();
+  const out = [];
+  items.forEach((item, index) => {
+    const key = keyFn(item, index);
+    if (seen.has(key)) return;
+    seen.add(key);
+    out.push(item);
+  });
+  return out;
+}
+
 function makeKpiCard(label, value) {
   const div = document.createElement("div");
   div.className = "kpi-card";
@@ -511,7 +523,14 @@ function renderSuburbDistribution(rows) {
   const grouped = aggregateSuburbStats(rows).sort((a, b) => b.count - a.count || b.median_price - a.median_price);
   const labels = grouped.map((r) => r.Suburb);
   const suburbIndex = new Map(labels.map((name, idx) => [name, idx]));
-  const points = rows
+  const baseRows = distinctBy(
+    rows,
+    (r) =>
+      `${r.Suburb}|${r.Price}|${Number.isFinite(r.Latitude) ? r.Latitude.toFixed(5) : ""}|${
+        Number.isFinite(r.Longitude) ? r.Longitude.toFixed(5) : ""
+      }`
+  );
+  const points = baseRows
     .filter((r) => Number.isFinite(r.Price) && r.Suburb && suburbIndex.has(r.Suburb))
     .map((r) => ({
       x: r.Price,
