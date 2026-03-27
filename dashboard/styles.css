@@ -236,8 +236,14 @@ select {
   scrollbar-color: rgba(100, 116, 139, 0.45) transparent;
 }
 
+.distribution-inner {
+  position: relative;
+  min-height: 420px;
+}
+
 .distribution-wrap canvas {
   width: 100% !important;
+  height: 100% !important;
 }
 
 .distribution-wrap::-webkit-scrollbar {

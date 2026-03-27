@@ -420,12 +420,13 @@ function updateSuburbViewUi() {
 
 function renderSuburbDistribution(rows) {
   const canvas = document.getElementById("suburbDistributionChart");
+  const inner = document.getElementById("suburbDistributionInner");
   if (!canvas) return;
   const grouped = aggregateSuburbStats(rows).sort((a, b) => b.count - a.count || b.median_price - a.median_price);
   const labels = grouped.map((r) => r.Suburb);
   const values = grouped.map((r) => r.count);
   const dynamicHeight = Math.max(420, labels.length * 24);
-  canvas.height = dynamicHeight;
+  if (inner) inner.style.height = `${dynamicHeight}px`;
   if (suburbDistributionChart) suburbDistributionChart.destroy();
   suburbDistributionChart = new Chart(canvas, {
     type: "bar",
