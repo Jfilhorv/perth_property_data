@@ -28,6 +28,26 @@ let selectedFilters = {
 };
 let currentTableSort = { key: "count", dir: "desc" };
 let currentSuburbView = "table";
+const suburbBandPlugin = {
+  id: "suburbBandPlugin",
+  beforeDatasetsDraw(chart) {
+    const { ctx, chartArea, scales } = chart;
+    const y = scales.y;
+    if (!y || !chartArea) return;
+    const totalRows = Math.max(0, Math.floor(y.max - y.min + 1));
+    if (!totalRows) return;
+    ctx.save();
+    ctx.fillStyle = "#f1f5f9";
+    for (let i = 0; i < totalRows; i += 1) {
+      const top = y.getPixelForValue(i + 0.42);
+      const bottom = y.getPixelForValue(i - 0.42);
+      const yStart = Math.min(top, bottom);
+      const height = Math.abs(bottom - top);
+      ctx.fillRect(chartArea.left, yStart, chartArea.right - chartArea.left, height);
+    }
+    ctx.restore();
+  },
+};
 
 function makeKpiCard(label, value) {
   const div = document.createElement("div");
@@ -438,6 +458,7 @@ function renderSuburbDistribution(rows) {
   if (inner) inner.style.height = `${dynamicHeight}px`;
   if (suburbDistributionChart) suburbDistributionChart.destroy();
   suburbDistributionChart = new Chart(canvas, {
+    plugins: [suburbBandPlugin],
     type: "scatter",
     data: {
       datasets: [
