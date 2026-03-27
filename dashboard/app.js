@@ -650,6 +650,21 @@ async function init() {
   selectedFilters.minPrice = 0;
   selectedFilters.maxPrice = safeMaxPrice;
   priceRangeValue.textContent = "Any";
+  let applyFiltersTimer = null;
+  const scheduleApplyFilters = (delayMs = 140) => {
+    if (applyFiltersTimer) clearTimeout(applyFiltersTimer);
+    applyFiltersTimer = setTimeout(() => {
+      applyFiltersTimer = null;
+      applyFilters();
+    }, delayMs);
+  };
+  const flushScheduledApply = () => {
+    if (applyFiltersTimer) {
+      clearTimeout(applyFiltersTimer);
+      applyFiltersTimer = null;
+    }
+    applyFilters();
+  };
   applyFilters();
 
   const suburbSelect = document.getElementById("suburbSelect");
@@ -694,7 +709,7 @@ async function init() {
     selectedFilters.maxPrice = Number(maxPriceRange.value);
     updatePriceRangeLabel();
     updatePriceRangeTrack();
-    applyFilters();
+    scheduleApplyFilters();
   });
   maxPriceRange.addEventListener("input", (e) => {
     const value = Number(e.target.value);
@@ -707,8 +722,10 @@ async function init() {
     selectedFilters.maxPrice = value;
     updatePriceRangeLabel();
     updatePriceRangeTrack();
-    applyFilters();
+    scheduleApplyFilters();
   });
+  minPriceRange.addEventListener("change", flushScheduledApply);
+  maxPriceRange.addEventListener("change", flushScheduledApply);
   updatePriceRangeLabel();
   updatePriceRangeTrack();
 
