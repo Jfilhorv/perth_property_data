@@ -657,6 +657,7 @@ function renderSuburbDistribution(rows) {
       },
       scales: {
         x: {
+          type: "category",
           ticks: {
             autoSkip: false,
             color: "#334155",
@@ -668,6 +669,7 @@ function renderSuburbDistribution(rows) {
           title: { display: true, text: "Suburb" },
         },
         y: {
+          type: "linear",
           ticks: {
             callback: (v) => currency.format(v),
             color: "#334155",
