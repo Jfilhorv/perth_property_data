@@ -617,7 +617,7 @@ function renderSuburbDistribution(rows) {
 
   if (inner) {
     inner.style.height = "420px";
-    inner.style.width = `${Math.max(1400, labels.length * 46)}px`;
+    inner.style.width = "100%";
   }
   if (suburbDistributionChart) suburbDistributionChart.destroy();
   if (distributionAxisTooltipEl) distributionAxisTooltipEl.style.display = "none";

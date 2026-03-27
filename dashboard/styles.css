@@ -294,6 +294,8 @@ select {
   overflow-y: auto;
   overflow-x: auto;
   position: relative;
+  width: 100%;
+  max-width: 100%;
   scrollbar-width: thin;
   scrollbar-color: rgba(100, 116, 139, 0.45) transparent;
 }
@@ -301,6 +303,8 @@ select {
 .distribution-inner {
   position: relative;
   min-height: 420px;
+  width: 100%;
+  max-width: 100%;
 }
 
 .distribution-wrap canvas {
