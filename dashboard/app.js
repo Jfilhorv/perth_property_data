@@ -407,7 +407,7 @@ function renderYearlyChart(chartType = "line", rows = []) {
 function updateSuburbViewUi() {
   const tableWrap = document.getElementById("suburbTableWrap");
   const distributionWrap = document.getElementById("suburbDistributionWrap");
-  const toggleButtons = document.querySelectorAll("#suburbViewToggle .toggle-btn");
+  const toggleButtons = document.querySelectorAll("#suburbViewToggle .suburb-menu-item");
   const showTable = currentSuburbView === "table";
   tableWrap.classList.toggle("hidden", !showTable);
   distributionWrap.classList.toggle("hidden", showTable);
@@ -663,8 +663,16 @@ async function init() {
 
   const suburbViewToggle = document.getElementById("suburbViewToggle");
   suburbViewToggle?.addEventListener("click", (e) => {
-    const btn = e.target.closest("button[data-view]");
+    const btn = e.target.closest("[data-view]");
     if (!btn) return;
+    currentSuburbView = btn.getAttribute("data-view") || "table";
+    updateSuburbViewUi();
+  });
+  suburbViewToggle?.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    const btn = e.target.closest("[data-view]");
+    if (!btn) return;
+    e.preventDefault();
     currentSuburbView = btn.getAttribute("data-view") || "table";
     updateSuburbViewUi();
   });

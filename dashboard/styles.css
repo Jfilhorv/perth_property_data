@@ -120,7 +120,7 @@ main {
 .section-toolbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 10px;
   margin-bottom: 8px;
 }
@@ -130,33 +130,33 @@ main {
 }
 
 .suburb-view-toggle {
-  display: inline-flex;
-  align-items: center;
-  border: 1px solid #dbe4f0;
-  border-radius: 999px;
-  background: #f8fbff;
-  padding: 3px;
-  gap: 4px;
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
 }
 
-.toggle-btn {
-  border: none;
-  border-radius: 999px;
-  background: transparent;
-  color: #475569;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 5px 10px;
+.suburb-menu-item {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #334155;
+  padding: 6px 10px;
+  border-radius: 10px;
   cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.toggle-btn:hover {
+.suburb-menu-item:hover,
+.suburb-menu-item:focus-visible {
   background: #eaf2ff;
+  color: #0f172a;
+  outline: none;
 }
 
-.toggle-btn.active {
-  background: #1d4ed8;
-  color: #fff;
+.suburb-menu-item.active {
+  color: #0f172a;
+  background: #dbeafe;
 }
 
 .viz-grid .panel {
