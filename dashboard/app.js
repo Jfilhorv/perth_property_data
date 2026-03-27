@@ -551,44 +551,47 @@ function renderSuburbDistribution(rows) {
   const canvas = document.getElementById("suburbDistributionChart");
   const inner = document.getElementById("suburbDistributionInner");
   if (!canvas) return;
-  const suburbLabelByKey = new Map();
-  rows.forEach((r) => {
-    const suburbKey = canonicalSuburbKey(r.Suburb);
-    if (!suburbKey) return;
-    if (!suburbLabelByKey.has(suburbKey)) suburbLabelByKey.set(suburbKey, normalizeSuburbName(r.Suburb));
-  });
-  const sortedSuburbs = [...suburbLabelByKey.entries()].sort((a, b) => a[1].localeCompare(b[1]));
-  const labels = sortedSuburbs.map(([, label]) => label);
-  const suburbKeyToIndex = new Map(sortedSuburbs.map(([key], idx) => [key, idx]));
   const houseRows = distinctBy(rows, (r) => houseKey(r));
-  const points = houseRows
-    .filter((r) => Number.isFinite(r.Price) && suburbKeyToIndex.has(canonicalSuburbKey(r.Suburb)))
-    .map((r) => ({
-      x: r.Price,
-      y: suburbKeyToIndex.get(canonicalSuburbKey(r.Suburb)),
-    }));
 
-  const rowsVisibleBeforeScroll = 12;
-  const rowHeightPx = 24;
-  const viewportHeight = rowsVisibleBeforeScroll * rowHeightPx;
-  const dynamicHeight = Math.max(viewportHeight, labels.length * rowHeightPx);
-  if (inner) inner.style.height = `${dynamicHeight}px`;
+  // Correct structure for boxplot: one numeric array per suburb.
+  const grouped = {};
+  houseRows.forEach((row) => {
+    const suburb = normalizeSuburbName(row.Suburb);
+    const price = Number(row.Price);
+    if (!suburb || !Number.isFinite(price) || price <= 0) return;
+    if (!grouped[suburb]) grouped[suburb] = [];
+    grouped[suburb].push(price); // push number, NOT [number]
+  });
+
+  // Mandatory debug from requested checklist.
+  console.log("boxplot_grouped_by_suburb", grouped);
+
+  const sorted = Object.entries(grouped)
+    .filter(([, prices]) => prices.length > 0)
+    .sort((a, b) => a[0].localeCompare(b[0]));
+  const labels = sorted.map(([suburb]) => suburb);
+  const values = sorted.map(([, prices]) => prices);
+
+  if (inner) {
+    inner.style.height = "420px";
+    inner.style.width = `${Math.max(980, labels.length * 44)}px`;
+  }
   if (suburbDistributionChart) suburbDistributionChart.destroy();
-
   if (distributionAxisTooltipEl) distributionAxisTooltipEl.style.display = "none";
 
   suburbDistributionChart = new Chart(canvas, {
-    type: "scatter",
+    type: "boxplot",
     data: {
+      labels,
       datasets: [
         {
-          label: "House value",
-          data: points,
-          pointRadius: 1,
-          pointHoverRadius: 1.8,
-          backgroundColor: "rgba(59, 130, 246, 0.35)",
-          borderColor: "rgba(59, 130, 246, 0)",
-          borderWidth: 0,
+          label: "House Prices",
+          data: values,
+          backgroundColor: "rgba(59, 130, 246, 0.2)",
+          borderColor: "rgba(37, 99, 235, 0.85)",
+          borderWidth: 1,
+          outlierRadius: 1.5,
+          itemRadius: 0,
         },
       ],
     },
@@ -597,30 +600,26 @@ function renderSuburbDistribution(rows) {
       maintainAspectRatio: false,
       plugins: {
         legend: { display: false },
-        tooltip: { enabled: false },
       },
       scales: {
         x: {
-          ticks: { callback: (v) => currency.format(v), color: "#334155" },
-          grid: {
-            display: false,
-            drawOnChartArea: false,
-            drawTicks: false,
-            drawBorder: true,
-          },
-          title: { display: true, text: "Value (AUD)" },
-        },
-        y: {
           ticks: {
-            callback: (value) => labels[Math.round(value)] || "",
             autoSkip: false,
             color: "#334155",
             font: { size: 9 },
+            maxRotation: 65,
+            minRotation: 65,
           },
-          min: -0.5,
-          max: Math.max(labels.length - 0.5, 0.5),
           grid: { display: false },
           title: { display: true, text: "Suburb" },
+        },
+        y: {
+          ticks: {
+            callback: (v) => currency.format(v),
+            color: "#334155",
+          },
+          grid: { display: true, color: "rgba(148, 163, 184, 0.2)" },
+          title: { display: true, text: "Price (AUD)" },
         },
       },
     },
