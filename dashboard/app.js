@@ -386,16 +386,15 @@ function getDistributionRows() {
 
 function buildLatestListings(rows) {
   const byProperty = new Map();
-  const normalizeText = (v) =>
-    String(v || "")
-      .toLowerCase()
-      .replace(/[^a-z0-9]/g, "");
   rows.forEach((row) => {
-    const address = normalizeText(row.Address);
     const latKey = Number.isFinite(row.Latitude) ? row.Latitude.toFixed(5) : "";
     const lonKey = Number.isFinite(row.Longitude) ? row.Longitude.toFixed(5) : "";
-    const fallbackGeo = latKey && lonKey ? `${latKey}|${lonKey}` : "";
-    const key = address || fallbackGeo || `listing:${row.Listing_ID}`;
+    const typeKey = String(row.Property_Type || "").trim().toLowerCase();
+    const bedKey = Number.isFinite(row.Bedrooms) ? String(row.Bedrooms) : "";
+    const bathKey = Number.isFinite(row.Bathrooms) ? String(row.Bathrooms) : "";
+    const landKey = Number.isFinite(row.Land_Size) ? String(Math.round(row.Land_Size)) : "";
+    const geoHouseKey = latKey && lonKey ? `${latKey}|${lonKey}|${typeKey}|${bedKey}|${bathKey}|${landKey}` : "";
+    const key = geoHouseKey || `listing:${row.Listing_ID}`;
     const current = byProperty.get(key);
     if (!current) {
       byProperty.set(key, row);
