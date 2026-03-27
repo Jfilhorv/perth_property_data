@@ -633,6 +633,7 @@ async function init() {
   const minPriceRange = document.getElementById("minPriceRange");
   const maxPriceRange = document.getElementById("maxPriceRange");
   const priceRangeValue = document.getElementById("priceRangeValue");
+  const priceDualRange = document.getElementById("priceDualRange");
   const maxAvailablePrice = listingsCore.reduce(
     (max, row) => (Number.isFinite(row.Price) && row.Price > max ? row.Price : max),
     0
@@ -673,6 +674,15 @@ async function init() {
     const maxText = maxValue >= safeMaxPrice ? "Any" : currency.format(maxValue);
     priceRangeValue.textContent = `${minText} - ${maxText}`;
   };
+  const updatePriceRangeTrack = () => {
+    if (!priceDualRange) return;
+    const minValue = Number(minPriceRange.value);
+    const maxValue = Number(maxPriceRange.value);
+    const minPct = (minValue / safeMaxPrice) * 100;
+    const maxPct = (maxValue / safeMaxPrice) * 100;
+    priceDualRange.style.setProperty("--min-pct", `${minPct}%`);
+    priceDualRange.style.setProperty("--max-pct", `${maxPct}%`);
+  };
   minPriceRange.addEventListener("input", (e) => {
     const value = Number(e.target.value);
     if (!Number.isFinite(value)) return;
@@ -683,6 +693,7 @@ async function init() {
     selectedFilters.minPrice = value;
     selectedFilters.maxPrice = Number(maxPriceRange.value);
     updatePriceRangeLabel();
+    updatePriceRangeTrack();
     applyFilters();
   });
   maxPriceRange.addEventListener("input", (e) => {
@@ -695,9 +706,11 @@ async function init() {
     selectedFilters.minPrice = Number(minPriceRange.value);
     selectedFilters.maxPrice = value;
     updatePriceRangeLabel();
+    updatePriceRangeTrack();
     applyFilters();
   });
   updatePriceRangeLabel();
+  updatePriceRangeTrack();
 
   const chartTypeSelect = document.getElementById("chartTypeSelect");
   chartTypeSelect.addEventListener("change", () => applyFilters());

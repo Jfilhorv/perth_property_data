@@ -49,8 +49,10 @@
           </select>
           <div class="range-filter">
             <label for="minPriceRange">Price</label>
-            <input id="minPriceRange" type="range" min="0" max="1000000" step="10000" />
-            <input id="maxPriceRange" type="range" min="0" max="1000000" step="10000" />
+            <div class="dual-range" id="priceDualRange">
+              <input id="minPriceRange" type="range" min="0" max="1000000" step="10000" />
+              <input id="maxPriceRange" type="range" min="0" max="1000000" step="10000" />
+            </div>
             <span id="priceRangeValue">Any</span>
           </div>
         </div>
