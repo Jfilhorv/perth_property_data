@@ -630,6 +630,8 @@ function renderSuburbDistribution(rows) {
         {
           label: useBoxPlot ? "House Prices" : "Median Price (fallback)",
           data: useBoxPlot ? values : rangeValues,
+          indexAxis: "x",
+          axis: "x",
           backgroundColor: "rgba(59, 130, 246, 0.2)",
           borderColor: "rgba(37, 99, 235, 0.85)",
           borderWidth: 1,
@@ -658,6 +660,8 @@ function renderSuburbDistribution(rows) {
       scales: {
         x: {
           type: "category",
+          position: "bottom",
+          reverse: false,
           ticks: {
             autoSkip: false,
             color: "#334155",
@@ -670,6 +674,8 @@ function renderSuburbDistribution(rows) {
         },
         y: {
           type: "linear",
+          position: "left",
+          reverse: false,
           ticks: {
             callback: (v) => currency.format(v),
             color: "#334155",
