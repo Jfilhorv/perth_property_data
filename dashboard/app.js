@@ -78,6 +78,13 @@ function canonicalSuburbKey(value) {
     .replace(/\s+/g, " ");
 }
 
+function canonicalAddressKey(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, " ");
+}
+
 function distinctBy(items, keyFn) {
   const seen = new Set();
   const out = [];
@@ -800,6 +807,12 @@ async function init() {
   listingsCore = listings;
   listingsLatest = buildLatestListings(listingsCore);
   listingsLatest = distinctBy(listingsLatest, (row) => houseKey(row));
+  listingsLatest = distinctBy(listingsLatest, (row) => {
+    const addressKey = canonicalAddressKey(row.Address);
+    const soldKey = String(row.Date_Sold || "");
+    const priceKey = Number.isFinite(row.Price) ? String(row.Price) : "";
+    return `${addressKey}|${soldKey}|${priceKey}`;
+  });
   listingsLatest = listingsLatest.map((row) => ({
     ...row,
     Suburb: normalizeSuburbName(row.Suburb),
