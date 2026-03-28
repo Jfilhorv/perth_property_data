@@ -69,7 +69,13 @@
 
         <section class="panel">
           <h2>Property Map and Average Price by Suburb</h2>
-          <div id="map"></div>
+          <div class="map-shell">
+            <div id="map"></div>
+            <label class="map-pt-toggle" title="PTA stops and routes (Perth metro, simplified paths)">
+              <input type="checkbox" id="publicTransportToggle" />
+              <span>PT</span>
+            </label>
+          </div>
         </section>
       </section>
 
@@ -108,6 +114,6 @@
       integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
       crossorigin=""
     ></script>
-    <script src="./app.js?v=20260327-plotly-distribution"></script>
+    <script src="./app.js?v=20260328-pt-on-map"></script>
   </body>
 </html>

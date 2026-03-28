@@ -20,6 +20,8 @@ let map;
 let listingsLayer;
 let suburbPriceLayer;
 let schoolLayer;
+let ptOverlayGroup = null;
+let ptLoadPromise = null;
 let suburbSelectControl = null;
 let selectedFilters = {
   suburb: "",
@@ -211,6 +213,14 @@ function formatDistance(meters) {
   if (!Number.isFinite(meters) || meters < 0) return "N/A";
   if (meters < 1000) return `${numberFmt.format(Math.round(meters))} m`;
   return `${distanceKmFmt.format(meters / 1000)} km`;
+}
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
 function renderKpis(summary, filteredRows) {
@@ -763,6 +773,9 @@ function renderMap(rows) {
       maxZoom: 19,
     }).addTo(map);
     L.control.zoom({ position: "bottomleft" }).addTo(map);
+    map.createPane("publicTransportPane");
+    const ptPane = map.getPane("publicTransportPane");
+    if (ptPane) ptPane.style.zIndex = "350";
   }
 
   if (listingsLayer) map.removeLayer(listingsLayer);
@@ -849,6 +862,87 @@ function renderMap(rows) {
   const group = L.featureGroup([...listingMarkers, ...filteredSuburb.map((row) => L.marker([row.latitude, row.longitude]))]);
   if (group.getLayers().length > 0) {
     map.fitBounds(group.getBounds().pad(0.12));
+  }
+
+  const ptToggle = document.getElementById("publicTransportToggle");
+  if (ptToggle?.checked) {
+    syncPublicTransportLayer().catch((err) => console.error(err));
+  }
+}
+
+function removePublicTransportLayer() {
+  if (ptOverlayGroup && map) map.removeLayer(ptOverlayGroup);
+}
+
+async function syncPublicTransportLayer() {
+  if (!map) return;
+  const ptToggle = document.getElementById("publicTransportToggle");
+  if (!ptToggle?.checked) {
+    removePublicTransportLayer();
+    return;
+  }
+  if (ptOverlayGroup && map.hasLayer(ptOverlayGroup)) return;
+
+  if (!ptLoadPromise) {
+    ptLoadPromise = Promise.all([
+      loadJson("./data/public_transport_stops.geojson"),
+      loadJson("./data/public_transport_routes.geojson"),
+    ])
+      .then(([stopsFc, routesFc]) => {
+        const routesLayer = L.geoJSON(routesFc, {
+          pane: "publicTransportPane",
+          style: () => ({
+            color: "#6d28d9",
+            weight: 2,
+            opacity: 0.45,
+          }),
+          onEachFeature(feature, layer) {
+            const p = feature.properties || {};
+            const name = escapeHtml(p.routename);
+            const svc = escapeHtml(p.servicenam);
+            const from = escapeHtml(p.departure);
+            const to = escapeHtml(p.destinatio);
+            layer.bindTooltip(`Route ${name} (${svc})<br/>${from} → ${to}`, { sticky: true });
+          },
+        });
+        const stopsLayer = L.geoJSON(stopsFc, {
+          pane: "publicTransportPane",
+          pointToLayer(feature, latlng) {
+            return L.circleMarker(latlng, {
+              radius: 3,
+              color: "#0f766e",
+              fillColor: "#14b8a6",
+              weight: 1,
+              fillOpacity: 0.7,
+            });
+          },
+          onEachFeature(feature, layer) {
+            const p = feature.properties || {};
+            const title = escapeHtml(p.stopname);
+            const suburb = escapeHtml(p.suburb);
+            const stype = escapeHtml(p.stoptype);
+            layer.bindTooltip(`${title}<br/>${suburb} · ${stype}`, { sticky: true });
+          },
+        });
+        ptOverlayGroup = L.layerGroup([routesLayer, stopsLayer]);
+      })
+      .catch((err) => {
+        ptLoadPromise = null;
+        throw err;
+      });
+  }
+
+  try {
+    await ptLoadPromise;
+    if (ptToggle.checked && ptOverlayGroup && map && !map.hasLayer(ptOverlayGroup)) {
+      ptOverlayGroup.addTo(map);
+    }
+  } catch (err) {
+    console.error(err);
+    ptToggle.checked = false;
+    alert(
+      "Could not load public transport layers. Generate dashboard files with: python scripts/build_public_transport_data.py"
+    );
   }
 }
 
@@ -1007,6 +1101,10 @@ async function init() {
     applyFilters();
   });
   clearFiltersBtn?.addEventListener("click", resetFilters);
+  document.getElementById("publicTransportToggle")?.addEventListener("change", (e) => {
+    if (e.target.checked) syncPublicTransportLayer();
+    else removePublicTransportLayer();
+  });
 
   const headerCells = document.querySelectorAll("th.sortable");
   headerCells.forEach((cell) => {

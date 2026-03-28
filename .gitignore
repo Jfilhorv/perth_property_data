@@ -1,2 +1,7 @@
 __pycache__/
 *.pyc
+
+# PTA source extracts (large). Build processed layers with scripts/build_public_transport_data.py
+Service_Routes_PTA_002_WA_GDA2020_Public_GeoJSON/
+Stops_PTA_001_WA_GDA2020_Public_GeoJSON/
+Public_Transport_Authority_Rail_Corridor_PTA_006_WA_GDA2020_Public_Registration_Required_GeoJSON/
