@@ -540,6 +540,17 @@ select {
   outline: none;
 }
 
+.clear-filters-btn.clear-filters-btn--filtered {
+  background: rgba(250, 204, 21, 0.28);
+  border-color: rgba(234, 179, 8, 0.55);
+}
+
+.clear-filters-btn.clear-filters-btn--filtered:hover,
+.clear-filters-btn.clear-filters-btn--filtered:focus-visible {
+  background: rgba(250, 204, 21, 0.42);
+  border-color: #ca8a04;
+}
+
 .map-panel-head {
   display: flex;
   flex-wrap: wrap;

@@ -36,6 +36,8 @@ let selectedFilters = {
 let currentSuburbTableSort = { key: "count", dir: "desc" };
 let currentPropertyTableSort = { key: "count", dir: "desc" };
 let salesTableView = "suburbs";
+/** Slider “full range” max; set in init after data load */
+let dashboardDefaultMaxPrice = null;
 const PROPERTY_TABLE_PAGE_SIZE = 100;
 let propertyTablePage = 1;
 let lastPropertyPagerContext = null;
@@ -1140,6 +1142,27 @@ function renderSuburbDistribution(rows) {
   suburbDistributionChart.__kind = "chartjs";
 }
 
+function hasActiveDataFilters() {
+  if (selectedFilters.suburb) return true;
+  if (selectedFilters.bedrooms) return true;
+  if (selectedFilters.bathrooms) return true;
+  if (selectedFilters.year !== "" && selectedFilters.year != null) return true;
+  if (selectedFilters.chartHouseKey) return true;
+  if (Number(selectedFilters.minPrice) > 0) return true;
+  if (
+    dashboardDefaultMaxPrice != null &&
+    Number.isFinite(selectedFilters.maxPrice) &&
+    selectedFilters.maxPrice < dashboardDefaultMaxPrice
+  ) {
+    return true;
+  }
+  return false;
+}
+
+function updateClearFiltersButtonHighlight() {
+  document.getElementById("clearFiltersBtn")?.classList.toggle("clear-filters-btn--filtered", hasActiveDataFilters());
+}
+
 function applyFilters() {
   const filteredRows = getFilteredRows();
   renderKpis(summaryStats, filteredRows);
@@ -1151,6 +1174,7 @@ function applyFilters() {
   renderYearlyChart(chartType, getRowsForYearlyChart(), selectedFilters.year);
   updateSuburbTableSortIndicators();
   updatePropertyTableSortIndicators();
+  updateClearFiltersButtonHighlight();
 }
 
 function radiusByPrice(avgPrice, minPrice, maxPrice) {
@@ -1483,6 +1507,7 @@ async function init() {
   maxPriceRange.value = String(safeMaxPrice);
   selectedFilters.minPrice = 0;
   selectedFilters.maxPrice = safeMaxPrice;
+  dashboardDefaultMaxPrice = safeMaxPrice;
   let applyFiltersTimer = null;
   const scheduleApplyFilters = (delayMs = 140) => {
     if (applyFiltersTimer) clearTimeout(applyFiltersTimer);
