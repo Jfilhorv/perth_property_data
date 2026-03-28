@@ -35,11 +35,6 @@
           <select id="bathroomSelect">
             <option value="">Any</option>
           </select>
-          <label for="chartTypeSelect">Chart</label>
-          <select id="chartTypeSelect">
-            <option value="line">Line</option>
-            <option value="bar">Bar</option>
-          </select>
           <div class="range-filter">
             <label for="minPriceRange">Price</label>
             <div class="dual-range" id="priceDualRange">
@@ -54,7 +49,21 @@
 
       <section class="viz-grid">
         <section class="panel">
-          <h2>Yearly Median Price Trend</h2>
+          <div class="chart-panel-head">
+            <h2>Yearly Median Price Trend</h2>
+            <div class="chart-type-segment" role="group" aria-label="Chart type">
+              <select id="chartTypeSelect" class="chart-type-select-hidden" tabindex="-1" aria-hidden="true">
+                <option value="line" selected>Line</option>
+                <option value="bar">Bar</option>
+              </select>
+              <button type="button" class="chart-type-segment__btn" data-chart-type="bar" aria-pressed="false">
+                Bar
+              </button>
+              <button type="button" class="chart-type-segment__btn chart-type-segment__btn--active" data-chart-type="line" aria-pressed="true">
+                Line
+              </button>
+            </div>
+          </div>
           <div class="chart-wrap chart-wrap--clickable">
             <canvas id="yearlyChart"></canvas>
           </div>
@@ -123,6 +132,6 @@
       integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
       crossorigin=""
     ></script>
-    <script src="./app.js?v=20260328-map-layer-ticks"></script>
+    <script src="./app.js?v=20260328-chart-segment-toggle"></script>
   </body>
 </html>

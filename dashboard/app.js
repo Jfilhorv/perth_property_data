@@ -922,6 +922,17 @@ function colorByPrice(avgPrice, minPrice, maxPrice) {
 
 const listingTooltipOptions = { sticky: true, interactive: false };
 
+function syncChartTypeSegmentControls() {
+  const sel = document.getElementById("chartTypeSelect");
+  if (!sel) return;
+  const v = sel.value;
+  document.querySelectorAll(".chart-type-segment__btn").forEach((btn) => {
+    const on = btn.dataset.chartType === v;
+    btn.classList.toggle("chart-type-segment__btn--active", on);
+    btn.setAttribute("aria-pressed", on ? "true" : "false");
+  });
+}
+
 function getMapLayerToggles() {
   return {
     suburbs: document.getElementById("mapLayerSuburbs")?.checked !== false,
@@ -1324,7 +1335,19 @@ async function init() {
   updatePriceRangeTrack();
 
   const chartTypeSelect = document.getElementById("chartTypeSelect");
-  chartTypeSelect.addEventListener("change", () => applyFilters());
+  chartTypeSelect.addEventListener("change", () => {
+    syncChartTypeSegmentControls();
+    applyFilters();
+  });
+  document.querySelectorAll(".chart-type-segment__btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const t = btn.dataset.chartType;
+      if (!t || chartTypeSelect.value === t) return;
+      chartTypeSelect.value = t;
+      chartTypeSelect.dispatchEvent(new Event("change", { bubbles: true }));
+    });
+  });
+  syncChartTypeSegmentControls();
 
   clearFiltersBtn?.addEventListener("click", resetFilters);
   ["mapLayerSuburbs", "mapLayerProperties", "mapLayerSchools", "mapLayerPublicTransport"].forEach((id) => {
