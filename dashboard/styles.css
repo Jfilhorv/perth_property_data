@@ -285,9 +285,9 @@ select {
 }
 
 .clear-filters-btn {
-  border: 1px solid #cbd5e1;
-  background: #f8fafc;
-  color: #0f172a;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  color: #1f2937;
   border-radius: 8px;
   font-size: 12px;
   font-weight: 600;
@@ -297,8 +297,8 @@ select {
 
 .clear-filters-btn:hover,
 .clear-filters-btn:focus-visible {
-  background: #e2e8f0;
-  border-color: #94a3b8;
+  background: #f9fafb;
+  border-color: #cbd5e1;
   outline: none;
 }
 

@@ -982,11 +982,16 @@ async function init() {
   const maxPriceRange = document.getElementById("maxPriceRange");
   const priceRangeValue = document.getElementById("priceRangeValue");
   const priceDualRange = document.getElementById("priceDualRange");
-  const maxAvailablePrice = listingsLatest.reduce(
-    (max, row) => (Number.isFinite(row.Price) && row.Price > max ? row.Price : max),
-    0
-  );
-  const safeMaxPrice = Math.ceil(maxAvailablePrice / 10000) * 10000;
+  let dataMinPrice = Infinity;
+  let dataMaxPrice = 0;
+  for (const row of listingsLatest) {
+    if (!Number.isFinite(row.Price)) continue;
+    if (row.Price < dataMinPrice) dataMinPrice = row.Price;
+    if (row.Price > dataMaxPrice) dataMaxPrice = row.Price;
+  }
+  if (!Number.isFinite(dataMinPrice)) dataMinPrice = 0;
+  const maxAvailablePrice = dataMaxPrice;
+  const safeMaxPrice = Math.max(10000, Math.ceil(maxAvailablePrice / 10000) * 10000);
   minPriceRange.max = String(safeMaxPrice);
   minPriceRange.min = "0";
   minPriceRange.step = "10000";
@@ -997,7 +1002,6 @@ async function init() {
   maxPriceRange.value = String(safeMaxPrice);
   selectedFilters.minPrice = 0;
   selectedFilters.maxPrice = safeMaxPrice;
-  priceRangeValue.textContent = "Any";
   let applyFiltersTimer = null;
   const scheduleApplyFilters = (delayMs = 140) => {
     if (applyFiltersTimer) clearTimeout(applyFiltersTimer);
@@ -1034,12 +1038,14 @@ async function init() {
   const updatePriceRangeLabel = () => {
     const minValue = Number(minPriceRange.value);
     const maxValue = Number(maxPriceRange.value);
-    const minText = minValue <= 0 ? "Any" : currency.format(minValue);
-    const maxText = maxValue >= safeMaxPrice ? "Any" : currency.format(maxValue);
+    const minText =
+      minValue <= 0 ? currency.format(dataMinPrice) : currency.format(minValue);
+    const maxText =
+      maxValue >= safeMaxPrice ? currency.format(dataMaxPrice) : currency.format(maxValue);
     priceRangeValue.textContent = `${minText} - ${maxText}`;
   };
   const updatePriceRangeTrack = () => {
-    if (!priceDualRange) return;
+    if (!priceDualRange || safeMaxPrice <= 0) return;
     const minValue = Number(minPriceRange.value);
     const maxValue = Number(maxPriceRange.value);
     const minPct = (minValue / safeMaxPrice) * 100;
