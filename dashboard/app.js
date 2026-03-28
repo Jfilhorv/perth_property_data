@@ -827,6 +827,31 @@ function colorByPrice(avgPrice, minPrice, maxPrice) {
   return "#1e3a8a";
 }
 
+const listingTooltipOptions = { sticky: true, interactive: false };
+
+function handleMapClickNearestListing(e) {
+  const t = e.originalEvent?.target;
+  if (t?.closest?.(".leaflet-control")) return;
+  const mv = document.getElementById("mapViewSelect")?.value;
+  if (mv !== "listings" && mv !== "both") return;
+  if (!listingsLayer || !map?.hasLayer(listingsLayer)) return;
+  const clickPt = map.latLngToContainerPoint(e.latlng);
+  const maxPx = 36;
+  let bestRow = null;
+  let bestD = Infinity;
+  listingsLayer.eachLayer((ly) => {
+    const row = ly._listingRow;
+    if (!row || !Number.isFinite(row.Latitude) || !Number.isFinite(row.Longitude)) return;
+    const c = map.latLngToContainerPoint(L.latLng(row.Latitude, row.Longitude));
+    const d = clickPt.distanceTo(c);
+    if (d < bestD) {
+      bestD = d;
+      bestRow = row;
+    }
+  });
+  if (bestRow && bestD <= maxPx) setSuburbFilter(bestRow.Suburb);
+}
+
 function ensureMapInteractionPanes() {
   if (!map) return;
   if (!map.getPane("suburbAvgPane")) {
@@ -853,6 +878,7 @@ function renderMap(rows) {
     map.createPane("publicTransportPane");
     const ptPane = map.getPane("publicTransportPane");
     if (ptPane) ptPane.style.zIndex = "350";
+    map.on("click", handleMapClickNearestListing);
   }
   ensureMapInteractionPanes();
 
@@ -875,8 +901,9 @@ function renderMap(rows) {
       )}<br/>Distance to CBD: ${formatDistance(row.Distance_to_CBD)}<br/>Primary school distance: ${formatDistance(
         row.Primary_School_Distance
       )}<br/>Secondary school distance: ${formatDistance(row.Secondary_School_Distance)}`,
-      { sticky: true }
+      listingTooltipOptions
     );
+    marker._listingRow = row;
     marker.on("click", (ev) => {
       if (ev?.originalEvent) L.DomEvent.stopPropagation(ev.originalEvent);
       setSuburbFilter(row.Suburb);
@@ -907,7 +934,7 @@ function renderMap(rows) {
         )}<br/>Highest: ${currency.format(
           row.highest_price
         )}<br/>Lowest: ${currency.format(row.lowest_price)}<br/>Sales: ${numberFmt.format(row.count)}`,
-        { sticky: true }
+        listingTooltipOptions
       );
       marker.on("click", (ev) => {
         if (ev?.originalEvent) L.DomEvent.stopPropagation(ev.originalEvent);
@@ -930,7 +957,7 @@ function renderMap(rows) {
         `<b>${s.school_name}</b><br/>Estimated location<br/>Nearby listings: ${numberFmt.format(
           s.count
         )}<br/>Avg nearby price: ${currency.format(s.avg_price)}`,
-        { sticky: true }
+        listingTooltipOptions
       )
     );
   schoolLayer = L.layerGroup(schoolMarkers);

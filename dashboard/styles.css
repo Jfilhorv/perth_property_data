@@ -556,6 +556,10 @@ tbody tr:hover td {
   background: #eaf2ff;
 }
 
+.leaflet-tooltip {
+  pointer-events: none !important;
+}
+
 .leaflet-control-zoom {
   box-shadow: none !important;
 }
