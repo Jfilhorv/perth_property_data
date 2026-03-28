@@ -40,13 +40,6 @@
             <option value="line">Line</option>
             <option value="bar">Bar</option>
           </select>
-          <label for="mapViewSelect">Map</label>
-          <select id="mapViewSelect">
-            <option value="suburb" selected>Average price by suburb only</option>
-            <option value="both">Points + Average Price</option>
-            <option value="listings">Property address</option>
-            <option value="schools">Estimated school locations</option>
-          </select>
           <div class="range-filter">
             <label for="minPriceRange">Price</label>
             <div class="dual-range" id="priceDualRange">
@@ -68,14 +61,29 @@
         </section>
 
         <section class="panel">
-          <h2>Property Map and Average Price by Suburb</h2>
+          <div class="map-panel-head">
+            <h2>Property Map and Average Price by Suburb</h2>
+            <div class="map-layer-toggles" role="group" aria-label="Map layers">
+              <label class="map-layer-tick" title="Average price by suburb">
+                <input type="checkbox" id="mapLayerSuburbs" checked />
+                <span>Suburbs</span>
+              </label>
+              <label class="map-layer-tick" title="Property sale locations">
+                <input type="checkbox" id="mapLayerProperties" />
+                <span>Properties</span>
+              </label>
+              <label class="map-layer-tick" title="Estimated school locations">
+                <input type="checkbox" id="mapLayerSchools" />
+                <span>School</span>
+              </label>
+              <label class="map-layer-tick" title="PTA stops and routes (Perth metro, simplified paths)">
+                <input type="checkbox" id="mapLayerPublicTransport" />
+                <span>Public Transport</span>
+              </label>
+            </div>
+          </div>
           <div class="map-shell">
             <div id="map"></div>
-            <label class="map-pt-toggle" title="PTA stops and routes (Perth metro, simplified paths)">
-              <input type="checkbox" id="publicTransportToggle" />
-              <span>PT</span>
-            </label>
-            <p class="map-pt-legend">PT = Public Transport</p>
           </div>
         </section>
       </section>
@@ -115,6 +123,6 @@
       integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
       crossorigin=""
     ></script>
-    <script src="./app.js?v=20260328-yearly-chart-labels"></script>
+    <script src="./app.js?v=20260328-map-layer-ticks"></script>
   </body>
 </html>

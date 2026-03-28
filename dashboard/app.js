@@ -922,11 +922,19 @@ function colorByPrice(avgPrice, minPrice, maxPrice) {
 
 const listingTooltipOptions = { sticky: true, interactive: false };
 
+function getMapLayerToggles() {
+  return {
+    suburbs: document.getElementById("mapLayerSuburbs")?.checked !== false,
+    properties: Boolean(document.getElementById("mapLayerProperties")?.checked),
+    schools: Boolean(document.getElementById("mapLayerSchools")?.checked),
+    publicTransport: Boolean(document.getElementById("mapLayerPublicTransport")?.checked),
+  };
+}
+
 function handleMapClickNearestListing(e) {
   const t = e.originalEvent?.target;
   if (t?.closest?.(".leaflet-control")) return;
-  const mv = document.getElementById("mapViewSelect")?.value;
-  if (mv !== "listings" && mv !== "both") return;
+  if (!getMapLayerToggles().properties) return;
   if (!listingsLayer || !map?.hasLayer(listingsLayer)) return;
   const clickPt = map.latLngToContainerPoint(e.latlng);
   const maxPx = 56;
@@ -1009,34 +1017,36 @@ function renderMap(rows) {
 
   const filteredSuburb = aggregateSuburbStats(rows).filter((r) => Number.isFinite(r.latitude) && Number.isFinite(r.longitude));
   const prices = filteredSuburb.map((r) => r.avg_price);
-  const minPrice = Math.min(...prices);
-  const maxPrice = Math.max(...prices);
-
+  const hasSuburbMarkers = filteredSuburb.length > 0 && prices.length > 0;
+  const minPrice = hasSuburbMarkers ? Math.min(...prices) : 0;
+  const maxPrice = hasSuburbMarkers ? Math.max(...prices) : 1;
   suburbPriceLayer = L.layerGroup(
-    filteredSuburb.map((row) => {
-      const marker = L.circleMarker([row.latitude, row.longitude], {
-        pane: "suburbAvgPane",
-        radius: radiusByPrice(row.avg_price, minPrice, maxPrice),
-        color: colorByPrice(row.avg_price, minPrice, maxPrice),
-        fillColor: colorByPrice(row.avg_price, minPrice, maxPrice),
-        fillOpacity: 0.25,
-        weight: 2,
-      }).bindTooltip(
-        `<b>${row.Suburb}</b><br/>Average price: ${currency.format(row.avg_price)}<br/>Median price: ${currency.format(
-          row.median_price
-        )}<br/>Variation: ${getVariationMeta(row.variation_pct).arrow} ${getVariationMeta(row.variation_pct).text}<br/>Median Price M2: ${asPricePerSqm(
-          row.median_price_m2
-        )}<br/>Highest: ${currency.format(
-          row.highest_price
-        )}<br/>Lowest: ${currency.format(row.lowest_price)}<br/>Sales: ${numberFmt.format(row.count)}`,
-        listingTooltipOptions
-      );
-      marker.on("click", (ev) => {
-        if (ev?.originalEvent) L.DomEvent.stopPropagation(ev.originalEvent);
-        setSuburbFilterFromMap(row.Suburb);
-      });
-      return marker;
-    })
+    hasSuburbMarkers
+      ? filteredSuburb.map((row) => {
+          const marker = L.circleMarker([row.latitude, row.longitude], {
+            pane: "suburbAvgPane",
+            radius: radiusByPrice(row.avg_price, minPrice, maxPrice),
+            color: colorByPrice(row.avg_price, minPrice, maxPrice),
+            fillColor: colorByPrice(row.avg_price, minPrice, maxPrice),
+            fillOpacity: 0.25,
+            weight: 2,
+          }).bindTooltip(
+            `<b>${row.Suburb}</b><br/>Average price: ${currency.format(row.avg_price)}<br/>Median price: ${currency.format(
+              row.median_price
+            )}<br/>Variation: ${getVariationMeta(row.variation_pct).arrow} ${getVariationMeta(row.variation_pct).text}<br/>Median Price M2: ${asPricePerSqm(
+              row.median_price_m2
+            )}<br/>Highest: ${currency.format(
+              row.highest_price
+            )}<br/>Lowest: ${currency.format(row.lowest_price)}<br/>Sales: ${numberFmt.format(row.count)}`,
+            listingTooltipOptions
+          );
+          marker.on("click", (ev) => {
+            if (ev?.originalEvent) L.DomEvent.stopPropagation(ev.originalEvent);
+            setSuburbFilterFromMap(row.Suburb);
+          });
+          return marker;
+        })
+      : []
   );
   const schoolMarkers = schoolPoints
     .filter((s) => s.count >= 8)
@@ -1057,25 +1067,27 @@ function renderMap(rows) {
     );
   schoolLayer = L.layerGroup(schoolMarkers);
 
-  const mapView = document.getElementById("mapViewSelect").value;
-  if (mapView === "both" || mapView === "listings") {
-    listingsLayer.addTo(map);
+  const ml = getMapLayerToggles();
+  if (ml.properties) listingsLayer.addTo(map);
+  if (ml.suburbs) suburbPriceLayer.addTo(map);
+  if (ml.schools) schoolLayer.addTo(map);
+
+  const boundsLayers = [];
+  if (ml.properties) boundsLayers.push(...listingMarkers);
+  if (ml.suburbs) {
+    boundsLayers.push(...filteredSuburb.map((row) => L.marker([row.latitude, row.longitude])));
   }
-  if (mapView === "both" || mapView === "suburb") {
-    suburbPriceLayer.addTo(map);
-  }
-  if (mapView === "schools") {
-    schoolLayer.addTo(map);
+  if (ml.schools) boundsLayers.push(...schoolMarkers);
+  const boundsGroup = L.featureGroup(boundsLayers);
+  if (boundsGroup.getLayers().length > 0) {
+    map.fitBounds(boundsGroup.getBounds().pad(0.12));
   }
 
-  const group = L.featureGroup([...listingMarkers, ...filteredSuburb.map((row) => L.marker([row.latitude, row.longitude]))]);
-  if (group.getLayers().length > 0) {
-    map.fitBounds(group.getBounds().pad(0.12));
-  }
-
-  const ptToggle = document.getElementById("publicTransportToggle");
-  if (ptToggle?.checked) {
+  const ptEl = document.getElementById("mapLayerPublicTransport");
+  if (ptEl?.checked) {
     syncPublicTransportLayer().catch((err) => console.error(err));
+  } else {
+    removePublicTransportLayer();
   }
 }
 
@@ -1085,7 +1097,7 @@ function removePublicTransportLayer() {
 
 async function syncPublicTransportLayer() {
   if (!map) return;
-  const ptToggle = document.getElementById("publicTransportToggle");
+  const ptToggle = document.getElementById("mapLayerPublicTransport");
   if (!ptToggle?.checked) {
     removePublicTransportLayer();
     return;
@@ -1314,14 +1326,9 @@ async function init() {
   const chartTypeSelect = document.getElementById("chartTypeSelect");
   chartTypeSelect.addEventListener("change", () => applyFilters());
 
-  const mapViewSelect = document.getElementById("mapViewSelect");
-  mapViewSelect.addEventListener("change", () => {
-    applyFilters();
-  });
   clearFiltersBtn?.addEventListener("click", resetFilters);
-  document.getElementById("publicTransportToggle")?.addEventListener("change", (e) => {
-    if (e.target.checked) syncPublicTransportLayer();
-    else removePublicTransportLayer();
+  ["mapLayerSuburbs", "mapLayerProperties", "mapLayerSchools", "mapLayerPublicTransport"].forEach((id) => {
+    document.getElementById(id)?.addEventListener("change", () => applyFilters());
   });
 
   const headerCells = document.querySelectorAll("th.sortable");
