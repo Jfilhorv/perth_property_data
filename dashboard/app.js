@@ -30,6 +30,8 @@ let selectedFilters = {
   minPrice: null,
   maxPrice: null,
   year: "",
+  /** houseKey from listingsCore; when set, yearly chart shows that property's sale history */
+  chartHouseKey: "",
 };
 let currentTableSort = { key: "count", dir: "desc" };
 let currentSuburbView = "table";
@@ -459,6 +461,12 @@ function updateSortIndicators() {
 }
 
 function getRowsForYearlyChart() {
+  const hk = selectedFilters.chartHouseKey;
+  if (hk) {
+    return listingsCore.filter(
+      (r) => houseKey(r) === hk && Number.isFinite(r.Year) && Number.isFinite(r.Price)
+    );
+  }
   return listingsLatest.filter((row) => {
     const bySuburb = !selectedFilters.suburb || row.Suburb === selectedFilters.suburb;
     const byBeds = !selectedFilters.bedrooms || String(row.Bedrooms) === selectedFilters.bedrooms;
@@ -467,6 +475,15 @@ function getRowsForYearlyChart() {
     const byMaxPrice = !Number.isFinite(selectedFilters.maxPrice) || row.Price <= selectedFilters.maxPrice;
     return bySuburb && byBeds && byBaths && byMinPrice && byMaxPrice;
   });
+}
+
+function yearlyChartDatasetLabel() {
+  if (!selectedFilters.chartHouseKey) return "Median Price (AUD)";
+  const row = listingsCore.find((r) => houseKey(r) === selectedFilters.chartHouseKey);
+  const addr = row ? String(row.Address || "").trim() : "";
+  if (!addr) return "Property sale price (AUD)";
+  const short = addr.length > 44 ? `${addr.slice(0, 42)}…` : addr;
+  return `Price: ${short}`;
 }
 
 function getFilteredRows() {
@@ -521,9 +538,22 @@ function setSuburbFilter(nextSuburb, applyNow = true) {
   if (applyNow) applyFilters();
 }
 
-/** Map picks a suburb: clear year filter so chart-year does not hide all rows. */
-function setSuburbFilterFromMap(suburb) {
+/**
+ * Map picks a suburb. Optional listingRow: if that property has 2+ sales in core data,
+ * yearly chart switches to that address price history.
+ */
+function setSuburbFilterFromMap(suburb, options = {}) {
+  const listingRow = options.listingRow;
   selectedFilters.year = "";
+  if (listingRow) {
+    const hk = houseKey(listingRow);
+    const hist = listingsCore.filter(
+      (r) => houseKey(r) === hk && Number.isFinite(r.Year) && Number.isFinite(r.Price)
+    );
+    selectedFilters.chartHouseKey = hist.length >= 2 ? hk : "";
+  } else {
+    selectedFilters.chartHouseKey = "";
+  }
   setSuburbFilter(suburb);
 }
 
@@ -608,7 +638,7 @@ function renderYearlyChart(chartType = "line", rows = [], activeYear = "") {
       labels: series.map((r) => r.Year),
       datasets: [
         {
-          label: "Median Price (AUD)",
+          label: yearlyChartDatasetLabel(),
           data: series.map((r) => r.median_price),
           backgroundColor:
             chartType === "line" ? "rgba(59, 130, 246, 0.25)" : barBg,
@@ -633,6 +663,7 @@ function renderYearlyChart(chartType = "line", rows = [], activeYear = "") {
       },
       onClick: (_evt, elements, chart) => {
         if (!elements?.length) return;
+        selectedFilters.chartHouseKey = "";
         const idx = elements[0].index;
         const year = Number(chart.data.labels[idx]);
         if (!Number.isFinite(year)) return;
@@ -872,7 +903,7 @@ function handleMapClickNearestListing(e) {
       bestRow = row;
     }
   });
-  if (bestRow && bestD <= maxPx) setSuburbFilterFromMap(bestRow.Suburb);
+  if (bestRow && bestD <= maxPx) setSuburbFilterFromMap(bestRow.Suburb, { listingRow: bestRow });
 }
 
 function ensureMapInteractionPanes() {
@@ -929,7 +960,7 @@ function renderMap(rows) {
     marker._listingRow = row;
     marker.on("click", (ev) => {
       if (ev?.originalEvent) L.DomEvent.stop(ev.originalEvent);
-      setSuburbFilterFromMap(row.Suburb);
+      setSuburbFilterFromMap(row.Suburb, { listingRow: row });
     });
     return marker;
   });
@@ -1160,6 +1191,7 @@ async function init() {
   suburbSelectControl = suburbSelect;
   const clearFiltersBtn = document.getElementById("clearFiltersBtn");
   suburbSelect.addEventListener("change", (e) => {
+    selectedFilters.chartHouseKey = "";
     setSuburbFilter(e.target.value || "");
   });
   const bedroomSelect = document.getElementById("bedroomSelect");
@@ -1195,6 +1227,7 @@ async function init() {
     selectedFilters.bedrooms = "";
     selectedFilters.bathrooms = "";
     selectedFilters.year = "";
+    selectedFilters.chartHouseKey = "";
     selectedFilters.minPrice = 0;
     selectedFilters.maxPrice = safeMaxPrice;
     suburbSelect.value = "";
