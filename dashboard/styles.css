@@ -11,11 +11,19 @@ body {
 
 header {
   padding: 20px 0;
-  background: #0f172a;
+  margin: 0;
+  border: none;
+  background-color: #0f172a;
+  background-image: url("./assets/header-banner.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
   color: #fff;
 }
 
 .site-header-inner {
+  position: relative;
+  z-index: 1;
   width: 94vw;
   max-width: none;
   margin: 0 auto;
@@ -40,6 +48,7 @@ header {
   padding: 0;
   border: 0;
   flex-shrink: 0;
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.55));
 }
 
 .site-header-titles {
@@ -49,11 +58,13 @@ header {
 
 header h1 {
   margin: 0 0 6px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.75);
 }
 
 header p {
   margin: 0;
-  opacity: 0.85;
+  opacity: 0.95;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
 }
 
 main {
