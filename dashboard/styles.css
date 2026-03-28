@@ -184,36 +184,39 @@ main {
 }
 
 .range-filter {
-  margin-left: auto;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 10px;
-  border: 1px solid #dbe4f0;
-  border-radius: 999px;
-  background: #f8fbff;
+  gap: 8px;
+  padding: 4px 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
 }
 
 .range-filter label {
-  font-size: 11px;
-  color: #64748b;
+  font-size: 12px;
+  color: #475569;
 }
 
 .dual-range {
   --min-pct: 0%;
   --max-pct: 100%;
-  width: 170px;
-  height: 22px;
+  --track-h: 28px;
+  width: min(320px, 42vw);
+  min-width: 220px;
+  height: var(--track-h);
   position: relative;
   border-radius: 999px;
-  background: linear-gradient(
+  border: 1px solid #d1d5db;
+  background: #e8ecf4;
+  background-image: linear-gradient(
     to right,
-    #dbe4f0 0%,
-    #dbe4f0 var(--min-pct),
-    #93c5fd var(--min-pct),
-    #93c5fd var(--max-pct),
-    #dbe4f0 var(--max-pct),
-    #dbe4f0 100%
+    transparent 0%,
+    transparent var(--min-pct),
+    rgba(37, 99, 235, 0.2) var(--min-pct),
+    rgba(37, 99, 235, 0.2) var(--max-pct),
+    transparent var(--max-pct),
+    transparent 100%
   );
 }
 
@@ -229,12 +232,12 @@ main {
 }
 
 .dual-range input[type="range"]::-webkit-slider-runnable-track {
-  height: 22px;
+  height: var(--track-h);
   background: transparent;
 }
 
 .dual-range input[type="range"]::-moz-range-track {
-  height: 22px;
+  height: var(--track-h);
   background: transparent;
 }
 
@@ -243,32 +246,32 @@ main {
   -webkit-appearance: none;
   appearance: none;
   pointer-events: auto;
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  background: #60a5fa;
+  background: #3b82f6;
   border: 2px solid #ffffff;
   box-shadow: 0 1px 4px rgba(15, 23, 42, 0.25);
   cursor: pointer;
-  margin-top: 4px;
+  margin-top: 6px;
 }
 
 #minPriceRange::-moz-range-thumb,
 #maxPriceRange::-moz-range-thumb {
   pointer-events: auto;
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  background: #60a5fa;
+  background: #3b82f6;
   border: 2px solid #ffffff;
   box-shadow: 0 1px 4px rgba(15, 23, 42, 0.25);
   cursor: pointer;
 }
 
 #priceRangeValue {
-  min-width: 72px;
+  min-width: 88px;
   text-align: right;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   color: #1e3a8a;
 }
