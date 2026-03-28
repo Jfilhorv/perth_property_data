@@ -827,6 +827,22 @@ function colorByPrice(avgPrice, minPrice, maxPrice) {
   return "#1e3a8a";
 }
 
+function ensureMapInteractionPanes() {
+  if (!map) return;
+  if (!map.getPane("suburbAvgPane")) {
+    map.createPane("suburbAvgPane");
+    map.getPane("suburbAvgPane").style.zIndex = "420";
+  }
+  if (!map.getPane("listingPointsPane")) {
+    map.createPane("listingPointsPane");
+    map.getPane("listingPointsPane").style.zIndex = "430";
+  }
+  if (!map.getPane("schoolMarkersPane")) {
+    map.createPane("schoolMarkersPane");
+    map.getPane("schoolMarkersPane").style.zIndex = "425";
+  }
+}
+
 function renderMap(rows) {
   if (!map) {
     map = L.map("map", { zoomControl: false, attributionControl: false }).setView([-31.95, 115.86], 10);
@@ -838,6 +854,7 @@ function renderMap(rows) {
     const ptPane = map.getPane("publicTransportPane");
     if (ptPane) ptPane.style.zIndex = "350";
   }
+  ensureMapInteractionPanes();
 
   if (listingsLayer) map.removeLayer(listingsLayer);
   if (suburbPriceLayer) map.removeLayer(suburbPriceLayer);
@@ -846,10 +863,11 @@ function renderMap(rows) {
   const mapRows = rows.slice(0, 7000);
   const listingMarkers = mapRows.map((row) => {
     const marker = L.circleMarker([row.Latitude, row.Longitude], {
-      radius: 3,
+      pane: "listingPointsPane",
+      radius: 5,
       color: "#ef4444",
       fillColor: "#ef4444",
-      fillOpacity: 0.35,
+      fillOpacity: 0.4,
       weight: 1,
     }).bindTooltip(
       `<b>${row.Address || "Address unavailable"}</b><br/>Suburb: ${row.Suburb}<br/>Price: ${currency.format(
@@ -859,7 +877,10 @@ function renderMap(rows) {
       )}<br/>Secondary school distance: ${formatDistance(row.Secondary_School_Distance)}`,
       { sticky: true }
     );
-    marker.on("click", () => setSuburbFilter(row.Suburb));
+    marker.on("click", (ev) => {
+      if (ev?.originalEvent) L.DomEvent.stopPropagation(ev.originalEvent);
+      setSuburbFilter(row.Suburb);
+    });
     return marker;
   });
   listingsLayer = L.layerGroup(listingMarkers);
@@ -872,6 +893,7 @@ function renderMap(rows) {
   suburbPriceLayer = L.layerGroup(
     filteredSuburb.map((row) => {
       const marker = L.circleMarker([row.latitude, row.longitude], {
+        pane: "suburbAvgPane",
         radius: radiusByPrice(row.avg_price, minPrice, maxPrice),
         color: colorByPrice(row.avg_price, minPrice, maxPrice),
         fillColor: colorByPrice(row.avg_price, minPrice, maxPrice),
@@ -887,7 +909,10 @@ function renderMap(rows) {
         )}<br/>Lowest: ${currency.format(row.lowest_price)}<br/>Sales: ${numberFmt.format(row.count)}`,
         { sticky: true }
       );
-      marker.on("click", () => setSuburbFilter(row.Suburb));
+      marker.on("click", (ev) => {
+        if (ev?.originalEvent) L.DomEvent.stopPropagation(ev.originalEvent);
+        setSuburbFilter(row.Suburb);
+      });
       return marker;
     })
   );
@@ -895,6 +920,7 @@ function renderMap(rows) {
     .filter((s) => s.count >= 8)
     .map((s) =>
       L.circleMarker([s.latitude, s.longitude], {
+        pane: "schoolMarkersPane",
         radius: 6,
         color: "#0f766e",
         fillColor: "#14b8a6",
