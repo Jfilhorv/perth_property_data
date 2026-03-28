@@ -502,8 +502,29 @@ function getDistributionRows() {
 
 function setSuburbFilter(nextSuburb, applyNow = true) {
   selectedFilters.suburb = normalizeSuburbName(nextSuburb || "");
-  if (suburbSelectControl) suburbSelectControl.value = selectedFilters.suburb;
+  if (suburbSelectControl) {
+    const sel = suburbSelectControl;
+    const v = selectedFilters.suburb;
+    const hasOpt = [...sel.options].some((o) => o.value === v);
+    if (hasOpt) {
+      sel.value = v;
+    } else if (v) {
+      const opt = document.createElement("option");
+      opt.value = v;
+      opt.textContent = v;
+      sel.appendChild(opt);
+      sel.value = v;
+    } else {
+      sel.value = "";
+    }
+  }
   if (applyNow) applyFilters();
+}
+
+/** Map picks a suburb: clear year filter so chart-year does not hide all rows. */
+function setSuburbFilterFromMap(suburb) {
+  selectedFilters.year = "";
+  setSuburbFilter(suburb);
 }
 
 function buildLatestListings(rows) {
@@ -836,20 +857,22 @@ function handleMapClickNearestListing(e) {
   if (mv !== "listings" && mv !== "both") return;
   if (!listingsLayer || !map?.hasLayer(listingsLayer)) return;
   const clickPt = map.latLngToContainerPoint(e.latlng);
-  const maxPx = 36;
+  const maxPx = 56;
   let bestRow = null;
   let bestD = Infinity;
   listingsLayer.eachLayer((ly) => {
     const row = ly._listingRow;
-    if (!row || !Number.isFinite(row.Latitude) || !Number.isFinite(row.Longitude)) return;
-    const c = map.latLngToContainerPoint(L.latLng(row.Latitude, row.Longitude));
+    if (!row) return;
+    const ll = typeof ly.getLatLng === "function" ? ly.getLatLng() : null;
+    if (!ll || !Number.isFinite(ll.lat) || !Number.isFinite(ll.lng)) return;
+    const c = map.latLngToContainerPoint(ll);
     const d = clickPt.distanceTo(c);
     if (d < bestD) {
       bestD = d;
       bestRow = row;
     }
   });
-  if (bestRow && bestD <= maxPx) setSuburbFilter(bestRow.Suburb);
+  if (bestRow && bestD <= maxPx) setSuburbFilterFromMap(bestRow.Suburb);
 }
 
 function ensureMapInteractionPanes() {
@@ -890,10 +913,10 @@ function renderMap(rows) {
   const listingMarkers = mapRows.map((row) => {
     const marker = L.circleMarker([row.Latitude, row.Longitude], {
       pane: "listingPointsPane",
-      radius: 5,
+      radius: 11,
       color: "#ef4444",
       fillColor: "#ef4444",
-      fillOpacity: 0.4,
+      fillOpacity: 0.38,
       weight: 1,
     }).bindTooltip(
       `<b>${row.Address || "Address unavailable"}</b><br/>Suburb: ${row.Suburb}<br/>Price: ${currency.format(
@@ -905,8 +928,8 @@ function renderMap(rows) {
     );
     marker._listingRow = row;
     marker.on("click", (ev) => {
-      if (ev?.originalEvent) L.DomEvent.stopPropagation(ev.originalEvent);
-      setSuburbFilter(row.Suburb);
+      if (ev?.originalEvent) L.DomEvent.stop(ev.originalEvent);
+      setSuburbFilterFromMap(row.Suburb);
     });
     return marker;
   });
@@ -938,7 +961,7 @@ function renderMap(rows) {
       );
       marker.on("click", (ev) => {
         if (ev?.originalEvent) L.DomEvent.stopPropagation(ev.originalEvent);
-        setSuburbFilter(row.Suburb);
+        setSuburbFilterFromMap(row.Suburb);
       });
       return marker;
     })
