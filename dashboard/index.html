@@ -56,11 +56,30 @@
                 <option value="line" selected>Line</option>
                 <option value="bar">Bar</option>
               </select>
-              <button type="button" class="chart-type-segment__btn" data-chart-type="bar" aria-pressed="false">
-                Bar
+              <button type="button" class="chart-type-segment__btn" data-chart-type="bar" aria-pressed="false" title="Bar chart" aria-label="Bar chart">
+                <span class="chart-type-glyph chart-type-glyph--bar" aria-hidden="true">
+                  <i></i><i></i><i></i>
+                </span>
               </button>
-              <button type="button" class="chart-type-segment__btn chart-type-segment__btn--active" data-chart-type="line" aria-pressed="true">
-                Line
+              <button
+                type="button"
+                class="chart-type-segment__btn chart-type-segment__btn--active"
+                data-chart-type="line"
+                aria-pressed="true"
+                title="Line chart"
+                aria-label="Line chart"
+              >
+                <span class="chart-type-glyph chart-type-glyph--line" aria-hidden="true">
+                  <svg viewBox="0 0 18 12" width="18" height="12" fill="none" aria-hidden="true">
+                    <path
+                      d="M1 9.5L5.5 5l4 3L17 1.5"
+                      stroke="currentColor"
+                      stroke-width="1.75"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
               </button>
             </div>
           </div>
@@ -132,6 +151,6 @@
       integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
       crossorigin=""
     ></script>
-    <script src="./app.js?v=20260328-chart-segment-toggle"></script>
+    <script src="./app.js?v=20260328-chart-glyphs-legend"></script>
   </body>
 </html>

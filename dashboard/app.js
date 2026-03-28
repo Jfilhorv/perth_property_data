@@ -720,7 +720,48 @@ function renderYearlyChart(chartType = "line", rows = [], activeYear = "") {
         applyFilters();
       },
       plugins: {
-        legend: { display: true },
+        legend: {
+          display: true,
+          labels: {
+            usePointStyle: true,
+            generateLabels(chart) {
+              if (chart.config.type !== "line") {
+                const gen = Chart?.defaults?.plugins?.legend?.labels?.generateLabels;
+                if (typeof gen === "function") return gen(chart);
+                const d = chart.data.datasets[0];
+                const meta = chart.getDatasetMeta(0);
+                const fill = typeof d.backgroundColor === "string" ? d.backgroundColor : "rgba(59, 130, 246, 0.7)";
+                const stroke = typeof d.borderColor === "string" ? d.borderColor : "#1d4ed8";
+                return [
+                  {
+                    text: d.label || "",
+                    fillStyle: fill,
+                    strokeStyle: stroke,
+                    lineWidth: 1,
+                    hidden: meta.hidden === true,
+                    index: 0,
+                    datasetIndex: 0,
+                  },
+                ];
+              }
+              const d = chart.data.datasets[0];
+              const meta = chart.getDatasetMeta(0);
+              const stroke = typeof d.borderColor === "string" ? d.borderColor : "#1d4ed8";
+              return [
+                {
+                  text: d.label || "",
+                  fillStyle: "transparent",
+                  strokeStyle: stroke,
+                  lineWidth: 2,
+                  hidden: meta.hidden === true,
+                  index: 0,
+                  datasetIndex: 0,
+                  pointStyle: "line",
+                },
+              ];
+            },
+          },
+        },
       },
       scales: {
         x: {
