@@ -593,6 +593,43 @@ function buildLatestListings(rows) {
   });
 }
 
+/** Always-on value labels for the yearly median / property chart only. */
+const yearlyValueLabelsPlugin = {
+  id: "yearlyValueLabels",
+  afterDatasetsDraw(chart) {
+    if (chart.canvas?.id !== "yearlyChart") return;
+    const meta = chart.getDatasetMeta(0);
+    if (!meta?.data?.length || meta.hidden) return;
+    const { ctx } = chart;
+    const values = chart.data.datasets[0]?.data;
+    if (!values?.length) return;
+    ctx.save();
+    ctx.font = "600 10px system-ui, -apple-system, Segoe UI, sans-serif";
+    ctx.fillStyle = "#1e293b";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "bottom";
+    const isBar = chart.config.type === "bar";
+    meta.data.forEach((element, i) => {
+      const v = values[i];
+      if (!Number.isFinite(v)) return;
+      const text = currency.format(v);
+      if (isBar) {
+        const x = element.x;
+        const y = element.y;
+        const base = element.base;
+        if (!Number.isFinite(x)) return;
+        const topY = Number.isFinite(y) && Number.isFinite(base) ? Math.min(y, base) : y;
+        ctx.fillText(text, x, topY - 5);
+      } else {
+        const pos = typeof element.tooltipPosition === "function" ? element.tooltipPosition() : { x: element.x, y: element.y };
+        if (!Number.isFinite(pos.x) || !Number.isFinite(pos.y)) return;
+        ctx.fillText(text, pos.x, pos.y - 10);
+      }
+    });
+    ctx.restore();
+  },
+};
+
 function getYearlySeries(rows) {
   const yearMap = new Map();
   rows.forEach((r) => {
@@ -634,6 +671,7 @@ function renderYearlyChart(chartType = "line", rows = [], activeYear = "") {
 
   yearlyChart = new Chart(ctx, {
     type: chartType,
+    plugins: [yearlyValueLabelsPlugin],
     data: {
       labels: series.map((r) => r.Year),
       datasets: [
@@ -657,6 +695,9 @@ function renderYearlyChart(chartType = "line", rows = [], activeYear = "") {
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      layout: {
+        padding: { top: chartType === "line" ? 22 : 16 },
+      },
       interaction: {
         mode: "index",
         intersect: false,
