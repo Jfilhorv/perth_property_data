@@ -136,7 +136,7 @@
             class="sales-title-tab"
             role="tab"
             aria-selected="false"
-            aria-controls="propertyTableWrap"
+            aria-controls="propertyTablePanel"
             data-table-view="properties"
           >
             Properties by Sales Volume
@@ -159,22 +159,31 @@
             <tbody id="suburbTableBody"></tbody>
           </table>
         </div>
-        <div class="table-wrap table-wrap--properties hidden" id="propertyTableWrap" role="tabpanel" aria-labelledby="tabSalesProperties">
-          <table>
-            <thead>
-              <tr>
-                <th class="sortable" data-sort-key="Address" data-label="Address">Address</th>
-                <th class="sortable" data-sort-key="count" data-label="Sales">Sales</th>
-                <th class="sortable" data-sort-key="median_price" data-label="Median Price">Median Price</th>
-                <th class="sortable" data-sort-key="variation_pct" data-label="Variation">Variation</th>
-                <th class="sortable" data-sort-key="median_price_m2" data-label="Median Price M2">Median Price M2</th>
-                <th class="sortable" data-sort-key="highest_price" data-label="Highest Price">Highest Price</th>
-                <th class="sortable" data-sort-key="lowest_price" data-label="Lowest Price">Lowest Price</th>
-                <th class="sortable" data-sort-key="avg_distance_to_cbd" data-label="Avg. Distance to CBD">Avg. Distance to CBD</th>
-              </tr>
-            </thead>
-            <tbody id="propertyTableBody"></tbody>
-          </table>
+        <div class="property-table-panel hidden" id="propertyTablePanel" role="tabpanel" aria-labelledby="tabSalesProperties">
+          <div class="table-wrap table-wrap--properties" id="propertyTableWrap">
+            <table>
+              <thead>
+                <tr>
+                  <th class="sortable" data-sort-key="Address" data-label="Address">Address</th>
+                  <th class="sortable" data-sort-key="count" data-label="Sales">Sales</th>
+                  <th class="sortable" data-sort-key="median_price" data-label="Median Price">Median Price</th>
+                  <th class="sortable" data-sort-key="variation_pct" data-label="Variation">Variation</th>
+                  <th class="sortable" data-sort-key="median_price_m2" data-label="Median Price M2">Median Price M2</th>
+                  <th class="sortable" data-sort-key="highest_price" data-label="Highest Price">Highest Price</th>
+                  <th class="sortable" data-sort-key="lowest_price" data-label="Lowest Price">Lowest Price</th>
+                  <th class="sortable" data-sort-key="avg_distance_to_cbd" data-label="Avg. Distance to CBD">Avg. Distance to CBD</th>
+                </tr>
+              </thead>
+              <tbody id="propertyTableBody"></tbody>
+            </table>
+          </div>
+          <div class="property-table-pager" id="propertyTablePager" hidden>
+            <span class="property-table-pager-meta" id="propertyTablePagerMeta"></span>
+            <div class="property-table-pager-nav">
+              <button type="button" class="property-table-pager-btn" id="propertyTablePagerPrev" aria-label="Previous page">‹</button>
+              <button type="button" class="property-table-pager-btn" id="propertyTablePagerNext" aria-label="Next page">›</button>
+            </div>
+          </div>
         </div>
       </section>
     </main>
@@ -190,6 +199,6 @@
       integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
       crossorigin=""
     ></script>
-    <script src="./app.js?v=20260328-sales-title-tabs"></script>
+    <script src="./app.js?v=20260328-property-pagination"></script>
   </body>
 </html>

@@ -291,6 +291,18 @@ main {
   user-select: none;
 }
 
+.property-table-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+}
+
+.property-table-panel > .table-wrap {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
 .table-wrap--properties table {
   min-width: 1040px;
 }
@@ -300,6 +312,59 @@ main {
   white-space: normal;
   max-width: 300px;
   word-break: break-word;
+}
+
+.property-table-pager {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px 12px;
+  padding: 6px 2px 2px;
+  margin-top: 2px;
+}
+
+.property-table-pager-meta {
+  font-size: 11px;
+  color: #94a3b8;
+  font-variant-numeric: tabular-nums;
+}
+
+.property-table-pager-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.property-table-pager-btn {
+  margin: 0;
+  padding: 2px 8px;
+  min-width: 28px;
+  font-size: 14px;
+  line-height: 1.2;
+  font-family: inherit;
+  color: #64748b;
+  background: transparent;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+}
+
+.property-table-pager-btn:hover:not(:disabled) {
+  background: #f1f5f9;
+  color: #334155;
+  border-color: #cbd5e1;
+}
+
+.property-table-pager-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.property-table-pager-btn:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 1px;
 }
 
 .suburb-view-toggle {

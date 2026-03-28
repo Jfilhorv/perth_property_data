@@ -36,6 +36,22 @@ let selectedFilters = {
 let currentSuburbTableSort = { key: "count", dir: "desc" };
 let currentPropertyTableSort = { key: "count", dir: "desc" };
 let salesTableView = "suburbs";
+const PROPERTY_TABLE_PAGE_SIZE = 100;
+let propertyTablePage = 1;
+let lastPropertyPagerContext = null;
+
+function propertyPagerContextKey() {
+  return JSON.stringify({
+    suburb: selectedFilters.suburb,
+    bedrooms: selectedFilters.bedrooms,
+    bathrooms: selectedFilters.bathrooms,
+    minPrice: selectedFilters.minPrice,
+    maxPrice: selectedFilters.maxPrice,
+    year: selectedFilters.year,
+    sortKey: currentPropertyTableSort.key,
+    sortDir: currentPropertyTableSort.dir,
+  });
+}
 let currentSuburbView = "table";
 let distributionAxisTooltipEl = null;
 const suburbBandPlugin = {
@@ -550,7 +566,16 @@ function renderSuburbTable(rows) {
 function renderPropertyTable(coreRows) {
   const body = document.getElementById("propertyTableBody");
   if (!body) return;
+  const pagerEl = document.getElementById("propertyTablePager");
+  const pagerMeta = document.getElementById("propertyTablePagerMeta");
+  const pagerPrev = document.getElementById("propertyTablePagerPrev");
+  const pagerNext = document.getElementById("propertyTablePagerNext");
   body.innerHTML = "";
+  const ctx = propertyPagerContextKey();
+  if (ctx !== lastPropertyPagerContext) {
+    propertyTablePage = 1;
+    lastPropertyPagerContext = ctx;
+  }
   const groupedAll = aggregateAddressStats(coreRows);
   const { key, dir } = currentPropertyTableSort;
   const sorted = [...groupedAll].sort((a, b) => {
@@ -562,7 +587,12 @@ function renderPropertyTable(coreRows) {
     return (Number(av) || 0) - (Number(bv) || 0);
   });
   if (dir === "desc") sorted.reverse();
-  for (const row of sorted) {
+  const total = sorted.length;
+  const totalPages = Math.max(1, Math.ceil(total / PROPERTY_TABLE_PAGE_SIZE));
+  propertyTablePage = Math.min(Math.max(1, propertyTablePage), totalPages);
+  const start = (propertyTablePage - 1) * PROPERTY_TABLE_PAGE_SIZE;
+  const pageRows = sorted.slice(start, start + PROPERTY_TABLE_PAGE_SIZE);
+  for (const row of pageRows) {
     const varMeta = getVariationMeta(row.variation_pct);
     const tooltipText =
       Number.isFinite(row.latest_median_price) && Number.isFinite(row.previous_median_price)
@@ -582,6 +612,17 @@ function renderPropertyTable(coreRows) {
       <td>${formatDistance(row.avg_distance_to_cbd)}</td>
     `;
     body.appendChild(tr);
+  }
+  if (pagerEl && pagerMeta && pagerPrev && pagerNext) {
+    const showPager = total > PROPERTY_TABLE_PAGE_SIZE;
+    pagerEl.hidden = !showPager;
+    if (showPager) {
+      const from = total === 0 ? 0 : start + 1;
+      const to = Math.min(start + PROPERTY_TABLE_PAGE_SIZE, total);
+      pagerMeta.textContent = `${from}–${to} of ${numberFmt.format(total)} · page ${propertyTablePage}/${totalPages}`;
+      pagerPrev.disabled = propertyTablePage <= 1;
+      pagerNext.disabled = propertyTablePage >= totalPages;
+    }
   }
 }
 
@@ -614,7 +655,7 @@ function updatePropertyTableSortIndicators() {
 function setSalesTableView(view) {
   salesTableView = view === "properties" ? "properties" : "suburbs";
   document.getElementById("suburbTableWrap")?.classList.toggle("hidden", salesTableView !== "suburbs");
-  document.getElementById("propertyTableWrap")?.classList.toggle("hidden", salesTableView !== "properties");
+  document.getElementById("propertyTablePanel")?.classList.toggle("hidden", salesTableView !== "properties");
   document.querySelectorAll(".sales-title-tab").forEach((btn) => {
     const on = btn.dataset.tableView === salesTableView;
     btn.classList.toggle("sales-title-tab--active", on);
@@ -1589,6 +1630,17 @@ async function init() {
       updatePropertyTableSortIndicators();
       applyFilters();
     });
+  });
+  document.getElementById("propertyTablePagerPrev")?.addEventListener("click", () => {
+    if (propertyTablePage <= 1) return;
+    propertyTablePage -= 1;
+    renderPropertyTable(getFilteredCoreRows());
+    updatePropertyTableSortIndicators();
+  });
+  document.getElementById("propertyTablePagerNext")?.addEventListener("click", () => {
+    propertyTablePage += 1;
+    renderPropertyTable(getFilteredCoreRows());
+    updatePropertyTableSortIndicators();
   });
   document.querySelectorAll(".sales-title-tab").forEach((btn) => {
     btn.addEventListener("click", () => {
