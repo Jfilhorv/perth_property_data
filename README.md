@@ -51,6 +51,74 @@ The UI is plain **HTML**, **CSS**, and **vanilla JavaScript** (`dashboard/app.js
 
 ---
 
+## Documentation
+
+| Location | Contents |
+|----------|----------|
+| **`README.md`** (this file) | Project purpose, dashboard features, data inventory, and how to run / refresh data. |
+| **`data_schema.md`** | Schema notes for the listing dataset. May reference screenshots or diagrams under **`image/data_schema/`**. |
+| **`scripts/build_dashboard_data.py`** | Inline comments; defines which CSV columns are exported into `listings_core` / `listings_sample` and how aggregates are built. |
+| **`scripts/build_public_transport_data.py`** | Module docstring: PTA source paths, Perth metro bounding box, and output file names. |
+| **`scripts/run_update.py`** | Short entrypoint: order of builds and when public-transport generation runs. |
+| **PTA GeoJSON folders** (if present) | Some downloads include **`metadata.txt`** beside the `.geojson` (supplier metadata). |
+
+---
+
+## Data: inputs (source files)
+
+| Path | Role |
+|------|------|
+| **`perth_property_data.csv`** | **Primary input.** Sold listings (one row per sale / listing as defined in your extract). Required at the **repository root** to run `build_dashboard_data.py`. |
+| **`Stops_PTA_001_WA_GDA2020_Public_GeoJSON/Stops_PTA_001_WA_GDA2020_Public.geojson`** | **Optional.** WA public transport stops (GDA2020). Used only if this folder and file exist when you run `run_update.py`. |
+| **`Service_Routes_PTA_002_WA_GDA2020_Public_GeoJSON/Service_Routes_PTA_002_WA_GDA2020_Public.geojson`** | **Optional.** WA service route geometry. Same condition as stops. |
+
+**School locations on the map** are **not** a separate download: `school_points_estimated.json` is **derived in the pipeline** from listing fields (e.g. primary school name and coordinates aggregated from sales rows).
+
+Other archives or layers you may keep in the repo (for example regional parks ZIPs or rail-corridor GeoJSON) are **not** read by the current dashboard scripts unless you extend the pipeline.
+
+---
+
+## Data: generated outputs (`dashboard/data/`)
+
+Created by **`scripts/build_dashboard_data.py`** unless noted otherwise.
+
+| File | Description |
+|------|-------------|
+| **`summary.json`** | Dataset-wide rollups: row count, column count, sale date range, price median / mean / P75 / P95. |
+| **`listings_core.json`** | Per-row listing attributes (geocoded rows only), including price, dates, suburb, address, beds/baths, land size, distances, school name fields — used as the main fact table in the browser. |
+| **`listings_sample.json`** | Random subset of listings (up to 8,000 rows) with the same column slice; useful for lighter experiments (not loaded by the current `app.js`). |
+| **`yearly.json`** | Median price and sale counts by **calendar year** (aggregate). |
+| **`yearly_by_suburb.json`** | Median price and counts by **suburb × year**. |
+| **`property_type_stats.json`** | Counts and median price by **property type**. |
+| **`suburb_stats.json`** | Suburb-level counts, median / average price, average distance to CBD. |
+| **`suburb_map_stats.json`** | Suburb centroids (mean lat/lon), counts, and average / median price for **map** circles. |
+| **`school_points_estimated.json`** | One point per primary school name with estimated coordinates (mean of listing locations) and counts — used by the dashboard map layer. |
+
+Created by **`scripts/build_public_transport_data.py`** when PTA inputs exist:
+
+| File | Description |
+|------|-------------|
+| **`public_transport_stops.geojson`** | Stops clipped / simplified for Greater Perth for browser use. |
+| **`public_transport_routes.geojson`** | Route linework clipped / simplified for the same area. |
+
+---
+
+## Data: what the dashboard loads in the browser
+
+At startup, **`dashboard/app.js`** fetches:
+
+| File | Purpose |
+|------|---------|
+| **`summary.json`** | Baseline KPI metadata combined with live-filtered rows. |
+| **`listings_core.json`** | All charts, tables, map markers, and filters. |
+| **`school_points_estimated.json`** | School overlay on the map. |
+| **`public_transport_stops.geojson`** | Optional; if missing or invalid, transport layers are skipped gracefully. |
+| **`public_transport_routes.geojson`** | Optional; same as above. |
+
+The other JSON files in `dashboard/data/` are **still produced** by the pipeline for analysis, exports, or future UI — they are **not** requested by the current static page.
+
+---
+
 ## Requirements
 
 - **Python 3.10+** (or compatible) with **pandas** installed (`pip install pandas` if needed).
