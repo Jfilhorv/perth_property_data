@@ -29,6 +29,7 @@ let selectedFilters = {
   bathrooms: "",
   minPrice: null,
   maxPrice: null,
+  year: "",
 };
 let currentTableSort = { key: "count", dir: "desc" };
 let currentSuburbView = "table";
@@ -457,7 +458,7 @@ function updateSortIndicators() {
   });
 }
 
-function getFilteredRows() {
+function getRowsForYearlyChart() {
   return listingsLatest.filter((row) => {
     const bySuburb = !selectedFilters.suburb || row.Suburb === selectedFilters.suburb;
     const byBeds = !selectedFilters.bedrooms || String(row.Bedrooms) === selectedFilters.bedrooms;
@@ -468,13 +469,34 @@ function getFilteredRows() {
   });
 }
 
+function getFilteredRows() {
+  const y = selectedFilters.year;
+  return listingsLatest.filter((row) => {
+    const bySuburb = !selectedFilters.suburb || row.Suburb === selectedFilters.suburb;
+    const byBeds = !selectedFilters.bedrooms || String(row.Bedrooms) === selectedFilters.bedrooms;
+    const byBaths = !selectedFilters.bathrooms || String(row.Bathrooms) === selectedFilters.bathrooms;
+    const byMinPrice = !Number.isFinite(selectedFilters.minPrice) || row.Price >= selectedFilters.minPrice;
+    const byMaxPrice = !Number.isFinite(selectedFilters.maxPrice) || row.Price <= selectedFilters.maxPrice;
+    const rowByYear =
+      y === "" || y === null || y === undefined
+        ? true
+        : Number.isFinite(Number(row.Year)) && Number(row.Year) === Number(y);
+    return bySuburb && byBeds && byBaths && byMinPrice && byMaxPrice && rowByYear;
+  });
+}
+
 function getDistributionRows() {
+  const y = selectedFilters.year;
   return listingsLatest.filter((row) => {
     const byBeds = !selectedFilters.bedrooms || String(row.Bedrooms) === selectedFilters.bedrooms;
     const byBaths = !selectedFilters.bathrooms || String(row.Bathrooms) === selectedFilters.bathrooms;
     const byMinPrice = !Number.isFinite(selectedFilters.minPrice) || row.Price >= selectedFilters.minPrice;
     const byMaxPrice = !Number.isFinite(selectedFilters.maxPrice) || row.Price <= selectedFilters.maxPrice;
-    return byBeds && byBaths && byMinPrice && byMaxPrice;
+    const rowByYear =
+      y === "" || y === null || y === undefined
+        ? true
+        : Number.isFinite(Number(row.Year)) && Number(row.Year) === Number(y);
+    return byBeds && byBaths && byMinPrice && byMaxPrice && rowByYear;
   });
 }
 
@@ -537,10 +559,27 @@ function getYearlySeries(rows) {
     .sort((a, b) => a.Year - b.Year);
 }
 
-function renderYearlyChart(chartType = "line", rows = []) {
+function renderYearlyChart(chartType = "line", rows = [], activeYear = "") {
   const series = getYearlySeries(rows);
   const ctx = document.getElementById("yearlyChart");
   if (yearlyChart) yearlyChart.destroy();
+
+  const activeNum =
+    activeYear === "" || activeYear === null || activeYear === undefined ? NaN : Number(activeYear);
+  const activeOk = Number.isFinite(activeNum);
+  const isSelectedYear = (yr) => activeOk && Number(yr) === activeNum;
+
+  const linePointBg = series.map((r) => (isSelectedYear(r.Year) ? "#ea580c" : "#60a5fa"));
+  const linePointBorder = series.map((r) => (isSelectedYear(r.Year) ? "#c2410c" : "#1d4ed8"));
+  const linePointR = series.map((r) => (isSelectedYear(r.Year) ? 7 : 4));
+  const linePointHoverR = series.map((r) => (isSelectedYear(r.Year) ? 9 : 6));
+
+  const barBg = series.map((r) =>
+    isSelectedYear(r.Year) ? "rgba(234, 88, 12, 0.88)" : "rgba(59, 130, 246, 0.7)"
+  );
+  const barBorder = series.map((r) =>
+    isSelectedYear(r.Year) ? "rgba(194, 65, 12, 0.95)" : "rgba(37, 99, 235, 0.9)"
+  );
 
   yearlyChart = new Chart(ctx, {
     type: chartType,
@@ -550,12 +589,14 @@ function renderYearlyChart(chartType = "line", rows = []) {
         {
           label: "Median Price (AUD)",
           data: series.map((r) => r.median_price),
-          borderColor: "#1d4ed8",
-          backgroundColor: chartType === "line" ? "rgba(59, 130, 246, 0.25)" : "rgba(59, 130, 246, 0.7)",
-          pointRadius: chartType === "line" ? 4 : 0,
-          pointHoverRadius: chartType === "line" ? 6 : 0,
-          pointBackgroundColor: "#60a5fa",
-          pointBorderColor: "#1d4ed8",
+          backgroundColor:
+            chartType === "line" ? "rgba(59, 130, 246, 0.25)" : barBg,
+          borderColor: chartType === "line" ? "#1d4ed8" : barBorder,
+          borderWidth: chartType === "line" ? 2 : 1,
+          pointRadius: chartType === "line" ? linePointR : 0,
+          pointHoverRadius: chartType === "line" ? linePointHoverR : 0,
+          pointBackgroundColor: chartType === "line" ? linePointBg : undefined,
+          pointBorderColor: chartType === "line" ? linePointBorder : undefined,
           pointBorderWidth: 2,
           fill: chartType === "line",
           tension: 0.25,
@@ -565,6 +606,26 @@ function renderYearlyChart(chartType = "line", rows = []) {
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      interaction: {
+        mode: "index",
+        intersect: false,
+      },
+      onClick: (_evt, elements, chart) => {
+        if (!elements?.length) return;
+        const idx = elements[0].index;
+        const year = Number(chart.data.labels[idx]);
+        if (!Number.isFinite(year)) return;
+        const cur =
+          selectedFilters.year === "" || selectedFilters.year === null || selectedFilters.year === undefined
+            ? NaN
+            : Number(selectedFilters.year);
+        if (Number.isFinite(cur) && cur === year) {
+          selectedFilters.year = "";
+        } else {
+          selectedFilters.year = year;
+        }
+        applyFilters();
+      },
       plugins: {
         legend: { display: true },
       },
@@ -747,7 +808,7 @@ function applyFilters() {
   updateSuburbViewUi();
   renderMap(filteredRows);
   const chartType = document.getElementById("chartTypeSelect").value;
-  renderYearlyChart(chartType, filteredRows);
+  renderYearlyChart(chartType, getRowsForYearlyChart(), selectedFilters.year);
 }
 
 function radiusByPrice(avgPrice, minPrice, maxPrice) {
@@ -1057,6 +1118,7 @@ async function init() {
     selectedFilters.suburb = "";
     selectedFilters.bedrooms = "";
     selectedFilters.bathrooms = "";
+    selectedFilters.year = "";
     selectedFilters.minPrice = 0;
     selectedFilters.maxPrice = safeMaxPrice;
     suburbSelect.value = "";
