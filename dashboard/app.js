@@ -33,7 +33,9 @@ let selectedFilters = {
   /** houseKey from listingsCore; when set, yearly chart shows that property's sale history */
   chartHouseKey: "",
 };
-let currentTableSort = { key: "count", dir: "desc" };
+let currentSuburbTableSort = { key: "count", dir: "desc" };
+let currentPropertyTableSort = { key: "count", dir: "desc" };
+let salesTableView = "suburbs";
 let currentSuburbView = "table";
 let distributionAxisTooltipEl = null;
 const suburbBandPlugin = {
@@ -408,11 +410,110 @@ function aggregateSuburbStats(rows) {
     .sort((a, b) => b.count - a.count || b.median_price - a.median_price);
 }
 
+function aggregateAddressStats(rows) {
+  const mapByKey = new Map();
+  rows.forEach((row) => {
+    const key = houseKey(row);
+    if (!key) return;
+    const addr = String(row.Address || "").trim() || "Address unavailable";
+    const current = mapByKey.get(key) || {
+      Address: addr,
+      count: 0,
+      prices: [],
+      psmValues: [],
+      yearPrices: new Map(),
+      sumDistance: 0,
+      distanceCount: 0,
+      sumLat: 0,
+      sumLon: 0,
+      geoCount: 0,
+    };
+    current.count += 1;
+    current.prices.push(row.Price);
+    if (Number.isFinite(row.Year) && Number.isFinite(row.Price)) {
+      const bucket = current.yearPrices.get(row.Year) || [];
+      bucket.push(row.Price);
+      current.yearPrices.set(row.Year, bucket);
+    }
+    if (Number.isFinite(row.Price) && Number.isFinite(row.Land_Size) && row.Land_Size > 0) {
+      current.psmValues.push(row.Price / row.Land_Size);
+    }
+    if (Number.isFinite(row.Distance_to_CBD)) {
+      current.sumDistance += row.Distance_to_CBD;
+      current.distanceCount += 1;
+    }
+    if (Number.isFinite(row.Latitude) && Number.isFinite(row.Longitude)) {
+      current.sumLat += row.Latitude;
+      current.sumLon += row.Longitude;
+      current.geoCount += 1;
+    }
+    mapByKey.set(key, current);
+  });
+  return [...mapByKey.values()]
+    .map((v) => {
+      const sorted = v.prices.sort((a, b) => a - b);
+      const psmSorted = v.psmValues.sort((a, b) => a - b);
+      const mid = Math.floor((sorted.length - 1) * 0.5);
+      const psmMid = Math.floor((psmSorted.length - 1) * 0.5);
+      const years = [...v.yearPrices.keys()].sort((a, b) => a - b);
+      let variationPct = NaN;
+      let latestYear = null;
+      let previousYear = null;
+      let latestMedianPrice = NaN;
+      let previousMedianPrice = NaN;
+      if (years.length >= 2) {
+        latestYear = years[years.length - 1];
+        previousYear = years[years.length - 2];
+        latestMedianPrice = median(v.yearPrices.get(latestYear) || []);
+        previousMedianPrice = median(v.yearPrices.get(previousYear) || []);
+        if (Number.isFinite(previousMedianPrice) && previousMedianPrice > 0 && Number.isFinite(latestMedianPrice)) {
+          variationPct = ((latestMedianPrice - previousMedianPrice) / previousMedianPrice) * 100;
+        }
+      }
+      return {
+        Address: v.Address,
+        count: v.count,
+        median_price: sorted[mid] ?? 0,
+        variation_pct: variationPct,
+        highest_price: sorted.length ? sorted[sorted.length - 1] : 0,
+        lowest_price: sorted.length ? sorted[0] : 0,
+        avg_price: sorted.length ? sorted.reduce((a, b) => a + b, 0) / sorted.length : 0,
+        median_price_m2: psmSorted[psmMid] ?? 0,
+        avg_price_per_sqm: psmSorted.length ? psmSorted.reduce((a, b) => a + b, 0) / psmSorted.length : 0,
+        avg_distance_to_cbd: v.distanceCount ? v.sumDistance / v.distanceCount : 0,
+        latitude: v.geoCount ? v.sumLat / v.geoCount : null,
+        longitude: v.geoCount ? v.sumLon / v.geoCount : null,
+        latest_year: latestYear,
+        previous_year: previousYear,
+        latest_median_price: latestMedianPrice,
+        previous_median_price: previousMedianPrice,
+      };
+    })
+    .sort((a, b) => b.count - a.count || b.median_price - a.median_price);
+}
+
+function getFilteredCoreRows() {
+  const y = selectedFilters.year;
+  return listingsCore.filter((row) => {
+    const suburb = normalizeSuburbName(row.Suburb);
+    const bySuburb = !selectedFilters.suburb || suburb === selectedFilters.suburb;
+    const byBeds = !selectedFilters.bedrooms || String(row.Bedrooms) === selectedFilters.bedrooms;
+    const byBaths = !selectedFilters.bathrooms || String(row.Bathrooms) === selectedFilters.bathrooms;
+    const byMinPrice = !Number.isFinite(selectedFilters.minPrice) || row.Price >= selectedFilters.minPrice;
+    const byMaxPrice = !Number.isFinite(selectedFilters.maxPrice) || row.Price <= selectedFilters.maxPrice;
+    const rowByYear =
+      y === "" || y === null || y === undefined
+        ? true
+        : Number.isFinite(Number(row.Year)) && Number(row.Year) === Number(y);
+    return bySuburb && byBeds && byBaths && byMinPrice && byMaxPrice && rowByYear;
+  });
+}
+
 function renderSuburbTable(rows) {
   const body = document.getElementById("suburbTableBody");
   body.innerHTML = "";
   const groupedAll = aggregateSuburbStats(rows);
-  const { key, dir } = currentTableSort;
+  const { key, dir } = currentSuburbTableSort;
   const sorted = [...groupedAll].sort((a, b) => {
     const av = a[key];
     const bv = b[key];
@@ -446,18 +547,81 @@ function renderSuburbTable(rows) {
   }
 }
 
-function updateSortIndicators() {
-  const headers = document.querySelectorAll("th.sortable");
-  headers.forEach((header) => {
-    const label = header.getAttribute("data-label") || header.textContent || "";
+function renderPropertyTable(coreRows) {
+  const body = document.getElementById("propertyTableBody");
+  if (!body) return;
+  body.innerHTML = "";
+  const groupedAll = aggregateAddressStats(coreRows);
+  const { key, dir } = currentPropertyTableSort;
+  const sorted = [...groupedAll].sort((a, b) => {
+    const av = a[key];
+    const bv = b[key];
+    if (typeof av === "string" || typeof bv === "string") {
+      return String(av).localeCompare(String(bv));
+    }
+    return (Number(av) || 0) - (Number(bv) || 0);
+  });
+  if (dir === "desc") sorted.reverse();
+  for (const row of sorted) {
+    const varMeta = getVariationMeta(row.variation_pct);
+    const tooltipText =
+      Number.isFinite(row.latest_median_price) && Number.isFinite(row.previous_median_price)
+        ? `${row.previous_year}: ${currency.format(row.previous_median_price)} -> ${row.latest_year}: ${currency.format(
+            row.latest_median_price
+          )}`
+        : "Not enough yearly history";
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${escapeHtml(row.Address)}</td>
+      <td>${numberFmt.format(row.count)}</td>
+      <td>${currency.format(row.median_price)}</td>
+      <td><span class="variation-badge ${varMeta.cls}" data-tooltip="${escapeHtml(tooltipText)}" title="${escapeHtml(tooltipText)}">${varMeta.arrow} ${varMeta.text}</span></td>
+      <td>${asPricePerSqm(row.median_price_m2)}</td>
+      <td>${currency.format(row.highest_price)}</td>
+      <td>${currency.format(row.lowest_price)}</td>
+      <td>${formatDistance(row.avg_distance_to_cbd)}</td>
+    `;
+    body.appendChild(tr);
+  }
+}
+
+function updateSuburbTableSortIndicators() {
+  document.querySelectorAll("#suburbTableWrap th.sortable").forEach((header) => {
+    const label = header.getAttribute("data-label") || "";
     const key = header.getAttribute("data-sort-key");
-    if (key === currentTableSort.key) {
-      const arrow = currentTableSort.dir === "asc" ? "▲" : "▼";
+    if (key === currentSuburbTableSort.key) {
+      const arrow = currentSuburbTableSort.dir === "asc" ? "▲" : "▼";
       header.textContent = `${label} ${arrow}`;
     } else {
       header.textContent = label;
     }
   });
+}
+
+function updatePropertyTableSortIndicators() {
+  document.querySelectorAll("#propertyTableWrap th.sortable").forEach((header) => {
+    const label = header.getAttribute("data-label") || "";
+    const key = header.getAttribute("data-sort-key");
+    if (key === currentPropertyTableSort.key) {
+      const arrow = currentPropertyTableSort.dir === "asc" ? "▲" : "▼";
+      header.textContent = `${label} ${arrow}`;
+    } else {
+      header.textContent = label;
+    }
+  });
+}
+
+function setSalesTableView(view) {
+  salesTableView = view === "properties" ? "properties" : "suburbs";
+  document.getElementById("suburbTableWrap")?.classList.toggle("hidden", salesTableView !== "suburbs");
+  document.getElementById("propertyTableWrap")?.classList.toggle("hidden", salesTableView !== "properties");
+  document.querySelectorAll(".sales-title-tab").forEach((btn) => {
+    const on = btn.dataset.tableView === salesTableView;
+    btn.classList.toggle("sales-title-tab--active", on);
+    btn.setAttribute("aria-selected", on ? "true" : "false");
+  });
+  updateSuburbTableSortIndicators();
+  updatePropertyTableSortIndicators();
 }
 
 function getRowsForYearlyChart() {
@@ -939,10 +1103,13 @@ function applyFilters() {
   const filteredRows = getFilteredRows();
   renderKpis(summaryStats, filteredRows);
   renderSuburbTable(filteredRows);
+  renderPropertyTable(getFilteredCoreRows());
   updateSuburbViewUi();
   renderMap(filteredRows);
   const chartType = document.getElementById("chartTypeSelect").value;
   renderYearlyChart(chartType, getRowsForYearlyChart(), selectedFilters.year);
+  updateSuburbTableSortIndicators();
+  updatePropertyTableSortIndicators();
 }
 
 function radiusByPrice(avgPrice, minPrice, maxPrice) {
@@ -1395,22 +1562,41 @@ async function init() {
     document.getElementById(id)?.addEventListener("change", () => applyFilters());
   });
 
-  const headerCells = document.querySelectorAll("th.sortable");
-  headerCells.forEach((cell) => {
+  document.querySelectorAll("#suburbTableWrap th.sortable").forEach((cell) => {
     cell.addEventListener("click", () => {
       const nextKey = cell.getAttribute("data-sort-key");
       if (!nextKey) return;
-      if (currentTableSort.key === nextKey) {
-        currentTableSort.dir = currentTableSort.dir === "asc" ? "desc" : "asc";
+      if (currentSuburbTableSort.key === nextKey) {
+        currentSuburbTableSort.dir = currentSuburbTableSort.dir === "asc" ? "desc" : "asc";
       } else {
-        currentTableSort.key = nextKey;
-        currentTableSort.dir = nextKey === "Suburb" ? "asc" : "desc";
+        currentSuburbTableSort.key = nextKey;
+        currentSuburbTableSort.dir = nextKey === "Suburb" ? "asc" : "desc";
       }
-      updateSortIndicators();
+      updateSuburbTableSortIndicators();
       applyFilters();
     });
   });
-  updateSortIndicators();
+  document.querySelectorAll("#propertyTableWrap th.sortable").forEach((cell) => {
+    cell.addEventListener("click", () => {
+      const nextKey = cell.getAttribute("data-sort-key");
+      if (!nextKey) return;
+      if (currentPropertyTableSort.key === nextKey) {
+        currentPropertyTableSort.dir = currentPropertyTableSort.dir === "asc" ? "desc" : "asc";
+      } else {
+        currentPropertyTableSort.key = nextKey;
+        currentPropertyTableSort.dir = nextKey === "Address" ? "asc" : "desc";
+      }
+      updatePropertyTableSortIndicators();
+      applyFilters();
+    });
+  });
+  document.querySelectorAll(".sales-title-tab").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const v = btn.dataset.tableView;
+      if (v) setSalesTableView(v);
+    });
+  });
+  setSalesTableView("suburbs");
 
   const suburbViewToggle = document.getElementById("suburbViewToggle");
   suburbViewToggle?.addEventListener("click", (e) => {

@@ -246,6 +246,62 @@ main {
   margin: 0;
 }
 
+.sales-panel-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 14px;
+  margin: 0 0 10px;
+}
+
+.sales-title-tab {
+  margin: 0;
+  padding: 0 0 4px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-family: inherit;
+  line-height: 1.25;
+  color: #94a3b8;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.sales-title-tab:hover {
+  color: #475569;
+}
+
+.sales-title-tab--active {
+  color: #1d4ed8;
+  border-bottom-color: #2563eb;
+}
+
+.sales-title-tab:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.sales-title-tab-sep {
+  color: #cbd5e1;
+  font-size: 1.25rem;
+  font-weight: 400;
+  user-select: none;
+}
+
+.table-wrap--properties table {
+  min-width: 1040px;
+}
+
+.table-wrap--properties table th:first-child,
+.table-wrap--properties table td:first-child {
+  white-space: normal;
+  max-width: 300px;
+  word-break: break-word;
+}
+
 .suburb-view-toggle {
   display: flex;
   align-items: stretch;

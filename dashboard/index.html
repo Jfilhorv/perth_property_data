@@ -117,10 +117,32 @@
       </section>
 
       <section class="panel">
-        <div class="section-toolbar">
-          <h2>Suburbs by Sales Volume</h2>
+        <div class="sales-panel-head" role="tablist" aria-label="Sales volume tables">
+          <button
+            type="button"
+            id="tabSalesSuburbs"
+            class="sales-title-tab sales-title-tab--active"
+            role="tab"
+            aria-selected="true"
+            aria-controls="suburbTableWrap"
+            data-table-view="suburbs"
+          >
+            Suburbs by Sales Volume
+          </button>
+          <span class="sales-title-tab-sep" aria-hidden="true">|</span>
+          <button
+            type="button"
+            id="tabSalesProperties"
+            class="sales-title-tab"
+            role="tab"
+            aria-selected="false"
+            aria-controls="propertyTableWrap"
+            data-table-view="properties"
+          >
+            Properties by Sales Volume
+          </button>
         </div>
-        <div class="table-wrap" id="suburbTableWrap">
+        <div class="table-wrap" id="suburbTableWrap" role="tabpanel" aria-labelledby="tabSalesSuburbs">
           <table>
             <thead>
               <tr>
@@ -137,6 +159,23 @@
             <tbody id="suburbTableBody"></tbody>
           </table>
         </div>
+        <div class="table-wrap table-wrap--properties hidden" id="propertyTableWrap" role="tabpanel" aria-labelledby="tabSalesProperties">
+          <table>
+            <thead>
+              <tr>
+                <th class="sortable" data-sort-key="Address" data-label="Address">Address</th>
+                <th class="sortable" data-sort-key="count" data-label="Sales">Sales</th>
+                <th class="sortable" data-sort-key="median_price" data-label="Median Price">Median Price</th>
+                <th class="sortable" data-sort-key="variation_pct" data-label="Variation">Variation</th>
+                <th class="sortable" data-sort-key="median_price_m2" data-label="Median Price M2">Median Price M2</th>
+                <th class="sortable" data-sort-key="highest_price" data-label="Highest Price">Highest Price</th>
+                <th class="sortable" data-sort-key="lowest_price" data-label="Lowest Price">Lowest Price</th>
+                <th class="sortable" data-sort-key="avg_distance_to_cbd" data-label="Avg. Distance to CBD">Avg. Distance to CBD</th>
+              </tr>
+            </thead>
+            <tbody id="propertyTableBody"></tbody>
+          </table>
+        </div>
       </section>
     </main>
     <footer class="site-footer">
@@ -151,6 +190,6 @@
       integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
       crossorigin=""
     ></script>
-    <script src="./app.js?v=20260328-chart-glyphs-legend"></script>
+    <script src="./app.js?v=20260328-sales-title-tabs"></script>
   </body>
 </html>
