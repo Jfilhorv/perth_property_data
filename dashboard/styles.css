@@ -117,13 +117,6 @@ main {
   margin-top: 0;
 }
 
-.chart-filter-hint {
-  margin: -4px 0 8px;
-  font-size: 11px;
-  color: #64748b;
-  line-height: 1.35;
-}
-
 .section-toolbar {
   display: flex;
   align-items: center;
