@@ -15,6 +15,29 @@ header {
   color: #fff;
 }
 
+.site-header-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+}
+
+.site-header-logo {
+  display: block;
+  height: 50px;
+  width: auto;
+  max-width: min(220px, 46vw);
+  object-fit: contain;
+  object-position: left center;
+  padding: 2px;
+  flex-shrink: 0;
+}
+
+.site-header-titles {
+  min-width: 0;
+  flex: 1 1 200px;
+}
+
 header h1 {
   margin: 0 0 6px;
 }
