@@ -42,15 +42,18 @@ header {
 
 .site-header-logo {
   display: block;
-  height: 72px;
   width: auto;
-  max-width: min(340px, 58vw);
+  height: auto;
+  max-height: 96px;
+  max-width: none;
   object-fit: contain;
   object-position: right center;
+  margin: 0;
   padding: 0;
-  border: 0;
+  border: none;
+  outline: none;
+  box-shadow: none;
   flex-shrink: 0;
-  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.55));
 }
 
 .site-header-titles {
