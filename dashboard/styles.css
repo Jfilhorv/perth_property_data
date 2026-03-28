@@ -28,6 +28,7 @@ header {
   max-width: none;
   margin: 0 auto;
   padding-left: 14px;
+  padding-right: 14px;
   box-sizing: border-box;
 }
 
@@ -35,16 +36,17 @@ header {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 12px 16px;
+  justify-content: space-between;
+  gap: 12px 20px;
 }
 
 .site-header-logo {
   display: block;
-  height: 58px;
+  height: 72px;
   width: auto;
-  max-width: min(280px, 52vw);
+  max-width: min(340px, 58vw);
   object-fit: contain;
-  object-position: left center;
+  object-position: right center;
   padding: 0;
   border: 0;
   flex-shrink: 0;
@@ -54,6 +56,7 @@ header {
 .site-header-titles {
   min-width: 0;
   flex: 1 1 200px;
+  text-align: left;
 }
 
 header h1 {
