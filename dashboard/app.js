@@ -385,7 +385,7 @@ function buildSuburbAnnualGrowthMapFromCore(coreRows) {
 }
 
 const KPI_ASSET_BASE = "./assets";
-const KPI_ASSET_VER = "3";
+const KPI_ASSET_VER = "4";
 
 /** Left column: icon(s) scaled to card height, filenames in dashboard/assets. */
 function kpiIconCellHtml(iconFiles) {
