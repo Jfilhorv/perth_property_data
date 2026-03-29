@@ -44,6 +44,7 @@ The UI is plain **HTML**, **CSS**, and **vanilla JavaScript** (`dashboard/app.js
 | `perth_property_data.csv` | **Input** sold-property dataset (place at repo root before running the pipeline; it may be gitignored or absent in clones). |
 | `scripts/build_dashboard_data.py` | Reads the CSV with **pandas**, aggregates, and writes JSON under `dashboard/data/`. |
 | `scripts/build_public_transport_data.py` | Optional: builds trimmed GeoJSON for the dashboard when PTA source files exist. |
+| `scripts/property_annual_returns.py` | Builds `property_annual_return_*.json` (sale-to-sale CAGR and per-property summaries) from the CSV. |
 | `scripts/run_update.py` | **Entry point**: runs the dashboard build; if PTA stop/route GeoJSON folders are present, runs the public-transport build as well. |
 | `dashboard/` | Static front end: `index.html`, `styles.css`, `app.js`, `assets/` (logo, banner, favicon). |
 | `dashboard/data/` | **Generated** JSON (and GeoJSON) consumed by the app — refresh via the scripts above. |
@@ -58,6 +59,7 @@ The UI is plain **HTML**, **CSS**, and **vanilla JavaScript** (`dashboard/app.js
 | **`README.md`** (this file) | Project purpose, dashboard features, data inventory, and how to run / refresh data. |
 | **`data_schema.md`** | Schema notes for the listing dataset. May reference screenshots or diagrams under **`image/data_schema/`**. |
 | **`scripts/build_dashboard_data.py`** | Inline comments; defines which CSV columns are exported into `listings_core` / `listings_sample` and how aggregates are built. |
+| **`scripts/property_annual_returns.py`** | Docstring: sale dedupe rules, CAGR formula, and projection helpers. |
 | **`scripts/build_public_transport_data.py`** | Module docstring: PTA source paths, Perth metro bounding box, and output file names. |
 | **`scripts/run_update.py`** | Short entrypoint: order of builds and when public-transport generation runs. |
 | **PTA GeoJSON folders** (if present) | Some downloads include **`metadata.txt`** beside the `.geojson` (supplier metadata). |
@@ -93,6 +95,15 @@ Created by **`scripts/build_dashboard_data.py`** unless noted otherwise.
 | **`suburb_stats.json`** | Suburb-level counts, median / average price, average distance to CBD. |
 | **`suburb_map_stats.json`** | Suburb centroids (mean lat/lon), counts, and average / median price for **map** circles. |
 | **`school_points_estimated.json`** | One point per primary school name with estimated coordinates (mean of listing locations) and counts — used by the dashboard map layer. |
+
+Created by **`scripts/property_annual_returns.py`** (invoked from `build_dashboard_data.py`):
+
+| File | Description |
+|------|-------------|
+| **`property_annual_return_intervals.json`** | One row per **consecutive sale pair** on the same `house_key` (aligned with dashboard `houseKey` logic). Fields: `prev_date_sold`, `date_sold`, `prev_price`, `price`, `years` (elapsed time in **fractional years**, days ÷ 365.25), `annual_return`. |
+| **`property_annual_return_summary.json`** | One row per property with **latest** sale price/date, `interval_count`, and **`avg_annual_return`** (mean of interval CAGR values). Includes **`future_price_1y`** = `current_price * (1 + avg_annual_return)` when the average is defined. |
+
+**Deduplication before intervals:** same calendar day + same price → one row; same day + different prices → **keep max price** only. **Annualized return** between sales: `(price / prev_price) ** (1 / years) - 1`. For horizons of *n* years: `future_price = current_price * (1 + avg_annual_return) ** n` (not stored for every *n* in JSON; compute in the UI or extend the pipeline).
 
 Created by **`scripts/build_public_transport_data.py`** when PTA inputs exist:
 
@@ -135,7 +146,7 @@ From the repository root:
 python scripts/run_update.py
 ```
 
-This expects `perth_property_data.csv` at the project root. It refreshes files such as `summary.json`, `listings_core.json`, `yearly.json`, and related aggregates under `dashboard/data/`.
+This expects `perth_property_data.csv` at the project root. It refreshes files such as `summary.json`, `listings_core.json`, `yearly.json`, `property_annual_return_intervals.json`, `property_annual_return_summary.json`, and related aggregates under `dashboard/data/`.
 
 If you have the PTA GeoJSON datasets in the expected folders (`Stops_PTA_001_…`, `Service_Routes_PTA_002_…`), the same command also rebuilds the simplified transport layers used by the map.
 

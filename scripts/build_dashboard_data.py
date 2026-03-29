@@ -3,6 +3,8 @@ from pathlib import Path
 
 import pandas as pd
 
+from property_annual_returns import write_annual_return_jsons
+
 
 ROOT = Path(__file__).resolve().parents[1]
 INPUT_CSV = ROOT / "perth_property_data.csv"
@@ -140,6 +142,8 @@ def main() -> None:
     (OUTPUT_DIR / "school_points_estimated.json").write_text(
         json.dumps(to_serializable_records(school_points), indent=2), encoding="utf-8"
     )
+
+    write_annual_return_jsons(df, OUTPUT_DIR)
 
     print("Dashboard data generated in:", OUTPUT_DIR)
 
