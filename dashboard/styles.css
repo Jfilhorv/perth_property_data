@@ -790,6 +790,21 @@ th.sortable:hover {
   background: #eef2f7;
 }
 
+/* Sticky header while scrolling body (Suburbs + Properties sales tables) */
+#suburbTableWrap thead th,
+#propertyTableWrap thead th {
+  position: sticky;
+  top: 0;
+  z-index: 4;
+  background: #f9fafb;
+  box-shadow: 0 1px 0 #e5e7eb;
+}
+
+#suburbTableWrap thead th.sortable:hover,
+#propertyTableWrap thead th.sortable:hover {
+  background: #eef2f7;
+}
+
 /* Keep numeric columns visually aligned */
 th:nth-child(n + 2),
 td:nth-child(n + 2) {
