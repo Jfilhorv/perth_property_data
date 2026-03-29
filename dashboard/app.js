@@ -631,7 +631,7 @@ function renderKpis(summary, filteredRows) {
 
   kpis.appendChild(makeKpiCard("Properties", numberFmt.format(filteredRows.length), "property.png"));
 
-  const medianCard = makeKpiCard("Median Price", asCurrencyOrNA(medianPrice), "median.png");
+  const medianCard = makeKpiCard("Median Price", asCurrencyOrNA(medianPrice), "property_price.png");
   attachKpiVariation(medianCard, medianYoY);
   kpis.appendChild(medianCard);
 
@@ -642,7 +642,7 @@ function renderKpis(summary, filteredRows) {
   const kpiMedPred = predForMed.length ? median(predForMed) : NaN;
   kpis.appendChild(makeKpiGrowthPredictionCard(kpiMedGrowth, kpiMedPred));
 
-  const m2Card = makeKpiCard("Median Price M2", asPricePerSqm(medianPsm), "property_price.png");
+  const m2Card = makeKpiCard("Median Price M2", asPricePerSqm(medianPsm), "median.png");
   attachKpiVariation(m2Card, m2YoY);
   kpis.appendChild(m2Card);
 
