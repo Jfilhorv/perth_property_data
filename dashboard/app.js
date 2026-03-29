@@ -1,3 +1,23 @@
+/** Keep in sync with scripts/build_dashboard_data.py MIN_PRICE_AUD. */
+const MIN_PRICE_AUD = 100_000;
+
+function rowMeetsPriceFloor(row) {
+  const p = Number(row.Price);
+  return Number.isFinite(p) && p >= MIN_PRICE_AUD;
+}
+
+/** Drop bad or sub-threshold rows so charts/tables never use them (defense if JSON was edited). */
+function filterListingsByPriceFloor(rows) {
+  const arr = Array.isArray(rows) ? rows : [];
+  const kept = arr.filter(rowMeetsPriceFloor);
+  if (kept.length < arr.length) {
+    console.warn(
+      `[perth-property] Dropped ${arr.length - kept.length} listing(s): require numeric Price >= ${MIN_PRICE_AUD.toLocaleString("en-AU")} AUD (same rule as build_dashboard_data.py).`
+    );
+  }
+  return kept;
+}
+
 const currency = new Intl.NumberFormat("en-AU", {
   style: "currency",
   currency: "AUD",
@@ -217,6 +237,11 @@ function collapseSalesSamePropertyDay(rows) {
   return kept;
 }
 
+/** Skip very short holds: CAGR explodes when years is small. */
+const MIN_HOLDING_YEARS_FOR_CAGR = 1;
+/** As decimal CAGR; above this is excluded (data errors, non-comparable sales). Display caps at same. */
+const MAX_ANNUAL_CAGR_RATIO = 1;
+
 /** Consecutive sale pairs after collapse; annual_return = (price/prev)^(1/years)-1, years = days/365.25 */
 function resaleIntervalReturnsForHouse(rowsSameHouse) {
   const collapsed = collapseSalesSamePropertyDay(rowsSameHouse);
@@ -230,18 +255,71 @@ function resaleIntervalReturnsForHouse(rowsSameHouse) {
     const years = days / 365.25;
     const prevPrice = prev.Price;
     const price = cur.Price;
-    if (years <= 0 || prevPrice <= 0 || price <= 0) continue;
+    if (years < MIN_HOLDING_YEARS_FOR_CAGR || prevPrice <= 0 || price <= 0) continue;
     const annualReturn = (price / prevPrice) ** (1 / years) - 1;
-    if (!Number.isFinite(annualReturn)) continue;
+    if (!Number.isFinite(annualReturn) || annualReturn > MAX_ANNUAL_CAGR_RATIO) continue;
+    const endYear = Number.parseInt(k1.slice(0, 4), 10);
+    if (!Number.isFinite(endYear)) continue;
     out.push({
       annual_return: annualReturn,
       suburb: normalizeSuburbName(cur.Suburb),
+      endYear,
     });
   }
   return out;
 }
 
-/** Mean CAGR% per suburb from full listings core (matches pipeline rules; no separate JSON required). */
+/**
+ * Per suburb: for each calendar year (later sale year), arithmetic mean CAGR among eligible intervals;
+ * headline value = mean of those yearly means (not a sum of simple % moves — each point is already CAGR).
+ * Omits CAGR above MAX_ANNUAL_CAGR_RATIO (100%/yr).
+ */
+function aggregateSuburbGrowthFromIntervalRecords(records) {
+  const bySuburbYear = new Map();
+  for (const iv of records) {
+    if (
+      !iv?.suburb ||
+      !Number.isFinite(iv.annual_return) ||
+      iv.annual_return > MAX_ANNUAL_CAGR_RATIO ||
+      !Number.isFinite(iv.endYear)
+    ) {
+      continue;
+    }
+    const key = `${iv.suburb}|${iv.endYear}`;
+    if (!bySuburbYear.has(key)) bySuburbYear.set(key, []);
+    bySuburbYear.get(key).push(iv.annual_return);
+  }
+  const suburbToYearMeans = new Map();
+  const suburbToIntervalCount = new Map();
+  for (const [key, returns] of bySuburbYear) {
+    if (!returns.length) continue;
+    const pipe = key.lastIndexOf("|");
+    const sub = key.slice(0, pipe);
+    const yMean = mean(returns);
+    if (!Number.isFinite(yMean)) continue;
+    if (!suburbToYearMeans.has(sub)) {
+      suburbToYearMeans.set(sub, []);
+      suburbToIntervalCount.set(sub, 0);
+    }
+    suburbToYearMeans.get(sub).push(yMean);
+    suburbToIntervalCount.set(sub, suburbToIntervalCount.get(sub) + returns.length);
+  }
+  const capPct = MAX_ANNUAL_CAGR_RATIO * 100;
+  const out = new Map();
+  for (const [sub, yearMeans] of suburbToYearMeans) {
+    if (!yearMeans.length) continue;
+    const overallMean = mean(yearMeans);
+    if (!Number.isFinite(overallMean)) continue;
+    out.set(sub, {
+      avgPct: Math.min(overallMean * 100, capPct),
+      count: suburbToIntervalCount.get(sub) || 0,
+      yearCount: yearMeans.length,
+    });
+  }
+  return out;
+}
+
+/** Suburb growth from full listings core (same rules as optional intervals JSON when regenerated). */
 function buildSuburbAnnualGrowthMapFromCore(coreRows) {
   const byHouse = new Map();
   for (const row of coreRows) {
@@ -250,22 +328,11 @@ function buildSuburbAnnualGrowthMapFromCore(coreRows) {
     if (!byHouse.has(k)) byHouse.set(k, []);
     byHouse.get(k).push(row);
   }
-  const agg = new Map();
+  const flat = [];
   for (const [, hRows] of byHouse) {
-    const intervals = resaleIntervalReturnsForHouse(hRows);
-    for (const iv of intervals) {
-      if (!iv.suburb) continue;
-      const cur = agg.get(iv.suburb) || { sum: 0, n: 0 };
-      cur.sum += iv.annual_return;
-      cur.n += 1;
-      agg.set(iv.suburb, cur);
-    }
+    flat.push(...resaleIntervalReturnsForHouse(hRows));
   }
-  const out = new Map();
-  for (const [sub, { sum, n }] of agg) {
-    if (n > 0) out.set(sub, { avgPct: (sum / n) * 100, count: n });
-  }
-  return out;
+  return aggregateSuburbGrowthFromIntervalRecords(flat);
 }
 
 function makeKpiCard(label, value) {
@@ -280,6 +347,16 @@ function median(values) {
   const sorted = [...values].sort((a, b) => a - b);
   const idx = Math.floor((sorted.length - 1) * 0.5);
   return sorted[idx];
+}
+
+function mean(values) {
+  if (!values.length) return NaN;
+  let s = 0;
+  for (const x of values) {
+    if (!Number.isFinite(x)) return NaN;
+    s += x;
+  }
+  return s / values.length;
 }
 
 function percentile(values, p) {
@@ -309,22 +386,30 @@ function formatSignedPercent(value) {
 }
 
 function buildSuburbAnnualGrowthMap(intervals) {
-  const agg = new Map();
+  const flat = [];
   for (const row of intervals) {
+    const years = row.years;
+    if (
+      !Number.isFinite(row.annual_return) ||
+      row.annual_return > MAX_ANNUAL_CAGR_RATIO ||
+      !Number.isFinite(years) ||
+      years < MIN_HOLDING_YEARS_FOR_CAGR
+    ) {
+      continue;
+    }
+    const prevP = row.prev_price;
+    const saleP = row.price;
+    if (!Number.isFinite(prevP) || !Number.isFinite(saleP) || prevP < MIN_PRICE_AUD || saleP < MIN_PRICE_AUD) {
+      continue;
+    }
     const sub = normalizeSuburbName(row.Suburb);
     if (!sub) continue;
-    const r = row.annual_return;
-    if (!Number.isFinite(r)) continue;
-    const cur = agg.get(sub) || { sum: 0, n: 0 };
-    cur.sum += r;
-    cur.n += 1;
-    agg.set(sub, cur);
+    const ds = String(row.date_sold || "");
+    const endYear = Number.parseInt(ds.slice(0, 4), 10);
+    if (!Number.isFinite(endYear)) continue;
+    flat.push({ suburb: sub, annual_return: row.annual_return, endYear });
   }
-  const out = new Map();
-  for (const [sub, { sum, n }] of agg) {
-    if (n > 0) out.set(sub, { avgPct: (sum / n) * 100, count: n });
-  }
-  return out;
+  return aggregateSuburbGrowthFromIntervalRecords(flat);
 }
 
 function getVariationMeta(value) {
@@ -523,9 +608,11 @@ function aggregateSuburbStats(rows) {
         }
       }
       const growthInfo = suburbAnnualGrowthBySuburb.get(v.Suburb);
-      const avgAnnualGrowthPct =
-        growthInfo && Number.isFinite(growthInfo.avgPct) ? growthInfo.avgPct : NaN;
+      const growthCapPct = MAX_ANNUAL_CAGR_RATIO * 100;
+      const rawGrowthPct = growthInfo && Number.isFinite(growthInfo.avgPct) ? growthInfo.avgPct : NaN;
+      const avgAnnualGrowthPct = Number.isFinite(rawGrowthPct) ? Math.min(rawGrowthPct, growthCapPct) : NaN;
       const annualGrowthIntervalN = growthInfo ? growthInfo.count : 0;
+      const annualGrowthYearCount = growthInfo && Number.isFinite(growthInfo.yearCount) ? growthInfo.yearCount : 0;
       return {
         Suburb: v.Suburb,
         count: v.count,
@@ -533,6 +620,7 @@ function aggregateSuburbStats(rows) {
         variation_pct: variationPct,
         avg_annual_growth_pct: avgAnnualGrowthPct,
         annual_growth_interval_n: annualGrowthIntervalN,
+        annual_growth_year_count: annualGrowthYearCount,
         highest_price: sorted.length ? sorted[sorted.length - 1] : 0,
         lowest_price: sorted.length ? sorted[0] : 0,
         avg_price: sorted.length ? sorted.reduce((a, b) => a + b, 0) / sorted.length : 0,
@@ -635,6 +723,7 @@ function aggregateAddressStats(rows) {
 function getFilteredCoreRows() {
   const y = selectedFilters.year;
   return listingsCore.filter((row) => {
+    if (!rowMeetsPriceFloor(row)) return false;
     const suburb = normalizeSuburbName(row.Suburb);
     const bySuburb = !selectedFilters.suburb || suburb === selectedFilters.suburb;
     const byBeds = !selectedFilters.bedrooms || String(row.Bedrooms) === selectedFilters.bedrooms;
@@ -675,7 +764,9 @@ function renderSuburbTable(rows) {
     const growthMeta = getVariationMeta(row.avg_annual_growth_pct);
     const growthTooltip =
       Number.isFinite(row.avg_annual_growth_pct) && row.annual_growth_interval_n > 0
-        ? `Mean annualized return (CAGR) across ${numberFmt.format(row.annual_growth_interval_n)} resale interval(s) in this suburb`
+        ? `Mean of yearly mean CAGRs (later sale year; hold ≥${MIN_HOLDING_YEARS_FOR_CAGR} yr; omit CAGR >${MAX_ANNUAL_CAGR_RATIO * 100}%/yr). ${numberFmt.format(
+            row.annual_growth_interval_n
+          )} interval(s) across ${numberFmt.format(row.annual_growth_year_count)} calendar year(s) with data`
         : "No resale intervals with CAGR data for this suburb";
     const tr = document.createElement("tr");
     tr.innerHTML = `
@@ -799,10 +890,14 @@ function getRowsForYearlyChart() {
   const hk = selectedFilters.chartHouseKey;
   if (hk) {
     return listingsCore.filter(
-      (r) => houseKey(r) === hk && Number.isFinite(r.Year) && Number.isFinite(r.Price)
+      (r) =>
+        houseKey(r) === hk &&
+        Number.isFinite(r.Year) &&
+        rowMeetsPriceFloor(r)
     );
   }
   return listingsLatest.filter((row) => {
+    if (!rowMeetsPriceFloor(row)) return false;
     const bySuburb = !selectedFilters.suburb || row.Suburb === selectedFilters.suburb;
     const byBeds = !selectedFilters.bedrooms || String(row.Bedrooms) === selectedFilters.bedrooms;
     const byBaths = !selectedFilters.bathrooms || String(row.Bathrooms) === selectedFilters.bathrooms;
@@ -824,6 +919,7 @@ function yearlyChartDatasetLabel() {
 function getFilteredRows() {
   const y = selectedFilters.year;
   return listingsLatest.filter((row) => {
+    if (!rowMeetsPriceFloor(row)) return false;
     const bySuburb = !selectedFilters.suburb || row.Suburb === selectedFilters.suburb;
     const byBeds = !selectedFilters.bedrooms || String(row.Bedrooms) === selectedFilters.bedrooms;
     const byBaths = !selectedFilters.bathrooms || String(row.Bathrooms) === selectedFilters.bathrooms;
@@ -840,6 +936,7 @@ function getFilteredRows() {
 function getDistributionRows() {
   const y = selectedFilters.year;
   return listingsLatest.filter((row) => {
+    if (!rowMeetsPriceFloor(row)) return false;
     const byBeds = !selectedFilters.bedrooms || String(row.Bedrooms) === selectedFilters.bedrooms;
     const byBaths = !selectedFilters.bathrooms || String(row.Bathrooms) === selectedFilters.bathrooms;
     const byMinPrice = !Number.isFinite(selectedFilters.minPrice) || row.Price >= selectedFilters.minPrice;
@@ -883,7 +980,7 @@ function setSuburbFilterFromMap(suburb, options = {}) {
   if (listingRow) {
     const hk = houseKey(listingRow);
     const hist = listingsCore.filter(
-      (r) => houseKey(r) === hk && Number.isFinite(r.Year) && Number.isFinite(r.Price)
+      (r) => houseKey(r) === hk && Number.isFinite(r.Year) && rowMeetsPriceFloor(r)
     );
     selectedFilters.chartHouseKey = hist.length >= 2 ? hk : "";
   } else {
@@ -1140,13 +1237,10 @@ function renderSuburbDistribution(rows) {
   houseRows.forEach((row) => {
     const suburb = normalizeSuburbName(row.Suburb);
     const price = Number(row.Price);
-    if (!suburb || !Number.isFinite(price) || price <= 0) return;
+    if (!suburb || !Number.isFinite(price) || price < MIN_PRICE_AUD) return;
     if (!grouped[suburb]) grouped[suburb] = [];
     grouped[suburb].push(price); // push number, NOT [number]
   });
-
-  // Mandatory debug from requested checklist.
-  console.log("boxplot_grouped_by_suburb", grouped);
 
   const sorted = Object.entries(grouped)
     .filter(([, prices]) => prices.length > 0)
@@ -1445,7 +1539,7 @@ function renderMap(rows) {
           }).bindTooltip(
             `<b>${row.Suburb}</b><br/>Average price: ${currency.format(row.avg_price)}<br/>Median price: ${currency.format(
               row.median_price
-            )}<br/>Variation: ${getVariationMeta(row.variation_pct).arrow} ${getVariationMeta(row.variation_pct).text}<br/>Avg annual growth: ${
+            )}<br/>Variation: ${getVariationMeta(row.variation_pct).arrow} ${getVariationMeta(row.variation_pct).text}<br/>Avg resale CAGR: ${
               Number.isFinite(row.avg_annual_growth_pct)
                 ? `${getVariationMeta(row.avg_annual_growth_pct).arrow} ${getVariationMeta(row.avg_annual_growth_pct).text}`
                 : "N/A"
@@ -1598,7 +1692,7 @@ async function init() {
   ]);
 
   summaryStats = summary;
-  listingsCore = listings;
+  listingsCore = filterListingsByPriceFloor(Array.isArray(listings) ? listings : []);
   listingsLatest = buildLatestListings(listingsCore);
   listingsLatest = distinctBy(listingsLatest, (row) => houseKey(row));
   listingsLatest = distinctBy(listingsLatest, (row) => {

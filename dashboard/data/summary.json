@@ -1,10 +1,10 @@
 {
-  "rows": 42958,
+  "rows": 42952,
   "columns": 22,
   "date_min": "2006-06-13",
   "date_max": "2024-08-09",
-  "price_median": 687500.0,
-  "price_mean": 861085.995437404,
-  "price_p75": 980000.0,
-  "price_p95": 1940000.0
+  "price_median": 687500,
+  "price_mean": 861205.6009266158,
+  "price_p75": 980000,
+  "price_p95": 1940000
 }

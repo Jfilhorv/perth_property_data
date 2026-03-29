@@ -100,10 +100,10 @@ Created by **`scripts/property_annual_returns.py`** (invoked from `build_dashboa
 
 | File | Description |
 |------|-------------|
-| **`property_annual_return_intervals.json`** | One row per **consecutive sale pair** on the same `house_key` (aligned with dashboard `houseKey` logic). Fields: `prev_date_sold`, `date_sold`, `prev_price`, `price`, `years` (elapsed time in **fractional years**, days ÷ 365.25), `annual_return`. |
+| **`property_annual_return_intervals.json`** | One row per **consecutive sale pair** on the same `house_key` (aligned with dashboard `houseKey` logic). Fields: `prev_date_sold`, `date_sold`, `prev_price`, `price`, `years` (elapsed time in **fractional years**, days ÷ 365.25), `annual_return`. Pairs with **`years` &lt; 1** are omitted (unstable CAGR on short holds). Intervals with **CAGR &gt; 100%/yr** are omitted. |
 | **`property_annual_return_summary.json`** | One row per property with **latest** sale price/date, `interval_count`, and **`avg_annual_return`** (mean of interval CAGR values). Includes **`future_price_1y`** = `current_price * (1 + avg_annual_return)` when the average is defined. |
 
-**Deduplication before intervals:** same calendar day + same price → one row; same day + different prices → **keep max price** only. **Annualized return** between sales: `(price / prev_price) ** (1 / years) - 1`. For horizons of *n* years: `future_price = current_price * (1 + avg_annual_return) ** n` (not stored for every *n* in JSON; compute in the UI or extend the pipeline).
+**Deduplication before intervals:** same calendar day + same price → one row; same day + different prices → **keep max price** only. **Annualized return** between sales: `(price / prev_price) ** (1 / years) - 1`, only when elapsed time is **at least one year**. For horizons of *n* years: `future_price = current_price * (1 + avg_annual_return) ** n` (not stored for every *n* in JSON; compute in the UI or extend the pipeline).
 
 Created by **`scripts/build_public_transport_data.py`** when PTA inputs exist:
 
@@ -122,7 +122,7 @@ At startup, **`dashboard/app.js`** fetches:
 |------|---------|
 | **`summary.json`** | Baseline KPI metadata combined with live-filtered rows. |
 | **`listings_core.json`** | All charts, tables, map markers, and filters. |
-| **`property_annual_return_intervals.json`** | Optional precomputed resale intervals; if present and non-empty, the dashboard may use it for **avg annual growth** per suburb. Otherwise the same CAGR logic runs **in the browser** on `listings_core.json` (same house-key, same-day dedupe, and formula as the Python pipeline). |
+| **`property_annual_return_intervals.json`** | Optional precomputed resale intervals; if present and non-empty, the dashboard uses the same suburb metric as in-browser logic. **Suburb “Avg resale growth (%)”** = **mean** across calendar years of the **per-year mean CAGR** (each interval: later sale year, same `house_key`, hold **≥ 1 year**, CAGR **≤ 100%/yr**, same-day dedupe; not a sum of simple price deltas). |
 | **`school_points_estimated.json`** | School overlay on the map. |
 | **`public_transport_stops.geojson`** | Optional; if missing or invalid, transport layers are skipped gracefully. |
 | **`public_transport_routes.geojson`** | Optional; same as above. |
@@ -148,6 +148,12 @@ python scripts/run_update.py
 ```
 
 This expects `perth_property_data.csv` at the project root. Rows with **missing `Price`**, **price &lt; AUD 100,000**, or **non‑numeric price** are **dropped** before any aggregates are built. **Re-run this command after changing the CSV or the price rule** so every JSON under `dashboard/data/` stays in sync (KPIs, map, tables, CAGR). It refreshes `summary.json`, `listings_core.json`, `yearly.json`, `property_annual_return_intervals.json`, `property_annual_return_summary.json`, and related files. If the script exits with an error, **no row** satisfied the price filter — check the data or `MIN_PRICE_AUD` in `scripts/build_dashboard_data.py`.
+
+Without the CSV, you can still drop `Price` &lt; 100k from an existing `dashboard/data/listings_core.json` and refresh `summary.json` counts with:
+
+```bash
+node scripts/sanitize_dashboard_data_min_price.js
+```
 
 If you have the PTA GeoJSON datasets in the expected folders (`Stops_PTA_001_…`, `Service_Routes_PTA_002_…`), the same command also rebuilds the simplified transport layers used by the map.
 

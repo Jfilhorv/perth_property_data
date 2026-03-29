@@ -10,7 +10,7 @@ from property_annual_returns import write_annual_return_jsons
 ROOT = Path(__file__).resolve().parents[1]
 INPUT_CSV = ROOT / "perth_property_data.csv"
 OUTPUT_DIR = ROOT / "dashboard" / "data"
-# Drop non-sales and junk rows: missing price, zero, or under AUD 100k
+# Drop non-sales and junk rows: missing price, zero, or under AUD 100k (dashboard/app.js MIN_PRICE_AUD must match).
 MIN_PRICE_AUD = 100_000
 
 

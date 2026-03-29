@@ -8,6 +8,9 @@ Rules (same property / house_key):
 
   annual_return = (price_t / price_t_minus_1) ** (1 / years) - 1
 
+Intervals with elapsed time strictly below 1 year are omitted (short holds make CAGR unstable).
+Intervals with annualized return above 100% per year are omitted (treated as non-comparable / erroneous).
+
 Also writes a per-property summary with avg_annual_return for projections:
   future_price = current_price * (1 + avg_annual_return)
   future_price_n = current_price * (1 + avg_annual_return) ** n
@@ -20,6 +23,9 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+
+MIN_HOLDING_YEARS = 1.0
+MAX_ANNUAL_RETURN_RATIO = 1.0  # 100%/yr cap; same idea as dashboard MAX_ANNUAL_CAGR_RATIO
 
 
 def _normalize_suburb_name(value) -> str:
@@ -82,10 +88,10 @@ def _intervals_for_property(house_key: str, collapsed: pd.DataFrame) -> list[dic
         years = days / 365.25
         prev_price = float(prev["Price"])
         price = float(cur["Price"])
-        if years <= 0 or prev_price <= 0 or price <= 0 or not np.isfinite(years):
+        if years < MIN_HOLDING_YEARS or prev_price <= 0 or price <= 0 or not np.isfinite(years):
             continue
         annual_return = (price / prev_price) ** (1.0 / years) - 1.0
-        if not np.isfinite(annual_return):
+        if not np.isfinite(annual_return) or annual_return > MAX_ANNUAL_RETURN_RATIO:
             continue
         rec = {
             "house_key": house_key,
