@@ -386,30 +386,30 @@ function buildSuburbAnnualGrowthMapFromCore(coreRows) {
 
 const KPI_ASSET_BASE = "./assets";
 
-/** One or more PNG basenames in dashboard/assets (left-to-right in the title). */
-function kpiIconGroupHtml(iconFiles) {
+/** Left column: icon(s) scaled to card height, filenames in dashboard/assets. */
+function kpiIconCellHtml(iconFiles) {
   const list = Array.isArray(iconFiles) ? iconFiles : iconFiles ? [iconFiles] : [];
   if (!list.length) return "";
   const imgs = list
     .map(
       (f) =>
-        `<img class="kpi-card__icon" src="${KPI_ASSET_BASE}/${f}" width="24" height="24" alt="" loading="lazy" decoding="async" onerror="this.remove()" />`
+        `<img class="kpi-card__icon" src="${KPI_ASSET_BASE}/${f}" alt="" loading="lazy" decoding="async" onerror="this.remove()" />`
     )
     .join("");
-  return `<span class="kpi-card__icon-group" aria-hidden="true">${imgs}</span>`;
+  return `<div class="kpi-card__icon-cell" aria-hidden="true">${imgs}</div>`;
 }
 
-function kpiTitleHtml(label, iconFiles) {
-  const safe = escapeHtml(label);
-  const icons = kpiIconGroupHtml(iconFiles);
-  if (!icons) return safe;
-  return `<span class="kpi-card__title">${icons}<span class="kpi-card__title-text">${safe}</span></span>`;
+function kpiCardShell(bodyHtml, iconFiles) {
+  const cell = kpiIconCellHtml(iconFiles);
+  if (!cell) return bodyHtml;
+  return `${cell}<div class="kpi-card__body">${bodyHtml}</div>`;
 }
 
 function makeKpiCard(label, value, iconFiles) {
   const div = document.createElement("div");
   div.className = "kpi-card";
-  div.innerHTML = `<h3>${kpiTitleHtml(label, iconFiles)}</h3><p>${value}</p>`;
+  const body = `<h3>${escapeHtml(label)}</h3><p>${value}</p>`;
+  div.innerHTML = kpiCardShell(body, iconFiles);
   return div;
 }
 
@@ -422,12 +422,15 @@ function makeKpiGrowthPredictionCard(pctValue, predValue) {
   const meta = getVariationMeta(pctValue);
   const div = document.createElement("div");
   div.className = "kpi-card";
-  div.innerHTML = `<h3>${kpiTitleHtml("Current median prediction price", "growth.png")}</h3><p title="${escapeHtml(predTip)}">${asCurrencyOrNA(predValue)}</p>`;
+  div.innerHTML = kpiCardShell(
+    `<h3>${escapeHtml("Current median prediction price")}</h3><p title="${escapeHtml(predTip)}">${asCurrencyOrNA(predValue)}</p>`,
+    "growth.png"
+  );
   const sub = document.createElement("div");
   sub.className = `kpi-variation ${meta.cls}`;
   sub.textContent = `${meta.arrow} ${meta.text} median growth`;
   sub.title = growthTip;
-  div.appendChild(sub);
+  (div.querySelector(".kpi-card__body") || div).appendChild(sub);
   return div;
 }
 
@@ -555,7 +558,7 @@ function attachKpiVariation(cardEl, variationPct) {
   const div = document.createElement("div");
   div.className = `kpi-variation ${meta.cls}`;
   div.textContent = `${meta.arrow} ${meta.text} vs prev year`;
-  cardEl.appendChild(div);
+  (cardEl.querySelector(".kpi-card__body") || cardEl).appendChild(div);
 }
 
 function formatDistance(meters) {
