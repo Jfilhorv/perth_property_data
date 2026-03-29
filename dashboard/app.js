@@ -1676,7 +1676,7 @@ function renderMap(rows) {
               if (!Number.isFinite(g)) return "N/A";
               const m = getVariationMeta(g);
               return `${m.arrow} ${m.text}`;
-            })()}<br/>Pred. median (2y, conservative): ${
+            })()}<br/>Prediction Current Price (2y, conservative): ${
               Number.isFinite(row.prediction_price_2y) ? currency.format(row.prediction_price_2y) : "N/A"
             }<br/>Median Price M2: ${asPricePerSqm(
               row.median_price_m2
