@@ -384,21 +384,49 @@ function buildSuburbAnnualGrowthMapFromCore(coreRows) {
   return aggregateSuburbGrowthFromIntervalRecords(flat);
 }
 
-function makeKpiCard(label, value) {
+const KPI_ASSET_BASE = "./assets";
+
+/** One or more PNG basenames in dashboard/assets (left-to-right in the title). */
+function kpiIconGroupHtml(iconFiles) {
+  const list = Array.isArray(iconFiles) ? iconFiles : iconFiles ? [iconFiles] : [];
+  if (!list.length) return "";
+  const imgs = list
+    .map(
+      (f) =>
+        `<img class="kpi-card__icon" src="${KPI_ASSET_BASE}/${f}" width="22" height="22" alt="" loading="lazy" decoding="async" onerror="this.remove()" />`
+    )
+    .join("");
+  return `<span class="kpi-card__icon-group" aria-hidden="true">${imgs}</span>`;
+}
+
+function kpiTitleHtml(label, iconFiles) {
+  const safe = escapeHtml(label);
+  const icons = kpiIconGroupHtml(iconFiles);
+  if (!icons) return safe;
+  return `<span class="kpi-card__title">${icons}<span class="kpi-card__title-text">${safe}</span></span>`;
+}
+
+function makeKpiCard(label, value, iconFiles) {
   const div = document.createElement("div");
   div.className = "kpi-card";
-  div.innerHTML = `<h3>${label}</h3><p>${value}</p>`;
+  div.innerHTML = `<h3>${kpiTitleHtml(label, iconFiles)}</h3><p>${value}</p>`;
   return div;
 }
 
-/** KPI value styled like table Variation / Growth badges (pill + green/red). */
-function makeKpiMedianGrowthCard(pctValue) {
+/** Median resale growth (badge) + median prediction price in one KPI cell. Icons: growth.png then prediction.png. */
+function makeKpiGrowthPredictionCard(pctValue, predValue) {
   const meta = getVariationMeta(pctValue);
-  const tip =
+  const growthTip =
     "Median of suburb Avg resale growth (%) for listings matching current filters — same rules as the sales tables.";
+  const predTip =
+    "Median of suburb Prediction current price (same formula as tables) for listings matching current filters.";
   const div = document.createElement("div");
-  div.className = "kpi-card kpi-card--growth";
-  div.innerHTML = `<h3>Median resale growth</h3><p class="kpi-value-badge-row"><span class="variation-badge ${meta.cls}" data-tooltip="${escapeHtml(tip)}" title="${escapeHtml(tip)}">${meta.arrow} ${meta.text}</span></p>`;
+  div.className = "kpi-card kpi-card--growth-prediction";
+  div.innerHTML = `<h3>${kpiTitleHtml("Median growth · prediction current median price", ["growth.png", "prediction.png"])}</h3>
+  <div class="kpi-dual-values">
+    <p class="kpi-value-badge-row kpi-value-badge-row--tight"><span class="variation-badge ${meta.cls}" data-tooltip="${escapeHtml(growthTip)}" title="${escapeHtml(growthTip)}">${meta.arrow} ${meta.text}</span></p>
+    <p class="kpi-prediction-price" title="${escapeHtml(predTip)}">${asCurrencyOrNA(predValue)}</p>
+  </div>`;
   return div;
 }
 
@@ -597,11 +625,11 @@ function renderKpis(summary, filteredRows) {
     }
   }
 
-  kpis.appendChild(makeKpiCard("Properties", numberFmt.format(filteredRows.length)));
-  const medianCard = makeKpiCard("Median Price", asCurrencyOrNA(medianPrice));
+  kpis.appendChild(makeKpiCard("Properties", numberFmt.format(filteredRows.length), "property.png"));
+  const medianCard = makeKpiCard("Median Price", asCurrencyOrNA(medianPrice), "property_price.png");
   attachKpiVariation(medianCard, medianYoY);
   kpis.appendChild(medianCard);
-  const avgCard = makeKpiCard("Average Price", asCurrencyOrNA(mean));
+  const avgCard = makeKpiCard("Average Price", asCurrencyOrNA(mean), "avg.png");
   attachKpiVariation(avgCard, avgYoY);
   kpis.appendChild(avgCard);
 
@@ -610,14 +638,13 @@ function renderKpis(summary, filteredRows) {
   const kpiMedGrowth = growthForMed.length ? median(growthForMed) : NaN;
   const predForMed = suburbAgg.map((s) => s.prediction_price_2y).filter((v) => Number.isFinite(v));
   const kpiMedPred = predForMed.length ? median(predForMed) : NaN;
-  kpis.appendChild(makeKpiMedianGrowthCard(kpiMedGrowth));
-  kpis.appendChild(makeKpiCard("Prediction Current Price", asCurrencyOrNA(kpiMedPred)));
+  kpis.appendChild(makeKpiGrowthPredictionCard(kpiMedGrowth, kpiMedPred));
 
-  const m2Card = makeKpiCard("Median Price M2", asPricePerSqm(medianPsm));
+  const m2Card = makeKpiCard("Median Price M2", asPricePerSqm(medianPsm), "property.png");
   attachKpiVariation(m2Card, m2YoY);
   kpis.appendChild(m2Card);
-  kpis.appendChild(makeKpiCard("P75", asCurrencyOrNA(p75)));
-  kpis.appendChild(makeKpiCard("P95", asCurrencyOrNA(p95)));
+  kpis.appendChild(makeKpiCard("P75", asCurrencyOrNA(p75), "avg.png"));
+  kpis.appendChild(makeKpiCard("P95", asCurrencyOrNA(p95), "prediction.png"));
   footnote.textContent = `Date range: ${summary.date_min} to ${summary.date_max}`;
 }
 

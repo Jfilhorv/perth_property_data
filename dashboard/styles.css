@@ -89,7 +89,7 @@ main {
 .kpi-grid {
   display: grid;
   gap: 12px;
-  grid-template-columns: repeat(8, minmax(0, 1fr));
+  grid-template-columns: repeat(7, minmax(0, 1fr));
 }
 
 .kpi-card {
@@ -106,6 +106,33 @@ main {
   letter-spacing: 0.03em;
   text-transform: uppercase;
   color: #64748b;
+}
+
+.kpi-card__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.kpi-card__title-text {
+  flex: 1;
+  min-width: 0;
+  line-height: 1.25;
+}
+
+.kpi-card__icon-group {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 4px;
+}
+
+.kpi-card__icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  display: block;
 }
 
 .kpi-card p {
@@ -155,10 +182,29 @@ main {
   min-height: 2rem;
 }
 
-.kpi-card--growth .variation-badge {
+.kpi-value-badge-row--tight {
+  margin-top: 0;
+  min-height: auto;
+}
+
+.kpi-card--growth-prediction .kpi-dual-values {
+  margin-top: 8px;
+}
+
+.kpi-card--growth-prediction .variation-badge {
   font-size: 13px;
   padding: 5px 12px;
   font-weight: 700;
+}
+
+.kpi-prediction-price {
+  margin: 8px 0 0;
+  font-size: clamp(15px, 1.75vw, 24px);
+  font-weight: 700;
+  color: #1d4ed8;
+  line-height: 1.15;
+  word-break: break-word;
+  text-align: center;
 }
 
 .kpi-footnote {
