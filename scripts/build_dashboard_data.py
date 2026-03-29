@@ -1,4 +1,5 @@
 import json
+import sys
 from pathlib import Path
 
 import pandas as pd
@@ -25,6 +26,13 @@ def main() -> None:
     df["Price"] = pd.to_numeric(df["Price"], errors="coerce")
     df = df.dropna(subset=["Price"])
     df = df[df["Price"] >= MIN_PRICE_AUD]
+    if df.empty:
+        print(
+            f"No rows after price filter: require numeric Price >= {MIN_PRICE_AUD:,} AUD. "
+            "Fix perth_property_data.csv or adjust MIN_PRICE_AUD in build_dashboard_data.py.",
+            file=sys.stderr,
+        )
+        raise SystemExit(1)
     df["Date_Sold"] = pd.to_datetime(df["Date_Sold"], dayfirst=True, errors="coerce")
     df["Year"] = df["Date_Sold"].dt.year
 

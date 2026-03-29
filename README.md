@@ -70,7 +70,7 @@ The UI is plain **HTML**, **CSS**, and **vanilla JavaScript** (`dashboard/app.js
 
 | Path | Role |
 |------|------|
-| **`perth_property_data.csv`** | **Primary input.** Sold listings (one row per sale / listing as defined in your extract). Required at the **repository root** to run `build_dashboard_data.py`. |
+| **`perth_property_data.csv`** | **Primary input.** Sold listings (one row per sale / listing as defined in your extract). Required at the **repository root**. The pipeline **drops** rows with missing, non-numeric, or **&lt; AUD 100,000** `Price` (`MIN_PRICE_AUD` in `scripts/build_dashboard_data.py`). **Regenerate** all `dashboard/data/*.json` after changing the CSV or this rule (`python scripts/run_update.py`). |
 | **`Stops_PTA_001_WA_GDA2020_Public_GeoJSON/Stops_PTA_001_WA_GDA2020_Public.geojson`** | **Optional.** WA public transport stops (GDA2020). Used only if this folder and file exist when you run `run_update.py`. |
 | **`Service_Routes_PTA_002_WA_GDA2020_Public_GeoJSON/Service_Routes_PTA_002_WA_GDA2020_Public.geojson`** | **Optional.** WA service route geometry. Same condition as stops. |
 
@@ -82,7 +82,7 @@ Other archives or layers you may keep in the repo (for example regional parks ZI
 
 ## Data: generated outputs (`dashboard/data/`)
 
-Created by **`scripts/build_dashboard_data.py`** unless noted otherwise.
+Created by **`scripts/build_dashboard_data.py`** unless noted otherwise. Every file below reflects the **price-filtered** dataset (numeric **Price ≥ AUD 100,000** only).
 
 | File | Description |
 |------|-------------|
@@ -147,7 +147,7 @@ From the repository root:
 python scripts/run_update.py
 ```
 
-This expects `perth_property_data.csv` at the project root. Rows with **missing `Price`**, **price &lt; AUD 100,000**, or **non‑numeric price** are **dropped** before any aggregates are built. It refreshes files such as `summary.json`, `listings_core.json`, `yearly.json`, `property_annual_return_intervals.json`, `property_annual_return_summary.json`, and related aggregates under `dashboard/data/`.
+This expects `perth_property_data.csv` at the project root. Rows with **missing `Price`**, **price &lt; AUD 100,000**, or **non‑numeric price** are **dropped** before any aggregates are built. **Re-run this command after changing the CSV or the price rule** so every JSON under `dashboard/data/` stays in sync (KPIs, map, tables, CAGR). It refreshes `summary.json`, `listings_core.json`, `yearly.json`, `property_annual_return_intervals.json`, `property_annual_return_summary.json`, and related files. If the script exits with an error, **no row** satisfied the price filter — check the data or `MIN_PRICE_AUD` in `scripts/build_dashboard_data.py`.
 
 If you have the PTA GeoJSON datasets in the expected folders (`Stops_PTA_001_…`, `Service_Routes_PTA_002_…`), the same command also rebuilds the simplified transport layers used by the map.
 

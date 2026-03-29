@@ -168,9 +168,19 @@ def write_annual_return_jsons(df: pd.DataFrame, output_dir: Path) -> None:
     )
 
 
+# When running this file directly, apply the same price floor as build_dashboard_data.MIN_PRICE_AUD
+_STANDALONE_MIN_PRICE_AUD = 100_000
+
 if __name__ == "__main__":
     root = Path(__file__).resolve().parents[1]
     csv_path = root / "perth_property_data.csv"
     out = root / "dashboard" / "data"
     d = pd.read_csv(csv_path)
+    d["Price"] = pd.to_numeric(d["Price"], errors="coerce")
+    d = d.dropna(subset=["Price"])
+    d = d[d["Price"] >= _STANDALONE_MIN_PRICE_AUD]
+    if d.empty:
+        raise SystemExit(
+            f"No rows after price filter (Price >= {_STANDALONE_MIN_PRICE_AUD:,} AUD). Nothing written."
+        )
     write_annual_return_jsons(d, out)
