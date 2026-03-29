@@ -239,13 +239,9 @@ main {
   padding: 10px 12px;
 }
 
-/* Filter strip: stronger amber frame + soft glow when any data filter is active */
+/* Filter strip: soft amber glow only (border unchanged) when filters active */
 section.panel:has(.filters):has(.clear-filters-btn--filtered) {
-  border-color: #d97706;
-  border-width: 2px;
-  box-shadow:
-    0 0 0 1px rgba(245, 158, 11, 0.55),
-    0 4px 18px rgba(217, 119, 6, 0.28);
+  box-shadow: 0 4px 22px rgba(245, 158, 11, 0.2), 0 2px 10px rgba(217, 119, 6, 0.12);
 }
 
 .viz-grid {
