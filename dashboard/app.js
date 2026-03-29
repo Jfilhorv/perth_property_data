@@ -643,7 +643,7 @@ function renderKpis(summary, filteredRows) {
   const kpiMedPred = predForMed.length ? median(predForMed) : NaN;
   kpis.appendChild(makeKpiGrowthPredictionCard(kpiMedGrowth, kpiMedPred));
 
-  const m2Card = makeKpiCard("Median Price M2", asPricePerSqm(medianPsm), "M2price.png");
+  const m2Card = makeKpiCard("Median Price M²", asPricePerSqm(medianPsm), "M2price.png");
   attachKpiVariation(m2Card, m2YoY);
   kpis.appendChild(m2Card);
 
@@ -1733,7 +1733,7 @@ function renderMap(rows) {
               return `${m.arrow} ${m.text}`;
             })()}<br/>Prediction Current Price (2y, conservative): ${
               Number.isFinite(row.prediction_price_2y) ? currency.format(row.prediction_price_2y) : "N/A"
-            }<br/>Median Price M2: ${asPricePerSqm(
+            }<br/>Median Price M²: ${asPricePerSqm(
               row.median_price_m2
             )}<br/>Highest: ${currency.format(
               row.highest_price
