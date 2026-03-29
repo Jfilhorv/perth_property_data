@@ -64,7 +64,9 @@ header {
 }
 
 header h1 {
-  margin: 0 0 6px;
+  margin: 0 0 4px;
+  font-size: clamp(1.9rem, 5vw, 2.75rem);
+  line-height: 1.06;
   font-weight: 800;
   letter-spacing: -0.02em;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.75);
@@ -110,6 +112,8 @@ header h1 {
 
 header .site-header-titles p {
   margin: 0;
+  font-size: clamp(0.8rem, 1.9vw, 0.95rem);
+  line-height: 1.25;
   font-weight: 600;
   opacity: 0.95;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
