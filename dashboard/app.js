@@ -385,6 +385,7 @@ function buildSuburbAnnualGrowthMapFromCore(coreRows) {
 }
 
 const KPI_ASSET_BASE = "./assets";
+const KPI_ASSET_VER = "2";
 
 /** Left column: icon(s) scaled to card height, filenames in dashboard/assets. */
 function kpiIconCellHtml(iconFiles) {
@@ -393,7 +394,7 @@ function kpiIconCellHtml(iconFiles) {
   const imgs = list
     .map(
       (f) =>
-        `<img class="kpi-card__icon" src="${KPI_ASSET_BASE}/${f}" alt="" loading="lazy" decoding="async" onerror="this.remove()" />`
+        `<img class="kpi-card__icon" src="${KPI_ASSET_BASE}/${f}?v=${KPI_ASSET_VER}" alt="" loading="lazy" decoding="async" onerror="this.remove()" />`
     )
     .join("");
   return `<div class="kpi-card__icon-cell" aria-hidden="true">${imgs}</div>`;
