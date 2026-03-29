@@ -122,7 +122,7 @@ At startup, **`dashboard/app.js`** fetches:
 |------|---------|
 | **`summary.json`** | Baseline KPI metadata combined with live-filtered rows. |
 | **`listings_core.json`** | All charts, tables, map markers, and filters. |
-| **`property_annual_return_intervals.json`** | Resale intervals for **average annual growth (%)** per suburb in the suburbs table (optional; if missing, that column shows N/A). |
+| **`property_annual_return_intervals.json`** | Optional precomputed resale intervals; if present and non-empty, the dashboard may use it for **avg annual growth** per suburb. Otherwise the same CAGR logic runs **in the browser** on `listings_core.json` (same house-key, same-day dedupe, and formula as the Python pipeline). |
 | **`school_points_estimated.json`** | School overlay on the map. |
 | **`public_transport_stops.geojson`** | Optional; if missing or invalid, transport layers are skipped gracefully. |
 | **`public_transport_routes.geojson`** | Optional; same as above. |

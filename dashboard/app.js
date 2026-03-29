@@ -173,6 +173,101 @@ function houseKey(row) {
     .toLowerCase()}`;
 }
 
+/** YYYY-MM-DD for grouping (aligns with Python dt.normalize() on sale dates). */
+function calendarDateKeyFromSold(dateSold) {
+  const s = String(dateSold ?? "").trim();
+  const m = s.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (m) return `${m[1]}-${m[2]}-${m[3]}`;
+  const t = Date.parse(s);
+  if (!Number.isFinite(t)) return "";
+  const d = new Date(t);
+  const y = d.getFullYear();
+  const mo = String(d.getMonth() + 1).padStart(2, "0");
+  const da = String(d.getDate()).padStart(2, "0");
+  return `${y}-${mo}-${da}`;
+}
+
+function calendarDaysBetweenKeys(keyA, keyB) {
+  const [y0, m0, d0] = keyA.split("-").map(Number);
+  const [y1, m1, d1] = keyB.split("-").map(Number);
+  const u0 = Date.UTC(y0, m0 - 1, d0);
+  const u1 = Date.UTC(y1, m1 - 1, d1);
+  return Math.round((u1 - u0) / 86400000);
+}
+
+/** Same calendar day + same price collapsed; same day + different prices → keep MAX price (one row). */
+function collapseSalesSamePropertyDay(rows) {
+  const valid = rows.filter((r) => Number.isFinite(r.Price) && r.Price > 0);
+  const byDay = new Map();
+  for (const r of valid) {
+    const dk = calendarDateKeyFromSold(r.Date_Sold);
+    if (!dk) continue;
+    if (!byDay.has(dk)) byDay.set(dk, []);
+    byDay.get(dk).push(r);
+  }
+  const kept = [];
+  const sortedDays = [...byDay.keys()].sort();
+  for (const dk of sortedDays) {
+    const dayRows = byDay.get(dk);
+    const maxP = Math.max(...dayRows.map((x) => x.Price));
+    const atMax = dayRows.filter((x) => x.Price === maxP);
+    atMax.sort((a, b) => (Number(a.Listing_ID) || 0) - (Number(b.Listing_ID) || 0));
+    kept.push(atMax[0]);
+  }
+  return kept;
+}
+
+/** Consecutive sale pairs after collapse; annual_return = (price/prev)^(1/years)-1, years = days/365.25 */
+function resaleIntervalReturnsForHouse(rowsSameHouse) {
+  const collapsed = collapseSalesSamePropertyDay(rowsSameHouse);
+  const out = [];
+  for (let i = 1; i < collapsed.length; i++) {
+    const prev = collapsed[i - 1];
+    const cur = collapsed[i];
+    const k0 = calendarDateKeyFromSold(prev.Date_Sold);
+    const k1 = calendarDateKeyFromSold(cur.Date_Sold);
+    const days = calendarDaysBetweenKeys(k0, k1);
+    const years = days / 365.25;
+    const prevPrice = prev.Price;
+    const price = cur.Price;
+    if (years <= 0 || prevPrice <= 0 || price <= 0) continue;
+    const annualReturn = (price / prevPrice) ** (1 / years) - 1;
+    if (!Number.isFinite(annualReturn)) continue;
+    out.push({
+      annual_return: annualReturn,
+      suburb: normalizeSuburbName(cur.Suburb),
+    });
+  }
+  return out;
+}
+
+/** Mean CAGR% per suburb from full listings core (matches pipeline rules; no separate JSON required). */
+function buildSuburbAnnualGrowthMapFromCore(coreRows) {
+  const byHouse = new Map();
+  for (const row of coreRows) {
+    const k = houseKey(row);
+    if (!k) continue;
+    if (!byHouse.has(k)) byHouse.set(k, []);
+    byHouse.get(k).push(row);
+  }
+  const agg = new Map();
+  for (const [, hRows] of byHouse) {
+    const intervals = resaleIntervalReturnsForHouse(hRows);
+    for (const iv of intervals) {
+      if (!iv.suburb) continue;
+      const cur = agg.get(iv.suburb) || { sum: 0, n: 0 };
+      cur.sum += iv.annual_return;
+      cur.n += 1;
+      agg.set(iv.suburb, cur);
+    }
+  }
+  const out = new Map();
+  for (const [sub, { sum, n }] of agg) {
+    if (n > 0) out.set(sub, { avgPct: (sum / n) * 100, count: n });
+  }
+  return out;
+}
+
 function makeKpiCard(label, value) {
   const div = document.createElement("div");
   div.className = "kpi-card";
@@ -1518,12 +1613,13 @@ async function init() {
   }));
   schoolPoints = schools;
 
+  suburbAnnualGrowthBySuburb = buildSuburbAnnualGrowthMapFromCore(listingsCore);
   try {
     const intervals = await loadJson("./data/property_annual_return_intervals.json");
-    suburbAnnualGrowthBySuburb = buildSuburbAnnualGrowthMap(Array.isArray(intervals) ? intervals : []);
-  } catch (err) {
-    console.warn("property_annual_return_intervals.json not loaded; suburb CAGR column will show N/A.", err);
-    suburbAnnualGrowthBySuburb = new Map();
+    const fromFile = buildSuburbAnnualGrowthMap(Array.isArray(intervals) ? intervals : []);
+    if (fromFile.size > 0) suburbAnnualGrowthBySuburb = fromFile;
+  } catch {
+    /* keep client-built map from listings_core */
   }
 
   renderSuburbOptions();

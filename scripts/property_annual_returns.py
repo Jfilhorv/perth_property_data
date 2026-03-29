@@ -22,6 +22,14 @@ import numpy as np
 import pandas as pd
 
 
+def _normalize_suburb_name(value) -> str:
+    """Match dashboard `normalizeSuburbName` (title-case words)."""
+    raw = " ".join(str(value or "").strip().split())
+    if not raw:
+        return ""
+    return " ".join((w[0].upper() + w[1:].lower()) if w else "" for w in raw.split(" "))
+
+
 def _house_key_row(row: pd.Series) -> str:
     lat, lon = row.get("Latitude"), row.get("Longitude")
     if pd.notna(lat) and pd.notna(lon):
@@ -81,7 +89,7 @@ def _intervals_for_property(house_key: str, collapsed: pd.DataFrame) -> list[dic
             continue
         rec = {
             "house_key": house_key,
-            "Suburb": cur.get("Suburb"),
+            "Suburb": _normalize_suburb_name(cur.get("Suburb")),
             "Address": cur.get("Address"),
             "prev_date_sold": d0.strftime("%Y-%m-%d"),
             "date_sold": d1.strftime("%Y-%m-%d"),
@@ -121,7 +129,7 @@ def build_interval_and_summary_records(df: pd.DataFrame) -> tuple[list[dict], li
         avg_ret = float(np.mean(returns)) if returns else None
         summ = {
             "house_key": house_key,
-            "Suburb": last.get("Suburb"),
+            "Suburb": _normalize_suburb_name(last.get("Suburb")),
             "Address": last.get("Address"),
             "current_price": float(last["Price"]),
             "last_sale_date": pd.Timestamp(last["Date_Sold"]).strftime("%Y-%m-%d"),
