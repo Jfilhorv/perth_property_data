@@ -88,23 +88,25 @@ main {
 
 .kpi-grid {
   display: grid;
-  gap: 12px;
+  gap: 10px;
   grid-template-columns: repeat(7, minmax(0, 1fr));
 }
 
 .kpi-card {
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
   background: linear-gradient(145deg, #ffffff, #f8fbff);
   border: 1px solid #dbe4f0;
-  border-radius: 14px;
-  padding: 14px;
+  border-radius: 12px;
+  padding: 9px 10px;
   box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
 }
 
 .kpi-card h3 {
   margin: 0;
-  font-size: 12px;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
+  font-size: clamp(11px, 1.2vw, 13px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: none;
   color: #64748b;
 }
 
@@ -129,15 +131,15 @@ main {
 }
 
 .kpi-card__icon {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   object-fit: contain;
   display: block;
 }
 
 .kpi-card p {
-  margin: 10px 0 0;
-  font-size: clamp(15px, 1.75vw, 24px);
+  margin: 7px 0 0;
+  font-size: clamp(16px, 1.9vw, 26px);
   font-weight: 700;
   color: #1d4ed8;
   line-height: 1.15;
@@ -145,7 +147,7 @@ main {
 }
 
 .kpi-variation {
-  margin-top: 6px;
+  margin-top: 4px;
   font-size: 11px;
   font-weight: 700;
 }

@@ -393,7 +393,7 @@ function kpiIconGroupHtml(iconFiles) {
   const imgs = list
     .map(
       (f) =>
-        `<img class="kpi-card__icon" src="${KPI_ASSET_BASE}/${f}" width="22" height="22" alt="" loading="lazy" decoding="async" onerror="this.remove()" />`
+        `<img class="kpi-card__icon" src="${KPI_ASSET_BASE}/${f}" width="24" height="24" alt="" loading="lazy" decoding="async" onerror="this.remove()" />`
     )
     .join("");
   return `<span class="kpi-card__icon-group" aria-hidden="true">${imgs}</span>`;
