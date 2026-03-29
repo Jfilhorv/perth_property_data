@@ -586,13 +586,23 @@ function renderKpis(summary, filteredRows) {
     }
   }
 
-  kpis.appendChild(makeKpiCard("Records", numberFmt.format(filteredRows.length)));
+  kpis.appendChild(makeKpiCard("Properties", numberFmt.format(filteredRows.length)));
   const medianCard = makeKpiCard("Median Price", asCurrencyOrNA(medianPrice));
   attachKpiVariation(medianCard, medianYoY);
   kpis.appendChild(medianCard);
   const avgCard = makeKpiCard("Average Price", asCurrencyOrNA(mean));
   attachKpiVariation(avgCard, avgYoY);
   kpis.appendChild(avgCard);
+
+  const suburbAgg = aggregateSuburbStats(filteredRows);
+  const growthForMed = suburbAgg.map((s) => s.avg_annual_growth_pct).filter((v) => Number.isFinite(v));
+  const kpiMedGrowth = growthForMed.length ? median(growthForMed) : NaN;
+  const predForMed = suburbAgg.map((s) => s.prediction_price_2y).filter((v) => Number.isFinite(v));
+  const kpiMedPred = predForMed.length ? median(predForMed) : NaN;
+  const growthKpiText = Number.isFinite(kpiMedGrowth) ? getVariationMeta(kpiMedGrowth).text : "N/A";
+  kpis.appendChild(makeKpiCard("Median resale growth", growthKpiText));
+  kpis.appendChild(makeKpiCard("Prediction Current Price", asCurrencyOrNA(kpiMedPred)));
+
   const m2Card = makeKpiCard("Median Price M2", asPricePerSqm(medianPsm));
   attachKpiVariation(m2Card, m2YoY);
   kpis.appendChild(m2Card);

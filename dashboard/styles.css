@@ -89,7 +89,7 @@ main {
 .kpi-grid {
   display: grid;
   gap: 12px;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(8, minmax(0, 1fr));
 }
 
 .kpi-card {
@@ -110,9 +110,11 @@ main {
 
 .kpi-card p {
   margin: 10px 0 0;
-  font-size: 28px;
+  font-size: clamp(15px, 1.75vw, 24px);
   font-weight: 700;
   color: #1d4ed8;
+  line-height: 1.15;
+  word-break: break-word;
 }
 
 .kpi-variation {
