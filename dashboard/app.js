@@ -250,6 +250,23 @@ function clampResaleGrowthPercent(pct) {
   return Math.min(c, Math.max(-c, pct));
 }
 
+/**
+ * Illustrative 2y forward median: compound (1+r)² — not “2× the %”.
+ * Conservative: r = half of displayed annual growth %, then clamp r to ±PROJECTION_MAX_ANNUAL_RATE for the formula only.
+ */
+const PROJECTION_HORIZON_YEARS = 2;
+const PROJECTION_CONSERVATIVE_GROWTH_FRACTION = 0.5;
+const PROJECTION_MAX_ANNUAL_RATE = 0.06;
+const PROJECTION_MIN_ANNUAL_RATE = -0.06;
+
+function conservativeProjectedMedianPrice(medianPrice, growthPctAnnual) {
+  if (!Number.isFinite(medianPrice) || medianPrice <= 0) return NaN;
+  if (!Number.isFinite(growthPctAnnual)) return NaN;
+  let r = (growthPctAnnual / 100) * PROJECTION_CONSERVATIVE_GROWTH_FRACTION;
+  r = Math.min(PROJECTION_MAX_ANNUAL_RATE, Math.max(PROJECTION_MIN_ANNUAL_RATE, r));
+  return medianPrice * (1 + r) ** PROJECTION_HORIZON_YEARS;
+}
+
 function sanitizeSuburbGrowthMap(map) {
   const out = new Map();
   const cap = GROWTH_DISPLAY_CAP_ABS_PCT;
@@ -683,14 +700,17 @@ function aggregateSuburbStats(rows) {
         : NaN;
       const annualGrowthIntervalN = growthInfo ? growthInfo.count : 0;
       const annualGrowthYearCount = growthInfo && Number.isFinite(growthInfo.yearCount) ? growthInfo.yearCount : 0;
+      const medianPriceVal = sorted[mid] ?? 0;
+      const prediction_price_2y = conservativeProjectedMedianPrice(medianPriceVal, avgAnnualGrowthPct);
       return {
         Suburb: v.Suburb,
         count: v.count,
-        median_price: sorted[mid] ?? 0,
+        median_price: medianPriceVal,
         variation_pct: variationPct,
         avg_annual_growth_pct: avgAnnualGrowthPct,
         annual_growth_interval_n: annualGrowthIntervalN,
         annual_growth_year_count: annualGrowthYearCount,
+        prediction_price_2y,
         highest_price: sorted.length ? sorted[sorted.length - 1] : 0,
         lowest_price: sorted.length ? sorted[0] : 0,
         avg_price: sorted.length ? sorted.reduce((a, b) => a + b, 0) / sorted.length : 0,
@@ -771,14 +791,17 @@ function aggregateAddressStats(rows) {
         }
       }
       const propGrowth = propertyStabilizedAnnualGrowth(v.rawRows);
+      const medianPriceVal = sorted[mid] ?? 0;
+      const prediction_price_2y = conservativeProjectedMedianPrice(medianPriceVal, propGrowth.avgPct);
       return {
         Address: v.Address,
         count: v.count,
-        median_price: sorted[mid] ?? 0,
+        median_price: medianPriceVal,
         variation_pct: variationPct,
         avg_annual_growth_pct: propGrowth.avgPct,
         annual_growth_interval_n: propGrowth.intervalN,
         annual_growth_year_count: propGrowth.yearCount,
+        prediction_price_2y,
         highest_price: sorted.length ? sorted[sorted.length - 1] : 0,
         lowest_price: sorted.length ? sorted[0] : 0,
         avg_price: sorted.length ? sorted.reduce((a, b) => a + b, 0) / sorted.length : 0,
@@ -845,6 +868,9 @@ function renderSuburbTable(rows) {
             row.annual_growth_interval_n
           )} interval(s) across ${numberFmt.format(row.annual_growth_year_count)} calendar year(s) with data`
         : "No resale intervals with CAGR data for this suburb";
+    const predTip =
+      "Illustrative only (not advice): median × (1 + r)^2 over 2 years, r = half of Avg resale growth %, capped to ±6%/yr in the formula — not double the percentage.";
+    const predText = Number.isFinite(row.prediction_price_2y) ? currency.format(row.prediction_price_2y) : "N/A";
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${row.Suburb}</td>
@@ -852,6 +878,7 @@ function renderSuburbTable(rows) {
       <td>${currency.format(row.median_price)}</td>
       <td><span class="variation-badge ${varMeta.cls}" data-tooltip="${tooltipText}" title="${tooltipText}">${varMeta.arrow} ${varMeta.text}</span></td>
       <td><span class="variation-badge ${growthMeta.cls}" data-tooltip="${growthTooltip}" title="${growthTooltip}">${growthMeta.arrow} ${growthMeta.text}</span></td>
+      <td title="${escapeHtml(predTip)}">${predText}</td>
       <td>${asPricePerSqm(row.median_price_m2)}</td>
       <td>${currency.format(row.highest_price)}</td>
       <td>${currency.format(row.lowest_price)}</td>
@@ -906,6 +933,9 @@ function renderPropertyTable(coreRows) {
             row.annual_growth_interval_n
           )} resale interval(s) across ${numberFmt.format(row.annual_growth_year_count)} calendar year(s)`
         : "No eligible resale CAGR (need 2+ sales with ≥1 year between and prices ≥ floor)";
+    const predTip =
+      "Illustrative only (not advice): median × (1 + r)^2 over 2 years, r = half of Avg resale growth %, capped to ±6%/yr in the formula — not double the percentage.";
+    const predText = Number.isFinite(row.prediction_price_2y) ? currency.format(row.prediction_price_2y) : "N/A";
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${escapeHtml(row.Address)}</td>
@@ -913,6 +943,7 @@ function renderPropertyTable(coreRows) {
       <td>${currency.format(row.median_price)}</td>
       <td><span class="variation-badge ${varMeta.cls}" data-tooltip="${escapeHtml(tooltipText)}" title="${escapeHtml(tooltipText)}">${varMeta.arrow} ${varMeta.text}</span></td>
       <td><span class="variation-badge ${growthMeta.cls}" data-tooltip="${escapeHtml(growthTooltip)}" title="${escapeHtml(growthTooltip)}">${growthMeta.arrow} ${growthMeta.text}</span></td>
+      <td title="${escapeHtml(predTip)}">${predText}</td>
       <td>${asPricePerSqm(row.median_price_m2)}</td>
       <td>${currency.format(row.highest_price)}</td>
       <td>${currency.format(row.lowest_price)}</td>
@@ -1645,7 +1676,9 @@ function renderMap(rows) {
               if (!Number.isFinite(g)) return "N/A";
               const m = getVariationMeta(g);
               return `${m.arrow} ${m.text}`;
-            })()}<br/>Median Price M2: ${asPricePerSqm(
+            })()}<br/>Pred. median (2y, conservative): ${
+              Number.isFinite(row.prediction_price_2y) ? currency.format(row.prediction_price_2y) : "N/A"
+            }<br/>Median Price M2: ${asPricePerSqm(
               row.median_price_m2
             )}<br/>Highest: ${currency.format(
               row.highest_price

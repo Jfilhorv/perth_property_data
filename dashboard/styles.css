@@ -357,7 +357,7 @@ main {
 }
 
 .table-wrap--properties table {
-  min-width: 1040px;
+  min-width: 1160px;
 }
 
 .table-wrap--properties table th:first-child,
@@ -764,7 +764,7 @@ select {
 table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 1100px;
+  min-width: 1220px;
 }
 
 th,
