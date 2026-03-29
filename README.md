@@ -147,7 +147,7 @@ From the repository root:
 python scripts/run_update.py
 ```
 
-This expects `perth_property_data.csv` at the project root. It refreshes files such as `summary.json`, `listings_core.json`, `yearly.json`, `property_annual_return_intervals.json`, `property_annual_return_summary.json`, and related aggregates under `dashboard/data/`.
+This expects `perth_property_data.csv` at the project root. Rows with **missing `Price`**, **price &lt; AUD 100,000**, or **non‑numeric price** are **dropped** before any aggregates are built. It refreshes files such as `summary.json`, `listings_core.json`, `yearly.json`, `property_annual_return_intervals.json`, `property_annual_return_summary.json`, and related aggregates under `dashboard/data/`.
 
 If you have the PTA GeoJSON datasets in the expected folders (`Stops_PTA_001_…`, `Service_Routes_PTA_002_…`), the same command also rebuilds the simplified transport layers used by the map.
 

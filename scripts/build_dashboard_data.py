@@ -9,6 +9,8 @@ from property_annual_returns import write_annual_return_jsons
 ROOT = Path(__file__).resolve().parents[1]
 INPUT_CSV = ROOT / "perth_property_data.csv"
 OUTPUT_DIR = ROOT / "dashboard" / "data"
+# Drop non-sales and junk rows: missing price, zero, or under AUD 100k
+MIN_PRICE_AUD = 100_000
 
 
 def to_serializable_records(df: pd.DataFrame) -> list[dict]:
@@ -20,6 +22,9 @@ def main() -> None:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
     df = pd.read_csv(INPUT_CSV)
+    df["Price"] = pd.to_numeric(df["Price"], errors="coerce")
+    df = df.dropna(subset=["Price"])
+    df = df[df["Price"] >= MIN_PRICE_AUD]
     df["Date_Sold"] = pd.to_datetime(df["Date_Sold"], dayfirst=True, errors="coerce")
     df["Year"] = df["Date_Sold"].dt.year
 
