@@ -1795,12 +1795,16 @@ function renderMap(rows) {
       fillColor: "#ef4444",
       fillOpacity: 0.38,
       weight: 1,
-    }).bindTooltip(
-      `<b>${row.Address || "Address unavailable"}</b><br/>Suburb: ${row.Suburb}<br/>Price: ${currency.format(
-        row.Price
-      )}<br/>Distance to CBD: ${formatDistance(row.Distance_to_CBD)}<br/>Primary school distance: ${formatDistance(
-        row.Primary_School_Distance
-      )}<br/>Secondary school distance: ${formatDistance(row.Secondary_School_Distance)}`,
+    }    ).bindTooltip(
+      `<b>${row.Address || "Address unavailable"}</b><br/>Suburb: ${row.Suburb}<br/>Beds: ${
+        Number.isFinite(row.Bedrooms) ? numberFmt.format(row.Bedrooms) : "—"
+      }<br/>Baths: ${
+        Number.isFinite(row.Bathrooms) ? numberFmt.format(row.Bathrooms) : "—"
+      }<br/>Price: ${currency.format(row.Price)}<br/>Distance to CBD: ${formatDistance(
+        row.Distance_to_CBD
+      )}<br/>Primary school distance: ${formatDistance(row.Primary_School_Distance)}<br/>Secondary school distance: ${formatDistance(
+        row.Secondary_School_Distance
+      )}`,
       listingTooltipOptions
     );
     marker._listingRow = row;
