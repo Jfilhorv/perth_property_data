@@ -239,9 +239,10 @@ main {
   padding: 10px 12px;
 }
 
-/* Filter strip: soft amber glow only (border unchanged) when filters active */
+/* Filter strip: thin light-gray edge + soft shadow when any filter active */
 section.panel:has(.filters):has(.clear-filters-btn--filtered) {
-  box-shadow: 0 4px 22px rgba(245, 158, 11, 0.2), 0 2px 10px rgba(217, 119, 6, 0.12);
+  border-color: #e8ecf1;
+  box-shadow: 0 1px 3px rgba(148, 163, 184, 0.1);
 }
 
 .viz-grid {
@@ -709,7 +710,6 @@ select {
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.03em;
-  color: #64748b;
   background: rgba(248, 250, 252, 0.98);
   border: none;
   border-radius: 5px;
@@ -748,6 +748,8 @@ select {
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: min(200px, 28vw);
+  color: #a89494;
+  font-weight: 600;
 }
 
 .map-panel-head {
