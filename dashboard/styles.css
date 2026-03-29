@@ -764,7 +764,7 @@ select {
 table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 980px;
+  min-width: 1100px;
 }
 
 th,
@@ -797,9 +797,16 @@ td:nth-child(n + 2) {
   font-variant-numeric: tabular-nums;
 }
 
-/* Variation badge looks better centered */
-th:nth-child(4),
-td:nth-child(4) {
+/* Variation (+ suburb avg growth) badge columns centered per table */
+#suburbTableWrap th:nth-child(4),
+#suburbTableWrap td:nth-child(4),
+#suburbTableWrap th:nth-child(5),
+#suburbTableWrap td:nth-child(5) {
+  text-align: center;
+}
+
+#propertyTableWrap th:nth-child(4),
+#propertyTableWrap td:nth-child(4) {
   text-align: center;
 }
 

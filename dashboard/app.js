@@ -14,6 +14,8 @@ let summaryStats = null;
 let listingsCore = [];
 let listingsLatest = [];
 let schoolPoints = [];
+/** Map normalized suburb -> { avgPct: number, count: number } from property_annual_return_intervals.json */
+let suburbAnnualGrowthBySuburb = new Map();
 let yearlyChart;
 let suburbDistributionChart;
 let map;
@@ -211,6 +213,25 @@ function formatSignedPercent(value) {
   return "0%";
 }
 
+function buildSuburbAnnualGrowthMap(intervals) {
+  const agg = new Map();
+  for (const row of intervals) {
+    const sub = normalizeSuburbName(row.Suburb);
+    if (!sub) continue;
+    const r = row.annual_return;
+    if (!Number.isFinite(r)) continue;
+    const cur = agg.get(sub) || { sum: 0, n: 0 };
+    cur.sum += r;
+    cur.n += 1;
+    agg.set(sub, cur);
+  }
+  const out = new Map();
+  for (const [sub, { sum, n }] of agg) {
+    if (n > 0) out.set(sub, { avgPct: (sum / n) * 100, count: n });
+  }
+  return out;
+}
+
 function getVariationMeta(value) {
   if (!Number.isFinite(value)) {
     return { text: "N/A", arrow: "•", cls: "variation-na" };
@@ -406,11 +427,17 @@ function aggregateSuburbStats(rows) {
           variationPct = ((latestMedianPrice - previousMedianPrice) / previousMedianPrice) * 100;
         }
       }
+      const growthInfo = suburbAnnualGrowthBySuburb.get(v.Suburb);
+      const avgAnnualGrowthPct =
+        growthInfo && Number.isFinite(growthInfo.avgPct) ? growthInfo.avgPct : NaN;
+      const annualGrowthIntervalN = growthInfo ? growthInfo.count : 0;
       return {
         Suburb: v.Suburb,
         count: v.count,
         median_price: sorted[mid] ?? 0,
         variation_pct: variationPct,
+        avg_annual_growth_pct: avgAnnualGrowthPct,
+        annual_growth_interval_n: annualGrowthIntervalN,
         highest_price: sorted.length ? sorted[sorted.length - 1] : 0,
         lowest_price: sorted.length ? sorted[0] : 0,
         avg_price: sorted.length ? sorted.reduce((a, b) => a + b, 0) / sorted.length : 0,
@@ -550,12 +577,18 @@ function renderSuburbTable(rows) {
             row.latest_median_price
           )}`
         : "Not enough yearly history";
+    const growthMeta = getVariationMeta(row.avg_annual_growth_pct);
+    const growthTooltip =
+      Number.isFinite(row.avg_annual_growth_pct) && row.annual_growth_interval_n > 0
+        ? `Mean annualized return (CAGR) across ${numberFmt.format(row.annual_growth_interval_n)} resale interval(s) in this suburb`
+        : "No resale intervals with CAGR data for this suburb";
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${row.Suburb}</td>
       <td>${numberFmt.format(row.count)}</td>
       <td>${currency.format(row.median_price)}</td>
       <td><span class="variation-badge ${varMeta.cls}" data-tooltip="${tooltipText}" title="${tooltipText}">${varMeta.arrow} ${varMeta.text}</span></td>
+      <td><span class="variation-badge ${growthMeta.cls}" data-tooltip="${growthTooltip}" title="${growthTooltip}">${growthMeta.arrow} ${growthMeta.text}</span></td>
       <td>${asPricePerSqm(row.median_price_m2)}</td>
       <td>${currency.format(row.highest_price)}</td>
       <td>${currency.format(row.lowest_price)}</td>
@@ -1317,7 +1350,11 @@ function renderMap(rows) {
           }).bindTooltip(
             `<b>${row.Suburb}</b><br/>Average price: ${currency.format(row.avg_price)}<br/>Median price: ${currency.format(
               row.median_price
-            )}<br/>Variation: ${getVariationMeta(row.variation_pct).arrow} ${getVariationMeta(row.variation_pct).text}<br/>Median Price M2: ${asPricePerSqm(
+            )}<br/>Variation: ${getVariationMeta(row.variation_pct).arrow} ${getVariationMeta(row.variation_pct).text}<br/>Avg annual growth: ${
+              Number.isFinite(row.avg_annual_growth_pct)
+                ? `${getVariationMeta(row.avg_annual_growth_pct).arrow} ${getVariationMeta(row.avg_annual_growth_pct).text}`
+                : "N/A"
+            }<br/>Median Price M2: ${asPricePerSqm(
               row.median_price_m2
             )}<br/>Highest: ${currency.format(
               row.highest_price
@@ -1480,6 +1517,14 @@ async function init() {
     Suburb: normalizeSuburbName(row.Suburb),
   }));
   schoolPoints = schools;
+
+  try {
+    const intervals = await loadJson("./data/property_annual_return_intervals.json");
+    suburbAnnualGrowthBySuburb = buildSuburbAnnualGrowthMap(Array.isArray(intervals) ? intervals : []);
+  } catch (err) {
+    console.warn("property_annual_return_intervals.json not loaded; suburb CAGR column will show N/A.", err);
+    suburbAnnualGrowthBySuburb = new Map();
+  }
 
   renderSuburbOptions();
   renderBedroomBathroomOptions();
