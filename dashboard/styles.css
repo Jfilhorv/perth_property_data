@@ -806,7 +806,9 @@ td:nth-child(n + 2) {
 }
 
 #propertyTableWrap th:nth-child(4),
-#propertyTableWrap td:nth-child(4) {
+#propertyTableWrap td:nth-child(4),
+#propertyTableWrap th:nth-child(5),
+#propertyTableWrap td:nth-child(5) {
   text-align: center;
 }
 

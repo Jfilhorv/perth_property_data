@@ -961,8 +961,15 @@ function updatePropertyTableSortIndicators() {
 
 function setSalesTableView(view) {
   salesTableView = view === "properties" ? "properties" : "suburbs";
-  document.getElementById("suburbTableWrap")?.classList.toggle("hidden", salesTableView !== "suburbs");
-  document.getElementById("propertyTablePanel")?.classList.toggle("hidden", salesTableView !== "properties");
+  const propertyPanel = document.getElementById("propertyTablePanel");
+  if (salesTableView === "properties") {
+    propertyPanel?.classList.remove("hidden");
+    document.getElementById("suburbTableWrap")?.classList.add("hidden");
+    document.getElementById("suburbDistributionWrap")?.classList.add("hidden");
+  } else {
+    propertyPanel?.classList.add("hidden");
+    updateSuburbViewUi();
+  }
   document.querySelectorAll(".sales-title-tab").forEach((btn) => {
     const on = btn.dataset.tableView === salesTableView;
     btn.classList.toggle("sales-title-tab--active", on);
@@ -1304,6 +1311,14 @@ function updateSuburbViewUi() {
   const tableWrap = document.getElementById("suburbTableWrap");
   const distributionWrap = document.getElementById("suburbDistributionWrap");
   const toggleButtons = document.querySelectorAll("#suburbViewToggle .suburb-menu-item");
+  if (salesTableView !== "suburbs") {
+    if (tableWrap) tableWrap.classList.add("hidden");
+    if (distributionWrap) distributionWrap.classList.add("hidden");
+    toggleButtons.forEach((btn) => {
+      btn.classList.toggle("active", btn.getAttribute("data-view") === currentSuburbView);
+    });
+    return;
+  }
   const showTable = currentSuburbView === "table";
   if (tableWrap) tableWrap.classList.toggle("hidden", !showTable);
   if (distributionWrap) distributionWrap.classList.toggle("hidden", showTable);
