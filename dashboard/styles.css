@@ -139,12 +139,12 @@ main {
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  gap: 5px;
+  gap: 6px;
   min-width: 0;
   background: linear-gradient(145deg, #ffffff, #f8fbff);
   border: 1px solid #dbe4f0;
   border-radius: 12px;
-  padding: 9px 7px;
+  padding: 9px 9px;
   box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
 }
 
@@ -156,14 +156,14 @@ main {
 }
 
 .kpi-card__icon-cell {
-  flex: 0 0 clamp(42px, 22%, 68px);
-  width: clamp(42px, 22%, 68px);
+  flex: 0 0 clamp(38px, 18%, 60px);
+  width: clamp(38px, 18%, 60px);
   align-self: stretch;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-content: center;
-  gap: 2px;
+  gap: 3px;
   min-height: 0;
 }
 
