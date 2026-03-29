@@ -630,9 +630,10 @@ function renderKpis(summary, filteredRows) {
   }
 
   kpis.appendChild(makeKpiCard("Properties", numberFmt.format(filteredRows.length), "property.png"));
-  const avgCard = makeKpiCard("Average Price", asCurrencyOrNA(mean), "avg.png");
-  attachKpiVariation(avgCard, avgYoY);
-  kpis.appendChild(avgCard);
+
+  const medianCard = makeKpiCard("Median Price", asCurrencyOrNA(medianPrice), "median.png");
+  attachKpiVariation(medianCard, medianYoY);
+  kpis.appendChild(medianCard);
 
   const suburbAgg = aggregateSuburbStats(filteredRows);
   const growthForMed = suburbAgg.map((s) => s.avg_annual_growth_pct).filter((v) => Number.isFinite(v));
@@ -641,13 +642,14 @@ function renderKpis(summary, filteredRows) {
   const kpiMedPred = predForMed.length ? median(predForMed) : NaN;
   kpis.appendChild(makeKpiGrowthPredictionCard(kpiMedGrowth, kpiMedPred));
 
-  const medianCard = makeKpiCard("Median Price", asCurrencyOrNA(medianPrice), "property_price.png");
-  attachKpiVariation(medianCard, medianYoY);
-  kpis.appendChild(medianCard);
-
-  const m2Card = makeKpiCard("Median Price M2", asPricePerSqm(medianPsm), "property.png");
+  const m2Card = makeKpiCard("Median Price M2", asPricePerSqm(medianPsm), "property_price.png");
   attachKpiVariation(m2Card, m2YoY);
   kpis.appendChild(m2Card);
+
+  const avgCard = makeKpiCard("Average Price", asCurrencyOrNA(mean), "avg.png");
+  attachKpiVariation(avgCard, avgYoY);
+  kpis.appendChild(avgCard);
+
   kpis.appendChild(makeKpiCard("P75", asCurrencyOrNA(p75), "average.png"));
   kpis.appendChild(makeKpiCard("P95", asCurrencyOrNA(p95), "prediction.png"));
   footnote.textContent = `Date range: ${summary.date_min} to ${summary.date_max}`;
