@@ -391,6 +391,17 @@ function makeKpiCard(label, value) {
   return div;
 }
 
+/** KPI value styled like table Variation / Growth badges (pill + green/red). */
+function makeKpiMedianGrowthCard(pctValue) {
+  const meta = getVariationMeta(pctValue);
+  const tip =
+    "Median of suburb Avg resale growth (%) for listings matching current filters — same rules as the sales tables.";
+  const div = document.createElement("div");
+  div.className = "kpi-card kpi-card--growth";
+  div.innerHTML = `<h3>Median resale growth</h3><p class="kpi-value-badge-row"><span class="variation-badge ${meta.cls}" data-tooltip="${escapeHtml(tip)}" title="${escapeHtml(tip)}">${meta.arrow} ${meta.text}</span></p>`;
+  return div;
+}
+
 function median(values) {
   if (!values.length) return 0;
   const sorted = [...values].sort((a, b) => a - b);
@@ -599,8 +610,7 @@ function renderKpis(summary, filteredRows) {
   const kpiMedGrowth = growthForMed.length ? median(growthForMed) : NaN;
   const predForMed = suburbAgg.map((s) => s.prediction_price_2y).filter((v) => Number.isFinite(v));
   const kpiMedPred = predForMed.length ? median(predForMed) : NaN;
-  const growthKpiText = Number.isFinite(kpiMedGrowth) ? getVariationMeta(kpiMedGrowth).text : "N/A";
-  kpis.appendChild(makeKpiCard("Median resale growth", growthKpiText));
+  kpis.appendChild(makeKpiMedianGrowthCard(kpiMedGrowth));
   kpis.appendChild(makeKpiCard("Prediction Current Price", asCurrencyOrNA(kpiMedPred)));
 
   const m2Card = makeKpiCard("Median Price M2", asPricePerSqm(medianPsm));

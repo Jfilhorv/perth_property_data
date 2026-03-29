@@ -147,6 +147,20 @@ main {
   padding: 0;
 }
 
+.kpi-value-badge-row {
+  margin: 10px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+}
+
+.kpi-card--growth .variation-badge {
+  font-size: 13px;
+  padding: 5px 12px;
+  font-weight: 700;
+}
+
 .kpi-footnote {
   margin: 0;
   font-size: 11px;
