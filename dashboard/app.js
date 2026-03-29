@@ -241,6 +241,29 @@ function collapseSalesSamePropertyDay(rows) {
 const MIN_HOLDING_YEARS_FOR_CAGR = 1;
 /** As decimal CAGR; above this is excluded (data errors, non-comparable sales). Display caps at same. */
 const MAX_ANNUAL_CAGR_RATIO = 1;
+const GROWTH_DISPLAY_CAP_ABS_PCT = MAX_ANNUAL_CAGR_RATIO * 100;
+
+/** Never show resale growth outside ±100%/yr (guards bad JSON, cached bundles, or double-scaled values). */
+function clampResaleGrowthPercent(pct) {
+  if (!Number.isFinite(pct)) return NaN;
+  const c = GROWTH_DISPLAY_CAP_ABS_PCT;
+  return Math.min(c, Math.max(-c, pct));
+}
+
+function sanitizeSuburbGrowthMap(map) {
+  const out = new Map();
+  const cap = GROWTH_DISPLAY_CAP_ABS_PCT;
+  for (const [sub, v] of map) {
+    if (!v || typeof v !== "object") continue;
+    const raw = Number(v.avgPct);
+    out.set(sub, {
+      avgPct: Number.isFinite(raw) ? Math.min(cap, Math.max(-cap, raw)) : NaN,
+      count: Number(v.count) || 0,
+      yearCount: Number.isFinite(v.yearCount) ? v.yearCount : 0,
+    });
+  }
+  return out;
+}
 
 /** Consecutive sale pairs after collapse; annual_return = (price/prev)^(1/years)-1, years = days/365.25 */
 function resaleIntervalReturnsForHouse(rowsSameHouse) {
@@ -253,9 +276,17 @@ function resaleIntervalReturnsForHouse(rowsSameHouse) {
     const k1 = calendarDateKeyFromSold(cur.Date_Sold);
     const days = calendarDaysBetweenKeys(k0, k1);
     const years = days / 365.25;
-    const prevPrice = prev.Price;
-    const price = cur.Price;
-    if (years < MIN_HOLDING_YEARS_FOR_CAGR || prevPrice <= 0 || price <= 0) continue;
+    const prevPrice = Number(prev.Price);
+    const price = Number(cur.Price);
+    if (
+      years < MIN_HOLDING_YEARS_FOR_CAGR ||
+      !Number.isFinite(prevPrice) ||
+      !Number.isFinite(price) ||
+      prevPrice < MIN_PRICE_AUD ||
+      price < MIN_PRICE_AUD
+    ) {
+      continue;
+    }
     const annualReturn = (price / prevPrice) ** (1 / years) - 1;
     if (!Number.isFinite(annualReturn) || annualReturn > MAX_ANNUAL_CAGR_RATIO) continue;
     const endYear = Number.parseInt(k1.slice(0, 4), 10);
@@ -310,8 +341,9 @@ function aggregateSuburbGrowthFromIntervalRecords(records) {
     if (!yearMeans.length) continue;
     const overallMean = mean(yearMeans);
     if (!Number.isFinite(overallMean)) continue;
+    const pct = overallMean * 100;
     out.set(sub, {
-      avgPct: Math.min(overallMean * 100, capPct),
+      avgPct: Math.min(Math.max(pct, -capPct), capPct),
       count: suburbToIntervalCount.get(sub) || 0,
       yearCount: yearMeans.length,
     });
@@ -357,6 +389,42 @@ function mean(values) {
     s += x;
   }
   return s / values.length;
+}
+
+/**
+ * Same stabilization as suburb Growth: mean of yearly mean CAGRs on this property’s resale intervals
+ * (later sale year; hold ≥1y; omit CAGR >100%/yr). N/A if fewer than 2 sales or no eligible intervals.
+ */
+function propertyStabilizedAnnualGrowth(houseRows) {
+  const intervals = resaleIntervalReturnsForHouse(houseRows);
+  const byYear = new Map();
+  for (const iv of intervals) {
+    const y = iv.endYear;
+    const r = iv.annual_return;
+    if (!Number.isFinite(y) || !Number.isFinite(r) || r > MAX_ANNUAL_CAGR_RATIO) continue;
+    if (!byYear.has(y)) byYear.set(y, []);
+    byYear.get(y).push(r);
+  }
+  const yearMeans = [];
+  let intervalCount = 0;
+  for (const [, returns] of byYear) {
+    if (!returns.length) continue;
+    const m = mean(returns);
+    if (!Number.isFinite(m)) continue;
+    yearMeans.push(m);
+    intervalCount += returns.length;
+  }
+  if (!yearMeans.length) {
+    return { avgPct: NaN, intervalN: 0, yearCount: 0 };
+  }
+  const overall = mean(yearMeans);
+  const capPct = MAX_ANNUAL_CAGR_RATIO * 100;
+  const rawPct = Number.isFinite(overall) ? overall * 100 : NaN;
+  return {
+    avgPct: Number.isFinite(rawPct) ? Math.min(Math.max(rawPct, -capPct), capPct) : NaN,
+    intervalN: intervalCount,
+    yearCount: yearMeans.length,
+  };
 }
 
 function percentile(values, p) {
@@ -610,7 +678,9 @@ function aggregateSuburbStats(rows) {
       const growthInfo = suburbAnnualGrowthBySuburb.get(v.Suburb);
       const growthCapPct = MAX_ANNUAL_CAGR_RATIO * 100;
       const rawGrowthPct = growthInfo && Number.isFinite(growthInfo.avgPct) ? growthInfo.avgPct : NaN;
-      const avgAnnualGrowthPct = Number.isFinite(rawGrowthPct) ? Math.min(rawGrowthPct, growthCapPct) : NaN;
+      const avgAnnualGrowthPct = Number.isFinite(rawGrowthPct)
+        ? Math.min(Math.max(rawGrowthPct, -growthCapPct), growthCapPct)
+        : NaN;
       const annualGrowthIntervalN = growthInfo ? growthInfo.count : 0;
       const annualGrowthYearCount = growthInfo && Number.isFinite(growthInfo.yearCount) ? growthInfo.yearCount : 0;
       return {
@@ -646,6 +716,7 @@ function aggregateAddressStats(rows) {
     const addr = String(row.Address || "").trim() || "Address unavailable";
     const current = mapByKey.get(key) || {
       Address: addr,
+      rawRows: [],
       count: 0,
       prices: [],
       psmValues: [],
@@ -656,6 +727,7 @@ function aggregateAddressStats(rows) {
       sumLon: 0,
       geoCount: 0,
     };
+    current.rawRows.push(row);
     current.count += 1;
     current.prices.push(row.Price);
     if (Number.isFinite(row.Year) && Number.isFinite(row.Price)) {
@@ -698,11 +770,15 @@ function aggregateAddressStats(rows) {
           variationPct = ((latestMedianPrice - previousMedianPrice) / previousMedianPrice) * 100;
         }
       }
+      const propGrowth = propertyStabilizedAnnualGrowth(v.rawRows);
       return {
         Address: v.Address,
         count: v.count,
         median_price: sorted[mid] ?? 0,
         variation_pct: variationPct,
+        avg_annual_growth_pct: propGrowth.avgPct,
+        annual_growth_interval_n: propGrowth.intervalN,
+        annual_growth_year_count: propGrowth.yearCount,
         highest_price: sorted.length ? sorted[sorted.length - 1] : 0,
         lowest_price: sorted.length ? sorted[0] : 0,
         avg_price: sorted.length ? sorted.reduce((a, b) => a + b, 0) / sorted.length : 0,
@@ -761,10 +837,11 @@ function renderSuburbTable(rows) {
             row.latest_median_price
           )}`
         : "Not enough yearly history";
-    const growthMeta = getVariationMeta(row.avg_annual_growth_pct);
+    const growthPct = clampResaleGrowthPercent(row.avg_annual_growth_pct);
+    const growthMeta = getVariationMeta(growthPct);
     const growthTooltip =
-      Number.isFinite(row.avg_annual_growth_pct) && row.annual_growth_interval_n > 0
-        ? `Mean of yearly mean CAGRs (later sale year; hold ≥${MIN_HOLDING_YEARS_FOR_CAGR} yr; omit CAGR >${MAX_ANNUAL_CAGR_RATIO * 100}%/yr). ${numberFmt.format(
+      Number.isFinite(growthPct) && row.annual_growth_interval_n > 0
+        ? `Mean of yearly mean CAGRs (later sale year; hold ≥${MIN_HOLDING_YEARS_FOR_CAGR} yr; omit CAGR >${MAX_ANNUAL_CAGR_RATIO * 100}%/yr; display capped at ±${GROWTH_DISPLAY_CAP_ABS_PCT}%). ${numberFmt.format(
             row.annual_growth_interval_n
           )} interval(s) across ${numberFmt.format(row.annual_growth_year_count)} calendar year(s) with data`
         : "No resale intervals with CAGR data for this suburb";
@@ -821,12 +898,21 @@ function renderPropertyTable(coreRows) {
             row.latest_median_price
           )}`
         : "Not enough yearly history";
+    const growthPct = clampResaleGrowthPercent(row.avg_annual_growth_pct);
+    const growthMeta = getVariationMeta(growthPct);
+    const growthTooltip =
+      Number.isFinite(growthPct) && row.annual_growth_interval_n > 0
+        ? `Mean of yearly mean CAGRs for this property (same rules as suburb column; display capped at ±${GROWTH_DISPLAY_CAP_ABS_PCT}%). ${numberFmt.format(
+            row.annual_growth_interval_n
+          )} resale interval(s) across ${numberFmt.format(row.annual_growth_year_count)} calendar year(s)`
+        : "No eligible resale CAGR (need 2+ sales with ≥1 year between and prices ≥ floor)";
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${escapeHtml(row.Address)}</td>
       <td>${numberFmt.format(row.count)}</td>
       <td>${currency.format(row.median_price)}</td>
       <td><span class="variation-badge ${varMeta.cls}" data-tooltip="${escapeHtml(tooltipText)}" title="${escapeHtml(tooltipText)}">${varMeta.arrow} ${varMeta.text}</span></td>
+      <td><span class="variation-badge ${growthMeta.cls}" data-tooltip="${escapeHtml(growthTooltip)}" title="${escapeHtml(growthTooltip)}">${growthMeta.arrow} ${growthMeta.text}</span></td>
       <td>${asPricePerSqm(row.median_price_m2)}</td>
       <td>${currency.format(row.highest_price)}</td>
       <td>${currency.format(row.lowest_price)}</td>
@@ -1539,11 +1625,12 @@ function renderMap(rows) {
           }).bindTooltip(
             `<b>${row.Suburb}</b><br/>Average price: ${currency.format(row.avg_price)}<br/>Median price: ${currency.format(
               row.median_price
-            )}<br/>Variation: ${getVariationMeta(row.variation_pct).arrow} ${getVariationMeta(row.variation_pct).text}<br/>Avg resale CAGR: ${
-              Number.isFinite(row.avg_annual_growth_pct)
-                ? `${getVariationMeta(row.avg_annual_growth_pct).arrow} ${getVariationMeta(row.avg_annual_growth_pct).text}`
-                : "N/A"
-            }<br/>Median Price M2: ${asPricePerSqm(
+            )}<br/>Variation: ${getVariationMeta(row.variation_pct).arrow} ${getVariationMeta(row.variation_pct).text}<br/>Avg resale CAGR: ${(() => {
+              const g = clampResaleGrowthPercent(row.avg_annual_growth_pct);
+              if (!Number.isFinite(g)) return "N/A";
+              const m = getVariationMeta(g);
+              return `${m.arrow} ${m.text}`;
+            })()}<br/>Median Price M2: ${asPricePerSqm(
               row.median_price_m2
             )}<br/>Highest: ${currency.format(
               row.highest_price
@@ -1707,11 +1794,11 @@ async function init() {
   }));
   schoolPoints = schools;
 
-  suburbAnnualGrowthBySuburb = buildSuburbAnnualGrowthMapFromCore(listingsCore);
+  suburbAnnualGrowthBySuburb = sanitizeSuburbGrowthMap(buildSuburbAnnualGrowthMapFromCore(listingsCore));
   try {
     const intervals = await loadJson("./data/property_annual_return_intervals.json");
     const fromFile = buildSuburbAnnualGrowthMap(Array.isArray(intervals) ? intervals : []);
-    if (fromFile.size > 0) suburbAnnualGrowthBySuburb = fromFile;
+    if (fromFile.size > 0) suburbAnnualGrowthBySuburb = sanitizeSuburbGrowthMap(fromFile);
   } catch {
     /* keep client-built map from listings_core */
   }

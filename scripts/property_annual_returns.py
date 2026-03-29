@@ -26,6 +26,7 @@ import pandas as pd
 
 MIN_HOLDING_YEARS = 1.0
 MAX_ANNUAL_RETURN_RATIO = 1.0  # 100%/yr cap; same idea as dashboard MAX_ANNUAL_CAGR_RATIO
+_MIN_PRICE_AUD = 100_000  # both sale prices must meet floor (matches dashboard MIN_PRICE_AUD)
 
 
 def _normalize_suburb_name(value) -> str:
@@ -88,7 +89,12 @@ def _intervals_for_property(house_key: str, collapsed: pd.DataFrame) -> list[dic
         years = days / 365.25
         prev_price = float(prev["Price"])
         price = float(cur["Price"])
-        if years < MIN_HOLDING_YEARS or prev_price <= 0 or price <= 0 or not np.isfinite(years):
+        if (
+            years < MIN_HOLDING_YEARS
+            or prev_price < _MIN_PRICE_AUD
+            or price < _MIN_PRICE_AUD
+            or not np.isfinite(years)
+        ):
             continue
         annual_return = (price / prev_price) ** (1.0 / years) - 1.0
         if not np.isfinite(annual_return) or annual_return > MAX_ANNUAL_RETURN_RATIO:
