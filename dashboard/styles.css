@@ -691,6 +691,65 @@ select {
   box-shadow: 0 3px 14px rgba(161, 98, 7, 0.38);
 }
 
+.filter-active-chips {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 6px 2px 4px;
+  margin: 0;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: #64748b;
+  background: rgba(248, 250, 252, 0.98);
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+  max-width: 100%;
+}
+
+.filter-chip__x {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0 1px;
+  border: none;
+  background: transparent;
+  color: #dc2626;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.filter-chip__x:hover,
+.filter-chip__x:focus-visible {
+  color: #b91c1c;
+  outline: none;
+}
+
+.filter-chip__x:focus-visible {
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.35);
+}
+
+.filter-chip__label {
+  line-height: 1.2;
+  padding-top: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: min(200px, 28vw);
+}
+
 .map-panel-head {
   display: flex;
   flex-wrap: wrap;

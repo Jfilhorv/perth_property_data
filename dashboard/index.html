@@ -12,7 +12,7 @@
     <title>Perth Property Data</title>
     <link rel="icon" href="./assets/favicon.png?v=1" type="image/png" />
     <link rel="apple-touch-icon" href="./assets/favicon.png?v=1" />
-    <link rel="stylesheet" href="./styles.css?v=20260329-filter-shadow-only" />
+    <link rel="stylesheet" href="./styles.css?v=20260329-filter-chips" />
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -68,6 +68,7 @@
             <span id="priceRangeValue">Any</span>
           </div>
           <button type="button" id="clearFiltersBtn" class="clear-filters-btn">Clear filters</button>
+          <div class="filter-active-chips" id="filterActiveChips" aria-label="Active filters"></div>
         </div>
       </section>
 
@@ -235,7 +236,7 @@
       integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
       crossorigin=""
     ></script>
-    <script src="./app.js?v=20260329-m2price-asset-v4"></script>
+    <script src="./app.js?v=20260329-filter-active-chips"></script>
     <script
       data-goatcounter="https://efilhorv.goatcounter.com/count"
       async

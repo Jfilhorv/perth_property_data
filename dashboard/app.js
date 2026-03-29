@@ -1568,8 +1568,112 @@ function hasActiveDataFilters() {
   return false;
 }
 
+function getActiveFilterChipDescriptors() {
+  const chips = [];
+  if (selectedFilters.suburb) {
+    chips.push({ id: "suburb", label: selectedFilters.suburb });
+  }
+  if (selectedFilters.bedrooms) {
+    chips.push({ id: "bedrooms", label: `${selectedFilters.bedrooms} Beds` });
+  }
+  if (selectedFilters.bathrooms) {
+    chips.push({ id: "bathrooms", label: `${selectedFilters.bathrooms} Baths` });
+  }
+  if (selectedFilters.year !== "" && selectedFilters.year != null) {
+    chips.push({ id: "year", label: String(selectedFilters.year) });
+  }
+  const priceFiltered =
+    Number(selectedFilters.minPrice) > 0 ||
+    (dashboardDefaultMaxPrice != null &&
+      Number.isFinite(selectedFilters.maxPrice) &&
+      selectedFilters.maxPrice < dashboardDefaultMaxPrice);
+  if (priceFiltered) {
+    const pv = document.getElementById("priceRangeValue");
+    chips.push({ id: "price", label: pv ? pv.textContent.trim() : "Price range" });
+  }
+  if (selectedFilters.chartHouseKey) {
+    const row = listingsCore.find((r) => houseKey(r) === selectedFilters.chartHouseKey);
+    const addr = row ? String(row.Address || "").trim() : "";
+    const short = addr.length > 36 ? `${addr.slice(0, 34)}…` : addr || "Property chart";
+    chips.push({ id: "chartHouse", label: short });
+  }
+  return chips;
+}
+
+function clearFilterChip(chipId) {
+  switch (chipId) {
+    case "suburb":
+      selectedFilters.chartHouseKey = "";
+      setSuburbFilter("", true);
+      return;
+    case "bedrooms":
+      selectedFilters.bedrooms = "";
+      document.getElementById("bedroomSelect").value = "";
+      applyFilters();
+      return;
+    case "bathrooms":
+      selectedFilters.bathrooms = "";
+      document.getElementById("bathroomSelect").value = "";
+      applyFilters();
+      return;
+    case "year":
+      selectedFilters.year = "";
+      applyFilters();
+      return;
+    case "chartHouse":
+      selectedFilters.chartHouseKey = "";
+      applyFilters();
+      return;
+    case "price": {
+      const defMax = dashboardDefaultMaxPrice;
+      const minR = document.getElementById("minPriceRange");
+      const maxR = document.getElementById("maxPriceRange");
+      if (defMax != null && minR && maxR) {
+        selectedFilters.minPrice = 0;
+        selectedFilters.maxPrice = defMax;
+        minR.value = "0";
+        maxR.value = String(defMax);
+        minR.dispatchEvent(new Event("input", { bubbles: true }));
+        maxR.dispatchEvent(new Event("input", { bubbles: true }));
+        minR.dispatchEvent(new Event("change", { bubbles: true }));
+        maxR.dispatchEvent(new Event("change", { bubbles: true }));
+      } else {
+        selectedFilters.minPrice = 0;
+        if (defMax != null) selectedFilters.maxPrice = defMax;
+        applyFilters();
+      }
+      return;
+    }
+    default:
+      return;
+  }
+}
+
+function renderFilterChips() {
+  const host = document.getElementById("filterActiveChips");
+  if (!host) return;
+  host.replaceChildren();
+  for (const { id, label } of getActiveFilterChipDescriptors()) {
+    const wrap = document.createElement("span");
+    wrap.className = "filter-chip";
+    const xBtn = document.createElement("button");
+    xBtn.type = "button";
+    xBtn.className = "filter-chip__x";
+    xBtn.setAttribute("data-chip-id", id);
+    xBtn.setAttribute("aria-label", `Remove filter: ${label}`);
+    xBtn.textContent = "×";
+    const lab = document.createElement("span");
+    lab.className = "filter-chip__label";
+    lab.textContent = label;
+    wrap.appendChild(xBtn);
+    wrap.appendChild(lab);
+    host.appendChild(wrap);
+  }
+}
+
 function updateClearFiltersButtonHighlight() {
   document.getElementById("clearFiltersBtn")?.classList.toggle("clear-filters-btn--filtered", hasActiveDataFilters());
+  renderFilterChips();
 }
 
 function applyFilters() {
@@ -1948,6 +2052,15 @@ async function init() {
     }
     applyFilters();
   };
+
+  document.getElementById("filterActiveChips")?.addEventListener("click", (e) => {
+    const t = e.target.closest(".filter-chip__x");
+    if (!t) return;
+    e.preventDefault();
+    const id = t.getAttribute("data-chip-id");
+    if (id) clearFilterChip(id);
+  });
+
   applyFilters();
 
   const suburbSelect = document.getElementById("suburbSelect");
