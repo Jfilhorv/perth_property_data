@@ -12,7 +12,7 @@
     <title>Perth Property Data</title>
     <link rel="icon" href="./assets/favicon.png?v=1" type="image/png" />
     <link rel="apple-touch-icon" href="./assets/favicon.png?v=1" />
-    <link rel="stylesheet" href="./styles.css?v=20260329-kpi-icon-gap" />
+    <link rel="stylesheet" href="./styles.css?v=20260329-global-search" />
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -47,6 +47,27 @@
 
       <section class="panel">
         <div class="filters">
+          <div class="filter-global-search" id="filterGlobalSearch">
+            <input
+              type="search"
+              id="globalFilterSearchInput"
+              class="filter-global-search__input"
+              placeholder="Search suburb or address…"
+              autocomplete="off"
+              spellcheck="false"
+              aria-label="Search suburb or address"
+              aria-autocomplete="list"
+              aria-controls="globalFilterSearchDropdown"
+              aria-expanded="false"
+            />
+            <div
+              class="filter-global-search__dropdown"
+              id="globalFilterSearchDropdown"
+              role="listbox"
+              aria-label="Search results"
+              hidden
+            ></div>
+          </div>
           <label for="suburbSelect">Suburb</label>
           <select id="suburbSelect">
             <option value="">All</option>
@@ -236,7 +257,7 @@
       integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
       crossorigin=""
     ></script>
-    <script src="./app.js?v=20260329-map-tooltip-beds-baths"></script>
+    <script src="./app.js?v=20260329-global-filter-search"></script>
     <script
       data-goatcounter="https://efilhorv.goatcounter.com/count"
       async

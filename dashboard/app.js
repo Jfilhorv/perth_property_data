@@ -1981,6 +1981,128 @@ async function loadJson(path) {
   return res.json();
 }
 
+function setupGlobalFilterSearch() {
+  const container = document.getElementById("filterGlobalSearch");
+  const input = document.getElementById("globalFilterSearchInput");
+  const dropdown = document.getElementById("globalFilterSearchDropdown");
+  if (!container || !input || !dropdown) return;
+
+  const allSuburbsSorted = [...new Set(listingsLatest.map((r) => r.Suburb).filter(Boolean))].sort((a, b) =>
+    a.localeCompare(b)
+  );
+
+  let debounceT = null;
+  const setExpanded = (open) => {
+    input.setAttribute("aria-expanded", open ? "true" : "false");
+    dropdown.hidden = !open;
+  };
+
+  const hide = () => {
+    dropdown.replaceChildren();
+    setExpanded(false);
+  };
+
+  const show = () => {
+    setExpanded(true);
+  };
+
+  function runSearch() {
+    const q = input.value.trim().toLowerCase();
+    dropdown.replaceChildren();
+    if (q.length < 2) {
+      hide();
+      return;
+    }
+    const maxSub = 10;
+    const maxAddr = 10;
+    const suburbs = allSuburbsSorted.filter((s) => s.toLowerCase().includes(q)).slice(0, maxSub);
+    const addresses = [];
+    const seenAddr = new Set();
+    for (const row of listingsLatest) {
+      if (addresses.length >= maxAddr) break;
+      const addr = String(row.Address || "").trim();
+      if (!addr || !addr.toLowerCase().includes(q)) continue;
+      const dedupe = `${addr.toLowerCase()}|${String(row.Suburb || "")}`;
+      if (seenAddr.has(dedupe)) continue;
+      seenAddr.add(dedupe);
+      addresses.push(row);
+    }
+    if (suburbs.length === 0 && addresses.length === 0) {
+      const empty = document.createElement("div");
+      empty.className = "filter-global-search__empty";
+      empty.textContent = "No matches";
+      dropdown.appendChild(empty);
+      show();
+      return;
+    }
+    if (suburbs.length) {
+      const lab = document.createElement("div");
+      lab.className = "filter-global-search__group-label";
+      lab.textContent = "Suburbs";
+      dropdown.appendChild(lab);
+      for (const s of suburbs) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "filter-global-search__opt filter-global-search__opt--suburb";
+        btn.setAttribute("role", "option");
+        btn.textContent = s;
+        btn.addEventListener("click", () => {
+          selectedFilters.chartHouseKey = "";
+          setSuburbFilter(s, true);
+          input.value = "";
+          hide();
+        });
+        dropdown.appendChild(btn);
+      }
+    }
+    if (addresses.length) {
+      const lab = document.createElement("div");
+      lab.className = "filter-global-search__group-label";
+      lab.textContent = "Addresses";
+      dropdown.appendChild(lab);
+      for (const row of addresses) {
+        const addr = String(row.Address || "").trim();
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "filter-global-search__opt";
+        btn.setAttribute("role", "option");
+        const main = document.createElement("span");
+        main.className = "filter-global-search__addr-main";
+        main.textContent = addr || "(Address)";
+        const sub = document.createElement("span");
+        sub.className = "filter-global-search__addr-sub";
+        sub.textContent = row.Suburb ? ` · ${row.Suburb}` : "";
+        btn.appendChild(main);
+        btn.appendChild(sub);
+        btn.addEventListener("click", () => {
+          setSuburbFilterFromMap(row.Suburb, { listingRow: row });
+          input.value = "";
+          hide();
+        });
+        dropdown.appendChild(btn);
+      }
+    }
+    show();
+  }
+
+  input.addEventListener("input", () => {
+    clearTimeout(debounceT);
+    debounceT = setTimeout(runSearch, 160);
+  });
+  input.addEventListener("focus", () => {
+    if (input.value.trim().length >= 2) runSearch();
+  });
+  document.addEventListener("click", (e) => {
+    if (!container.contains(e.target)) hide();
+  });
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      hide();
+      input.blur();
+    }
+  });
+}
+
 async function init() {
   registerBoxPlotPlugin();
   const [summary, listings, schools] = await Promise.all([
@@ -2016,6 +2138,7 @@ async function init() {
 
   renderSuburbOptions();
   renderBedroomBathroomOptions();
+  setupGlobalFilterSearch();
   const minPriceRange = document.getElementById("minPriceRange");
   const maxPriceRange = document.getElementById("maxPriceRange");
   const priceRangeValue = document.getElementById("priceRangeValue");
@@ -2115,6 +2238,14 @@ async function init() {
     bathroomSelect.value = "";
     minPriceRange.value = "0";
     maxPriceRange.value = String(safeMaxPrice);
+    const gfs = document.getElementById("globalFilterSearchInput");
+    const gfd = document.getElementById("globalFilterSearchDropdown");
+    if (gfs) gfs.value = "";
+    if (gfd) {
+      gfd.replaceChildren();
+      gfd.hidden = true;
+    }
+    if (gfs) gfs.setAttribute("aria-expanded", "false");
     updatePriceRangeLabel();
     updatePriceRangeTrack();
     flushScheduledApply();
