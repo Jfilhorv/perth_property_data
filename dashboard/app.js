@@ -642,7 +642,7 @@ function renderKpis(summary, filteredRows) {
   const kpiMedPred = predForMed.length ? median(predForMed) : NaN;
   kpis.appendChild(makeKpiGrowthPredictionCard(kpiMedGrowth, kpiMedPred));
 
-  const m2Card = makeKpiCard("Median Price M2", asPricePerSqm(medianPsm), "median.png");
+  const m2Card = makeKpiCard("Median Price M2", asPricePerSqm(medianPsm), "M2price.png");
   attachKpiVariation(m2Card, m2YoY);
   kpis.appendChild(m2Card);
 
