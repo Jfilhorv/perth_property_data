@@ -413,20 +413,21 @@ function makeKpiCard(label, value, iconFiles) {
   return div;
 }
 
-/** Median resale growth (badge) + median prediction price in one KPI cell. Icons: growth.png then prediction.png. */
+/** Median prediction price as main figure; median resale growth % below in same style as Average Price (kpi-variation). */
 function makeKpiGrowthPredictionCard(pctValue, predValue) {
-  const meta = getVariationMeta(pctValue);
   const growthTip =
     "Median of suburb Avg resale growth (%) for listings matching current filters — same rules as the sales tables.";
   const predTip =
-    "Median of suburb Prediction current price (same formula as tables) for listings matching current filters.";
+    "Median of suburb prediction current price (same formula as tables) for listings matching current filters.";
+  const meta = getVariationMeta(pctValue);
   const div = document.createElement("div");
-  div.className = "kpi-card kpi-card--growth-prediction";
-  div.innerHTML = `<h3>${kpiTitleHtml("Median growth · prediction current median price", ["growth.png", "prediction.png"])}</h3>
-  <div class="kpi-dual-values">
-    <p class="kpi-value-badge-row kpi-value-badge-row--tight"><span class="variation-badge ${meta.cls}" data-tooltip="${escapeHtml(growthTip)}" title="${escapeHtml(growthTip)}">${meta.arrow} ${meta.text}</span></p>
-    <p class="kpi-prediction-price" title="${escapeHtml(predTip)}">${asCurrencyOrNA(predValue)}</p>
-  </div>`;
+  div.className = "kpi-card";
+  div.innerHTML = `<h3>${kpiTitleHtml("Current median prediction price", "growth.png")}</h3><p title="${escapeHtml(predTip)}">${asCurrencyOrNA(predValue)}</p>`;
+  const sub = document.createElement("div");
+  sub.className = `kpi-variation ${meta.cls}`;
+  sub.textContent = `${meta.arrow} ${meta.text} median growth`;
+  sub.title = growthTip;
+  div.appendChild(sub);
   return div;
 }
 

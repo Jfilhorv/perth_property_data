@@ -174,39 +174,6 @@ main {
   padding: 0;
 }
 
-.kpi-value-badge-row {
-  margin: 10px 0 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 2rem;
-}
-
-.kpi-value-badge-row--tight {
-  margin-top: 0;
-  min-height: auto;
-}
-
-.kpi-card--growth-prediction .kpi-dual-values {
-  margin-top: 8px;
-}
-
-.kpi-card--growth-prediction .variation-badge {
-  font-size: 13px;
-  padding: 5px 12px;
-  font-weight: 700;
-}
-
-.kpi-prediction-price {
-  margin: 8px 0 0;
-  font-size: clamp(15px, 1.75vw, 24px);
-  font-weight: 700;
-  color: #1d4ed8;
-  line-height: 1.15;
-  word-break: break-word;
-  text-align: center;
-}
-
 .kpi-footnote {
   margin: 0;
   font-size: 11px;
