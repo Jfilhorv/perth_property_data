@@ -12,7 +12,7 @@
     <title>Perth Property Data</title>
     <link rel="icon" href="./assets/favicon.png?v=1" type="image/png" />
     <link rel="apple-touch-icon" href="./assets/favicon.png?v=1" />
-    <link rel="stylesheet" href="./styles.css?v=20260331-property-physical-cols" />
+    <link rel="stylesheet" href="./styles.css?v=20260331-property-type-filter-col" />
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -85,6 +85,10 @@
           </select>
           <label for="bathroomSelect">Baths</label>
           <select id="bathroomSelect">
+            <option value="">Any</option>
+          </select>
+          <label for="propertyTypeSelect">Type</label>
+          <select id="propertyTypeSelect">
             <option value="">Any</option>
           </select>
           <div class="range-filter">
@@ -224,6 +228,7 @@
               <thead>
                 <tr>
                   <th class="sortable" data-sort-key="Address" data-label="Address">Address</th>
+                  <th class="sortable" data-sort-key="latest_property_type" data-label="Type">Type</th>
                   <th class="sortable" data-sort-key="latest_bedrooms" data-label="Beds">Beds</th>
                   <th class="sortable" data-sort-key="latest_bathrooms" data-label="Baths">Baths</th>
                   <th class="sortable" data-sort-key="latest_parking_spaces" data-label="Parking">Parking</th>
@@ -267,7 +272,7 @@
       integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
       crossorigin=""
     ></script>
-    <script src="./app.js?v=20260331-address-grouping-fix"></script>
+    <script src="./app.js?v=20260331-property-type-filter-col"></script>
     <script
       data-goatcounter="https://efilhorv.goatcounter.com/count"
       async

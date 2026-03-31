@@ -49,6 +49,7 @@ let selectedFilters = {
   suburb: "",
   bedrooms: "",
   bathrooms: "",
+  propertyType: "",
   minPrice: null,
   maxPrice: null,
   year: "",
@@ -78,6 +79,7 @@ function propertyPagerContextKey() {
     suburb: selectedFilters.suburb,
     bedrooms: selectedFilters.bedrooms,
     bathrooms: selectedFilters.bathrooms,
+    propertyType: selectedFilters.propertyType,
     minPrice: selectedFilters.minPrice,
     maxPrice: selectedFilters.maxPrice,
     year: selectedFilters.year,
@@ -751,10 +753,15 @@ function renderSuburbOptions() {
 function renderBedroomBathroomOptions() {
   const bedSelect = document.getElementById("bedroomSelect");
   const bathSelect = document.getElementById("bathroomSelect");
+  const typeSelect = document.getElementById("propertyTypeSelect");
   const beds = [...new Set(listingsLatest.map((r) => r.Bedrooms))].filter(Number.isFinite).sort((a, b) => a - b);
   const baths = [...new Set(listingsLatest.map((r) => r.Bathrooms))].filter(Number.isFinite).sort((a, b) => a - b);
+  const types = [...new Set(listingsLatest.map((r) => String(r.Property_Type || "").trim()).filter(Boolean))].sort((a, b) =>
+    a.localeCompare(b)
+  );
   bedSelect.innerHTML = '<option value="">Any</option>';
   bathSelect.innerHTML = '<option value="">Any</option>';
+  if (typeSelect) typeSelect.innerHTML = '<option value="">Any</option>';
   beds.forEach((v) => {
     const opt = document.createElement("option");
     opt.value = String(v);
@@ -767,6 +774,14 @@ function renderBedroomBathroomOptions() {
     opt.textContent = String(v);
     bathSelect.appendChild(opt);
   });
+  if (typeSelect) {
+    types.forEach((v) => {
+      const opt = document.createElement("option");
+      opt.value = v;
+      opt.textContent = v;
+      typeSelect.appendChild(opt);
+    });
+  }
 }
 
 function aggregateSuburbStats(rows) {
@@ -994,6 +1009,7 @@ function aggregateAddressStats(rows) {
         latest_land_size: Number(latestListing?.Land_Size),
         latest_sale_price: Number(latestListing?.Price),
         latest_sale_date: String(latestListing?.Date_Sold || ""),
+        latest_property_type: String(latestListing?.Property_Type || "").trim() || "—",
       };
     })
     .sort((a, b) => b.count - a.count || b.median_price - a.median_price);
@@ -1009,13 +1025,15 @@ function getFilteredCoreRows() {
     const bySuburb = !selectedFilters.suburb || suburb === selectedFilters.suburb;
     const byBeds = !selectedFilters.bedrooms || String(row.Bedrooms) === selectedFilters.bedrooms;
     const byBaths = !selectedFilters.bathrooms || String(row.Bathrooms) === selectedFilters.bathrooms;
+    const byType =
+      !selectedFilters.propertyType || String(row.Property_Type || "").trim() === selectedFilters.propertyType;
     const byMinPrice = !Number.isFinite(selectedFilters.minPrice) || row.Price >= selectedFilters.minPrice;
     const byMaxPrice = !Number.isFinite(selectedFilters.maxPrice) || row.Price <= selectedFilters.maxPrice;
     const rowByYear =
       y === "" || y === null || y === undefined
         ? true
         : Number.isFinite(Number(row.Year)) && Number(row.Year) === Number(y);
-    return byHouse && bySuburb && byBeds && byBaths && byMinPrice && byMaxPrice && rowByYear;
+    return byHouse && bySuburb && byBeds && byBaths && byType && byMinPrice && byMaxPrice && rowByYear;
   });
 }
 
@@ -1145,6 +1163,7 @@ function renderPropertyTable(coreRows) {
           ${escapeHtml(row.Address)}
         </button>
       </td>
+      <td>${escapeHtml(row.latest_property_type)}</td>
       <td>
         <span class="table-physical-cell">
           <img class="table-physical-cell__icon" src="./assets/bed.png" alt="Beds" loading="lazy" decoding="async" />
@@ -1256,9 +1275,11 @@ function getRowsForYearlyChart() {
     const bySuburb = !selectedFilters.suburb || row.Suburb === selectedFilters.suburb;
     const byBeds = !selectedFilters.bedrooms || String(row.Bedrooms) === selectedFilters.bedrooms;
     const byBaths = !selectedFilters.bathrooms || String(row.Bathrooms) === selectedFilters.bathrooms;
+    const byType =
+      !selectedFilters.propertyType || String(row.Property_Type || "").trim() === selectedFilters.propertyType;
     const byMinPrice = !Number.isFinite(selectedFilters.minPrice) || row.Price >= selectedFilters.minPrice;
     const byMaxPrice = !Number.isFinite(selectedFilters.maxPrice) || row.Price <= selectedFilters.maxPrice;
-    return bySuburb && byBeds && byBaths && byMinPrice && byMaxPrice;
+    return bySuburb && byBeds && byBaths && byType && byMinPrice && byMaxPrice;
   });
   return applyTableInteractionToRows(baseRows);
 }
@@ -1287,13 +1308,15 @@ function getFilteredRowsBase() {
     const bySuburb = !selectedFilters.suburb || row.Suburb === selectedFilters.suburb;
     const byBeds = !selectedFilters.bedrooms || String(row.Bedrooms) === selectedFilters.bedrooms;
     const byBaths = !selectedFilters.bathrooms || String(row.Bathrooms) === selectedFilters.bathrooms;
+    const byType =
+      !selectedFilters.propertyType || String(row.Property_Type || "").trim() === selectedFilters.propertyType;
     const byMinPrice = !Number.isFinite(selectedFilters.minPrice) || row.Price >= selectedFilters.minPrice;
     const byMaxPrice = !Number.isFinite(selectedFilters.maxPrice) || row.Price <= selectedFilters.maxPrice;
     const rowByYear =
       y === "" || y === null || y === undefined
         ? true
         : Number.isFinite(Number(row.Year)) && Number(row.Year) === Number(y);
-    return byHouse && bySuburb && byBeds && byBaths && byMinPrice && byMaxPrice && rowByYear;
+    return byHouse && bySuburb && byBeds && byBaths && byType && byMinPrice && byMaxPrice && rowByYear;
   });
 }
 
@@ -1305,13 +1328,15 @@ function getDistributionRows() {
     const byHouse = !hkLock || houseKey(row) === hkLock;
     const byBeds = !selectedFilters.bedrooms || String(row.Bedrooms) === selectedFilters.bedrooms;
     const byBaths = !selectedFilters.bathrooms || String(row.Bathrooms) === selectedFilters.bathrooms;
+    const byType =
+      !selectedFilters.propertyType || String(row.Property_Type || "").trim() === selectedFilters.propertyType;
     const byMinPrice = !Number.isFinite(selectedFilters.minPrice) || row.Price >= selectedFilters.minPrice;
     const byMaxPrice = !Number.isFinite(selectedFilters.maxPrice) || row.Price <= selectedFilters.maxPrice;
     const rowByYear =
       y === "" || y === null || y === undefined
         ? true
         : Number.isFinite(Number(row.Year)) && Number(row.Year) === Number(y);
-    return byHouse && byBeds && byBaths && byMinPrice && byMaxPrice && rowByYear;
+    return byHouse && byBeds && byBaths && byType && byMinPrice && byMaxPrice && rowByYear;
   });
   return applyTableInteractionToRows(rows);
 }
@@ -1749,6 +1774,7 @@ function hasActiveDataFilters() {
   if (selectedFilters.suburb) return true;
   if (selectedFilters.bedrooms) return true;
   if (selectedFilters.bathrooms) return true;
+  if (selectedFilters.propertyType) return true;
   if (selectedFilters.year !== "" && selectedFilters.year != null) return true;
   if (selectedFilters.filterHouseKey) return true;
   if (selectedFilters.chartHouseKey) return true;
@@ -1776,6 +1802,9 @@ function getActiveFilterChipDescriptors() {
   }
   if (selectedFilters.bathrooms) {
     chips.push({ id: "bathrooms", label: `${selectedFilters.bathrooms} Baths` });
+  }
+  if (selectedFilters.propertyType) {
+    chips.push({ id: "propertyType", label: `Type: ${selectedFilters.propertyType}` });
   }
   if (selectedFilters.year !== "" && selectedFilters.year != null) {
     chips.push({ id: "year", label: String(selectedFilters.year) });
@@ -1831,6 +1860,11 @@ function clearFilterChip(chipId) {
     case "bathrooms":
       selectedFilters.bathrooms = "";
       document.getElementById("bathroomSelect").value = "";
+      applyFilters();
+      return;
+    case "propertyType":
+      selectedFilters.propertyType = "";
+      document.getElementById("propertyTypeSelect").value = "";
       applyFilters();
       return;
     case "year":
@@ -2448,6 +2482,12 @@ async function init() {
     selectedFilters.bathrooms = e.target.value || "";
     applyFilters();
   });
+  const propertyTypeSelect = document.getElementById("propertyTypeSelect");
+  propertyTypeSelect?.addEventListener("change", (e) => {
+    selectedFilters.filterHouseKey = "";
+    selectedFilters.propertyType = e.target.value || "";
+    applyFilters();
+  });
   const updatePriceRangeLabel = () => {
     const minValue = Number(minPriceRange.value);
     const maxValue = Number(maxPriceRange.value);
@@ -2470,6 +2510,7 @@ async function init() {
     selectedFilters.suburb = "";
     selectedFilters.bedrooms = "";
     selectedFilters.bathrooms = "";
+    selectedFilters.propertyType = "";
     selectedFilters.year = "";
     selectedFilters.chartHouseKey = "";
     selectedFilters.filterHouseKey = "";
@@ -2481,6 +2522,7 @@ async function init() {
     suburbSelect.value = "";
     bedroomSelect.value = "";
     bathroomSelect.value = "";
+    if (propertyTypeSelect) propertyTypeSelect.value = "";
     minPriceRange.value = "0";
     maxPriceRange.value = String(safeMaxPrice);
     const gfs = document.getElementById("globalFilterSearchInput");
