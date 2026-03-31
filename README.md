@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://jfilhorv.github.io/perth_property_data/dashboard/">
-    <img src="dashboard/assets/perth-property-logo.png" alt="Perth Property Data wordmark" width="320" />
+    <img src="dashboard/assets/logo_browser.png" alt="Perth Property Data logo" width="460" />
   </a>
 </p>
 
@@ -178,7 +178,7 @@ Listing data and third-party spatial extracts (PTA, parks, etc.) may be subject 
 
 <p align="center">
   <a href="https://jfilhorv.github.io/perth_property_data/dashboard/">
-    <img src="dashboard/assets/perth-property-logo.png" alt="Perth Property Data wordmark" width="220" />
+    <img src="dashboard/assets/logo.png" alt="Perth Property Data logo" width="190" />
   </a>
 </p>
 
