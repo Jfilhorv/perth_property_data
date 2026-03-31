@@ -94,6 +94,23 @@ function applyTableInteractionToRows(rows) {
   }
   return arr;
 }
+
+function setTableInteractionSuburb(suburb) {
+  const normalized = normalizeSuburbName(suburb || "");
+  const same = !selectedFilters.interactionHouseKey && selectedFilters.interactionSuburb === normalized;
+  selectedFilters.interactionHouseKey = "";
+  selectedFilters.interactionSuburb = same ? "" : normalized;
+  applyFilters();
+}
+
+function setTableInteractionProperty(propertyKey) {
+  const key = String(propertyKey || "");
+  if (!key) return;
+  const same = selectedFilters.interactionHouseKey && selectedFilters.interactionHouseKey === key;
+  selectedFilters.interactionSuburb = "";
+  selectedFilters.interactionHouseKey = same ? "" : key;
+  applyFilters();
+}
 let currentSuburbView = "table";
 let distributionAxisTooltipEl = null;
 const suburbBandPlugin = {
@@ -950,9 +967,14 @@ function renderSuburbTable(rows) {
     const tr = document.createElement("tr");
     const isActiveInteraction =
       !selectedFilters.interactionHouseKey && selectedFilters.interactionSuburb === row.Suburb;
+    tr.setAttribute("data-suburb-focus", row.Suburb);
     tr.classList.toggle("table-row--active-filter", isActiveInteraction);
     tr.innerHTML = `
-      <td>${row.Suburb}</td>
+      <td>
+        <button type="button" class="table-focus-btn" data-suburb-focus-btn="${escapeHtml(row.Suburb)}" title="Filter charts/map by this suburb">
+          ${row.Suburb}
+        </button>
+      </td>
       <td>${numberFmt.format(row.count)}</td>
       <td>${currency.format(row.median_price)}</td>
       <td><span class="variation-badge ${varMeta.cls}" data-tooltip="${tooltipText}" title="${tooltipText}">${varMeta.arrow} ${varMeta.text}</span></td>
@@ -965,12 +987,6 @@ function renderSuburbTable(rows) {
     `;
     tr.title = "Click to filter charts/map by this suburb (click again to clear)";
     tr.classList.add("table-row--clickable");
-    tr.addEventListener("click", () => {
-      const same = !selectedFilters.interactionHouseKey && selectedFilters.interactionSuburb === row.Suburb;
-      selectedFilters.interactionHouseKey = "";
-      selectedFilters.interactionSuburb = same ? "" : row.Suburb;
-      applyFilters();
-    });
     body.appendChild(tr);
   }
 }
@@ -1024,10 +1040,17 @@ function renderPropertyTable(coreRows) {
       "Illustrative only (not advice): median × (1 + r)^2 over 2 years, r = half of Avg resale growth %, capped to ±6%/yr in the formula — not double the percentage.";
     const predText = Number.isFinite(row.prediction_price_2y) ? currency.format(row.prediction_price_2y) : "N/A";
     const tr = document.createElement("tr");
+    tr.setAttribute("data-property-focus", row.property_key);
     const isActiveInteraction = selectedFilters.interactionHouseKey && selectedFilters.interactionHouseKey === row.property_key;
     tr.classList.toggle("table-row--active-filter", isActiveInteraction);
     tr.innerHTML = `
-      <td>${escapeHtml(row.Address)}</td>
+      <td>
+        <button type="button" class="table-focus-btn table-focus-btn--address" data-property-focus-btn="${escapeHtml(
+          row.property_key
+        )}" title="Filter charts/map by this property">
+          ${escapeHtml(row.Address)}
+        </button>
+      </td>
       <td>${numberFmt.format(row.count)}</td>
       <td>${currency.format(row.median_price)}</td>
       <td><span class="variation-badge ${varMeta.cls}" data-tooltip="${escapeHtml(tooltipText)}" title="${escapeHtml(tooltipText)}">${varMeta.arrow} ${varMeta.text}</span></td>
@@ -1040,12 +1063,6 @@ function renderPropertyTable(coreRows) {
     `;
     tr.title = "Click to filter charts/map by this property (click again to clear)";
     tr.classList.add("table-row--clickable");
-    tr.addEventListener("click", () => {
-      const same = selectedFilters.interactionHouseKey && selectedFilters.interactionHouseKey === row.property_key;
-      selectedFilters.interactionSuburb = "";
-      selectedFilters.interactionHouseKey = same ? "" : row.property_key;
-      applyFilters();
-    });
     body.appendChild(tr);
   }
   if (pagerEl && pagerMeta && pagerPrev && pagerNext) {
@@ -2416,6 +2433,18 @@ async function init() {
       applyFilters();
     });
   });
+  document.getElementById("suburbTableBody")?.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-suburb-focus-btn]");
+    if (btn) {
+      const suburbFromBtn = btn.getAttribute("data-suburb-focus-btn");
+      setTableInteractionSuburb(suburbFromBtn);
+      return;
+    }
+    const row = e.target.closest("tr[data-suburb-focus]");
+    if (!row) return;
+    const suburb = row.getAttribute("data-suburb-focus");
+    setTableInteractionSuburb(suburb);
+  });
   document.querySelectorAll("#propertyTableWrap th.sortable").forEach((cell) => {
     cell.addEventListener("click", () => {
       const nextKey = cell.getAttribute("data-sort-key");
@@ -2429,6 +2458,18 @@ async function init() {
       updatePropertyTableSortIndicators();
       applyFilters();
     });
+  });
+  document.getElementById("propertyTableBody")?.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-property-focus-btn]");
+    if (btn) {
+      const keyFromBtn = btn.getAttribute("data-property-focus-btn");
+      setTableInteractionProperty(keyFromBtn);
+      return;
+    }
+    const row = e.target.closest("tr[data-property-focus]");
+    if (!row) return;
+    const key = row.getAttribute("data-property-focus");
+    setTableInteractionProperty(key);
   });
   document.getElementById("propertyTablePagerPrev")?.addEventListener("click", () => {
     if (propertyTablePage <= 1) return;
