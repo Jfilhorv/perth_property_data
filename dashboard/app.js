@@ -756,6 +756,7 @@ function renderBedroomBathroomOptions() {
 
 function aggregateSuburbStats(rows) {
   const mapBySuburb = new Map();
+  const suburbSaleEvents = new Map();
   rows.forEach((row) => {
     if (!row.Suburb) return;
     const current = mapBySuburb.get(row.Suburb) || {
@@ -790,6 +791,11 @@ function aggregateSuburbStats(rows) {
       current.geoCount += 1;
     }
     mapBySuburb.set(row.Suburb, current);
+    if (!suburbSaleEvents.has(row.Suburb)) suburbSaleEvents.set(row.Suburb, new Map());
+    const byHouse = suburbSaleEvents.get(row.Suburb);
+    const hk = houseKey(row);
+    if (!byHouse.has(hk)) byHouse.set(hk, []);
+    byHouse.get(hk).push(row);
   });
   return [...mapBySuburb.values()]
     .map((v) => {
@@ -822,9 +828,18 @@ function aggregateSuburbStats(rows) {
       const annualGrowthYearCount = growthInfo && Number.isFinite(growthInfo.yearCount) ? growthInfo.yearCount : 0;
       const medianPriceVal = sorted[mid] ?? 0;
       const prediction_price_2y = conservativeProjectedMedianPrice(medianPriceVal, avgAnnualGrowthPct);
+      let salesCount = v.count;
+      const byHouse = suburbSaleEvents.get(v.Suburb);
+      if (byHouse) {
+        let dedupTotal = 0;
+        for (const [, houseRows] of byHouse) {
+          dedupTotal += collapseSalesSamePropertyDay(houseRows).length;
+        }
+        if (dedupTotal > 0) salesCount = dedupTotal;
+      }
       return {
         Suburb: v.Suburb,
-        count: v.count,
+        count: salesCount,
         median_price: medianPriceVal,
         variation_pct: variationPct,
         avg_annual_growth_pct: avgAnnualGrowthPct,
