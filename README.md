@@ -1,11 +1,11 @@
 <p align="center">
-  <a href="https://github.com/Jfilhorv/perth_property_data">
+  <a href="https://jfilhorv.github.io/perth_property_data/dashboard/">
     <img src="dashboard/assets/perth-property-logo.png" alt="Perth Property Data wordmark" width="320" />
   </a>
 </p>
 
 <p align="center">
-  <a href="https://github.com/Jfilhorv/perth_property_data">https://github.com/Jfilhorv/perth_property_data</a>
+  <a href="https://jfilhorv.github.io/perth_property_data/dashboard/">https://jfilhorv.github.io/perth_property_data/dashboard/</a>
 </p>
 
 <p align="center">
@@ -192,6 +192,12 @@ Bundled under `dashboard/assets/`:
 Listing data and third-party spatial extracts (PTA, parks, etc.) may be subject to **their own terms**. Use this project in line with those sources and applicable law.
 
 ---
+
+<p align="center">
+  <a href="https://jfilhorv.github.io/perth_property_data/dashboard/">
+    <img src="dashboard/assets/perth-property-logo.png" alt="Perth Property Data wordmark" width="220" />
+  </a>
+</p>
 
 <p align="center">
   <sub>Built for clear, filter-driven exploration of Perth property sales.</sub>
