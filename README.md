@@ -5,10 +5,6 @@
 </p>
 
 <p align="center">
-  <a href="https://jfilhorv.github.io/perth_property_data/dashboard/">https://jfilhorv.github.io/perth_property_data/dashboard/</a>
-</p>
-
-<p align="center">
   <img src="dashboard/assets/favicon.png" alt="Perth Property Data icon" width="72" height="72" />
 </p>
 
@@ -141,7 +137,6 @@ The other JSON files in `dashboard/data/` are **still produced** by the pipeline
 
 - **Python 3.10+** (or compatible) with **pandas** installed (`pip install pandas` if needed).
 - A modern browser for the dashboard.
-- For local preview, any static file server (see below). Opening `index.html` via `file://` often breaks `fetch()` for JSON — use **http://** instead.
 
 ---
 
@@ -162,18 +157,6 @@ node scripts/sanitize_dashboard_data_min_price.js
 ```
 
 If you have the PTA GeoJSON datasets in the expected folders (`Stops_PTA_001_…`, `Service_Routes_PTA_002_…`), the same command also rebuilds the simplified transport layers used by the map.
-
----
-
-## Run the dashboard locally
-
-```bash
-python -m http.server 8000
-```
-
-Then open:
-
-**http://localhost:8000/dashboard/**
 
 ---
 
