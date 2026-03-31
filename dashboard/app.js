@@ -911,12 +911,14 @@ function aggregateAddressStats(rows) {
         if (bid > aid) latestListing = rr;
       }
       const propGrowth = propertyStabilizedAnnualGrowth(v.rawRows);
+      const uniqueSaleEvents = collapseSalesSamePropertyDay(v.rawRows);
+      const salesCount = uniqueSaleEvents.length || v.count;
       const medianPriceVal = sorted[mid] ?? 0;
       const prediction_price_2y = conservativeProjectedMedianPrice(medianPriceVal, propGrowth.avgPct);
       return {
         property_key: propertyKey,
         Address: v.Address,
-        count: v.count,
+        count: salesCount,
         median_price: medianPriceVal,
         variation_pct: variationPct,
         avg_annual_growth_pct: propGrowth.avgPct,
