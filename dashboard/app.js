@@ -56,6 +56,10 @@ let selectedFilters = {
   chartHouseKey: "",
   /** when set (e.g. global search / map on a listing), KPIs/tables/map only include this property */
   filterHouseKey: "",
+  /** cross-filter from table clicks; affects charts/map/KPIs, not table rows */
+  interactionSuburb: "",
+  /** cross-filter from table clicks; affects charts/map/KPIs, not table rows */
+  interactionHouseKey: "",
 };
 let currentSuburbTableSort = { key: "count", dir: "desc" };
 let currentPropertyTableSort = { key: "count", dir: "desc" };
@@ -78,6 +82,17 @@ function propertyPagerContextKey() {
     sortKey: currentPropertyTableSort.key,
     sortDir: currentPropertyTableSort.dir,
   });
+}
+
+function applyTableInteractionToRows(rows) {
+  const arr = Array.isArray(rows) ? rows : [];
+  if (selectedFilters.interactionHouseKey) {
+    return arr.filter((row) => houseKey(row) === selectedFilters.interactionHouseKey);
+  }
+  if (selectedFilters.interactionSuburb) {
+    return arr.filter((row) => normalizeSuburbName(row.Suburb) === selectedFilters.interactionSuburb);
+  }
+  return arr;
 }
 let currentSuburbView = "table";
 let distributionAxisTooltipEl = null;
@@ -827,8 +842,8 @@ function aggregateAddressStats(rows) {
     }
     mapByKey.set(key, current);
   });
-  return [...mapByKey.values()]
-    .map((v) => {
+  return [...mapByKey.entries()]
+    .map(([propertyKey, v]) => {
       const sorted = v.prices.sort((a, b) => a - b);
       const psmSorted = v.psmValues.sort((a, b) => a - b);
       const mid = Math.floor((sorted.length - 1) * 0.5);
@@ -852,6 +867,7 @@ function aggregateAddressStats(rows) {
       const medianPriceVal = sorted[mid] ?? 0;
       const prediction_price_2y = conservativeProjectedMedianPrice(medianPriceVal, propGrowth.avgPct);
       return {
+        property_key: propertyKey,
         Address: v.Address,
         count: v.count,
         median_price: medianPriceVal,
@@ -932,6 +948,9 @@ function renderSuburbTable(rows) {
       "Illustrative only (not advice): median × (1 + r)^2 over 2 years, r = half of Avg resale growth %, capped to ±6%/yr in the formula — not double the percentage.";
     const predText = Number.isFinite(row.prediction_price_2y) ? currency.format(row.prediction_price_2y) : "N/A";
     const tr = document.createElement("tr");
+    const isActiveInteraction =
+      !selectedFilters.interactionHouseKey && selectedFilters.interactionSuburb === row.Suburb;
+    tr.classList.toggle("table-row--active-filter", isActiveInteraction);
     tr.innerHTML = `
       <td>${row.Suburb}</td>
       <td>${numberFmt.format(row.count)}</td>
@@ -944,6 +963,14 @@ function renderSuburbTable(rows) {
       <td>${currency.format(row.lowest_price)}</td>
       <td>${formatDistance(row.avg_distance_to_cbd)}</td>
     `;
+    tr.title = "Click to filter charts/map by this suburb (click again to clear)";
+    tr.classList.add("table-row--clickable");
+    tr.addEventListener("click", () => {
+      const same = !selectedFilters.interactionHouseKey && selectedFilters.interactionSuburb === row.Suburb;
+      selectedFilters.interactionHouseKey = "";
+      selectedFilters.interactionSuburb = same ? "" : row.Suburb;
+      applyFilters();
+    });
     body.appendChild(tr);
   }
 }
@@ -997,6 +1024,8 @@ function renderPropertyTable(coreRows) {
       "Illustrative only (not advice): median × (1 + r)^2 over 2 years, r = half of Avg resale growth %, capped to ±6%/yr in the formula — not double the percentage.";
     const predText = Number.isFinite(row.prediction_price_2y) ? currency.format(row.prediction_price_2y) : "N/A";
     const tr = document.createElement("tr");
+    const isActiveInteraction = selectedFilters.interactionHouseKey && selectedFilters.interactionHouseKey === row.property_key;
+    tr.classList.toggle("table-row--active-filter", isActiveInteraction);
     tr.innerHTML = `
       <td>${escapeHtml(row.Address)}</td>
       <td>${numberFmt.format(row.count)}</td>
@@ -1009,6 +1038,14 @@ function renderPropertyTable(coreRows) {
       <td>${currency.format(row.lowest_price)}</td>
       <td>${formatDistance(row.avg_distance_to_cbd)}</td>
     `;
+    tr.title = "Click to filter charts/map by this property (click again to clear)";
+    tr.classList.add("table-row--clickable");
+    tr.addEventListener("click", () => {
+      const same = selectedFilters.interactionHouseKey && selectedFilters.interactionHouseKey === row.property_key;
+      selectedFilters.interactionSuburb = "";
+      selectedFilters.interactionHouseKey = same ? "" : row.property_key;
+      applyFilters();
+    });
     body.appendChild(tr);
   }
   if (pagerEl && pagerMeta && pagerPrev && pagerNext) {
@@ -1080,7 +1117,7 @@ function getRowsForYearlyChart() {
         rowMeetsPriceFloor(r)
     );
   }
-  return listingsLatest.filter((row) => {
+  const baseRows = listingsLatest.filter((row) => {
     if (!rowMeetsPriceFloor(row)) return false;
     const bySuburb = !selectedFilters.suburb || row.Suburb === selectedFilters.suburb;
     const byBeds = !selectedFilters.bedrooms || String(row.Bedrooms) === selectedFilters.bedrooms;
@@ -1089,6 +1126,7 @@ function getRowsForYearlyChart() {
     const byMaxPrice = !Number.isFinite(selectedFilters.maxPrice) || row.Price <= selectedFilters.maxPrice;
     return bySuburb && byBeds && byBaths && byMinPrice && byMaxPrice;
   });
+  return applyTableInteractionToRows(baseRows);
 }
 
 function yearlyChartDatasetLabel() {
@@ -1102,6 +1140,11 @@ function yearlyChartDatasetLabel() {
 }
 
 function getFilteredRows() {
+  const rows = getFilteredRowsBase();
+  return applyTableInteractionToRows(rows);
+}
+
+function getFilteredRowsBase() {
   const y = selectedFilters.year;
   const hkLock = selectedFilters.filterHouseKey;
   return listingsLatest.filter((row) => {
@@ -1123,7 +1166,7 @@ function getFilteredRows() {
 function getDistributionRows() {
   const y = selectedFilters.year;
   const hkLock = selectedFilters.filterHouseKey;
-  return listingsLatest.filter((row) => {
+  const rows = listingsLatest.filter((row) => {
     if (!rowMeetsPriceFloor(row)) return false;
     const byHouse = !hkLock || houseKey(row) === hkLock;
     const byBeds = !selectedFilters.bedrooms || String(row.Bedrooms) === selectedFilters.bedrooms;
@@ -1136,6 +1179,7 @@ function getDistributionRows() {
         : Number.isFinite(Number(row.Year)) && Number(row.Year) === Number(y);
     return byHouse && byBeds && byBaths && byMinPrice && byMaxPrice && rowByYear;
   });
+  return applyTableInteractionToRows(rows);
 }
 
 function setSuburbFilter(nextSuburb, applyNow = true) {
@@ -1574,6 +1618,8 @@ function hasActiveDataFilters() {
   if (selectedFilters.year !== "" && selectedFilters.year != null) return true;
   if (selectedFilters.filterHouseKey) return true;
   if (selectedFilters.chartHouseKey) return true;
+  if (selectedFilters.interactionSuburb) return true;
+  if (selectedFilters.interactionHouseKey) return true;
   if (Number(selectedFilters.minPrice) > 0) return true;
   if (
     dashboardDefaultMaxPrice != null &&
@@ -1619,6 +1665,14 @@ function getActiveFilterChipDescriptors() {
     const short = addr.length > 36 ? `${addr.slice(0, 34)}…` : addr || "Property chart";
     chips.push({ id: "chartHouse", label: short });
   }
+  if (selectedFilters.interactionHouseKey) {
+    const row = listingsCore.find((r) => houseKey(r) === selectedFilters.interactionHouseKey);
+    const addr = row ? String(row.Address || "").trim() : "";
+    const short = addr.length > 36 ? `${addr.slice(0, 34)}…` : addr || "Property focus";
+    chips.push({ id: "tableFocus", label: `Table focus: ${short}` });
+  } else if (selectedFilters.interactionSuburb) {
+    chips.push({ id: "tableFocus", label: `Table focus: ${selectedFilters.interactionSuburb}` });
+  }
   return chips;
 }
 
@@ -1655,6 +1709,11 @@ function clearFilterChip(chipId) {
       applyFilters();
       return;
     }
+    case "tableFocus":
+      selectedFilters.interactionSuburb = "";
+      selectedFilters.interactionHouseKey = "";
+      applyFilters();
+      return;
     case "price": {
       const defMax = dashboardDefaultMaxPrice;
       const minR = document.getElementById("minPriceRange");
@@ -1709,9 +1768,11 @@ function updateClearFiltersButtonHighlight() {
 
 function applyFilters() {
   const filteredRows = getFilteredRows();
+  const tableRows = getFilteredRowsBase();
+  const tableCoreRows = getFilteredCoreRows();
   renderKpis(summaryStats, filteredRows);
-  renderSuburbTable(filteredRows);
-  renderPropertyTable(getFilteredCoreRows());
+  renderSuburbTable(tableRows);
+  renderPropertyTable(tableCoreRows);
   updateSuburbViewUi();
   renderMap(filteredRows);
   const chartType = document.getElementById("chartTypeSelect").value;
@@ -2267,6 +2328,8 @@ async function init() {
     selectedFilters.year = "";
     selectedFilters.chartHouseKey = "";
     selectedFilters.filterHouseKey = "";
+    selectedFilters.interactionSuburb = "";
+    selectedFilters.interactionHouseKey = "";
     selectedFilters.minPrice = 0;
     selectedFilters.maxPrice = safeMaxPrice;
     suburbSelect.value = "";
