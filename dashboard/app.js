@@ -603,6 +603,15 @@ function formatDistance(meters) {
   return `${distanceKmFmt.format(meters / 1000)} km`;
 }
 
+function formatCountOrDash(value) {
+  return Number.isFinite(value) ? numberFmt.format(value) : "—";
+}
+
+function formatLandSizeOrDash(value) {
+  if (!Number.isFinite(value) || value <= 0) return "—";
+  return `${numberFmt.format(Math.round(value))} m²`;
+}
+
 function escapeHtml(value) {
   return String(value ?? "")
     .replace(/&/g, "&amp;")
@@ -820,6 +829,10 @@ function aggregateSuburbStats(rows) {
 
 function aggregateAddressStats(rows) {
   const mapByKey = new Map();
+  const soldDateMs = (row) => {
+    const t = Date.parse(String(row.Date_Sold || ""));
+    return Number.isFinite(t) ? t : -Infinity;
+  };
   rows.forEach((row) => {
     const key = houseKey(row);
     if (!key) return;
@@ -880,6 +893,23 @@ function aggregateAddressStats(rows) {
           variationPct = ((latestMedianPrice - previousMedianPrice) / previousMedianPrice) * 100;
         }
       }
+      let latestListing = null;
+      for (const rr of v.rawRows) {
+        if (!latestListing) {
+          latestListing = rr;
+          continue;
+        }
+        const a = soldDateMs(latestListing);
+        const b = soldDateMs(rr);
+        if (b > a) {
+          latestListing = rr;
+          continue;
+        }
+        if (b < a) continue;
+        const aid = Number.isFinite(latestListing.Listing_ID) ? latestListing.Listing_ID : -Infinity;
+        const bid = Number.isFinite(rr.Listing_ID) ? rr.Listing_ID : -Infinity;
+        if (bid > aid) latestListing = rr;
+      }
       const propGrowth = propertyStabilizedAnnualGrowth(v.rawRows);
       const medianPriceVal = sorted[mid] ?? 0;
       const prediction_price_2y = conservativeProjectedMedianPrice(medianPriceVal, propGrowth.avgPct);
@@ -905,6 +935,10 @@ function aggregateAddressStats(rows) {
         previous_year: previousYear,
         latest_median_price: latestMedianPrice,
         previous_median_price: previousMedianPrice,
+        latest_bedrooms: Number(latestListing?.Bedrooms),
+        latest_bathrooms: Number(latestListing?.Bathrooms),
+        latest_parking_spaces: Number(latestListing?.Parking_Spaces),
+        latest_land_size: Number(latestListing?.Land_Size),
       };
     })
     .sort((a, b) => b.count - a.count || b.median_price - a.median_price);
@@ -1050,6 +1084,30 @@ function renderPropertyTable(coreRows) {
         )}" title="Filter charts/map by this property">
           ${escapeHtml(row.Address)}
         </button>
+      </td>
+      <td>
+        <span class="table-physical-cell">
+          <img class="table-physical-cell__icon" src="../bed.png" alt="Beds" loading="lazy" decoding="async" />
+          <span>${formatCountOrDash(row.latest_bedrooms)}</span>
+        </span>
+      </td>
+      <td>
+        <span class="table-physical-cell">
+          <img class="table-physical-cell__icon" src="../bath.png" alt="Baths" loading="lazy" decoding="async" />
+          <span>${formatCountOrDash(row.latest_bathrooms)}</span>
+        </span>
+      </td>
+      <td>
+        <span class="table-physical-cell">
+          <img class="table-physical-cell__icon" src="../parking.png" alt="Parking" loading="lazy" decoding="async" />
+          <span>${formatCountOrDash(row.latest_parking_spaces)}</span>
+        </span>
+      </td>
+      <td>
+        <span class="table-physical-cell">
+          <img class="table-physical-cell__icon" src="../land_size.png" alt="Land Size" loading="lazy" decoding="async" />
+          <span>${formatLandSizeOrDash(row.latest_land_size)}</span>
+        </span>
       </td>
       <td>${numberFmt.format(row.count)}</td>
       <td>${currency.format(row.median_price)}</td>

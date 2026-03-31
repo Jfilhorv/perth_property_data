@@ -452,7 +452,7 @@ section.panel:has(.filters):has(.clear-filters-btn--filtered) {
 }
 
 .table-wrap--properties table {
-  min-width: 1160px;
+  min-width: 1460px;
 }
 
 .table-wrap--properties table th:first-child,
@@ -1091,6 +1091,24 @@ td:nth-child(n + 2) {
   text-align: center;
 }
 
+#propertyTableWrap th:nth-child(8),
+#propertyTableWrap td:nth-child(8),
+#propertyTableWrap th:nth-child(9),
+#propertyTableWrap td:nth-child(9) {
+  text-align: center;
+}
+
+#propertyTableWrap th:nth-child(2),
+#propertyTableWrap td:nth-child(2),
+#propertyTableWrap th:nth-child(3),
+#propertyTableWrap td:nth-child(3),
+#propertyTableWrap th:nth-child(4),
+#propertyTableWrap td:nth-child(4),
+#propertyTableWrap th:nth-child(5),
+#propertyTableWrap td:nth-child(5) {
+  text-align: left;
+}
+
 .variation-badge {
   position: relative;
   display: inline-flex;
@@ -1183,6 +1201,20 @@ tbody tr.table-row--clickable {
 .table-focus-btn--address {
   white-space: normal;
   word-break: break-word;
+}
+
+.table-physical-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.table-physical-cell__icon {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  opacity: 0.95;
 }
 
 tbody tr.table-row--active-filter td {
