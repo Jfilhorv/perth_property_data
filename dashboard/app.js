@@ -72,7 +72,7 @@ let dashboardDefaultMaxPrice = null;
 const PROPERTY_TABLE_PAGE_SIZE = 100;
 let propertyTablePage = 1;
 let lastPropertyPagerContext = null;
-let propertyFallbackGrowthPct = NaN;
+let propertyFallbackGrowthBySuburb = new Map();
 
 function propertyPagerContextKey() {
   return JSON.stringify({
@@ -1010,6 +1010,7 @@ function aggregateAddressStats(rows) {
         latest_sale_price: Number(latestListing?.Price),
         latest_sale_date: String(latestListing?.Date_Sold || ""),
         latest_property_type: String(latestListing?.Property_Type || "").trim() || "—",
+        latest_suburb: normalizeSuburbName(latestListing?.Suburb),
       };
     })
     .sort((a, b) => b.count - a.count || b.median_price - a.median_price);
@@ -1136,7 +1137,8 @@ function renderPropertyTable(coreRows) {
           )}`
         : "Not enough yearly history";
     const hasOwnGrowth = Number.isFinite(row.avg_annual_growth_pct);
-    const growthSourcePct = hasOwnGrowth ? row.avg_annual_growth_pct : propertyFallbackGrowthPct;
+    const suburbFallback = propertyFallbackGrowthBySuburb.get(row.latest_suburb);
+    const growthSourcePct = hasOwnGrowth ? row.avg_annual_growth_pct : suburbFallback;
     const growthPct = clampResaleGrowthPercent(growthSourcePct);
     const growthMeta = getVariationMeta(growthPct);
     const growthTooltip =
@@ -1145,8 +1147,8 @@ function renderPropertyTable(coreRows) {
             row.annual_growth_interval_n
           )} resale interval(s) across ${numberFmt.format(row.annual_growth_year_count)} calendar year(s)`
         : Number.isFinite(growthPct)
-        ? `Fallback to general annual growth (${formatSignedPercent(growthPct)}) because this address has insufficient valid resale intervals`
-        : "No eligible resale CAGR and no fallback growth available";
+        ? `Fallback to suburb annual growth (${formatSignedPercent(growthPct)}) for ${row.latest_suburb || "this suburb"} because this address has insufficient valid resale intervals`
+        : "No eligible resale CAGR and no suburb fallback growth available";
     const predictedCurrent = predictCurrentPriceFromLastSale(row.latest_sale_price, growthPct, row.latest_sale_date);
     const predTip =
       "Prediction Current Price = last sale price adjusted linearly by annual growth and elapsed months since last sale.";
@@ -1945,10 +1947,12 @@ function applyFilters() {
   const filteredRows = getFilteredRows();
   const tableRows = getFilteredRowsBase();
   const tableCoreRows = getFilteredCoreRows();
-  const fallbackCandidates = aggregateSuburbStats(filteredRows)
-    .map((s) => s.avg_annual_growth_pct)
-    .filter((v) => Number.isFinite(v));
-  propertyFallbackGrowthPct = fallbackCandidates.length ? median(fallbackCandidates) : NaN;
+  propertyFallbackGrowthBySuburb = new Map();
+  aggregateSuburbStats(filteredRows).forEach((s) => {
+    if (Number.isFinite(s.avg_annual_growth_pct)) {
+      propertyFallbackGrowthBySuburb.set(normalizeSuburbName(s.Suburb), s.avg_annual_growth_pct);
+    }
+  });
   renderKpis(summaryStats, filteredRows);
   renderSuburbTable(tableRows);
   renderPropertyTable(tableCoreRows);
