@@ -5,6 +5,10 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/Jfilhorv/perth_property_data">https://github.com/Jfilhorv/perth_property_data</a>
+</p>
+
+<p align="center">
   <img src="dashboard/assets/favicon.png" alt="Perth Property Data icon" width="72" height="72" />
 </p>
 
