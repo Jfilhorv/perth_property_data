@@ -69,6 +69,7 @@ let dashboardDefaultMaxPrice = null;
 const PROPERTY_TABLE_PAGE_SIZE = 100;
 let propertyTablePage = 1;
 let lastPropertyPagerContext = null;
+let propertyFallbackGrowthPct = NaN;
 
 function propertyPagerContextKey() {
   return JSON.stringify({
@@ -612,6 +613,26 @@ function formatLandSizeOrDash(value) {
   return `${numberFmt.format(Math.round(value))} m²`;
 }
 
+function calcMonthsSince(dateText) {
+  const t = Date.parse(String(dateText || ""));
+  if (!Number.isFinite(t)) return NaN;
+  const d = new Date(t);
+  const now = new Date();
+  let months = (now.getFullYear() - d.getFullYear()) * 12 + (now.getMonth() - d.getMonth());
+  if (now.getDate() < d.getDate()) months -= 1;
+  return Math.max(0, months);
+}
+
+function predictCurrentPriceFromLastSale(lastPrice, annualGrowthPct, lastDateSold) {
+  if (!Number.isFinite(lastPrice) || lastPrice <= 0) return NaN;
+  if (!Number.isFinite(annualGrowthPct)) return NaN;
+  const months = calcMonthsSince(lastDateSold);
+  if (!Number.isFinite(months)) return NaN;
+  const annualRate = annualGrowthPct / 100;
+  const projected = lastPrice * (1 + annualRate * (months / 12));
+  return Number.isFinite(projected) && projected > 0 ? projected : NaN;
+}
+
 function escapeHtml(value) {
   return String(value ?? "")
     .replace(/&/g, "&amp;")
@@ -941,6 +962,8 @@ function aggregateAddressStats(rows) {
         latest_bathrooms: Number(latestListing?.Bathrooms),
         latest_parking_spaces: Number(latestListing?.Parking_Spaces),
         latest_land_size: Number(latestListing?.Land_Size),
+        latest_sale_price: Number(latestListing?.Price),
+        latest_sale_date: String(latestListing?.Date_Sold || ""),
       };
     })
     .sort((a, b) => b.count - a.count || b.median_price - a.median_price);
@@ -1064,17 +1087,22 @@ function renderPropertyTable(coreRows) {
             row.latest_median_price
           )}`
         : "Not enough yearly history";
-    const growthPct = clampResaleGrowthPercent(row.avg_annual_growth_pct);
+    const hasOwnGrowth = Number.isFinite(row.avg_annual_growth_pct);
+    const growthSourcePct = hasOwnGrowth ? row.avg_annual_growth_pct : propertyFallbackGrowthPct;
+    const growthPct = clampResaleGrowthPercent(growthSourcePct);
     const growthMeta = getVariationMeta(growthPct);
     const growthTooltip =
-      Number.isFinite(growthPct) && row.annual_growth_interval_n > 0
+      Number.isFinite(growthPct) && hasOwnGrowth && row.annual_growth_interval_n > 0
         ? `Mean of yearly mean CAGRs for this property (same rules as suburb column; display capped at ±${GROWTH_DISPLAY_CAP_ABS_PCT}%). ${numberFmt.format(
             row.annual_growth_interval_n
           )} resale interval(s) across ${numberFmt.format(row.annual_growth_year_count)} calendar year(s)`
-        : "No eligible resale CAGR (need 2+ sales with ≥1 year between and prices ≥ floor)";
+        : Number.isFinite(growthPct)
+        ? `Fallback to general annual growth (${formatSignedPercent(growthPct)}) because this address has insufficient valid resale intervals`
+        : "No eligible resale CAGR and no fallback growth available";
+    const predictedCurrent = predictCurrentPriceFromLastSale(row.latest_sale_price, growthPct, row.latest_sale_date);
     const predTip =
-      "Illustrative only (not advice): median × (1 + r)^2 over 2 years, r = half of Avg resale growth %, capped to ±6%/yr in the formula — not double the percentage.";
-    const predText = Number.isFinite(row.prediction_price_2y) ? currency.format(row.prediction_price_2y) : "N/A";
+      "Prediction Current Price = last sale price adjusted linearly by annual growth and elapsed months since last sale.";
+    const predText = Number.isFinite(predictedCurrent) ? currency.format(predictedCurrent) : "N/A";
     const tr = document.createElement("tr");
     tr.setAttribute("data-property-focus", row.property_key);
     const isActiveInteraction = selectedFilters.interactionHouseKey && selectedFilters.interactionHouseKey === row.property_key;
@@ -1112,7 +1140,6 @@ function renderPropertyTable(coreRows) {
         </span>
       </td>
       <td>${numberFmt.format(row.count)}</td>
-      <td>${currency.format(row.median_price)}</td>
       <td><span class="variation-badge ${varMeta.cls}" data-tooltip="${escapeHtml(tooltipText)}" title="${escapeHtml(tooltipText)}">${varMeta.arrow} ${varMeta.text}</span></td>
       <td><span class="variation-badge ${growthMeta.cls}" data-tooltip="${escapeHtml(growthTooltip)}" title="${escapeHtml(growthTooltip)}">${growthMeta.arrow} ${growthMeta.text}</span></td>
       <td title="${escapeHtml(predTip)}">${predText}</td>
@@ -1847,6 +1874,10 @@ function applyFilters() {
   const filteredRows = getFilteredRows();
   const tableRows = getFilteredRowsBase();
   const tableCoreRows = getFilteredCoreRows();
+  const fallbackCandidates = aggregateSuburbStats(filteredRows)
+    .map((s) => s.avg_annual_growth_pct)
+    .filter((v) => Number.isFinite(v));
+  propertyFallbackGrowthPct = fallbackCandidates.length ? median(fallbackCandidates) : NaN;
   renderKpis(summaryStats, filteredRows);
   renderSuburbTable(tableRows);
   renderPropertyTable(tableCoreRows);

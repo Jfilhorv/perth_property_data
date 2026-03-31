@@ -1084,17 +1084,10 @@ td:nth-child(n + 2) {
   text-align: center;
 }
 
-#propertyTableWrap th:nth-child(4),
-#propertyTableWrap td:nth-child(4),
-#propertyTableWrap th:nth-child(5),
-#propertyTableWrap td:nth-child(5) {
-  text-align: center;
-}
-
+#propertyTableWrap th:nth-child(7),
+#propertyTableWrap td:nth-child(7),
 #propertyTableWrap th:nth-child(8),
-#propertyTableWrap td:nth-child(8),
-#propertyTableWrap th:nth-child(9),
-#propertyTableWrap td:nth-child(9) {
+#propertyTableWrap td:nth-child(8) {
   text-align: center;
 }
 
