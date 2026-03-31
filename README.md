@@ -1,5 +1,7 @@
 <p align="center">
-  <img src="dashboard/assets/perth-property-logo.png" alt="Perth Property Data wordmark" width="320" />
+  <a href="https://github.com/Jfilhorv/perth_property_data">
+    <img src="dashboard/assets/perth-property-logo.png" alt="Perth Property Data wordmark" width="320" />
+  </a>
 </p>
 
 <p align="center">
