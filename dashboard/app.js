@@ -1087,25 +1087,25 @@ function renderPropertyTable(coreRows) {
       </td>
       <td>
         <span class="table-physical-cell">
-          <img class="table-physical-cell__icon" src="../bed.png" alt="Beds" loading="lazy" decoding="async" />
+          <img class="table-physical-cell__icon" src="./assets/bed.png" alt="Beds" loading="lazy" decoding="async" />
           <span>${formatCountOrDash(row.latest_bedrooms)}</span>
         </span>
       </td>
       <td>
         <span class="table-physical-cell">
-          <img class="table-physical-cell__icon" src="../bath.png" alt="Baths" loading="lazy" decoding="async" />
+          <img class="table-physical-cell__icon" src="./assets/bath.png" alt="Baths" loading="lazy" decoding="async" />
           <span>${formatCountOrDash(row.latest_bathrooms)}</span>
         </span>
       </td>
       <td>
         <span class="table-physical-cell">
-          <img class="table-physical-cell__icon" src="../parking.png" alt="Parking" loading="lazy" decoding="async" />
+          <img class="table-physical-cell__icon" src="./assets/parking.png" alt="Parking" loading="lazy" decoding="async" />
           <span>${formatCountOrDash(row.latest_parking_spaces)}</span>
         </span>
       </td>
       <td>
         <span class="table-physical-cell">
-          <img class="table-physical-cell__icon" src="../land_size.png" alt="Land Size" loading="lazy" decoding="async" />
+          <img class="table-physical-cell__icon" src="./assets/land_size.png" alt="Land Size" loading="lazy" decoding="async" />
           <span>${formatLandSizeOrDash(row.latest_land_size)}</span>
         </span>
       </td>
