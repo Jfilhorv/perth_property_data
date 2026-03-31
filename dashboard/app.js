@@ -60,6 +60,8 @@ let selectedFilters = {
   interactionSuburb: "",
   /** cross-filter from table clicks; affects charts/map/KPIs, not table rows */
   interactionHouseKey: "",
+  /** cross-filter from table clicks by address+suburb key */
+  interactionAddressKey: "",
 };
 let currentSuburbTableSort = { key: "count", dir: "desc" };
 let currentPropertyTableSort = { key: "count", dir: "desc" };
@@ -80,13 +82,21 @@ function propertyPagerContextKey() {
     maxPrice: selectedFilters.maxPrice,
     year: selectedFilters.year,
     filterHouseKey: selectedFilters.filterHouseKey,
+    interactionAddressKey: selectedFilters.interactionAddressKey,
     sortKey: currentPropertyTableSort.key,
     sortDir: currentPropertyTableSort.dir,
   });
 }
 
+function addressKeyFromRow(row) {
+  return `${canonicalSuburbKey(row?.Suburb)}|${canonicalAddressKey(row?.Address)}`;
+}
+
 function applyTableInteractionToRows(rows) {
   const arr = Array.isArray(rows) ? rows : [];
+  if (selectedFilters.interactionAddressKey) {
+    return arr.filter((row) => addressKeyFromRow(row) === selectedFilters.interactionAddressKey);
+  }
   if (selectedFilters.interactionHouseKey) {
     return arr.filter((row) => houseKey(row) === selectedFilters.interactionHouseKey);
   }
@@ -98,8 +108,12 @@ function applyTableInteractionToRows(rows) {
 
 function setTableInteractionSuburb(suburb) {
   const normalized = normalizeSuburbName(suburb || "");
-  const same = !selectedFilters.interactionHouseKey && selectedFilters.interactionSuburb === normalized;
+  const same =
+    !selectedFilters.interactionHouseKey &&
+    !selectedFilters.interactionAddressKey &&
+    selectedFilters.interactionSuburb === normalized;
   selectedFilters.interactionHouseKey = "";
+  selectedFilters.interactionAddressKey = "";
   selectedFilters.interactionSuburb = same ? "" : normalized;
   applyFilters();
 }
@@ -107,9 +121,10 @@ function setTableInteractionSuburb(suburb) {
 function setTableInteractionProperty(propertyKey) {
   const key = String(propertyKey || "");
   if (!key) return;
-  const same = selectedFilters.interactionHouseKey && selectedFilters.interactionHouseKey === key;
+  const same = selectedFilters.interactionAddressKey && selectedFilters.interactionAddressKey === key;
   selectedFilters.interactionSuburb = "";
-  selectedFilters.interactionHouseKey = same ? "" : key;
+  selectedFilters.interactionHouseKey = "";
+  selectedFilters.interactionAddressKey = same ? "" : key;
   applyFilters();
 }
 let currentSuburbView = "table";
@@ -870,7 +885,7 @@ function aggregateAddressStats(rows) {
     return Number.isFinite(t) ? t : -Infinity;
   };
   rows.forEach((row) => {
-    const key = houseKey(row);
+    const key = addressKeyFromRow(row);
     if (!key) return;
     const addr = String(row.Address || "").trim() || "Address unavailable";
     const current = mapByKey.get(key) || {
@@ -1120,7 +1135,7 @@ function renderPropertyTable(coreRows) {
     const predText = Number.isFinite(predictedCurrent) ? currency.format(predictedCurrent) : "N/A";
     const tr = document.createElement("tr");
     tr.setAttribute("data-property-focus", row.property_key);
-    const isActiveInteraction = selectedFilters.interactionHouseKey && selectedFilters.interactionHouseKey === row.property_key;
+    const isActiveInteraction = selectedFilters.interactionAddressKey && selectedFilters.interactionAddressKey === row.property_key;
     tr.classList.toggle("table-row--active-filter", isActiveInteraction);
     tr.innerHTML = `
       <td>
@@ -1739,6 +1754,7 @@ function hasActiveDataFilters() {
   if (selectedFilters.chartHouseKey) return true;
   if (selectedFilters.interactionSuburb) return true;
   if (selectedFilters.interactionHouseKey) return true;
+  if (selectedFilters.interactionAddressKey) return true;
   if (Number(selectedFilters.minPrice) > 0) return true;
   if (
     dashboardDefaultMaxPrice != null &&
@@ -1789,6 +1805,11 @@ function getActiveFilterChipDescriptors() {
     const addr = row ? String(row.Address || "").trim() : "";
     const short = addr.length > 36 ? `${addr.slice(0, 34)}…` : addr || "Property focus";
     chips.push({ id: "tableFocus", label: `Table focus: ${short}` });
+  } else if (selectedFilters.interactionAddressKey) {
+    const row = listingsCore.find((r) => addressKeyFromRow(r) === selectedFilters.interactionAddressKey);
+    const addr = row ? String(row.Address || "").trim() : "";
+    const short = addr.length > 36 ? `${addr.slice(0, 34)}…` : addr || "Property focus";
+    chips.push({ id: "tableFocus", label: `Table focus: ${short}` });
   } else if (selectedFilters.interactionSuburb) {
     chips.push({ id: "tableFocus", label: `Table focus: ${selectedFilters.interactionSuburb}` });
   }
@@ -1831,6 +1852,7 @@ function clearFilterChip(chipId) {
     case "tableFocus":
       selectedFilters.interactionSuburb = "";
       selectedFilters.interactionHouseKey = "";
+      selectedFilters.interactionAddressKey = "";
       applyFilters();
       return;
     case "price": {
@@ -2453,6 +2475,7 @@ async function init() {
     selectedFilters.filterHouseKey = "";
     selectedFilters.interactionSuburb = "";
     selectedFilters.interactionHouseKey = "";
+    selectedFilters.interactionAddressKey = "";
     selectedFilters.minPrice = 0;
     selectedFilters.maxPrice = safeMaxPrice;
     suburbSelect.value = "";
