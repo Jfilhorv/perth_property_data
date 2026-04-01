@@ -275,7 +275,7 @@ section.panel:has(.filters):has(.clear-filters-btn--filtered) {
   flex: 1 1 auto;
   min-height: 0;
   height: auto;
-  max-height: 700px;
+  max-height: 840px;
 }
 
 .panel--sales {
@@ -1013,7 +1013,7 @@ select {
 
 .map-shell {
   position: relative;
-  height: 470px;
+  height: 565px;
   width: 100%;
 }
 
