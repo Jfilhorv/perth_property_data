@@ -260,6 +260,10 @@ section.panel:has(.filters):has(.clear-filters-btn--filtered) {
   align-items: stretch;
 }
 
+.viz-grid > .panel {
+  min-width: 0;
+}
+
 .panel--map {
   grid-column: 2;
   grid-row: 1 / span 2;
@@ -276,6 +280,8 @@ section.panel:has(.filters):has(.clear-filters-btn--filtered) {
 .panel--sales {
   grid-column: 1;
   grid-row: 2;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .panel h2 {
@@ -1069,6 +1075,15 @@ select {
 
 .panel--sales .table-wrap {
   height: 335px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.panel--sales .property-table-panel,
+.panel--sales #propertyTableWrap {
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
 }
 
 .panel--sales .sales-title-tab {
