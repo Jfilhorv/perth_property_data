@@ -1282,6 +1282,18 @@ function getRowsForYearlyChart() {
         rowMeetsPriceFloor(r)
     );
   }
+  if (selectedFilters.interactionAddressKey) {
+    return listingsCore.filter((r) => {
+      if (!rowMeetsPriceFloor(r)) return false;
+      if (addressKeyFromRow(r) !== selectedFilters.interactionAddressKey) return false;
+      const byBeds = !selectedFilters.bedrooms || String(r.Bedrooms) === selectedFilters.bedrooms;
+      const byBaths = !selectedFilters.bathrooms || String(r.Bathrooms) === selectedFilters.bathrooms;
+      const byType = !selectedFilters.propertyType || String(r.Property_Type || "").trim() === selectedFilters.propertyType;
+      const byMinPrice = !Number.isFinite(selectedFilters.minPrice) || r.Price >= selectedFilters.minPrice;
+      const byMaxPrice = !Number.isFinite(selectedFilters.maxPrice) || r.Price <= selectedFilters.maxPrice;
+      return byBeds && byBaths && byType && byMinPrice && byMaxPrice;
+    });
+  }
   const baseRows = listingsLatest.filter((row) => {
     if (!rowMeetsPriceFloor(row)) return false;
     const bySuburb = !selectedFilters.suburb || row.Suburb === selectedFilters.suburb;
@@ -1298,7 +1310,14 @@ function getRowsForYearlyChart() {
 
 function yearlyChartDatasetLabel() {
   const hkFocus = selectedFilters.chartHouseKey || selectedFilters.filterHouseKey;
-  if (!hkFocus) return "Median Price (AUD)";
+  if (!hkFocus && !selectedFilters.interactionAddressKey) return "Median Price (AUD)";
+  if (selectedFilters.interactionAddressKey && !hkFocus) {
+    const row = listingsCore.find((r) => addressKeyFromRow(r) === selectedFilters.interactionAddressKey);
+    const addr = row ? String(row.Address || "").trim() : "";
+    if (!addr) return "Property sale price (AUD)";
+    const short = addr.length > 44 ? `${addr.slice(0, 42)}…` : addr;
+    return `Price: ${short}`;
+  }
   const row = listingsCore.find((r) => houseKey(r) === hkFocus);
   const addr = row ? String(row.Address || "").trim() : "";
   if (!addr) return "Property sale price (AUD)";
@@ -1491,6 +1510,22 @@ const yearlyValueLabelsPlugin = {
 };
 
 function getYearlySeries(rows) {
+  const addressFocused = Boolean(
+    selectedFilters.chartHouseKey || selectedFilters.filterHouseKey || selectedFilters.interactionAddressKey
+  );
+  if (addressFocused) {
+    const uniqueSales = collapseSalesSamePropertyDay(rows).sort((a, b) => {
+      const ta = Date.parse(String(a.Date_Sold || ""));
+      const tb = Date.parse(String(b.Date_Sold || ""));
+      return (Number.isFinite(ta) ? ta : 0) - (Number.isFinite(tb) ? tb : 0);
+    });
+    return uniqueSales
+      .map((r) => ({
+        Year: String(r.Date_Sold || ""),
+        median_price: Number(r.Price) || 0,
+      }))
+      .filter((r) => r.Year && Number.isFinite(r.median_price) && r.median_price > 0);
+  }
   const yearMap = new Map();
   rows.forEach((r) => {
     if (!Number.isFinite(r.Year)) return;
@@ -1564,6 +1599,10 @@ function renderYearlyChart(chartType = "line", rows = [], activeYear = "") {
       },
       onClick: (_evt, elements, chart) => {
         if (!elements?.length) return;
+        const addressFocused = Boolean(
+          selectedFilters.chartHouseKey || selectedFilters.filterHouseKey || selectedFilters.interactionAddressKey
+        );
+        if (addressFocused) return;
         selectedFilters.chartHouseKey = "";
         const idx = elements[0].index;
         const year = Number(chart.data.labels[idx]);
