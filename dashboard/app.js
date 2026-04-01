@@ -43,7 +43,9 @@ let listingsLayer;
 let suburbPriceLayer;
 let suburbHeatLayer;
 let schoolLayer;
+let parksLayer;
 let suburbBoundariesGeoJson = null;
+let parksGeoJson = null;
 let ptOverlayGroup = null;
 let ptLoadPromise = null;
 let suburbSelectControl = null;
@@ -2077,6 +2079,7 @@ function getMapLayerToggles() {
   return {
     suburbHeat: Boolean(document.getElementById("mapLayerSuburbHeat")?.checked),
     schools: Boolean(document.getElementById("mapLayerSchools")?.checked),
+    parks: Boolean(document.getElementById("mapLayerParks")?.checked),
     publicTransport: Boolean(document.getElementById("mapLayerPublicTransport")?.checked),
   };
 }
@@ -2123,6 +2126,10 @@ function ensureMapInteractionPanes() {
   if (!map.getPane("schoolMarkersPane")) {
     map.createPane("schoolMarkersPane");
     map.getPane("schoolMarkersPane").style.zIndex = "425";
+  }
+  if (!map.getPane("parksPane")) {
+    map.createPane("parksPane");
+    map.getPane("parksPane").style.zIndex = "418";
   }
 }
 
@@ -2214,6 +2221,7 @@ function renderMap(rows) {
   if (suburbPriceLayer) map.removeLayer(suburbPriceLayer);
   if (suburbHeatLayer) map.removeLayer(suburbHeatLayer);
   if (schoolLayer) map.removeLayer(schoolLayer);
+  if (parksLayer) map.removeLayer(parksLayer);
 
   const mapRows = rows.slice(0, 7000);
   const listingMarkers = mapRows.map((row) => {
@@ -2470,6 +2478,35 @@ function renderMap(rows) {
       )
     );
   schoolLayer = L.layerGroup(schoolMarkers);
+  parksLayer = L.layerGroup([]);
+  if (parksGeoJson?.features?.length) {
+    parksLayer = L.geoJSON(parksGeoJson, {
+      pane: "parksPane",
+      style: () => ({
+        color: "#15803d",
+        weight: 1.2,
+        fillColor: "#22c55e",
+        fillOpacity: 0.2,
+      }),
+      pointToLayer(_feature, latlng) {
+        return L.circleMarker(latlng, {
+          pane: "parksPane",
+          radius: 3,
+          color: "#166534",
+          fillColor: "#22c55e",
+          fillOpacity: 0.45,
+          weight: 1,
+        });
+      },
+      onEachFeature(feature, layer) {
+        const props = feature?.properties || {};
+        const parkName = String(
+          props.PARK_NAME || props.NAME || props.PARK || props.RESERVE_NAME || props.label || "Park / Green Area"
+        ).trim();
+        layer.bindTooltip(`<b>${escapeHtml(parkName)}</b><br/>Parks layer`, listingTooltipOptions);
+      },
+    });
+  }
 
   const ml = getMapLayerToggles();
   const shouldShowPropertyPoints = Boolean(
@@ -2481,6 +2518,7 @@ function renderMap(rows) {
   if (shouldShowPropertyPoints) listingsLayer.addTo(map);
   if (ml.suburbHeat) suburbHeatLayer.addTo(map);
   if (ml.schools) schoolLayer.addTo(map);
+  if (ml.parks) parksLayer.addTo(map);
 
   const boundsLayers = [];
   if (shouldShowPropertyPoints) boundsLayers.push(...listingMarkers);
@@ -2492,6 +2530,7 @@ function renderMap(rows) {
     }
   }
   if (ml.schools) boundsLayers.push(...schoolMarkers);
+  if (ml.parks && parksLayer) boundsLayers.push(parksLayer);
   const boundsGroup = L.featureGroup(boundsLayers);
   if (boundsGroup.getLayers().length > 0) {
     map.fitBounds(boundsGroup.getBounds().pad(0.12));
@@ -2741,6 +2780,14 @@ async function init() {
   } catch {
     suburbBoundariesGeoJson = null;
   }
+  try {
+    const parksFc = await loadJson("./data/parks.geojson");
+    if (parksFc && Array.isArray(parksFc.features)) {
+      parksGeoJson = parksFc;
+    }
+  } catch {
+    parksGeoJson = null;
+  }
 
   suburbAnnualGrowthBySuburb = sanitizeSuburbGrowthMap(buildSuburbAnnualGrowthMapFromCore(listingsCore));
   try {
@@ -2929,7 +2976,7 @@ async function init() {
   syncChartTypeSegmentControls();
 
   clearFiltersBtn?.addEventListener("click", resetFilters);
-  ["mapLayerSuburbHeat", "mapLayerSchools", "mapLayerPublicTransport"].forEach((id) => {
+  ["mapLayerSuburbHeat", "mapLayerSchools", "mapLayerParks", "mapLayerPublicTransport"].forEach((id) => {
     document.getElementById(id)?.addEventListener("change", () => applyFilters());
   });
   document.getElementById("mapHeatMetric")?.addEventListener("change", () => applyFilters());
