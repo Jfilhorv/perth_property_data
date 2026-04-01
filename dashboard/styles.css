@@ -282,6 +282,8 @@ section.panel:has(.filters):has(.clear-filters-btn--filtered) {
   grid-row: 2;
   min-width: 0;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .panel h2 {
@@ -1074,7 +1076,9 @@ select {
 }
 
 .panel--sales .table-wrap {
-  height: 335px;
+  height: auto;
+  flex: 1 1 auto;
+  min-height: 0;
   width: 100%;
   max-width: 100%;
 }
@@ -1084,6 +1088,11 @@ select {
   min-width: 0;
   width: 100%;
   max-width: 100%;
+}
+
+.panel--sales .property-table-panel {
+  flex: 1 1 auto;
+  min-height: 0;
 }
 
 .panel--sales .sales-title-tab {
