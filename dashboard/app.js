@@ -75,8 +75,11 @@ let currentPropertyTableSort = { key: "count", dir: "desc" };
 let salesTableView = "suburbs";
 /** Slider “full range” max; set in init after data load */
 let dashboardDefaultMaxPrice = null;
-const PROPERTY_TABLE_PAGE_SIZE = 100;
+const SUBURB_TABLE_PAGE_SIZE = 20;
+const PROPERTY_TABLE_PAGE_SIZE = 20;
+let suburbTablePage = 1;
 let propertyTablePage = 1;
+let lastSuburbPagerContext = null;
 let lastPropertyPagerContext = null;
 let propertyFallbackGrowthBySuburb = new Map();
 
@@ -93,6 +96,23 @@ function propertyPagerContextKey() {
     interactionAddressKey: selectedFilters.interactionAddressKey,
     sortKey: currentPropertyTableSort.key,
     sortDir: currentPropertyTableSort.dir,
+  });
+}
+
+function suburbPagerContextKey() {
+  return JSON.stringify({
+    suburb: selectedFilters.suburb,
+    bedrooms: selectedFilters.bedrooms,
+    bathrooms: selectedFilters.bathrooms,
+    propertyType: selectedFilters.propertyType,
+    minPrice: selectedFilters.minPrice,
+    maxPrice: selectedFilters.maxPrice,
+    year: selectedFilters.year,
+    interactionSuburb: selectedFilters.interactionSuburb,
+    interactionHouseKey: selectedFilters.interactionHouseKey,
+    interactionAddressKey: selectedFilters.interactionAddressKey,
+    sortKey: currentSuburbTableSort.key,
+    sortDir: currentSuburbTableSort.dir,
   });
 }
 
@@ -1059,7 +1079,16 @@ function getFilteredCoreRows() {
 
 function renderSuburbTable(rows) {
   const body = document.getElementById("suburbTableBody");
+  const pagerEl = document.getElementById("suburbTablePager");
+  const pagerMeta = document.getElementById("suburbTablePagerMeta");
+  const pagerPrev = document.getElementById("suburbTablePagerPrev");
+  const pagerNext = document.getElementById("suburbTablePagerNext");
   body.innerHTML = "";
+  const ctx = suburbPagerContextKey();
+  if (ctx !== lastSuburbPagerContext) {
+    suburbTablePage = 1;
+    lastSuburbPagerContext = ctx;
+  }
   const groupedAll = aggregateSuburbStats(rows);
   const { key, dir } = currentSuburbTableSort;
   const sorted = [...groupedAll].sort((a, b) => {
@@ -1072,7 +1101,12 @@ function renderSuburbTable(rows) {
   });
   if (dir === "desc") sorted.reverse();
   const grouped = sorted.slice(0, selectedFilters.suburb ? 1 : sorted.length);
-  for (const row of grouped) {
+  const total = grouped.length;
+  const totalPages = Math.max(1, Math.ceil(total / SUBURB_TABLE_PAGE_SIZE));
+  suburbTablePage = Math.min(Math.max(1, suburbTablePage), totalPages);
+  const start = (suburbTablePage - 1) * SUBURB_TABLE_PAGE_SIZE;
+  const pageRows = grouped.slice(start, start + SUBURB_TABLE_PAGE_SIZE);
+  for (const row of pageRows) {
     const varMeta = getVariationMeta(row.variation_pct);
     const tooltipText =
       Number.isFinite(row.latest_median_price) && Number.isFinite(row.previous_median_price)
@@ -1116,6 +1150,17 @@ function renderSuburbTable(rows) {
     tr.title = "Click to filter charts/map by this suburb (click again to clear)";
     tr.classList.add("table-row--clickable");
     body.appendChild(tr);
+  }
+  if (pagerEl && pagerMeta && pagerPrev && pagerNext) {
+    const showPager = total > SUBURB_TABLE_PAGE_SIZE;
+    pagerEl.hidden = !showPager;
+    if (showPager) {
+      const from = total === 0 ? 0 : start + 1;
+      const to = Math.min(start + SUBURB_TABLE_PAGE_SIZE, total);
+      pagerMeta.textContent = `${from}–${to} of ${numberFmt.format(total)} · page ${suburbTablePage}/${totalPages}`;
+      pagerPrev.disabled = suburbTablePage <= 1;
+      pagerNext.disabled = suburbTablePage >= totalPages;
+    }
   }
 }
 
@@ -3155,6 +3200,17 @@ async function init() {
     propertyTablePage += 1;
     renderPropertyTable(getFilteredCoreRows());
     updatePropertyTableSortIndicators();
+  });
+  document.getElementById("suburbTablePagerPrev")?.addEventListener("click", () => {
+    if (suburbTablePage <= 1) return;
+    suburbTablePage -= 1;
+    renderSuburbTable(getFilteredRows());
+    updateSuburbTableSortIndicators();
+  });
+  document.getElementById("suburbTablePagerNext")?.addEventListener("click", () => {
+    suburbTablePage += 1;
+    renderSuburbTable(getFilteredRows());
+    updateSuburbTableSortIndicators();
   });
   document.querySelectorAll(".sales-title-tab").forEach((btn) => {
     btn.addEventListener("click", () => {
