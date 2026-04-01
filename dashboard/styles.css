@@ -1100,7 +1100,9 @@ td:nth-child(n + 2) {
 #propertyTableWrap th:nth-child(5),
 #propertyTableWrap td:nth-child(5),
 #propertyTableWrap th:nth-child(6),
-#propertyTableWrap td:nth-child(6) {
+#propertyTableWrap td:nth-child(6),
+#propertyTableWrap th:nth-child(14),
+#propertyTableWrap td:nth-child(14) {
   text-align: left;
 }
 
