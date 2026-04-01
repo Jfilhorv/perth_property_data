@@ -979,6 +979,10 @@ function aggregateAddressStats(rows) {
       const propGrowth = propertyStabilizedAnnualGrowth(v.rawRows);
       const uniqueSaleEvents = collapseSalesSamePropertyDay(v.rawRows);
       const salesCount = uniqueSaleEvents.length || v.count;
+      const saleDatesList = uniqueSaleEvents
+        .map((r) => String(r.Date_Sold || "").trim())
+        .filter(Boolean)
+        .sort();
       const medianPriceVal = sorted[mid] ?? 0;
       const prediction_price_2y = conservativeProjectedMedianPrice(medianPriceVal, propGrowth.avgPct);
       return {
@@ -1009,6 +1013,7 @@ function aggregateAddressStats(rows) {
         latest_land_size: Number(latestListing?.Land_Size),
         latest_sale_price: Number(latestListing?.Price),
         latest_sale_date: String(latestListing?.Date_Sold || ""),
+        sale_dates_list: saleDatesList,
         latest_property_type: String(latestListing?.Property_Type || "").trim() || "—",
         latest_suburb: normalizeSuburbName(latestListing?.Suburb),
       };
@@ -1154,6 +1159,10 @@ function renderPropertyTable(coreRows) {
     const predTip =
       "Prediction Current Price = last sale price adjusted linearly by annual growth and elapsed months since last sale.";
     const predText = Number.isFinite(predictedCurrent) ? currency.format(predictedCurrent) : "N/A";
+    const allSaleDates = Array.isArray(row.sale_dates_list) ? row.sale_dates_list : [];
+    const latestDateText = row.latest_sale_date || "—";
+    const saleDatesTooltip = allSaleDates.length ? `All sale dates:\n${allSaleDates.join("\n")}` : "No sale dates available";
+    const saleDatesTooltipAttr = escapeHtml(saleDatesTooltip).replace(/\n/g, "&#10;");
     const tr = document.createElement("tr");
     tr.setAttribute("data-property-focus", row.property_key);
     const isActiveInteraction = selectedFilters.interactionAddressKey && selectedFilters.interactionAddressKey === row.property_key;
@@ -1198,6 +1207,7 @@ function renderPropertyTable(coreRows) {
       <td>${asPricePerSqm(row.median_price_m2)}</td>
       <td>${currency.format(row.highest_price)}</td>
       <td>${currency.format(row.lowest_price)}</td>
+      <td title="${saleDatesTooltipAttr}">${latestDateText}</td>
       <td>${formatDistance(row.avg_distance_to_cbd)}</td>
     `;
     tr.title = "Click to filter charts/map by this property (click again to clear)";
