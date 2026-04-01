@@ -1319,7 +1319,8 @@ function updateYearlyChartTitle() {
   const filterHouseRow = selectedFilters.filterHouseKey ? listingsCore.find((r) => houseKey(r) === selectedFilters.filterHouseKey) : null;
   const filterAddress = filterHouseRow ? String(filterHouseRow.Address || "").trim() : "";
   const suburb = selectedFilters.suburb ? String(selectedFilters.suburb).trim() : "";
-  const name = focusAddress || chartAddress || filterAddress || suburb;
+  const interactionSuburb = selectedFilters.interactionSuburb ? String(selectedFilters.interactionSuburb).trim() : "";
+  const name = focusAddress || chartAddress || filterAddress || interactionSuburb || suburb;
   el.textContent = name ? `${base} - ${name}` : base;
 }
 
