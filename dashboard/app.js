@@ -2276,7 +2276,7 @@ function getHeatLegendExtremes(rows, metricKey) {
 function updateHeatLegend(heatCfg, minValue, maxValue, enabled, heatRows) {
   if (!map) return;
   if (!heatLegendControl) {
-    heatLegendControl = L.control({ position: "bottomright" });
+    heatLegendControl = L.control({ position: "topleft" });
     heatLegendControl.onAdd = () => {
       const div = L.DomUtil.create("div", "map-heat-legend");
       div.innerHTML = "";
