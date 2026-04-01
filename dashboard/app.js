@@ -41,6 +41,7 @@ let suburbDistributionChart;
 let map;
 let listingsLayer;
 let suburbPriceLayer;
+let suburbHeatLayer;
 let schoolLayer;
 let ptOverlayGroup = null;
 let ptLoadPromise = null;
@@ -2074,6 +2075,7 @@ function syncChartTypeSegmentControls() {
 function getMapLayerToggles() {
   return {
     suburbs: document.getElementById("mapLayerSuburbs")?.checked !== false,
+    suburbHeat: Boolean(document.getElementById("mapLayerSuburbHeat")?.checked),
     properties: Boolean(document.getElementById("mapLayerProperties")?.checked),
     schools: Boolean(document.getElementById("mapLayerSchools")?.checked),
     publicTransport: Boolean(document.getElementById("mapLayerPublicTransport")?.checked),
@@ -2110,6 +2112,10 @@ function ensureMapInteractionPanes() {
     map.createPane("suburbAvgPane");
     map.getPane("suburbAvgPane").style.zIndex = "420";
   }
+  if (!map.getPane("suburbHeatPane")) {
+    map.createPane("suburbHeatPane");
+    map.getPane("suburbHeatPane").style.zIndex = "415";
+  }
   if (!map.getPane("listingPointsPane")) {
     map.createPane("listingPointsPane");
     map.getPane("listingPointsPane").style.zIndex = "430";
@@ -2118,6 +2124,71 @@ function ensureMapInteractionPanes() {
     map.createPane("schoolMarkersPane");
     map.getPane("schoolMarkersPane").style.zIndex = "425";
   }
+}
+
+function heatColorBlueGreen(value, minValue, maxValue) {
+  if (!Number.isFinite(value) || !Number.isFinite(minValue) || !Number.isFinite(maxValue) || maxValue <= minValue) {
+    return "#1e293b";
+  }
+  const t = Math.min(1, Math.max(0, (value - minValue) / (maxValue - minValue)));
+  if (t <= 0.5) {
+    const k = t / 0.5;
+    return interpolateHexColor("#bfdbfe", "#1e293b", k);
+  }
+  const k = (t - 0.5) / 0.5;
+  return interpolateHexColor("#1e293b", "#86efac", k);
+}
+
+function interpolateHexColor(startHex, endHex, t) {
+  const clampT = Math.min(1, Math.max(0, Number(t) || 0));
+  const a = hexToRgb(startHex);
+  const b = hexToRgb(endHex);
+  const r = Math.round(a.r + (b.r - a.r) * clampT);
+  const g = Math.round(a.g + (b.g - a.g) * clampT);
+  const bb = Math.round(a.b + (b.b - a.b) * clampT);
+  return `rgb(${r}, ${g}, ${bb})`;
+}
+
+function hexToRgb(hex) {
+  const cleaned = String(hex || "")
+    .trim()
+    .replace("#", "");
+  const full = cleaned.length === 3 ? cleaned.split("").map((c) => c + c).join("") : cleaned;
+  const n = parseInt(full, 16);
+  return {
+    r: (n >> 16) & 255,
+    g: (n >> 8) & 255,
+    b: n & 255,
+  };
+}
+
+function getSuburbHeatMetricConfig() {
+  const metric = document.getElementById("mapHeatMetric")?.value || "avg_price";
+  if (metric === "avg_bedrooms") {
+    return { key: "avg_bedrooms", label: "Average beds", fmt: (v) => (Number.isFinite(v) ? v.toFixed(2) : "N/A") };
+  }
+  if (metric === "avg_bathrooms") {
+    return { key: "avg_bathrooms", label: "Average baths", fmt: (v) => (Number.isFinite(v) ? v.toFixed(2) : "N/A") };
+  }
+  if (metric === "avg_land_size") {
+    return {
+      key: "avg_land_size",
+      label: "Average land size",
+      fmt: (v) => (Number.isFinite(v) && v > 0 ? `${numberFmt.format(Math.round(v))} m²` : "N/A"),
+    };
+  }
+  if (metric === "appreciation_pct") {
+    return {
+      key: "appreciation_pct",
+      label: "Appreciation (avg resale growth)",
+      fmt: (v) => {
+        if (!Number.isFinite(v)) return "N/A";
+        const vm = getVariationMeta(v);
+        return `${vm.arrow} ${vm.text}`;
+      },
+    };
+  }
+  return { key: "avg_price", label: "Average price", fmt: (v) => (Number.isFinite(v) ? currency.format(v) : "N/A") };
 }
 
 function renderMap(rows) {
@@ -2136,6 +2207,7 @@ function renderMap(rows) {
 
   if (listingsLayer) map.removeLayer(listingsLayer);
   if (suburbPriceLayer) map.removeLayer(suburbPriceLayer);
+  if (suburbHeatLayer) map.removeLayer(suburbHeatLayer);
   if (schoolLayer) map.removeLayer(schoolLayer);
 
   const mapRows = rows.slice(0, 7000);
@@ -2208,6 +2280,84 @@ function renderMap(rows) {
         })
       : []
   );
+  const heatAggBySuburb = new Map();
+  rows.forEach((row) => {
+    if (!row.Suburb || !Number.isFinite(row.Latitude) || !Number.isFinite(row.Longitude)) return;
+    const current = heatAggBySuburb.get(row.Suburb) || {
+      suburb: row.Suburb,
+      sumLat: 0,
+      sumLon: 0,
+      geoCount: 0,
+      sumPrice: 0,
+      priceCount: 0,
+      sumBeds: 0,
+      bedCount: 0,
+      sumBaths: 0,
+      bathCount: 0,
+      sumLand: 0,
+      landCount: 0,
+    };
+    current.sumLat += row.Latitude;
+    current.sumLon += row.Longitude;
+    current.geoCount += 1;
+    if (Number.isFinite(row.Price)) {
+      current.sumPrice += row.Price;
+      current.priceCount += 1;
+    }
+    if (Number.isFinite(row.Bedrooms)) {
+      current.sumBeds += row.Bedrooms;
+      current.bedCount += 1;
+    }
+    if (Number.isFinite(row.Bathrooms)) {
+      current.sumBaths += row.Bathrooms;
+      current.bathCount += 1;
+    }
+    if (Number.isFinite(row.Land_Size) && row.Land_Size > 0) {
+      current.sumLand += row.Land_Size;
+      current.landCount += 1;
+    }
+    heatAggBySuburb.set(row.Suburb, current);
+  });
+  const growthBySuburb = new Map(
+    filteredSuburb
+      .filter((r) => r?.Suburb)
+      .map((r) => [String(r.Suburb), Number.isFinite(r.avg_annual_growth_pct) ? r.avg_annual_growth_pct : NaN])
+  );
+  const heatRows = [...heatAggBySuburb.values()]
+    .map((v) => ({
+      suburb: v.suburb,
+      latitude: v.geoCount > 0 ? v.sumLat / v.geoCount : NaN,
+      longitude: v.geoCount > 0 ? v.sumLon / v.geoCount : NaN,
+      avg_price: v.priceCount > 0 ? v.sumPrice / v.priceCount : NaN,
+      avg_bedrooms: v.bedCount > 0 ? v.sumBeds / v.bedCount : NaN,
+      avg_bathrooms: v.bathCount > 0 ? v.sumBaths / v.bathCount : NaN,
+      avg_land_size: v.landCount > 0 ? v.sumLand / v.landCount : NaN,
+      appreciation_pct: growthBySuburb.get(v.suburb) ?? NaN,
+    }))
+    .filter((v) => Number.isFinite(v.latitude) && Number.isFinite(v.longitude));
+  const heatCfg = getSuburbHeatMetricConfig();
+  const heatValues = heatRows.map((r) => r[heatCfg.key]).filter((v) => Number.isFinite(v));
+  const heatMin = heatValues.length > 0 ? Math.min(...heatValues) : 0;
+  const heatMax = heatValues.length > 0 ? Math.max(...heatValues) : 1;
+  suburbHeatLayer = L.layerGroup(
+    heatRows.map((row) => {
+      const v = row[heatCfg.key];
+      const color = heatColorBlueGreen(v, heatMin, heatMax);
+      return L.circleMarker([row.latitude, row.longitude], {
+        pane: "suburbHeatPane",
+        radius: 24,
+        color,
+        fillColor: color,
+        fillOpacity: 0.32,
+        weight: 2,
+      }).bindTooltip(
+        `<b>${row.suburb}</b><br/>${heatCfg.label}: ${heatCfg.fmt(v)}<br/>Scale range: ${heatCfg.fmt(heatMin)} to ${heatCfg.fmt(
+          heatMax
+        )}`,
+        listingTooltipOptions
+      );
+    })
+  );
   const schoolMarkers = schoolPoints
     .filter((s) => s.count >= 8)
     .map((s) =>
@@ -2230,12 +2380,16 @@ function renderMap(rows) {
   const ml = getMapLayerToggles();
   if (ml.properties) listingsLayer.addTo(map);
   if (ml.suburbs) suburbPriceLayer.addTo(map);
+  if (ml.suburbHeat) suburbHeatLayer.addTo(map);
   if (ml.schools) schoolLayer.addTo(map);
 
   const boundsLayers = [];
   if (ml.properties) boundsLayers.push(...listingMarkers);
   if (ml.suburbs) {
     boundsLayers.push(...filteredSuburb.map((row) => L.marker([row.latitude, row.longitude])));
+  }
+  if (ml.suburbHeat) {
+    boundsLayers.push(...heatRows.map((row) => L.marker([row.latitude, row.longitude])));
   }
   if (ml.schools) boundsLayers.push(...schoolMarkers);
   const boundsGroup = L.featureGroup(boundsLayers);
@@ -2667,9 +2821,10 @@ async function init() {
   syncChartTypeSegmentControls();
 
   clearFiltersBtn?.addEventListener("click", resetFilters);
-  ["mapLayerSuburbs", "mapLayerProperties", "mapLayerSchools", "mapLayerPublicTransport"].forEach((id) => {
+  ["mapLayerSuburbs", "mapLayerSuburbHeat", "mapLayerProperties", "mapLayerSchools", "mapLayerPublicTransport"].forEach((id) => {
     document.getElementById(id)?.addEventListener("change", () => applyFilters());
   });
+  document.getElementById("mapHeatMetric")?.addEventListener("change", () => applyFilters());
 
   document.querySelectorAll("#suburbTableWrap th.sortable").forEach((cell) => {
     cell.addEventListener("click", () => {

@@ -12,7 +12,7 @@
     <title>Perth Property Data</title>
     <link rel="icon" href="./assets/favicon.png?v=1" type="image/png" />
     <link rel="apple-touch-icon" href="./assets/favicon.png?v=1" />
-    <link rel="stylesheet" href="./styles.css?v=20260401-suburb-room-avg-footer-fix" />
+    <link rel="stylesheet" href="./styles.css?v=20260401-suburb-heat-controls" />
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -152,6 +152,20 @@
               <label class="map-layer-tick" title="Average price by suburb">
                 <input type="checkbox" id="mapLayerSuburbs" checked />
                 <span>Suburbs</span>
+              </label>
+              <label class="map-layer-tick" title="Suburb heat by selected metric">
+                <input type="checkbox" id="mapLayerSuburbHeat" />
+                <span>Suburb Heat</span>
+              </label>
+              <label class="map-layer-metric" for="mapHeatMetric" title="Heat metric by suburb average">
+                <span>Heat Metric</span>
+                <select id="mapHeatMetric" aria-label="Suburb heat metric">
+                  <option value="avg_price" selected>Price (average)</option>
+                  <option value="avg_bedrooms">Beds (average)</option>
+                  <option value="avg_bathrooms">Baths (average)</option>
+                  <option value="avg_land_size">Land size (average)</option>
+                  <option value="appreciation_pct">Appreciation (avg resale growth %)</option>
+                </select>
               </label>
               <label class="map-layer-tick" title="Property sale locations">
                 <input type="checkbox" id="mapLayerProperties" />
@@ -304,7 +318,7 @@
       integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
       crossorigin=""
     ></script>
-    <script src="./app.js?v=20260401-suburb-room-avg-footer-fix"></script>
+    <script src="./app.js?v=20260401-suburb-heat-controls"></script>
     <script
       data-goatcounter="https://efilhorv.goatcounter.com/count"
       async
