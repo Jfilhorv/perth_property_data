@@ -47,6 +47,7 @@ let parksLayer;
 let suburbBoundariesGeoJson = null;
 let parksGeoJson = null;
 let heatLegendControl = null;
+let mapFullscreenOn = false;
 let ptOverlayGroup = null;
 let ptLoadPromise = null;
 let suburbSelectControl = null;
@@ -2294,10 +2295,10 @@ function renderMap(rows) {
   const listingMarkers = mapRows.map((row) => {
     const marker = L.circleMarker([row.Latitude, row.Longitude], {
       pane: "listingPointsPane",
-      radius: 11,
-      color: "#ef4444",
-      fillColor: "#ef4444",
-      fillOpacity: 0.38,
+      radius: 4,
+      color: "#0f172a",
+      fillColor: "#2563eb",
+      fillOpacity: 0.72,
       weight: 1,
     }    ).bindTooltip(
       `<b>${row.Address || "Address unavailable"}</b><br/>Suburb: ${row.Suburb}<br/>Beds: ${
@@ -3048,6 +3049,23 @@ async function init() {
     document.getElementById(id)?.addEventListener("change", () => applyFilters());
   });
   document.getElementById("mapHeatMetric")?.addEventListener("change", () => applyFilters());
+  const mapShell = document.querySelector(".map-shell");
+  const mapFullscreenBtn = document.getElementById("mapFullscreenBtn");
+  const setMapFullscreen = (on) => {
+    if (!mapShell) return;
+    mapFullscreenOn = Boolean(on);
+    mapShell.classList.toggle("map-shell--fullscreen", mapFullscreenOn);
+    if (mapFullscreenBtn) {
+      mapFullscreenBtn.textContent = mapFullscreenOn ? "✕" : "⛶";
+      mapFullscreenBtn.title = mapFullscreenOn ? "Exit fullscreen map" : "Fullscreen map";
+      mapFullscreenBtn.setAttribute("aria-label", mapFullscreenBtn.title);
+    }
+    if (map) setTimeout(() => map.invalidateSize(), 30);
+  };
+  mapFullscreenBtn?.addEventListener("click", () => setMapFullscreen(!mapFullscreenOn));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && mapFullscreenOn) setMapFullscreen(false);
+  });
 
   document.querySelectorAll("#suburbTableWrap th.sortable").forEach((cell) => {
     cell.addEventListener("click", () => {
