@@ -1306,6 +1306,23 @@ function yearlyChartDatasetLabel() {
   return `Price: ${short}`;
 }
 
+function updateYearlyChartTitle() {
+  const el = document.getElementById("yearlyChartTitle");
+  if (!el) return;
+  const base = "Yearly Median Price Trend";
+  const focusAddressRow = selectedFilters.interactionAddressKey
+    ? listingsCore.find((r) => addressKeyFromRow(r) === selectedFilters.interactionAddressKey)
+    : null;
+  const focusAddress = focusAddressRow ? String(focusAddressRow.Address || "").trim() : "";
+  const chartRow = selectedFilters.chartHouseKey ? listingsCore.find((r) => houseKey(r) === selectedFilters.chartHouseKey) : null;
+  const chartAddress = chartRow ? String(chartRow.Address || "").trim() : "";
+  const filterHouseRow = selectedFilters.filterHouseKey ? listingsCore.find((r) => houseKey(r) === selectedFilters.filterHouseKey) : null;
+  const filterAddress = filterHouseRow ? String(filterHouseRow.Address || "").trim() : "";
+  const suburb = selectedFilters.suburb ? String(selectedFilters.suburb).trim() : "";
+  const name = focusAddress || chartAddress || filterAddress || suburb;
+  el.textContent = name ? `${base} - ${name}` : base;
+}
+
 function getFilteredRows() {
   const rows = getFilteredRowsBase();
   return applyTableInteractionToRows(rows);
@@ -1970,6 +1987,7 @@ function applyFilters() {
   renderMap(filteredRows);
   const chartType = document.getElementById("chartTypeSelect").value;
   renderYearlyChart(chartType, getRowsForYearlyChart(), selectedFilters.year);
+  updateYearlyChartTitle();
   updateSuburbTableSortIndicators();
   updatePropertyTableSortIndicators();
   updateClearFiltersButtonHighlight();
