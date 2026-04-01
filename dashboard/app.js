@@ -2135,15 +2135,10 @@ function ensureMapInteractionPanes() {
 
 function heatColorBlueGreen(value, minValue, maxValue) {
   if (!Number.isFinite(value) || !Number.isFinite(minValue) || !Number.isFinite(maxValue) || maxValue <= minValue) {
-    return "#1e293b";
+    return "#1e3a8a";
   }
   const t = Math.min(1, Math.max(0, (value - minValue) / (maxValue - minValue)));
-  if (t <= 0.5) {
-    const k = t / 0.5;
-    return interpolateHexColor("#bfdbfe", "#1e293b", k);
-  }
-  const k = (t - 0.5) / 0.5;
-  return interpolateHexColor("#1e293b", "#86efac", k);
+  return interpolateHexColor("#1e3a8a", "#4d7c0f", t);
 }
 
 function interpolateHexColor(startHex, endHex, t) {
@@ -2172,15 +2167,15 @@ function hexToRgb(hex) {
 function getSuburbHeatMetricConfig() {
   const metric = document.getElementById("mapHeatMetric")?.value || "avg_price";
   if (metric === "avg_bedrooms") {
-    return { key: "avg_bedrooms", label: "Average beds", fmt: (v) => (Number.isFinite(v) ? v.toFixed(2) : "N/A") };
+    return { key: "avg_bedrooms", label: "Beds", fmt: (v) => (Number.isFinite(v) ? v.toFixed(2) : "N/A") };
   }
   if (metric === "avg_bathrooms") {
-    return { key: "avg_bathrooms", label: "Average baths", fmt: (v) => (Number.isFinite(v) ? v.toFixed(2) : "N/A") };
+    return { key: "avg_bathrooms", label: "Baths", fmt: (v) => (Number.isFinite(v) ? v.toFixed(2) : "N/A") };
   }
   if (metric === "avg_land_size") {
     return {
       key: "avg_land_size",
-      label: "Average land size",
+      label: "Land size",
       fmt: (v) => (Number.isFinite(v) && v > 0 ? `${numberFmt.format(Math.round(v))} m²` : "N/A"),
     };
   }
@@ -2195,7 +2190,7 @@ function getSuburbHeatMetricConfig() {
       },
     };
   }
-  return { key: "avg_price", label: "Average price", fmt: (v) => (Number.isFinite(v) ? currency.format(v) : "N/A") };
+  return { key: "avg_price", label: "Price", fmt: (v) => (Number.isFinite(v) ? currency.format(v) : "N/A") };
 }
 
 function getBoundarySuburbName(feature) {
