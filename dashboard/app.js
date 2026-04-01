@@ -3078,7 +3078,19 @@ async function init() {
   };
   mapFullscreenBtn?.addEventListener("click", () => setMapFullscreen(!mapFullscreenOn));
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && mapFullscreenOn) setMapFullscreen(false);
+    if (e.key !== "Escape") return;
+    if (mapFullscreenOn) {
+      setMapFullscreen(false);
+      return;
+    }
+    const hasSuburbFilter = Boolean(selectedFilters.suburb || selectedFilters.interactionSuburb);
+    if (!hasSuburbFilter) return;
+    selectedFilters.interactionSuburb = "";
+    selectedFilters.interactionHouseKey = "";
+    selectedFilters.interactionAddressKey = "";
+    selectedFilters.filterHouseKey = "";
+    selectedFilters.chartHouseKey = "";
+    setSuburbFilter("");
   });
 
   document.querySelectorAll("#suburbTableWrap th.sortable").forEach((cell) => {
