@@ -460,33 +460,33 @@ section.panel:has(.filters):has(.clear-filters-btn--filtered) {
 }
 
 /* Deterministic widths for Suburbs table */
-#suburbTableWrap col.suburb-col-suburb { width: 18%; }
-#suburbTableWrap col.suburb-col-sales { width: 7%; }
-#suburbTableWrap col.suburb-col-median { width: 11%; }
+#suburbTableWrap col.suburb-col-suburb { width: 19%; }
+#suburbTableWrap col.suburb-col-sales { width: 9%; }
+#suburbTableWrap col.suburb-col-median { width: 9%; }
 #suburbTableWrap col.suburb-col-variation { width: 9%; }
-#suburbTableWrap col.suburb-col-growth { width: 10%; }
-#suburbTableWrap col.suburb-col-prediction { width: 13%; }
+#suburbTableWrap col.suburb-col-growth { width: 9%; }
+#suburbTableWrap col.suburb-col-prediction { width: 9%; }
 #suburbTableWrap col.suburb-col-m2 { width: 9%; }
-#suburbTableWrap col.suburb-col-highest { width: 8%; }
-#suburbTableWrap col.suburb-col-lowest { width: 8%; }
-#suburbTableWrap col.suburb-col-distance { width: 7%; }
+#suburbTableWrap col.suburb-col-highest { width: 9%; }
+#suburbTableWrap col.suburb-col-lowest { width: 9%; }
+#suburbTableWrap col.suburb-col-distance { width: 9%; }
 
 /* Deterministic widths for Properties table (physical columns grouped) */
-#propertyTableWrap col.prop-col-address { width: 19%; }
-#propertyTableWrap col.prop-col-type { width: 8%; }
-#propertyTableWrap col.prop-col-beds { width: 4.5%; }
-#propertyTableWrap col.prop-col-baths { width: 4.5%; }
-#propertyTableWrap col.prop-col-parking { width: 4.5%; }
-#propertyTableWrap col.prop-col-land { width: 6%; }
+#propertyTableWrap col.prop-col-address { width: 22%; }
+#propertyTableWrap col.prop-col-type { width: 10%; }
+#propertyTableWrap col.prop-col-beds { width: 4%; }
+#propertyTableWrap col.prop-col-baths { width: 4%; }
+#propertyTableWrap col.prop-col-parking { width: 4%; }
+#propertyTableWrap col.prop-col-land { width: 5%; }
 #propertyTableWrap col.prop-col-sales { width: 5.5%; }
-#propertyTableWrap col.prop-col-variation { width: 7.5%; }
-#propertyTableWrap col.prop-col-growth { width: 8.5%; }
-#propertyTableWrap col.prop-col-prediction { width: 11%; }
-#propertyTableWrap col.prop-col-m2 { width: 7%; }
-#propertyTableWrap col.prop-col-highest { width: 6.5%; }
-#propertyTableWrap col.prop-col-lowest { width: 6.5%; }
-#propertyTableWrap col.prop-col-date { width: 7.5%; }
-#propertyTableWrap col.prop-col-distance { width: 6.5%; }
+#propertyTableWrap col.prop-col-variation { width: 5.5%; }
+#propertyTableWrap col.prop-col-growth { width: 5.5%; }
+#propertyTableWrap col.prop-col-prediction { width: 5.5%; }
+#propertyTableWrap col.prop-col-m2 { width: 5.5%; }
+#propertyTableWrap col.prop-col-highest { width: 5.5%; }
+#propertyTableWrap col.prop-col-lowest { width: 5.5%; }
+#propertyTableWrap col.prop-col-date { width: 5.5%; }
+#propertyTableWrap col.prop-col-distance { width: 5.5%; }
 
 .table-wrap--properties table th:first-child,
 .table-wrap--properties table td:first-child {
