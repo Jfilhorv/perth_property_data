@@ -475,7 +475,7 @@ section.panel:has(.filters):has(.clear-filters-btn--filtered) {
 #propertyTableWrap col.prop-col-beds { width: 4%; }
 #propertyTableWrap col.prop-col-baths { width: 4%; }
 #propertyTableWrap col.prop-col-parking { width: 4%; }
-#propertyTableWrap col.prop-col-land { width: 5%; }
+#propertyTableWrap col.prop-col-land { width: 4.5%; }
 #propertyTableWrap col.prop-col-sales { width: 5.5%; }
 #propertyTableWrap col.prop-col-variation { width: 5.5%; }
 #propertyTableWrap col.prop-col-growth { width: 5.5%; }
@@ -1198,9 +1198,9 @@ td:nth-child(n + 2) {
 #propertyTableWrap td:nth-child(5),
 #propertyTableWrap th:nth-child(6),
 #propertyTableWrap td:nth-child(6) {
-  min-width: 72px;
-  padding-left: 4px;
-  padding-right: 4px;
+  min-width: 62px;
+  padding-left: 2px;
+  padding-right: 2px;
 }
 
 #propertyTableWrap th:nth-child(10),
