@@ -2496,7 +2496,7 @@ function renderMap(rows) {
       onEachFeature(feature, layer) {
         const props = feature?.properties || {};
         const parkName = String(
-          props.PARK_NAME || props.NAME || props.PARK || props.RESERVE_NAME || props.label || "Park / Green Area"
+          props.PARK_NAME || props.NAME || props.name || props.PARK || props.RESERVE_NAME || props.label || "Park / Green Area"
         ).trim();
         layer.bindTooltip(`<b>${escapeHtml(parkName)}</b><br/>Parks layer`, listingTooltipOptions);
       },
@@ -2776,7 +2776,7 @@ async function init() {
     suburbBoundariesGeoJson = null;
   }
   try {
-    const parksFc = await loadJson("./data/parks.geojson");
+    const parksFc = await loadJson("./data/parks.geojson?v=20260401-perth-region");
     if (parksFc && Array.isArray(parksFc.features)) {
       parksGeoJson = parksFc;
     }
