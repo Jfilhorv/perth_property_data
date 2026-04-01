@@ -475,11 +475,11 @@ section.panel:has(.filters):has(.clear-filters-btn--filtered) {
 }
 
 .table-wrap--properties table {
-  min-width: 1560px;
+  min-width: 1360px;
 }
 
 .table-wrap:not(.table-wrap--properties) table {
-  min-width: 1160px;
+  min-width: 1020px;
 }
 
 /* Deterministic widths for Suburbs table */
@@ -1093,8 +1093,8 @@ select {
 .panel--sales th,
 .panel--sales td {
   font-size: 11px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 .distribution-wrap {
@@ -1209,6 +1209,9 @@ th.sortable:hover {
   z-index: 4;
   background: #f9fafb;
   box-shadow: 0 1px 0 #e5e7eb;
+  white-space: normal;
+  line-height: 1.15;
+  word-break: break-word;
 }
 
 #suburbTableWrap thead th.sortable:hover,
