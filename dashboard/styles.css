@@ -13,7 +13,7 @@ header {
   padding: 14px 0;
   margin: 0;
   border: none;
-  background-color: #87CEFA;
+  background-color: #4169E1;
   color: #fff;
 }
 
@@ -91,19 +91,17 @@ header h1 {
   justify-content: center;
   line-height: 0;
   flex-shrink: 0;
-  border-radius: 12px;
-  padding: 6px 8px;
-  background: rgba(15, 23, 42, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(2px);
-  transition: opacity 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  backdrop-filter: none;
+  box-shadow: none;
+  transition: opacity 0.15s ease;
 }
 
 .site-header-logo-link:hover {
-  opacity: 0.98;
-  transform: translateY(-1px);
-  border-color: rgba(212, 175, 55, 0.52);
-  box-shadow: 0 8px 18px rgba(2, 6, 23, 0.28);
+  opacity: 0.96;
 }
 
 .site-header-logo-link:hover .site-header-logo {
