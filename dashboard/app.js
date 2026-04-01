@@ -2088,6 +2088,8 @@ function getMapLayerToggles() {
 function handleMapClickNearestListing(e) {
   const t = e.originalEvent?.target;
   if (t?.closest?.(".leaflet-control")) return;
+  const clickedListingPoint = Boolean(t?.closest?.(".leaflet-pane.listingPointsPane"));
+  if (!clickedListingPoint) return;
   const hasSuburbFilter = Boolean(selectedFilters.suburb || selectedFilters.interactionSuburb);
   if (!hasSuburbFilter) return;
   if (!listingsLayer || !map?.hasLayer(listingsLayer)) return;
