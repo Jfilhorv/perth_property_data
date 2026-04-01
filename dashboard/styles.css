@@ -1112,9 +1112,35 @@ td:nth-child(n + 2) {
   min-width: 170px;
 }
 
+#suburbTableWrap th:nth-child(2),
+#suburbTableWrap td:nth-child(2) {
+  min-width: 72px;
+}
+
+#suburbTableWrap th:nth-child(3),
+#suburbTableWrap td:nth-child(3) {
+  min-width: 115px;
+}
+
+#suburbTableWrap th:nth-child(4),
+#suburbTableWrap td:nth-child(4),
+#suburbTableWrap th:nth-child(5),
+#suburbTableWrap td:nth-child(5) {
+  min-width: 116px;
+}
+
 #suburbTableWrap th:nth-child(6),
 #suburbTableWrap td:nth-child(6) {
   min-width: 150px;
+}
+
+#suburbTableWrap th:nth-child(7),
+#suburbTableWrap td:nth-child(7),
+#suburbTableWrap th:nth-child(8),
+#suburbTableWrap td:nth-child(8),
+#suburbTableWrap th:nth-child(9),
+#suburbTableWrap td:nth-child(9) {
+  min-width: 112px;
 }
 
 #suburbTableWrap th:nth-child(10),
