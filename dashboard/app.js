@@ -1096,7 +1096,6 @@ function renderSuburbTable(rows) {
       <td>${asPricePerSqm(row.median_price_m2)}</td>
       <td>${currency.format(row.highest_price)}</td>
       <td>${currency.format(row.lowest_price)}</td>
-      <td>${row.latest_sale_date || "—"}</td>
       <td>${formatDistance(row.avg_distance_to_cbd)}</td>
     `;
     tr.title = "Click to filter charts/map by this suburb (click again to clear)";

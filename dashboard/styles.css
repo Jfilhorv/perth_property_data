@@ -7,6 +7,9 @@ body {
   font-family: Arial, sans-serif;
   background: #eef0f4;
   color: #1f2937;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
@@ -129,6 +132,7 @@ main {
   padding: 16px 0 22px;
   display: grid;
   gap: 12px;
+  flex: 1;
 }
 
 .kpi-grid {
@@ -1382,9 +1386,16 @@ tbody tr.table-row--active-filter:hover td {
 }
 
 .site-footer {
+  width: 100%;
+  margin: 0;
+  padding: 16px 0 18px;
+  background: #4169E1;
+}
+
+.site-footer .kpi-footnote {
   width: 94vw;
   margin: 0 auto;
-  padding: 2px 0 8px;
+  color: rgba(255, 255, 255, 0.92);
 }
 
 #yearlyChart {
