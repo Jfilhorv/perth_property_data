@@ -2329,7 +2329,7 @@ function getBoundarySuburbName(feature) {
 
 function renderMap(rows) {
   if (!map) {
-    map = L.map("map", { zoomControl: false, attributionControl: false }).setView([-31.95, 115.86], 10);
+    map = L.map("map", { zoomControl: false, attributionControl: false }).setView([-31.95, 115.86], 10.35);
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
     }).addTo(map);
