@@ -2138,7 +2138,7 @@ function heatColorBlueGreen(value, minValue, maxValue) {
     return "#1e3a8a";
   }
   const t = Math.min(1, Math.max(0, (value - minValue) / (maxValue - minValue)));
-  return interpolateHexColor("#1e3a8a", "#4d7c0f", t);
+  return interpolateHexColor("#1e3a8a", "#ec4899", t);
 }
 
 function interpolateHexColor(startHex, endHex, t) {
