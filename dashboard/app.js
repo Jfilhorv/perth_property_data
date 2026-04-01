@@ -46,6 +46,7 @@ let schoolLayer;
 let parksLayer;
 let suburbBoundariesGeoJson = null;
 let parksGeoJson = null;
+let heatLegendControl = null;
 let ptOverlayGroup = null;
 let ptLoadPromise = null;
 let suburbSelectControl = null;
@@ -2138,7 +2139,7 @@ function heatColorBlueGreen(value, minValue, maxValue) {
     return "#1e3a8a";
   }
   const t = Math.min(1, Math.max(0, (value - minValue) / (maxValue - minValue)));
-  return interpolateHexColor("#1e3a8a", "#ec4899", t);
+  return interpolateHexColor("#1e3a8a", "#be185d", t);
 }
 
 function interpolateHexColor(startHex, endHex, t) {
@@ -2191,6 +2192,58 @@ function getSuburbHeatMetricConfig() {
     };
   }
   return { key: "avg_price", label: "Price", fmt: (v) => (Number.isFinite(v) ? currency.format(v) : "N/A") };
+}
+
+function heatLegendValue(metricKey, value) {
+  if (!Number.isFinite(value)) return "N/A";
+  if (metricKey === "avg_price") return currency.format(value);
+  if (metricKey === "avg_land_size") return `${numberFmt.format(Math.round(value))} m²`;
+  if (metricKey === "appreciation_pct") return `${value.toFixed(1)}%`;
+  return value.toFixed(2);
+}
+
+function updateHeatLegend(heatCfg, minValue, maxValue, enabled) {
+  if (!map) return;
+  if (!heatLegendControl) {
+    heatLegendControl = L.control({ position: "bottomright" });
+    heatLegendControl.onAdd = () => {
+      const div = L.DomUtil.create("div", "map-heat-legend");
+      div.innerHTML = "";
+      return div;
+    };
+    heatLegendControl.addTo(map);
+  }
+  const el = heatLegendControl.getContainer();
+  if (!el) return;
+  if (!enabled || !Number.isFinite(minValue) || !Number.isFinite(maxValue)) {
+    el.style.display = "none";
+    return;
+  }
+  el.style.display = "block";
+  const s0 = minValue;
+  const s1 = minValue + (maxValue - minValue) * 0.25;
+  const s2 = minValue + (maxValue - minValue) * 0.5;
+  const s3 = minValue + (maxValue - minValue) * 0.75;
+  const s4 = maxValue;
+  const c0 = heatColorBlueGreen(s0, minValue, maxValue);
+  const c1 = heatColorBlueGreen(s1, minValue, maxValue);
+  const c2 = heatColorBlueGreen(s2, minValue, maxValue);
+  const c3 = heatColorBlueGreen(s3, minValue, maxValue);
+  const c4 = heatColorBlueGreen(s4, minValue, maxValue);
+  el.innerHTML = `
+    <div style="font-weight:700;margin-bottom:6px;">${escapeHtml(heatCfg.label)} scale</div>
+    <div style="display:flex;align-items:stretch;height:12px;border-radius:999px;overflow:hidden;border:1px solid rgba(15,23,42,0.22);">
+      <span style="flex:1;background:${c0};"></span>
+      <span style="flex:1;background:${c1};"></span>
+      <span style="flex:1;background:${c2};"></span>
+      <span style="flex:1;background:${c3};"></span>
+      <span style="flex:1;background:${c4};"></span>
+    </div>
+    <div style="display:flex;justify-content:space-between;gap:10px;margin-top:4px;font-size:10px;">
+      <span>${escapeHtml(heatLegendValue(heatCfg.key, minValue))}</span>
+      <span>${escapeHtml(heatLegendValue(heatCfg.key, maxValue))}</span>
+    </div>
+  `;
 }
 
 function getBoundarySuburbName(feature) {
@@ -2514,6 +2567,7 @@ function renderMap(rows) {
   if (ml.suburbHeat) suburbHeatLayer.addTo(map);
   if (ml.schools) schoolLayer.addTo(map);
   if (ml.parks) parksLayer.addTo(map);
+  updateHeatLegend(heatCfg, heatMin, heatMax, ml.suburbHeat && heatRows.length > 0);
 
   const boundsLayers = [];
   if (shouldShowPropertyPoints) boundsLayers.push(...listingMarkers);

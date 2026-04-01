@@ -998,6 +998,18 @@ select {
   border: 1px solid #e5e7eb;
 }
 
+.map-heat-legend {
+  padding: 8px 10px;
+  min-width: 180px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #0f172a;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.18);
+  font-size: 11px;
+  line-height: 1.25;
+}
+
 .table-wrap {
   overflow-x: auto;
   overflow-y: scroll;
