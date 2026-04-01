@@ -2475,6 +2475,8 @@ function renderMap(rows) {
       avg_bathrooms: v.bathCount > 0 ? v.sumBaths / v.bathCount : NaN,
       avg_land_size: v.landCount > 0 ? v.sumLand / v.landCount : NaN,
       appreciation_pct: growthBySuburb.get(v.suburb) ?? NaN,
+      lowest_price: suburbStatsByKey.get(canonicalSuburbKey(v.suburb))?.lowest_price ?? NaN,
+      highest_price: suburbStatsByKey.get(canonicalSuburbKey(v.suburb))?.highest_price ?? NaN,
     }))
     .filter((v) => Number.isFinite(v.latitude) && Number.isFinite(v.longitude));
   const heatCfg = getSuburbHeatMetricConfig();
@@ -2505,10 +2507,12 @@ function renderMap(rows) {
           const row = heatByKey.get(canonicalSuburbKey(getBoundarySuburbName(feature)));
           if (!row) return;
           const v = row[heatCfg.key];
+          const localPriceScale =
+            Number.isFinite(row.lowest_price) && Number.isFinite(row.highest_price)
+              ? `${currency.format(row.lowest_price)} to ${currency.format(row.highest_price)}`
+              : "N/A";
           layer.bindTooltip(
-            `<b>${row.suburb}</b><br/>${heatCfg.label}: ${heatCfg.fmt(v)}<br/>Suburb scale range: ${heatCfg.fmt(
-              heatMin
-            )} to ${heatCfg.fmt(heatMax)}`,
+            `<b>${row.suburb}</b><br/>${heatCfg.label}: ${heatCfg.fmt(v)}<br/>Scale price: ${localPriceScale}`,
             listingTooltipOptions
           );
           layer.on("click", (ev) => {
@@ -2523,6 +2527,10 @@ function renderMap(rows) {
       heatRows.map((row) => {
         const v = row[heatCfg.key];
         const color = heatColorBlueGreen(v, heatMin, heatMax);
+        const localPriceScale =
+          Number.isFinite(row.lowest_price) && Number.isFinite(row.highest_price)
+            ? `${currency.format(row.lowest_price)} to ${currency.format(row.highest_price)}`
+            : "N/A";
         return L.circleMarker([row.latitude, row.longitude], {
           pane: "suburbHeatPane",
           radius: 24,
@@ -2530,12 +2538,7 @@ function renderMap(rows) {
           fillColor: color,
           fillOpacity: 0.32,
           weight: 2,
-        }).bindTooltip(
-          `<b>${row.suburb}</b><br/>${heatCfg.label}: ${heatCfg.fmt(v)}<br/>Suburb scale range: ${heatCfg.fmt(heatMin)} to ${heatCfg.fmt(
-            heatMax
-          )}`,
-          listingTooltipOptions
-        );
+        }).bindTooltip(`<b>${row.suburb}</b><br/>${heatCfg.label}: ${heatCfg.fmt(v)}<br/>Scale price: ${localPriceScale}`, listingTooltipOptions);
       })
     );
   }
