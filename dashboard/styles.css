@@ -496,21 +496,21 @@ section.panel:has(.filters):has(.clear-filters-btn--filtered) {
 #suburbTableWrap col.suburb-col-distance { width: 8%; }
 
 /* Deterministic widths for Properties table (physical columns grouped) */
-#propertyTableWrap col.prop-col-address { width: 22%; }
-#propertyTableWrap col.prop-col-type { width: 10%; }
-#propertyTableWrap col.prop-col-beds { width: 4%; }
-#propertyTableWrap col.prop-col-baths { width: 4%; }
-#propertyTableWrap col.prop-col-parking { width: 4%; }
-#propertyTableWrap col.prop-col-land { width: 4.5%; }
-#propertyTableWrap col.prop-col-sales { width: 5.5%; }
-#propertyTableWrap col.prop-col-variation { width: 5.5%; }
-#propertyTableWrap col.prop-col-growth { width: 5.5%; }
-#propertyTableWrap col.prop-col-prediction { width: 5.5%; }
-#propertyTableWrap col.prop-col-m2 { width: 5.5%; }
-#propertyTableWrap col.prop-col-highest { width: 5.5%; }
-#propertyTableWrap col.prop-col-lowest { width: 5.5%; }
-#propertyTableWrap col.prop-col-date { width: 5.5%; }
-#propertyTableWrap col.prop-col-distance { width: 5.5%; }
+#propertyTableWrap col.prop-col-address { width: 10%; }
+#propertyTableWrap col.prop-col-type { width: 5%; }
+#propertyTableWrap col.prop-col-beds { width: 5%; }
+#propertyTableWrap col.prop-col-baths { width: 5%; }
+#propertyTableWrap col.prop-col-parking { width: 5%; }
+#propertyTableWrap col.prop-col-land { width: 5%; }
+#propertyTableWrap col.prop-col-sales { width: 5%; }
+#propertyTableWrap col.prop-col-variation { width: 7.5%; }
+#propertyTableWrap col.prop-col-growth { width: 7.5%; }
+#propertyTableWrap col.prop-col-prediction { width: 7.5%; }
+#propertyTableWrap col.prop-col-m2 { width: 7.5%; }
+#propertyTableWrap col.prop-col-highest { width: 7.5%; }
+#propertyTableWrap col.prop-col-lowest { width: 7.5%; }
+#propertyTableWrap col.prop-col-date { width: 7.5%; }
+#propertyTableWrap col.prop-col-distance { width: 7.5%; }
 
 .table-wrap--properties table th:first-child,
 .table-wrap--properties table td:first-child {
@@ -1321,7 +1321,9 @@ td:nth-child(n + 2) {
 #propertyTableWrap th:nth-child(5),
 #propertyTableWrap td:nth-child(5),
 #propertyTableWrap th:nth-child(6),
-#propertyTableWrap td:nth-child(6) {
+#propertyTableWrap td:nth-child(6),
+#propertyTableWrap th:nth-child(7),
+#propertyTableWrap td:nth-child(7) {
   min-width: 62px;
   padding-left: 2px;
   padding-right: 2px;
