@@ -254,7 +254,7 @@ section.panel:has(.filters):has(.clear-filters-btn--filtered) {
 
 .viz-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 54% 46%;
   grid-auto-rows: minmax(0, 1fr);
   gap: 16px;
   align-items: stretch;
@@ -274,8 +274,7 @@ section.panel:has(.filters):has(.clear-filters-btn--filtered) {
 .panel--map .map-shell {
   flex: 1 1 auto;
   min-height: 0;
-  height: auto;
-  max-height: 840px;
+  height: 100%;
 }
 
 .panel--sales {
@@ -1013,7 +1012,7 @@ select {
 
 .map-shell {
   position: relative;
-  height: 565px;
+  height: 100%;
   width: 100%;
 }
 
