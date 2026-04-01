@@ -2075,9 +2075,7 @@ function syncChartTypeSegmentControls() {
 
 function getMapLayerToggles() {
   return {
-    suburbs: document.getElementById("mapLayerSuburbs")?.checked !== false,
     suburbHeat: Boolean(document.getElementById("mapLayerSuburbHeat")?.checked),
-    properties: Boolean(document.getElementById("mapLayerProperties")?.checked),
     schools: Boolean(document.getElementById("mapLayerSchools")?.checked),
     publicTransport: Boolean(document.getElementById("mapLayerPublicTransport")?.checked),
   };
@@ -2086,7 +2084,8 @@ function getMapLayerToggles() {
 function handleMapClickNearestListing(e) {
   const t = e.originalEvent?.target;
   if (t?.closest?.(".leaflet-control")) return;
-  if (!getMapLayerToggles().properties) return;
+  const hasSuburbFilter = Boolean(selectedFilters.suburb || selectedFilters.interactionSuburb);
+  if (!hasSuburbFilter) return;
   if (!listingsLayer || !map?.hasLayer(listingsLayer)) return;
   const clickPt = map.latLngToContainerPoint(e.latlng);
   const maxPx = 56;
@@ -2473,20 +2472,18 @@ function renderMap(rows) {
   schoolLayer = L.layerGroup(schoolMarkers);
 
   const ml = getMapLayerToggles();
-  if (ml.properties) listingsLayer.addTo(map);
-  if (ml.suburbs) suburbPriceLayer.addTo(map);
+  const shouldShowPropertyPoints = Boolean(
+    selectedFilters.suburb ||
+      selectedFilters.interactionSuburb ||
+      selectedFilters.interactionAddressKey ||
+      selectedFilters.filterHouseKey
+  );
+  if (shouldShowPropertyPoints) listingsLayer.addTo(map);
   if (ml.suburbHeat) suburbHeatLayer.addTo(map);
   if (ml.schools) schoolLayer.addTo(map);
 
   const boundsLayers = [];
-  if (ml.properties) boundsLayers.push(...listingMarkers);
-  if (ml.suburbs) {
-    if (suburbBoundariesGeoJson?.features?.length) {
-      boundsLayers.push(suburbPriceLayer);
-    } else {
-      boundsLayers.push(...filteredSuburb.map((row) => L.marker([row.latitude, row.longitude])));
-    }
-  }
+  if (shouldShowPropertyPoints) boundsLayers.push(...listingMarkers);
   if (ml.suburbHeat) {
     if (suburbBoundariesGeoJson?.features?.length) {
       boundsLayers.push(suburbHeatLayer);
@@ -2932,7 +2929,7 @@ async function init() {
   syncChartTypeSegmentControls();
 
   clearFiltersBtn?.addEventListener("click", resetFilters);
-  ["mapLayerSuburbs", "mapLayerSuburbHeat", "mapLayerProperties", "mapLayerSchools", "mapLayerPublicTransport"].forEach((id) => {
+  ["mapLayerSuburbHeat", "mapLayerSchools", "mapLayerPublicTransport"].forEach((id) => {
     document.getElementById(id)?.addEventListener("change", () => applyFilters());
   });
   document.getElementById("mapHeatMetric")?.addEventListener("change", () => applyFilters());

@@ -149,12 +149,8 @@
           <div class="map-panel-head">
             <h2>Property Map and Average Price by Suburb</h2>
             <div class="map-layer-toggles" role="group" aria-label="Map layers">
-              <label class="map-layer-tick" title="Average price by suburb">
-                <input type="checkbox" id="mapLayerSuburbs" checked />
-                <span>Suburbs</span>
-              </label>
               <label class="map-layer-tick" title="Suburb heat by selected metric">
-                <input type="checkbox" id="mapLayerSuburbHeat" />
+                <input type="checkbox" id="mapLayerSuburbHeat" checked />
                 <span>Suburb Heat</span>
               </label>
               <label class="map-layer-metric" for="mapHeatMetric" title="Heat metric by suburb average">
@@ -166,10 +162,6 @@
                   <option value="avg_land_size">Land size (average)</option>
                   <option value="appreciation_pct">Appreciation (avg resale growth %)</option>
                 </select>
-              </label>
-              <label class="map-layer-tick" title="Property sale locations">
-                <input type="checkbox" id="mapLayerProperties" />
-                <span>Properties</span>
               </label>
               <label class="map-layer-tick" title="Estimated school locations">
                 <input type="checkbox" id="mapLayerSchools" />
@@ -318,7 +310,7 @@
       integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
       crossorigin=""
     ></script>
-    <script src="./app.js?v=20260401-suburb-polygons"></script>
+    <script src="./app.js?v=20260401-map-heat-default-auto-houses"></script>
     <script
       data-goatcounter="https://efilhorv.goatcounter.com/count"
       async
