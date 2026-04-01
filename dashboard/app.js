@@ -43,6 +43,7 @@ let listingsLayer;
 let suburbPriceLayer;
 let suburbHeatLayer;
 let schoolLayer;
+let suburbBoundariesGeoJson = null;
 let ptOverlayGroup = null;
 let ptLoadPromise = null;
 let suburbSelectControl = null;
@@ -2191,6 +2192,11 @@ function getSuburbHeatMetricConfig() {
   return { key: "avg_price", label: "Average price", fmt: (v) => (Number.isFinite(v) ? currency.format(v) : "N/A") };
 }
 
+function getBoundarySuburbName(feature) {
+  const p = feature?.properties || {};
+  return String(p.LOC_NAME || p.locality || p.suburb || p.name || "").trim();
+}
+
 function renderMap(rows) {
   if (!map) {
     map = L.map("map", { zoomControl: false, attributionControl: false }).setView([-31.95, 115.86], 10);
@@ -2241,21 +2247,35 @@ function renderMap(rows) {
   listingsLayer = L.layerGroup(listingMarkers);
 
   const filteredSuburb = aggregateSuburbStats(rows).filter((r) => Number.isFinite(r.latitude) && Number.isFinite(r.longitude));
+  const suburbStatsByKey = new Map(filteredSuburb.map((r) => [canonicalSuburbKey(r.Suburb), r]));
   const prices = filteredSuburb.map((r) => r.avg_price);
   const hasSuburbMarkers = filteredSuburb.length > 0 && prices.length > 0;
   const minPrice = hasSuburbMarkers ? Math.min(...prices) : 0;
   const maxPrice = hasSuburbMarkers ? Math.max(...prices) : 1;
-  suburbPriceLayer = L.layerGroup(
-    hasSuburbMarkers
-      ? filteredSuburb.map((row) => {
-          const marker = L.circleMarker([row.latitude, row.longitude], {
-            pane: "suburbAvgPane",
-            radius: radiusByPrice(row.avg_price, minPrice, maxPrice),
-            color: colorByPrice(row.avg_price, minPrice, maxPrice),
-            fillColor: colorByPrice(row.avg_price, minPrice, maxPrice),
-            fillOpacity: 0.25,
-            weight: 2,
-          }).bindTooltip(
+  if (suburbBoundariesGeoJson?.features?.length) {
+    const boundaryFeatures = suburbBoundariesGeoJson.features.filter((feature) => {
+      const featureSuburb = getBoundarySuburbName(feature);
+      return suburbStatsByKey.has(canonicalSuburbKey(featureSuburb));
+    });
+    suburbPriceLayer = L.geoJSON(
+      { type: "FeatureCollection", features: boundaryFeatures },
+      {
+        pane: "suburbAvgPane",
+        style: (feature) => {
+          const row = suburbStatsByKey.get(canonicalSuburbKey(getBoundarySuburbName(feature)));
+          const avgPrice = row?.avg_price;
+          const c = colorByPrice(avgPrice, minPrice, maxPrice);
+          return {
+            color: c,
+            weight: 1.8,
+            fillColor: c,
+            fillOpacity: 0.34,
+          };
+        },
+        onEachFeature(feature, layer) {
+          const row = suburbStatsByKey.get(canonicalSuburbKey(getBoundarySuburbName(feature)));
+          if (!row) return;
+          layer.bindTooltip(
             `<b>${row.Suburb}</b><br/>Average price: ${currency.format(row.avg_price)}<br/>Median price: ${currency.format(
               row.median_price
             )}<br/>Variation: ${getVariationMeta(row.variation_pct).arrow} ${getVariationMeta(row.variation_pct).text}<br/>Avg resale CAGR: ${(() => {
@@ -2272,14 +2292,50 @@ function renderMap(rows) {
             )}<br/>Lowest: ${currency.format(row.lowest_price)}<br/>Sales: ${numberFmt.format(row.count)}`,
             listingTooltipOptions
           );
-          marker.on("click", (ev) => {
+          layer.on("click", (ev) => {
             if (ev?.originalEvent) L.DomEvent.stopPropagation(ev.originalEvent);
             setSuburbFilterFromMap(row.Suburb);
           });
-          return marker;
-        })
-      : []
-  );
+        },
+      }
+    );
+  } else {
+    suburbPriceLayer = L.layerGroup(
+      hasSuburbMarkers
+        ? filteredSuburb.map((row) => {
+            const marker = L.circleMarker([row.latitude, row.longitude], {
+              pane: "suburbAvgPane",
+              radius: radiusByPrice(row.avg_price, minPrice, maxPrice),
+              color: colorByPrice(row.avg_price, minPrice, maxPrice),
+              fillColor: colorByPrice(row.avg_price, minPrice, maxPrice),
+              fillOpacity: 0.25,
+              weight: 2,
+            }).bindTooltip(
+              `<b>${row.Suburb}</b><br/>Average price: ${currency.format(row.avg_price)}<br/>Median price: ${currency.format(
+                row.median_price
+              )}<br/>Variation: ${getVariationMeta(row.variation_pct).arrow} ${getVariationMeta(row.variation_pct).text}<br/>Avg resale CAGR: ${(() => {
+                const g = clampResaleGrowthPercent(row.avg_annual_growth_pct);
+                if (!Number.isFinite(g)) return "N/A";
+                const m = getVariationMeta(g);
+                return `${m.arrow} ${m.text}`;
+              })()}<br/>Prediction Current Price (2y, conservative): ${
+                Number.isFinite(row.prediction_price_2y) ? currency.format(row.prediction_price_2y) : "N/A"
+              }<br/>Median Price M²: ${asPricePerSqm(
+                row.median_price_m2
+              )}<br/>Highest: ${currency.format(
+                row.highest_price
+              )}<br/>Lowest: ${currency.format(row.lowest_price)}<br/>Sales: ${numberFmt.format(row.count)}`,
+              listingTooltipOptions
+            );
+            marker.on("click", (ev) => {
+              if (ev?.originalEvent) L.DomEvent.stopPropagation(ev.originalEvent);
+              setSuburbFilterFromMap(row.Suburb);
+            });
+            return marker;
+          })
+        : []
+    );
+  }
   const heatAggBySuburb = new Map();
   rows.forEach((row) => {
     if (!row.Suburb || !Number.isFinite(row.Latitude) || !Number.isFinite(row.Longitude)) return;
@@ -2339,25 +2395,64 @@ function renderMap(rows) {
   const heatValues = heatRows.map((r) => r[heatCfg.key]).filter((v) => Number.isFinite(v));
   const heatMin = heatValues.length > 0 ? Math.min(...heatValues) : 0;
   const heatMax = heatValues.length > 0 ? Math.max(...heatValues) : 1;
-  suburbHeatLayer = L.layerGroup(
-    heatRows.map((row) => {
-      const v = row[heatCfg.key];
-      const color = heatColorBlueGreen(v, heatMin, heatMax);
-      return L.circleMarker([row.latitude, row.longitude], {
+  const heatByKey = new Map(heatRows.map((r) => [canonicalSuburbKey(r.suburb), r]));
+  if (suburbBoundariesGeoJson?.features?.length) {
+    const boundaryFeatures = suburbBoundariesGeoJson.features.filter((feature) =>
+      heatByKey.has(canonicalSuburbKey(getBoundarySuburbName(feature)))
+    );
+    suburbHeatLayer = L.geoJSON(
+      { type: "FeatureCollection", features: boundaryFeatures },
+      {
         pane: "suburbHeatPane",
-        radius: 24,
-        color,
-        fillColor: color,
-        fillOpacity: 0.32,
-        weight: 2,
-      }).bindTooltip(
-        `<b>${row.suburb}</b><br/>${heatCfg.label}: ${heatCfg.fmt(v)}<br/>Scale range: ${heatCfg.fmt(heatMin)} to ${heatCfg.fmt(
-          heatMax
-        )}`,
-        listingTooltipOptions
-      );
-    })
-  );
+        style: (feature) => {
+          const row = heatByKey.get(canonicalSuburbKey(getBoundarySuburbName(feature)));
+          const v = row?.[heatCfg.key];
+          const color = heatColorBlueGreen(v, heatMin, heatMax);
+          return {
+            color,
+            weight: 1.6,
+            fillColor: color,
+            fillOpacity: 0.34,
+          };
+        },
+        onEachFeature(feature, layer) {
+          const row = heatByKey.get(canonicalSuburbKey(getBoundarySuburbName(feature)));
+          if (!row) return;
+          const v = row[heatCfg.key];
+          layer.bindTooltip(
+            `<b>${row.suburb}</b><br/>${heatCfg.label}: ${heatCfg.fmt(v)}<br/>Scale range: ${heatCfg.fmt(
+              heatMin
+            )} to ${heatCfg.fmt(heatMax)}`,
+            listingTooltipOptions
+          );
+          layer.on("click", (ev) => {
+            if (ev?.originalEvent) L.DomEvent.stopPropagation(ev.originalEvent);
+            setSuburbFilterFromMap(row.suburb);
+          });
+        },
+      }
+    );
+  } else {
+    suburbHeatLayer = L.layerGroup(
+      heatRows.map((row) => {
+        const v = row[heatCfg.key];
+        const color = heatColorBlueGreen(v, heatMin, heatMax);
+        return L.circleMarker([row.latitude, row.longitude], {
+          pane: "suburbHeatPane",
+          radius: 24,
+          color,
+          fillColor: color,
+          fillOpacity: 0.32,
+          weight: 2,
+        }).bindTooltip(
+          `<b>${row.suburb}</b><br/>${heatCfg.label}: ${heatCfg.fmt(v)}<br/>Scale range: ${heatCfg.fmt(heatMin)} to ${heatCfg.fmt(
+            heatMax
+          )}`,
+          listingTooltipOptions
+        );
+      })
+    );
+  }
   const schoolMarkers = schoolPoints
     .filter((s) => s.count >= 8)
     .map((s) =>
@@ -2386,10 +2481,18 @@ function renderMap(rows) {
   const boundsLayers = [];
   if (ml.properties) boundsLayers.push(...listingMarkers);
   if (ml.suburbs) {
-    boundsLayers.push(...filteredSuburb.map((row) => L.marker([row.latitude, row.longitude])));
+    if (suburbBoundariesGeoJson?.features?.length) {
+      boundsLayers.push(suburbPriceLayer);
+    } else {
+      boundsLayers.push(...filteredSuburb.map((row) => L.marker([row.latitude, row.longitude])));
+    }
   }
   if (ml.suburbHeat) {
-    boundsLayers.push(...heatRows.map((row) => L.marker([row.latitude, row.longitude])));
+    if (suburbBoundariesGeoJson?.features?.length) {
+      boundsLayers.push(suburbHeatLayer);
+    } else {
+      boundsLayers.push(...heatRows.map((row) => L.marker([row.latitude, row.longitude])));
+    }
   }
   if (ml.schools) boundsLayers.push(...schoolMarkers);
   const boundsGroup = L.featureGroup(boundsLayers);
@@ -2633,6 +2736,14 @@ async function init() {
     Suburb: normalizeSuburbName(row.Suburb),
   }));
   schoolPoints = schools;
+  try {
+    const boundaryFc = await loadJson("./data/suburb_boundaries.geojson");
+    if (boundaryFc && Array.isArray(boundaryFc.features)) {
+      suburbBoundariesGeoJson = boundaryFc;
+    }
+  } catch {
+    suburbBoundariesGeoJson = null;
+  }
 
   suburbAnnualGrowthBySuburb = sanitizeSuburbGrowthMap(buildSuburbAnnualGrowthMapFromCore(listingsCore));
   try {
