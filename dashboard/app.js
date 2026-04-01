@@ -2547,7 +2547,7 @@ function renderMap(rows) {
     .map((s) =>
       L.circleMarker([s.latitude, s.longitude], {
         pane: "schoolMarkersPane",
-        radius: 6,
+        radius: 4.5,
         color: "#0f766e",
         fillColor: "#14b8a6",
         fillOpacity: 0.35,
