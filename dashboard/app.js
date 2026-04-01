@@ -1436,6 +1436,17 @@ function setSuburbFilter(nextSuburb, applyNow = true) {
  */
 function setSuburbFilterFromMap(suburb, options = {}) {
   const listingRow = options.listingRow;
+  const normalizedNext = normalizeSuburbName(suburb || "");
+  if (!listingRow) {
+    const sameSuburb = normalizedNext && normalizedNext === selectedFilters.suburb;
+    if (sameSuburb) {
+      selectedFilters.year = "";
+      selectedFilters.filterHouseKey = "";
+      selectedFilters.chartHouseKey = "";
+      setSuburbFilter("");
+      return;
+    }
+  }
   selectedFilters.year = "";
   if (listingRow) {
     const hk = houseKey(listingRow);
@@ -2194,7 +2205,7 @@ function getSuburbHeatMetricConfig() {
       },
     };
   }
-  return { key: "avg_price", label: "Price", fmt: (v) => (Number.isFinite(v) ? currency.format(v) : "N/A") };
+  return { key: "avg_price", label: "Median Price", fmt: (v) => (Number.isFinite(v) ? currency.format(v) : "N/A") };
 }
 
 function heatLegendValue(metricKey, value) {
@@ -2495,7 +2506,7 @@ function renderMap(rows) {
           if (!row) return;
           const v = row[heatCfg.key];
           layer.bindTooltip(
-            `<b>${row.suburb}</b><br/>${heatCfg.label}: ${heatCfg.fmt(v)}<br/>Scale range: ${heatCfg.fmt(
+            `<b>${row.suburb}</b><br/>${heatCfg.label}: ${heatCfg.fmt(v)}<br/>Suburb scale range: ${heatCfg.fmt(
               heatMin
             )} to ${heatCfg.fmt(heatMax)}`,
             listingTooltipOptions
@@ -2520,7 +2531,7 @@ function renderMap(rows) {
           fillOpacity: 0.32,
           weight: 2,
         }).bindTooltip(
-          `<b>${row.suburb}</b><br/>${heatCfg.label}: ${heatCfg.fmt(v)}<br/>Scale range: ${heatCfg.fmt(heatMin)} to ${heatCfg.fmt(
+          `<b>${row.suburb}</b><br/>${heatCfg.label}: ${heatCfg.fmt(v)}<br/>Suburb scale range: ${heatCfg.fmt(heatMin)} to ${heatCfg.fmt(
             heatMax
           )}`,
           listingTooltipOptions
