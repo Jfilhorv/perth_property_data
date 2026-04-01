@@ -201,6 +201,18 @@
         </div>
         <div class="table-wrap" id="suburbTableWrap" role="tabpanel" aria-labelledby="tabSalesSuburbs">
           <table>
+            <colgroup>
+              <col class="suburb-col-suburb" />
+              <col class="suburb-col-sales" />
+              <col class="suburb-col-median" />
+              <col class="suburb-col-variation" />
+              <col class="suburb-col-growth" />
+              <col class="suburb-col-prediction" />
+              <col class="suburb-col-m2" />
+              <col class="suburb-col-highest" />
+              <col class="suburb-col-lowest" />
+              <col class="suburb-col-distance" />
+            </colgroup>
             <thead>
               <tr>
                 <th class="sortable" data-sort-key="Suburb" data-label="Suburb">Suburb</th>
@@ -225,6 +237,23 @@
         <div class="property-table-panel hidden" id="propertyTablePanel" role="tabpanel" aria-labelledby="tabSalesProperties">
           <div class="table-wrap table-wrap--properties" id="propertyTableWrap">
             <table>
+              <colgroup>
+                <col class="prop-col-address" />
+                <col class="prop-col-type" />
+                <col class="prop-col-beds" />
+                <col class="prop-col-baths" />
+                <col class="prop-col-parking" />
+                <col class="prop-col-land" />
+                <col class="prop-col-sales" />
+                <col class="prop-col-variation" />
+                <col class="prop-col-growth" />
+                <col class="prop-col-prediction" />
+                <col class="prop-col-m2" />
+                <col class="prop-col-highest" />
+                <col class="prop-col-lowest" />
+                <col class="prop-col-date" />
+                <col class="prop-col-distance" />
+              </colgroup>
               <thead>
                 <tr>
                   <th class="sortable" data-sort-key="Address" data-label="Address">Address</th>
@@ -273,7 +302,7 @@
       integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
       crossorigin=""
     ></script>
-    <script src="./app.js?v=20260331-latest-sold-tooltip-dates"></script>
+    <script src="./app.js?v=20260331-colgroup-width-balance"></script>
     <script
       data-goatcounter="https://efilhorv.goatcounter.com/count"
       async
