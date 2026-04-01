@@ -2231,15 +2231,15 @@ function updateHeatLegend(heatCfg, minValue, maxValue, enabled) {
   const c3 = heatColorBlueGreen(s3, minValue, maxValue);
   const c4 = heatColorBlueGreen(s4, minValue, maxValue);
   el.innerHTML = `
-    <div style="font-weight:700;margin-bottom:6px;">${escapeHtml(heatCfg.label)} scale</div>
-    <div style="display:flex;align-items:stretch;height:12px;border-radius:999px;overflow:hidden;border:1px solid rgba(15,23,42,0.22);">
+    <div style="font-weight:700;margin-bottom:2px;letter-spacing:0.01em;">${escapeHtml(heatCfg.label)}</div>
+    <div style="display:flex;align-items:stretch;height:8px;border-radius:999px;overflow:hidden;border:1px solid rgba(15,23,42,0.16);">
       <span style="flex:1;background:${c0};"></span>
       <span style="flex:1;background:${c1};"></span>
       <span style="flex:1;background:${c2};"></span>
       <span style="flex:1;background:${c3};"></span>
       <span style="flex:1;background:${c4};"></span>
     </div>
-    <div style="display:flex;justify-content:space-between;gap:10px;margin-top:4px;font-size:10px;">
+    <div style="display:flex;justify-content:space-between;gap:6px;margin-top:1px;font-size:9px;">
       <span>${escapeHtml(heatLegendValue(heatCfg.key, minValue))}</span>
       <span>${escapeHtml(heatLegendValue(heatCfg.key, maxValue))}</span>
     </div>
