@@ -12,7 +12,7 @@
     <title>Perth Property Data</title>
     <link rel="icon" href="./assets/favicon.png?v=1" type="image/png" />
     <link rel="apple-touch-icon" href="./assets/favicon.png?v=1" />
-    <link rel="stylesheet" href="./styles.css?v=20260401-royalblue-soft-opacity" />
+    <link rel="stylesheet" href="./styles.css?v=20260401-suburb-room-avg-footer-fix" />
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -209,6 +209,7 @@
               <col class="suburb-col-growth" />
               <col class="suburb-col-prediction" />
               <col class="suburb-col-m2" />
+              <col class="suburb-col-room" />
               <col class="suburb-col-highest" />
               <col class="suburb-col-lowest" />
               <col class="suburb-col-distance" />
@@ -226,6 +227,7 @@
                   Prediction Current Price
                 </th>
                 <th class="sortable" data-sort-key="median_price_m2" data-label="Median Price M²">Median Price M²</th>
+                <th class="sortable" data-sort-key="avg_price_per_room" data-label="Avg Price / Room">Avg Price / Room</th>
                 <th class="sortable" data-sort-key="highest_price" data-label="Highest Price">Highest Price</th>
                 <th class="sortable" data-sort-key="lowest_price" data-label="Lowest Price">Lowest Price</th>
                 <th class="sortable" data-sort-key="avg_distance_to_cbd" data-label="Avg. Distance to CBD">Avg. Distance to CBD</th>
@@ -302,7 +304,7 @@
       integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
       crossorigin=""
     ></script>
-    <script src="./app.js?v=20260401-address-chart-dates"></script>
+    <script src="./app.js?v=20260401-suburb-room-avg-footer-fix"></script>
     <script
       data-goatcounter="https://efilhorv.goatcounter.com/count"
       async

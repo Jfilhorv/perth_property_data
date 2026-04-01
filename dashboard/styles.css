@@ -465,9 +465,10 @@ section.panel:has(.filters):has(.clear-filters-btn--filtered) {
 #suburbTableWrap col.suburb-col-growth { width: 9%; }
 #suburbTableWrap col.suburb-col-prediction { width: 9%; }
 #suburbTableWrap col.suburb-col-m2 { width: 9%; }
-#suburbTableWrap col.suburb-col-highest { width: 9%; }
-#suburbTableWrap col.suburb-col-lowest { width: 9%; }
-#suburbTableWrap col.suburb-col-distance { width: 9%; }
+#suburbTableWrap col.suburb-col-room { width: 9%; }
+#suburbTableWrap col.suburb-col-highest { width: 8%; }
+#suburbTableWrap col.suburb-col-lowest { width: 8%; }
+#suburbTableWrap col.suburb-col-distance { width: 8%; }
 
 /* Deterministic widths for Properties table (physical columns grouped) */
 #propertyTableWrap col.prop-col-address { width: 22%; }
@@ -1179,6 +1180,11 @@ td:nth-child(n + 2) {
   min-width: 112px;
 }
 
+#suburbTableWrap th:nth-child(11),
+#suburbTableWrap td:nth-child(11) {
+  min-width: 112px;
+}
+
 /* Properties table: keep physical columns visually grouped */
 #propertyTableWrap th:nth-child(1),
 #propertyTableWrap td:nth-child(1) {
@@ -1343,8 +1349,8 @@ tbody tr.table-row--clickable {
 }
 
 /* Keep CBD distance values visually under their header */
-#suburbTableWrap th:nth-child(10),
-#suburbTableWrap td:nth-child(10),
+#suburbTableWrap th:nth-child(11),
+#suburbTableWrap td:nth-child(11),
 #propertyTableWrap th:nth-child(15),
 #propertyTableWrap td:nth-child(15) {
   text-align: center !important;

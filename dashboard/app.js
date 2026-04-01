@@ -794,6 +794,7 @@ function aggregateSuburbStats(rows) {
       count: 0,
       prices: [],
       psmValues: [],
+      roomPriceValues: [],
       yearPrices: new Map(),
       sumDistance: 0,
       distanceCount: 0,
@@ -810,6 +811,9 @@ function aggregateSuburbStats(rows) {
     }
     if (Number.isFinite(row.Price) && Number.isFinite(row.Land_Size) && row.Land_Size > 0) {
       current.psmValues.push(row.Price / row.Land_Size);
+    }
+    if (Number.isFinite(row.Price) && Number.isFinite(row.Bedrooms) && row.Bedrooms > 0) {
+      current.roomPriceValues.push(row.Price / row.Bedrooms);
     }
     if (Number.isFinite(row.Distance_to_CBD)) {
       current.sumDistance += row.Distance_to_CBD;
@@ -831,8 +835,11 @@ function aggregateSuburbStats(rows) {
     .map((v) => {
       const sorted = v.prices.sort((a, b) => a - b);
       const psmSorted = v.psmValues.sort((a, b) => a - b);
+      const roomPriceSorted = v.roomPriceValues.sort((a, b) => a - b);
       const mid = Math.floor((sorted.length - 1) * 0.5);
       const psmMid = Math.floor((psmSorted.length - 1) * 0.5);
+      const roomAvg =
+        roomPriceSorted.length > 0 ? roomPriceSorted.reduce((a, b) => a + b, 0) / roomPriceSorted.length : NaN;
       const years = [...v.yearPrices.keys()].sort((a, b) => a - b);
       let variationPct = NaN;
       let latestYear = null;
@@ -880,6 +887,7 @@ function aggregateSuburbStats(rows) {
         lowest_price: sorted.length ? sorted[0] : 0,
         avg_price: sorted.length ? sorted.reduce((a, b) => a + b, 0) / sorted.length : 0,
         median_price_m2: psmSorted[psmMid] ?? 0,
+        avg_price_per_room: roomAvg,
         avg_price_per_sqm: psmSorted.length ? psmSorted.reduce((a, b) => a + b, 0) / psmSorted.length : 0,
         avg_distance_to_cbd: v.distanceCount ? v.sumDistance / v.distanceCount : 0,
         latitude: v.geoCount ? v.sumLat / v.geoCount : null,
@@ -1094,6 +1102,7 @@ function renderSuburbTable(rows) {
       <td><span class="variation-badge ${growthMeta.cls}" data-tooltip="${growthTooltip}" title="${growthTooltip}">${growthMeta.arrow} ${growthMeta.text}</span></td>
       <td title="${escapeHtml(predTip)}">${predText}</td>
       <td>${asPricePerSqm(row.median_price_m2)}</td>
+      <td>${asCurrencyOrNA(row.avg_price_per_room)}</td>
       <td>${currency.format(row.highest_price)}</td>
       <td>${currency.format(row.lowest_price)}</td>
       <td>${formatDistance(row.avg_distance_to_cbd)}</td>
