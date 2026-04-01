@@ -479,7 +479,7 @@ section.panel:has(.filters):has(.clear-filters-btn--filtered) {
 }
 
 .table-wrap:not(.table-wrap--properties) table {
-  min-width: 1020px;
+  min-width: 0;
 }
 
 /* Deterministic widths for Suburbs table */
@@ -1259,29 +1259,29 @@ td:nth-child(n + 2) {
 /* Balanced spacing for Suburbs table columns */
 #suburbTableWrap th:nth-child(1),
 #suburbTableWrap td:nth-child(1) {
-  min-width: 170px;
+  min-width: 0;
 }
 
 #suburbTableWrap th:nth-child(2),
 #suburbTableWrap td:nth-child(2) {
-  min-width: 72px;
+  min-width: 0;
 }
 
 #suburbTableWrap th:nth-child(3),
 #suburbTableWrap td:nth-child(3) {
-  min-width: 115px;
+  min-width: 0;
 }
 
 #suburbTableWrap th:nth-child(4),
 #suburbTableWrap td:nth-child(4),
 #suburbTableWrap th:nth-child(5),
 #suburbTableWrap td:nth-child(5) {
-  min-width: 116px;
+  min-width: 0;
 }
 
 #suburbTableWrap th:nth-child(6),
 #suburbTableWrap td:nth-child(6) {
-  min-width: 132px;
+  min-width: 0;
 }
 
 #suburbTableWrap th:nth-child(7),
@@ -1290,17 +1290,17 @@ td:nth-child(n + 2) {
 #suburbTableWrap td:nth-child(8),
 #suburbTableWrap th:nth-child(9),
 #suburbTableWrap td:nth-child(9) {
-  min-width: 112px;
+  min-width: 0;
 }
 
 #suburbTableWrap th:nth-child(10),
 #suburbTableWrap td:nth-child(10) {
-  min-width: 112px;
+  min-width: 0;
 }
 
 #suburbTableWrap th:nth-child(11),
 #suburbTableWrap td:nth-child(11) {
-  min-width: 112px;
+  min-width: 0;
 }
 
 /* Properties table: keep physical columns visually grouped */
