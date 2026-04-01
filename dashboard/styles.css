@@ -1070,7 +1070,7 @@ td {
   border-bottom: 1px solid #e5e7eb;
   padding: 7px 6px;
   font-size: 12px;
-  white-space: normal;
+  white-space: nowrap;
   vertical-align: middle;
 }
 
@@ -1095,26 +1095,11 @@ th.sortable:hover {
   z-index: 4;
   background: #f9fafb;
   box-shadow: 0 1px 0 #e5e7eb;
-  line-height: 1.15;
-  max-height: 2.3em;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
 }
 
 #suburbTableWrap thead th.sortable:hover,
 #propertyTableWrap thead th.sortable:hover {
   background: #eef2f7;
-}
-
-#suburbTableWrap td,
-#propertyTableWrap td {
-  line-height: 1.2;
-  max-height: 2.4em;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 /* Keep numeric columns visually aligned */
