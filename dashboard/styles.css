@@ -483,14 +483,14 @@ section.panel:has(.filters):has(.clear-filters-btn--filtered) {
 }
 
 /* Deterministic widths for Suburbs table */
-#suburbTableWrap col.suburb-col-suburb { width: 19%; }
-#suburbTableWrap col.suburb-col-sales { width: 9%; }
-#suburbTableWrap col.suburb-col-median { width: 9%; }
-#suburbTableWrap col.suburb-col-variation { width: 9%; }
-#suburbTableWrap col.suburb-col-growth { width: 9%; }
-#suburbTableWrap col.suburb-col-prediction { width: 9%; }
-#suburbTableWrap col.suburb-col-m2 { width: 9%; }
-#suburbTableWrap col.suburb-col-room { width: 9%; }
+#suburbTableWrap col.suburb-col-suburb { width: 20%; }
+#suburbTableWrap col.suburb-col-sales { width: 8%; }
+#suburbTableWrap col.suburb-col-median { width: 8%; }
+#suburbTableWrap col.suburb-col-variation { width: 8%; }
+#suburbTableWrap col.suburb-col-growth { width: 8%; }
+#suburbTableWrap col.suburb-col-prediction { width: 8%; }
+#suburbTableWrap col.suburb-col-m2 { width: 8%; }
+#suburbTableWrap col.suburb-col-room { width: 8%; }
 #suburbTableWrap col.suburb-col-highest { width: 8%; }
 #suburbTableWrap col.suburb-col-lowest { width: 8%; }
 #suburbTableWrap col.suburb-col-distance { width: 8%; }
