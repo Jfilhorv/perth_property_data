@@ -1328,6 +1328,14 @@ tbody tr.table-row--clickable {
   opacity: 0.95;
 }
 
+/* User preference: center-align both sales tables */
+#suburbTableWrap th,
+#suburbTableWrap td,
+#propertyTableWrap th,
+#propertyTableWrap td {
+  text-align: center !important;
+}
+
 tbody tr.table-row--active-filter td {
   background: #dbeafe;
   box-shadow: inset 0 1px 0 #bfdbfe, inset 0 -1px 0 #bfdbfe;
