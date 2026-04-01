@@ -2202,7 +2202,19 @@ function heatLegendValue(metricKey, value) {
   return value.toFixed(2);
 }
 
-function updateHeatLegend(heatCfg, minValue, maxValue, enabled) {
+function getHeatLegendExtremes(rows, metricKey) {
+  const validRows = (Array.isArray(rows) ? rows : []).filter((r) => Number.isFinite(r?.[metricKey]));
+  if (!validRows.length) return { minRow: null, maxRow: null };
+  let minRow = validRows[0];
+  let maxRow = validRows[0];
+  for (const row of validRows) {
+    if (row[metricKey] < minRow[metricKey]) minRow = row;
+    if (row[metricKey] > maxRow[metricKey]) maxRow = row;
+  }
+  return { minRow, maxRow };
+}
+
+function updateHeatLegend(heatCfg, minValue, maxValue, enabled, heatRows) {
   if (!map) return;
   if (!heatLegendControl) {
     heatLegendControl = L.control({ position: "bottomright" });
@@ -2230,6 +2242,11 @@ function updateHeatLegend(heatCfg, minValue, maxValue, enabled) {
   const c2 = heatColorBlueGreen(s2, minValue, maxValue);
   const c3 = heatColorBlueGreen(s3, minValue, maxValue);
   const c4 = heatColorBlueGreen(s4, minValue, maxValue);
+  const { minRow, maxRow } = getHeatLegendExtremes(heatRows, heatCfg.key);
+  const minSuburb = minRow?.suburb || "N/A";
+  const maxSuburb = maxRow?.suburb || "N/A";
+  const minText = heatLegendValue(heatCfg.key, minRow?.[heatCfg.key]);
+  const maxText = heatLegendValue(heatCfg.key, maxRow?.[heatCfg.key]);
   el.innerHTML = `
     <div style="font-weight:700;margin-bottom:2px;letter-spacing:0.01em;">${escapeHtml(heatCfg.label)}</div>
     <div style="display:flex;align-items:stretch;height:8px;border-radius:999px;overflow:hidden;border:1px solid rgba(15,23,42,0.16);">
@@ -2239,9 +2256,9 @@ function updateHeatLegend(heatCfg, minValue, maxValue, enabled) {
       <span style="flex:1;background:${c3};"></span>
       <span style="flex:1;background:${c4};"></span>
     </div>
-    <div style="display:flex;justify-content:space-between;gap:6px;margin-top:1px;font-size:9px;">
-      <span>${escapeHtml(heatLegendValue(heatCfg.key, minValue))}</span>
-      <span>${escapeHtml(heatLegendValue(heatCfg.key, maxValue))}</span>
+    <div style="display:flex;justify-content:space-between;gap:6px;margin-top:2px;font-size:9px;">
+      <span title="${escapeHtml(minSuburb)}">${escapeHtml(minSuburb)}: ${escapeHtml(minText)}</span>
+      <span title="${escapeHtml(maxSuburb)}">${escapeHtml(maxSuburb)}: ${escapeHtml(maxText)}</span>
     </div>
   `;
 }
@@ -2567,7 +2584,7 @@ function renderMap(rows) {
   if (ml.suburbHeat) suburbHeatLayer.addTo(map);
   if (ml.schools) schoolLayer.addTo(map);
   if (ml.parks) parksLayer.addTo(map);
-  updateHeatLegend(heatCfg, heatMin, heatMax, ml.suburbHeat && heatRows.length > 0);
+  updateHeatLegend(heatCfg, heatMin, heatMax, ml.suburbHeat && heatRows.length > 0, heatRows);
 
   const boundsLayers = [];
   if (shouldShowPropertyPoints) boundsLayers.push(...listingMarkers);
