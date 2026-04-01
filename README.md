@@ -30,9 +30,9 @@ This repository turns a **CSV of sold listings** into **JSON** consumed by a **s
 | **KPI strip** | High-level stats driven by the current filter set (counts, median / mean / spread where applicable). |
 | **Filters** | Suburb, bedrooms, bathrooms, **year**, and a **dual-handle price range**. **Clear filters** gains a soft highlight whenever any filter is active. |
 | **Yearly median price** | Line or bar chart (toggle). Interactions can focus the chart on a suburb or a specific property’s sale history when the data allows. |
-| **Map** | **Leaflet** map with toggles for suburb aggregates, individual properties, estimated school points, and (if generated) simplified **PTA** public transport overlays. |
+| **Map** | **Leaflet** map with suburb heat polygons, individual properties, optional parks, estimated school points, and (if generated) simplified **PTA** public transport overlays. |
 | **Suburbs table** | Sortable **Suburbs by sales volume** (and related price / variation columns). |
-| **Properties table** | Parallel view: **Properties by sales volume** at **address** level, same style of metrics, with **pagination** (100 rows per page) and its own sort state. |
+| **Properties table** | Parallel view: **Properties by sales volume** at **address** level, same style of metrics, with **pagination** (20 rows per page) and its own sort state. |
 | **Distribution** | Suburb-level price distribution visualisation (Chart.js), aligned with the rest of the filtering model. |
 
 The UI is plain **HTML**, **CSS**, and **vanilla JavaScript** (`dashboard/app.js`), with **Chart.js**, **Plotly**, and **Leaflet** loaded from CDNs.
@@ -46,6 +46,7 @@ The UI is plain **HTML**, **CSS**, and **vanilla JavaScript** (`dashboard/app.js
 | `perth_property_data.csv` | **Input** sold-property dataset (place at repo root before running the pipeline; it may be gitignored or absent in clones). |
 | `scripts/build_dashboard_data.py` | Reads the CSV with **pandas**, aggregates, and writes JSON under `dashboard/data/`. |
 | `scripts/build_public_transport_data.py` | Optional: builds trimmed GeoJSON for the dashboard when PTA source files exist. |
+| `scripts/fetch_parks_osm.py` | Optional helper: downloads metro-wide parks/green areas from OpenStreetMap (Overpass API) to refresh parks layer inputs. |
 | `scripts/property_annual_returns.py` | Builds `property_annual_return_*.json` (sale-to-sale CAGR and per-property summaries) from the CSV. |
 | `scripts/run_update.py` | **Entry point**: runs the dashboard build; if PTA stop/route GeoJSON folders are present, runs the public-transport build as well. |
 | `dashboard/` | Static front end: `index.html`, `styles.css`, `app.js`, `assets/` (logo, banner, favicon). |
@@ -75,10 +76,18 @@ The UI is plain **HTML**, **CSS**, and **vanilla JavaScript** (`dashboard/app.js
 | **`perth_property_data.csv`** | **Primary input.** Sold listings (one row per sale / listing as defined in your extract). Required at the **repository root**. The pipeline **drops** rows with missing, non-numeric, or **&lt; AUD 100,000** `Price` (`MIN_PRICE_AUD` in `scripts/build_dashboard_data.py`). **Regenerate** all `dashboard/data/*.json` after changing the CSV or this rule (`python scripts/run_update.py`). |
 | **`Stops_PTA_001_WA_GDA2020_Public_GeoJSON/Stops_PTA_001_WA_GDA2020_Public.geojson`** | **Optional.** WA public transport stops (GDA2020). Used only if this folder and file exist when you run `run_update.py`. |
 | **`Service_Routes_PTA_002_WA_GDA2020_Public_GeoJSON/Service_Routes_PTA_002_WA_GDA2020_Public.geojson`** | **Optional.** WA service route geometry. Same condition as stops. |
+| **`dashboard/data/suburb_boundaries.geojson`** | **Required for suburb polygon rendering.** WA locality boundaries filtered to dashboard suburbs (generated from Geoscape WA Localities). |
+| **`dashboard/data/parks.geojson`** | **Optional.** Metro-wide parks/green-area polygons for map overlay. Current project build uses OpenStreetMap extraction via Overpass. |
 
 **School locations on the map** are **not** a separate download: `school_points_estimated.json` is **derived in the pipeline** from listing fields (e.g. primary school name and coordinates aggregated from sales rows).
 
 Other archives or layers you may keep in the repo (for example regional parks ZIPs or rail-corridor GeoJSON) are **not** read by the current dashboard scripts unless you extend the pipeline.
+
+### External source links currently used
+
+- **WA Suburb/Locality Boundaries (Geoscape, CC BY 4.0):** [data.gov.au dataset page](https://data.gov.au/data/dataset/wa-suburb-locality-boundaries-geoscape-administrative-boundaries)
+- **GeoJSON/WFS endpoint listed by data.gov.au:** [resource page](https://data.gov.au/data/dataset/wa-suburb-locality-boundaries-geoscape-administrative-boundaries/resource/41ecb706-30cf-406d-8314-6ed6baec696b)
+- **OpenStreetMap (parks / green areas) via Overpass API:** [Overpass API](https://overpass-api.de/api/interpreter), [OSM Overpass docs](https://wiki.openstreetmap.org/wiki/Overpass_API)
 
 ---
 
@@ -97,6 +106,8 @@ Created by **`scripts/build_dashboard_data.py`** unless noted otherwise. Every f
 | **`suburb_stats.json`** | Suburb-level counts, median / average price, average distance to CBD. |
 | **`suburb_map_stats.json`** | Suburb centroids (mean lat/lon), counts, and average / median price for **map** circles. |
 | **`school_points_estimated.json`** | One point per primary school name with estimated coordinates (mean of listing locations) and counts — used by the dashboard map layer. |
+| **`suburb_boundaries.geojson`** | Suburb/locality polygons used by the map choropleth/heat rendering for suburb-based metrics. |
+| **`parks.geojson`** | Parks/green-area polygons shown in the optional `Parks` map layer. |
 
 Created by **`scripts/property_annual_returns.py`** (invoked from `build_dashboard_data.py`):
 
@@ -113,6 +124,7 @@ Created by **`scripts/build_public_transport_data.py`** when PTA inputs exist:
 |------|-------------|
 | **`public_transport_stops.geojson`** | Stops clipped / simplified for Greater Perth for browser use. |
 | **`public_transport_routes.geojson`** | Route linework clipped / simplified for the same area. |
+| **`parks_osm_raw.json`** | Raw Overpass response used to produce `parks.geojson` (if you choose to refresh parks data via script). |
 
 ---
 
@@ -128,6 +140,8 @@ At startup, **`dashboard/app.js`** fetches:
 | **`school_points_estimated.json`** | School overlay on the map. |
 | **`public_transport_stops.geojson`** | Optional; if missing or invalid, transport layers are skipped gracefully. |
 | **`public_transport_routes.geojson`** | Optional; same as above. |
+| **`suburb_boundaries.geojson`** | Suburb polygon boundaries for heat/choropleth map rendering. |
+| **`parks.geojson`** | Optional parks/green-area overlay layer. |
 
 The other JSON files in `dashboard/data/` are **still produced** by the pipeline for analysis, exports, or future UI — they are **not** requested by the current static page.
 
@@ -157,6 +171,14 @@ node scripts/sanitize_dashboard_data_min_price.js
 ```
 
 If you have the PTA GeoJSON datasets in the expected folders (`Stops_PTA_001_…`, `Service_Routes_PTA_002_…`), the same command also rebuilds the simplified transport layers used by the map.
+
+To refresh parks data from OpenStreetMap (metro Perth extract), run:
+
+```bash
+python scripts/fetch_parks_osm.py
+```
+
+This creates/updates `dashboard/data/parks_osm_raw.json` and is used to regenerate `dashboard/data/parks.geojson` in this project workflow.
 
 ---
 
