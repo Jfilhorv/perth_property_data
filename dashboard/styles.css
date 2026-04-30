@@ -1518,6 +1518,17 @@ tbody tr.table-row--active-filter:hover td {
   height: 400px;
 }
 
+.viz-grid > .panel:not(.panel--map):not(.panel--sales) {
+  display: flex;
+  flex-direction: column;
+}
+
+.viz-grid > .panel:not(.panel--map):not(.panel--sales) .chart-wrap {
+  flex: 1;
+  min-height: 0;
+  height: auto;
+}
+
 .chart-wrap--clickable {
   cursor: pointer;
 }
