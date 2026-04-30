@@ -613,7 +613,7 @@ section.panel:has(.filters):has(.clear-filters-btn--filtered) {
 }
 
 .viz-grid .panel {
-  min-height: 460px;
+  min-height: 360px;
 }
 
 .filters {
