@@ -13,7 +13,7 @@ body {
 }
 
 header {
-  padding: 14px 0;
+  padding: 8px 0;
   margin: 0;
   border: none;
   background-color: rgba(65, 105, 225, 0.92);
@@ -43,7 +43,7 @@ header {
   display: block;
   width: auto;
   height: auto;
-  max-height: 96px;
+  max-height: 68px;
   max-width: none;
   object-fit: contain;
   object-position: right center;
@@ -302,6 +302,7 @@ section.panel:has(.filters):has(.clear-filters-btn--filtered) {
   margin: 0;
   flex: 1 1 200px;
   min-width: 0;
+  font-size: 1rem;
 }
 
 .chart-type-select-hidden {
@@ -612,7 +613,7 @@ section.panel:has(.filters):has(.clear-filters-btn--filtered) {
 }
 
 .viz-grid .panel {
-  min-height: 560px;
+  min-height: 460px;
 }
 
 .filters {
@@ -940,6 +941,7 @@ select {
   margin: 0;
   flex: 1 1 200px;
   min-width: 0;
+  font-size: 1rem;
 }
 
 .map-layer-toggles {
@@ -1513,7 +1515,7 @@ tbody tr.table-row--active-filter:hover td {
 }
 
 .chart-wrap {
-  height: 500px;
+  height: 400px;
 }
 
 .chart-wrap--clickable {
